@@ -1,0 +1,11 @@
+# 블로그 기본 설정
+title: "성진이의 개발 블로그"
+description: "파이썬 오답 노트와 개발 공부 기록"
+
+# 테마 불러오기 (미니멀 미스테이크)
+remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: "dark" # 개발자들의 국룰, 다크 모드 스킨!
+
+# 필수 플러그인 (이게 있어야 테마가 정상 작동해)
+plugins:
+  - jekyll-include-cache
