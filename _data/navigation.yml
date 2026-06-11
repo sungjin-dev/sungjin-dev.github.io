@@ -1,0 +1,8 @@
+# 상단 메뉴바 설정
+main:
+  - title: "Python"
+    url: /categories/python/
+  - title: "오답노트"
+    url: /categories/오답노트/
+  - title: "전체보기"
+    url: /year-archive/
