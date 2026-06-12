@@ -131,17 +131,38 @@ color: red;
 }
 ```
 <div class="blank-space"></div>
-뭔가 복잡해보이지만 여기서 중점적으로 봐야할건 #wrap 이 부분과 div.head 이거다. 
-<br>
-#wrap은 당연히 <div id="wrap"></div> 방식으로 지정했을거고 주로 최상위에 부과해서 사용하며
-<br>
-#만 붙여서 맨 앞자리에 쓰면 끝이다.
-<br>
-위에서 배운 클래스 선택자를 떠올려보면
-<br>
-div.head의 경우 <div class="head"></div>  이 부분을 선택해서 작업하고 싶을 때 지정한다는걸 알 수 있다. 
+사용법은 간단하다. #만 붙여서 맨 앞자리에 쓰면 끝이다.
 
- 그럼 결과적으로 #wrap div.head {}는 <div id="wrap"></div> 이 구역 안 <div class="head"></div> 를 저격하는 방식인거다.  
+위의 예시 코드는 뭔가 복잡해보이지만 여기서 중점적으로 봐야할건 #wrap 이 부분과 div.head 이거다. 
+<br>
+#wrap은 당연히
+```
+<div id="wrap"></div>
+``` 
+방식으로 코딩했을거고 주로 최상위 범위에 지정해서 사용한다
+<br>
+
+<br>
+div.head 이 부분은 위에서 배운 클래스 선택자를 떠올려보자
+<br>
+마찬가지로 다음과 같은 방식으로 코딩하며
+```
+<div class="head"></div>  
+```
+이 부분을 선택해서 작업하고 싶을 때 지정한다는걸 알 수 있다. 
+
+ 그럼 결과적으로 
+ ```
+#wrap div.head {}
+ ```는 
+ ```
+ <div id="wrap"></div> 
+ ```
+ 이 구역 안 
+ ```
+ <div class="head"></div> 
+ ```
+ 를 저격하는 방식인거다.  
  
 <div class="blank-space"></div>
 본문 html 구조를 보면 좀 더 직관적으로 이해하기 쉽다. 
