@@ -1,5 +1,6 @@
 ---
 title: "CSS 기초. 선택자와 그 사용법"
+excerpt: "외부 css파일에 선택자 입력하는 방법"
 categories:
   - Python
 tags:
