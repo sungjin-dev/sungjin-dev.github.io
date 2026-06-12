@@ -110,9 +110,9 @@ color: red;
 <div class="blank-space"></div>
 
 작성법: 특정 태그 안에 id="명칭" 을 부여해서 이름표를 붙이는 느낌으로 이해하면 편하다.
-
+<br>
 주로 최상위 태그에 달아서 활용하는데 공부할 때는 주로 id="wrap" 이런식으로 자주 사용했다. 
-
+<br>
 최상위 부모느낌이라 모두를 감싸는, wrapping하는 거라고 보면 된다. 
 <div class="blank-space"></div>
 예시: 
@@ -132,11 +132,11 @@ color: red;
 뭔가 복잡해보이지만 여기서 중점적으로 봐야할건 #wrap 이 부분과 div.head 이거다. 
 <br>
 #wrap은 당연히 <div id="wrap"></div> 방식으로 지정했을거고 주로 최상위에 부과해서 사용하며
-
+<br>
 #만 붙여서 맨 앞자리에 쓰면 끝이다.
-
+<br>
 위에서 배운 클래스 선택자를 떠올려보면
-
+<br>
 div.head의 경우 <div class="head"></div>  이 부분을 선택해서 작업하고 싶을 때 지정한다는걸 알 수 있다. 
 
  그럼 결과적으로 #wrap div.head {}는 <div id="wrap"></div> 이 구역 안 <div class="head"></div> 를 저격하는 방식인거다.  
