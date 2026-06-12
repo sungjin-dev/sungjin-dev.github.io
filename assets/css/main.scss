@@ -1,0 +1,17 @@
+/* 다크모드에 어울리는 오답 노트 박스 */
+.my-wrong-note {
+  background-color: #2d3748; /* 배경보다 살짝 밝은 짙은 회색 */
+  border-left: 5px solid #fc8181; /* 눈에 띄는 파스텔 레드 선 */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  color: #f7fafc; /* 글씨는 밝은 색으로 */
+}
+
+/* 형광펜 효과 (어두운 배경용) */
+.highlight-dark {
+  background-color: #744210; /* 어두운 노란/갈색 톤 */
+  color: #feebc8; /* 밝은 노란색 텍스트 */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
