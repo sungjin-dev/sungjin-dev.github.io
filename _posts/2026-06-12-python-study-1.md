@@ -25,9 +25,13 @@ toc_sticky: true
 
 여기서, 선택자 (Selector)란 디자인 속성을 적용할 대상이고   
 
-속성 (Property)은 크기, 색상, 여백 등 변경하고 싶은 특질이며   ex. width, border, position
+속성 (Property)은 크기, 색상, 여백 등 변경하고 싶은 특질이며   
 
-값 (Value)은 말 그대로 속성에 구체적으로 들어가는 수치나 비율 상태 등을 말한다.     ex. relative, 100px, solid
+ex. width, border, position
+
+값 (Value)은 말 그대로 속성에 구체적으로 들어가는 수치나 비율 상태 등을 말한다.     
+
+ex. relative, 100px, solid
 
 <br>
 보통 css작업을 할 때면 html 본문에 작업할 <body> 뼈대 위에
