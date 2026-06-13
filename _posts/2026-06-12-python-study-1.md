@@ -177,13 +177,15 @@ div.head 이 부분은 위에서 배운 클래스 선택자를 떠올려보자
 <div class="blank-space"></div>
 본문 html 구조를 보면 좀 더 직관적으로 이해하기 쉽다. 
 ```html
-<div id="wrap">             <div class="to">    <h1>
-               <a href="#none">To. Hong Glidong.</a>
-            </h1>
-        </div>
-        
-        <div class="head">  <h3>How are you doing?</h3>
-        </div>
+<div id="wrap">             
+    <div class="to">    
+        <h1>
+          <a href="#none">To. Hong Glidong.</a>
+        </h1>
+    </div>
+    <div class="head">  
+        <h3>How are you doing?</h3>
+    </div>
 </div> 
 ```                  
 <div class="blank-space"></div>            
