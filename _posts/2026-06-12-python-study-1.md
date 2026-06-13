@@ -9,7 +9,7 @@ tags:
 toc: true
 toc_sticky: true
 ---
-
+<div class=""my-wrong-note">
 오늘은 css를 배웠다. 
 
 우선 아주 기본적인 골격은 다음과 같다 
@@ -201,6 +201,8 @@ div.head 이 부분은 위에서 배운 클래스 선택자를 떠올려보자
 
  그 중에서도 '*' 일명 Asterisk 는 진짜 모든 영역에 적용시킬 속성이 필요한 경우 사용한다. 
 <div class="blank-space"></div>
+</div>
+
  
 
  
