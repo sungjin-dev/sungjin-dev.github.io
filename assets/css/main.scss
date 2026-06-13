@@ -77,6 +77,10 @@ code {
 }
 
 /* --- 큰 코드 블록 안의 이중 배경색(음영) 제거 --- */
-pre code {
+/* --- 어떤 테마에서도 무조건 큰 코드 박스 이중 배경색 없애는 강력한 코드 --- */
+pre code, 
+div.highlight code, 
+.highlighter-rouge code {
   background-color: transparent !important;
+  padding: 0 !important; /* 혹시 모를 내부 여백까지 싹 제거 */
 }
