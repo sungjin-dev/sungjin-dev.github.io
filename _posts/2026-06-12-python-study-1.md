@@ -45,7 +45,7 @@ ex. relative, 100px, solid
 <br>
 이런식으로 css파일을 하나 따로 만들어서 본 html문서에 link해서 연동시키는 방식을 주로 하게 된다. (external방식)
 
-이렇게 외부로 뺀 css파일은 당연히 확장자도 <em>파일명.css<em> 이고 보통 <em>common.css</em>도 같이 만들어서 진행한다. 
+이렇게 외부로 뺀 css파일은 당연히 확장자도 <em>파일명.css</em> 이고 보통 <em>common.css</em>도 같이 만들어서 진행한다. 
 
 common파일은 영문 그대로 공통적으로 적용할 속성들을 미리 세팅해놓는 용도다.
 
