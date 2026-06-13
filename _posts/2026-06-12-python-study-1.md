@@ -66,10 +66,10 @@ a { text-decoration: none; color:#242424}
 
 a:hover {text-decoration: underline;}
 ```
-<div class="blank-space"></div>
+<br><br>
 등등 다양한 속성들과 그 구체적인 수치를 특정 선택자 혹은 모든 코드에 적용시킬 속성값도 넣어 줄 수 있다
-<br>
-*`*` 일명 Asterisk 는 밑에서 다루겠지만 모든 항목에 적용시킬 수 있는 강력한 녀석이다*
+<br><br>
+*`*` 일명 Asterisk 는 밑에서 다루겠지만 모든 항목에 적용시킬 수 있다*
 <br><br><br>
 이렇게 따로 뺀 css파일에 작업을 할 때는 
 <br><br>
