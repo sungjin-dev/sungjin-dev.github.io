@@ -9,7 +9,7 @@ tags:
 toc: true
 toc_sticky: true
 ---
-<div class="my-wrong-note">
+<div class="my-wrong-note" markdown="1">
   
 오늘은 css를 배웠다. 
 
