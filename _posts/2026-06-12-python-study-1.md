@@ -9,7 +9,7 @@ tags:
 toc: true
 toc_sticky: true
 ---
-<div class="my-wrong-note">
+<div class="my-wrong-note" markdown="1">
   
 오늘은 css를 배웠다. 
 
@@ -82,16 +82,12 @@ color: red;
 
 } 
 ```
-<br>
-<strong>주의할 점</strong>은 <br>같은 태그들은 태생적으로 css로 작업이 불가능하다.
+<strong>주의할 점</strong>은 `<br>`같은 태그들은 태생적으로 css로 작업이 불가능하다.
 아래 나열된 태그들은 불가능하거나 꼼수를 써서 우회적인 방식으로 효과를 줘야할 수도 있다.
-<br>
 ```
 <select>, <option>, <input type="checkbox">, <input type="radio"> 
 -> 운영체제(OS)나 브라우저의 기본 UI 테마를 강제로 따라가버림
-<br>
 <head>, <meta>, <title>, <script>, <style>, <link> <- 화면에 나오지 않아 수정 불가
-<br>
 <iframe>, <video>, <canvas>
 ->이 태그들 자체의 껍데기 크기(width, height)나 테두리(border)는 바꿀 수 있으나 
   저 태그 안쪽 내용은 우리의 CSS로 절대 건드릴 수 없음 외부 세계와 완벽히 단절
