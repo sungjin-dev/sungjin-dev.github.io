@@ -86,10 +86,144 @@ h1 {
   color: red; 
 } 
 ```
-<br><br>
+<br>
 <strong>주의할 점</strong>은 `<br>` 같은 태그들은 태생적으로 css로 작업이 불가능하다.
-<br><br>
+<br>
 아래 나열된 태그들은 불가능하거나 꼼수를 써서 우회적인 방식으로 효과를 줘야할 수도 있다.
 <br><br>
 ```text
-<select>, <option>, <input type="checkbox">, <input type
+<select>, <option>, <input type="checkbox">, <input type="radio"> 
+-> 운영체제(OS)나 브라우저의 기본 UI 테마를 강제로 따라가버림
+
+<head>, <meta>, <title>, <script>, <style>, <link> 
+<- 화면에 나오지 않아 수정 불가
+
+<iframe>, <video>, <canvas>
+-> 이 태그들 자체의 껍데기 크기(width, height)나 테두리(border)는 바꿀 수 있으나 
+   저 태그 안쪽 내용은 우리의 CSS로 절대 건드릴 수 없음 외부 세계와 완벽히 단절
+```
+<div class="blank-space"></div> 
+<span class="highlight-dark">2. 클래스 선택자 (Class Selector) ⭐</span> 
+<br><br>
+
+작성법: class를 부여한 태그 다음에 .을 치고 그 클래스명을 입력해서 작업한다. 
+
+보통 html 본문에 있는 태그 안에 `class="명칭"` 을 부과해서 쉽게 지정할 수 있게 작업한다
+<div class="blank-space"></div>
+
+```html
+<div class="head">  
+``` 
+-> 이러면 아하 머리부분 블록을 작업하는구나 판단할 수 있다.
+  
+```html
+<div class="body">
+```
+-> 여기는 몸통 부분이네하고 직관적으로 구분하기 쉽게 명칭을 넣어주는게 좋다. 
+<div class="blank-space"></div>
+그래야 나중에 css작업하기 편하기도 하고 본문 구조를 파악하기 편하다. 물론 구조를 미리 잡고 작업하는게 베스트.
+<div class="blank-space"></div>
+```css
+.div_class_name01 {
+    color: blue;
+}
+```
+<div class="blank-space"></div>
+<span class="highlight-dark">3. 아이디 선택자 (ID Selector)</span> 
+<br><br>
+
+작성법: 특정 태그 안에 `id="명칭"` 을 부여해서 이름표를 붙이는 느낌으로 이해하면 편하다.
+<br>
+주로 최상위 태그에 달아서 활용하는데 공부할 때는 주로 `id="wrap"` 이런식으로 자주 사용했다. 
+<br>
+최상위 부모느낌이라 모두를 감싸는, wrapping하는 거라고 보면 된다. 
+<div class="blank-space"></div>
+
+> **💡 핵심 포인트: 클래스(Class)와 아이디(ID)의 차이점**
+> * **클래스( . ):** 같은 반 학생들에게 달아주는 '이름표'입니다. 한 문서 안에서 여러 번 중복해서 쓸 수 있습니다.
+> * **아이디( # ):** 오직 한 명만 가질 수 있는 '주민등록번호'입니다. 한 문서 안에서 똑같은 ID는 **단 한 번만** 사용해야 합니다.
+
+<div class="blank-space"></div>
+예시: 
+```css
+#wrap div.head {
+    text-align: center;
+    border-bottom: double #ccc;
+    padding: 10px;
+    margin-top: 50px;
+}
+```
+<div class="blank-space"></div>
+사용법은 간단하다. `#`만 붙여서 맨 앞자리에 쓰면 끝이다.
+
+위의 예시 코드는 뭔가 복잡해보이지만 여기서 중점적으로 봐야할건 `#wrap` 이 부분과 `div.head` 이거다. 
+여기서 아주 중요한 규칙 하나, 바로 **'띄어쓰기'의 비밀**이다.
+<br><br>
+
+`#wrap`은 당연히
+```html
+<div id="wrap"></div>
+``` 
+방식으로 코딩했을거고 주로 최상위 범위에 지정해서 사용한다
+<br>
+
+<br>
+`div.head` 이 부분은 위에서 배운 클래스 선택자를 떠올려보자
+<br>
+마찬가지로 다음과 같은 방식으로 코딩하며
+```html
+<div class="head"></div>  
+```
+이 부분을 선택해서 작업하고 싶을 때 지정한다는걸 알 수 있다. 
+
+그럼 결과적으로 
+```css
+#wrap div.head {}
+```
+선택자 사이에 **띄어쓰기**를 하면 **"~안에 있는(하위)"** 이라는 뜻이다. 즉, 
+```html
+<div id="wrap"></div> 
+```
+이 구역 **안에 있는** ```html
+<div class="head"></div> 
+```
+를 저격하는 방식인거다.  
+ 
+<div class="blank-space"></div>
+본문 html 구조를 보면 좀 더 직관적으로 이해하기 쉽다. 
+```html
+<div id="wrap">             
+    <div class="to">    
+        <h1>
+          <a href="#none">To. Hong Glidong.</a>
+        </h1>
+    </div>
+    <div class="head">  
+        <h3>How are you doing?</h3>
+    </div>
+</div> 
+```                  
+<div class="blank-space"></div>            
+<span class="highlight-dark">4. 전체 선택자 (Universal Selector)</span> 
+<br><br>
+
+마지막으로  `*` 라는 무시무시한 녀석이다. 
+<br>
+보통 common.css에 일괄적으로 적용하고 싶은 속성값, 즉 초기데이터를 세팅해놓는게 정석인데 
+
+그 중에서도 `*` 일명 Asterisk 는 진짜 모든 영역에 적용시킬 속성이 필요한 경우 사용한다. 
+<div class="blank-space"></div>
+
+<span class="highlight-dark">5. 보너스: 그룹 선택자 (Group Selector) 꿀팁</span> 
+<br><br>
+
+실무에서 정말 숨 쉬듯이 자주 쓰는 방법이다. 완전히 똑같은 디자인을 여러 태그에 동시에 주고 싶을 때는 코드를 여러 번 쓰지 말고, **쉼표( , )**로 구분해서 한 번에 묶어버리면 된다.
+
+```css
+h1, h2, p {
+  color: blue;
+}
+```
+이렇게 하면 `h1`, `h2`, `p` 태그가 모두 파란색으로 변한다.
+
+</div>
