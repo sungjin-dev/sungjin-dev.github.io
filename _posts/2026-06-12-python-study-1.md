@@ -42,17 +42,19 @@ toc_sticky: true
 이런식으로 css파일을 하나 따로 만들어서 본 html문서에 link해서 연동시키는 방식을 주로 하게 된다. (external방식)
 
 물론 HTML 문서 안에 바로 바로 적용시키는 인라인(inline) 방식을 고집할 수도 있다. 
+<br>
 ```html
 <p style="color: aquamarine;"> 블라블라 </p>
 ```
+<br>
 하지만 이러한 인라인 방식은 본문 코드가 복잡해져 구조를 파악하기 힘들 뿐 아니라 유지 보수도 굉장히 어렵다.
-<br>
+<br><br>
 따로 CSS파일로 관리하는 것이 분업화하여 작업하기도 편하다. 
-<br>
+<br><br>
 참고로 인라인(inline) 방식으로 직접 내부 코딩하는 경우 우선순위 1순위로 적용된다. 
 <div class="blank-space"></div>
 이렇게 외부로 뺀 css파일은 당연히 확장자도 `파일명.css` 이고 보통 `common.css`도 같이 만들어서 진행한다. 
-
+<br><br>
 common파일은 영문 그대로 공통적으로 적용할 속성들을 미리 세팅해놓는 용도다.
 
 <div class="blank-space"></div>
@@ -70,9 +72,8 @@ a:hover {text-decoration: underline;}
 *`*` 일명 Asterisk 는 밑에서 다루겠지만 모든 항목에 적용시킬 수 있는 강력한 녀석이다*
 <br><br><br>
 이렇게 따로 뺀 css파일에 작업을 할 때는 
-<br>
+<br><br>
 그냥 아무렇게나 쓰는게 아니라 마치 문법처럼 선택자마다 쓰는 방법이 다르다.
-<br>
 <div class="blank-space"></div>
 <span class="highlight-dark">1. 태그 (Tag Selector)</span> 
 <br><br>
@@ -85,9 +86,9 @@ h1 {
   color: red; 
 } 
 ```
-<br>
+<br><br>
 <strong>주의할 점</strong>은 `<br>` 같은 태그들은 태생적으로 css로 작업이 불가능하다.
-<br>
+<br><br>
 아래 나열된 태그들은 불가능하거나 꼼수를 써서 우회적인 방식으로 효과를 줘야할 수도 있다.
 <br><br>
 ```text
