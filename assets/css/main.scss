@@ -75,3 +75,8 @@ code {
   background-color: #1a202c !important; /* 오답노트 배경보다 더 어두운 까만색 */
   color: #fbd38d !important; /* 눈에 확 띄는 부드러운 노란색 */
 }
+
+/* --- 큰 코드 블록 안의 이중 배경색(음영) 제거 --- */
+pre code {
+  background-color: transparent !important;
+}
