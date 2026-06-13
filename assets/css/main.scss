@@ -67,7 +67,7 @@ code {
   padding: 3px 6px !important;
   border-radius: 4px !important;
   font-family: 'Courier New', monospace !important; /* 타자기 폰트 */
-  font-size: 0.9em !important;
+  font-size: 1.2em !important;
 }
 
 /* (어두운 배경) 안에서의 디자인 */
@@ -83,4 +83,5 @@ div.highlight code,
 .highlighter-rouge code {
   background-color: transparent !important;
   padding: 0 !important; /* 혹시 모를 내부 여백까지 싹 제거 */
+  font-size: 16px !important;
 }
