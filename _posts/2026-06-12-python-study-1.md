@@ -14,7 +14,7 @@ toc_sticky: true
   
 오늘은 css를 배웠다. 
 
-우선 아주 기본적인 골격은 다음과 같다 
+우선 기본적인 골격은 다음과 같다 
 <div class="blank-space"></div>
 ```css
 선택자 {
