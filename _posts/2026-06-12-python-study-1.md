@@ -22,14 +22,14 @@ toc_sticky: true
 }
 ```
 <div class="blank-space"></div>
-프로그래밍 언어를 공부하다보면 굉장히 친숙한 딕셔너리(json) 형태의 구조이다. 
-
+프로그래밍 언어를 공부하다보면 굉장히 친숙한 '딕셔너리(json)' 형태의 구조이다. 
+<br>
 여기서, <strong>선택자</strong>란 디자인 속성을 적용할 대상이고   
-
+<br>
 <strong>속성</strong>은 크기, 색상, 여백 등 변경하고 싶은 특질이며   
 
 <em>ex. width, border, position</em>
-
+<br>
 <strong>값</strong> (Value)은 말 그대로 속성에 구체적으로 들어가는 수치나 비율 상태 등을 말한다.     
 
 ex. relative, 100px, solid
@@ -44,7 +44,7 @@ ex. relative, 100px, solid
 <br>
 이런식으로 css파일을 하나 따로 만들어서 본 html문서에 link해서 연동시키는 방식을 주로 하게 된다. (external방식)
 
-이렇게 외부로 뺀 css파일은 당연히 확장자도 <em>파일명.css</em> 이고 보통 <em>common.css</em>도 같이 만들어서 진행한다. 
+이렇게 외부로 뺀 css파일은 당연히 확장자도 <u><em>파일명.css</em></u> 이고 보통 <u><em>common.css</em></u>도 같이 만들어서 진행한다. 
 
 common파일은 영문 그대로 공통적으로 적용할 속성들을 미리 세팅해놓는 용도다.
 
@@ -68,8 +68,7 @@ a:hover {text-decoration: underline;}
 <br>
 <div class="blank-space"></div>
 <span class="highlight-dark">1. 태그 (Tag Selector)</span> 
-<div class="blank-space"></div>
-<br>
+<br><br>
 작성법: 그냥 순수하게 본인만 입력하면 된다.    ex. p, div, h1, span 등 
 <div class="blank-space"></div>
 예시: 
@@ -96,7 +95,7 @@ h1 {
 ```
 <div class="blank-space"></div> 
 <span class="highlight-dark">2. 클래스 선택자 (Class Selector) ⭐</span> 
-<div class="blank-space"></div>
+<br><br>
 
 작성법: class를 부여한 태그 다음에 .을 치고 그 클래스명을 입력해서 작업한다. 
 
@@ -122,7 +121,7 @@ h1 {
 ```
 <div class="blank-space"></div>
 <span class="highlight-dark">3. 아이디 선택자 (ID Selector)</span> 
-<div class="blank-space"></div>
+<br><br>
 
 작성법: 특정 태그 안에 id="명칭" 을 부여해서 이름표를 붙이는 느낌으로 이해하면 편하다.
 <br>
@@ -188,9 +187,8 @@ div.head 이 부분은 위에서 배운 클래스 선택자를 떠올려보자
 </div> 
 ```                  
 <div class="blank-space"></div>            
-<br>
 <span class="highlight-dark">4. 전체 선택자 (Universal Selector)</span> 
-<div class="blank-space"></div>
+<br><br>
 
 마지막으로  `*` 라는 무시무시한 녀석이다. 
 <br>
