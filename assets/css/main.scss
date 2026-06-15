@@ -85,3 +85,17 @@ code {
 }
 
 /* 4-2. 징한 이중 음영(배경색, 그림자) 완전 박멸 및 폰트 조절! */
+div.highlighter-rouge div.highlight code,
+div.highlighter-rouge pre code,
+.page__content pre code {
+  background: none !important;            
+  background-color: transparent !important; 
+  box-shadow: none !important;            
+  border: none !important;                
+  padding: 0 !important;                  
+  
+  /* 글씨 크기 키우고, 깔끔한 폰트체 동일하게 적용 */
+  font-family: 'Consolas', 'Menlo', 'Monaco', monospace !important;
+  font-size: 1.1em !important; 
+  font-weight: normal !important;
+}
