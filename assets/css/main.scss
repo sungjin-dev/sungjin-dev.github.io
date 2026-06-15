@@ -1,16 +1,10 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 ---
-
 @charset "utf-8";
 
-/* 테마 기본 뼈대 불러오기 (이 부분이 생명줄입니다!) */
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
-/* =======================================================
-   1. 사용자 정의 디자인 (오답 노트, 형광펜, 여백 등)
-   ======================================================= */
 .my-wrong-note {
   background-color: #2d3748;
   border-left: 5px solid #fc8181;
@@ -36,9 +30,6 @@
   height: 40px;
 }
 
-/* =======================================================
-   2. 블로그 본문 및 메인 화면 여백/간격 틔우기
-   ======================================================= */
 .page__inner-wrap {
   padding-left: 40px !important;
   padding-right: 40px !important;
@@ -50,13 +41,9 @@
 }
 
 p, li {
-  line-height: 1.8 !important; /* 글자 줄 간격 넓히기 (가독성 상승) */
+  line-height: 1.8 !important;
 }
 
-/* =======================================================
-   3. 문장 중간 '단어 블록(단일 백틱)' 디자인
-   ======================================================= */
-/* 기본 화면(하얀 배경)에서의 얄쌍한 단어 블록 */
 code {
   background-color: #f1f3f5 !important;
   color: #eb5757 !important;
@@ -67,26 +54,20 @@ code {
   font-size: 0.9em !important;
 }
 
-/* 오답 노트(어두운 배경) 안에서의 단어 블록 */
 .my-wrong-note code {
-  background-color: transparent !important; /* 까만 배경 제거 */
-  color: #fbd38d !important; /* 골드 색상 텍스트만 유지 */
+  background-color: transparent !important;
+  color: #fbd38d !important;
 }
 
-/* =======================================================
-   4. 커다란 코드 블록(```) & 'Tokyo Night' 테마 적용
-   ======================================================= */
-/* 4-1. 코드 상자 전체 핏(가로 크기), 여백, 도쿄 나이트 배경색 조절 */
 .highlight, .highlight pre {
   padding: 20px 25px !important;
   width: fit-content !important; 
   min-width: 400px !important;   
   line-height: 1.6 !important;
-  background-color: #1a1b26 !important; /* 도쿄 나이트의 깊은 네이비 배경 */
-  color: #c0caf5 !important; /* 기본 글자색 (연한 블루화이트) */
+  background-color: #1a1b26 !important;
+  color: #c0caf5 !important;
 }
 
-/* 4-2. 징한 이중 음영 완전 박멸 및 폰트 조절! */
 div.highlighter-rouge div.highlight code,
 div.highlighter-rouge pre code,
 .page__content pre code {
@@ -100,16 +81,14 @@ div.highlighter-rouge pre code,
   font-weight: normal !important;
 }
 
-/* 4-3. Tokyo Night 신택스 하이라이팅 상세 색상 */
 .highlight {
-  /* 예약어 (let, const, function 등) */
   .k, .kd, .kv, .kr { color: #f7768e !important; } 
-  
-  /* 문자열 ('click', 'div.sign_up_wrap' 등) */
   .s, .s1, .s2 { color: #e0af68 !important; } 
-  
-  /* 함수 및 메서드 (querySelector, addMember 등) */
   .nf, .na, .m { color: #bb9af7 !important; } 
-  
-  /* 내장 객체 및 속성 (document, console, alert 등) */
-  .nb, .nx, .nl { color: #
+  .nb, .nx, .nl { color: #7dcfff !important; } 
+  .c, .c1, .cm { 
+    color: #565f89 !important; 
+    font-style: italic !important; 
+  } 
+  .p, .o { color: #89ddff !important; } 
+}
