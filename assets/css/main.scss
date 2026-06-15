@@ -4,6 +4,10 @@
 
 @charset "utf-8";
 
+/* 테마 기본 뼈대 불러오기 (이 부분이 생명줄입니다!) */
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
 /* =======================================================
    1. 사용자 정의 디자인 (오답 노트, 형광펜, 여백 등)
    ======================================================= */
@@ -81,14 +85,3 @@ code {
 }
 
 /* 4-2. 징한 이중 음영(배경색, 그림자) 완전 박멸 및 폰트 조절! */
-div.highlighter-rouge div.highlight code,
-div.highlighter-rouge pre code,
-.page__content pre code {
-  background: none !important;            
-  background-color: transparent !important; 
-  box-shadow: none !important;            
-  border: none !important;                
-  padding: 0 !important;                  
-  font-size: 18px !important;
-  font-weight: normal !important;
-}
