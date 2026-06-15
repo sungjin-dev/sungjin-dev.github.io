@@ -63,8 +63,8 @@ code {
 
 /* 오답 노트(어두운 배경) 안에서의 단어 블록 */
 .my-wrong-note code {
-  background-color: #1a202c !important;
-  color: #fbd38d !important;
+  background-color: transparent !important; /* 까만 배경 제거 */
+  color: #fbd38d !important; /* 골드 색상 텍스트만 유지 */
 }
 
 /* =======================================================
@@ -87,5 +87,5 @@ div.highlighter-rouge pre code,
   box-shadow: none !important;            
   border: none !important;                
   padding: 0 !important;                  
-  font-size: 18px !important;             
+  font-size: 18px !important;              
 }
