@@ -1,6 +1,6 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
----https://github.com/sungjin-dev/sungjin-dev.github.io/blob/main/assets/css/main.scss
+---
 
 @charset "utf-8";
 
@@ -74,17 +74,19 @@ code {
 }
 
 /* =======================================================
-   4. 커다란 코드 블록(```) 디자인 및 글자 크기
+   4. 커다란 코드 블록(```) & 'Tokyo Night' 테마 적용
    ======================================================= */
-/* 4-1. 코드 상자 전체 핏(가로 크기) 및 여백 조절 */
+/* 4-1. 코드 상자 전체 핏(가로 크기), 여백, 도쿄 나이트 배경색 조절 */
 .highlight, .highlight pre {
   padding: 20px 25px !important;
   width: fit-content !important; 
   min-width: 400px !important;   
   line-height: 1.6 !important;
+  background-color: #1a1b26 !important; /* 도쿄 나이트의 깊은 네이비 배경 */
+  color: #c0caf5 !important; /* 기본 글자색 (연한 블루화이트) */
 }
 
-/* 4-2. 징한 이중 음영(배경색, 그림자) 완전 박멸 및 폰트 조절! */
+/* 4-2. 징한 이중 음영 완전 박멸 및 폰트 조절! */
 div.highlighter-rouge div.highlight code,
 div.highlighter-rouge pre code,
 .page__content pre code {
@@ -93,41 +95,21 @@ div.highlighter-rouge pre code,
   box-shadow: none !important;            
   border: none !important;                
   padding: 0 !important;                  
-  
-  /* 글씨 크기 키우고, 깔끔한 폰트체 동일하게 적용 */
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace !important;
   font-size: 1.1em !important; 
   font-weight: normal !important;
 }
 
-/* =======================================================
-   5. 코드 블록(Syntax Highlighting) 'Tokyo Night' 테마 적용
-   ======================================================= */
-/* 코드 상자 배경색과 기본 글자색 지정 */
-.highlight, .highlight pre {
-  background-color: #1a1b26 !important; /* 도쿄 나이트의 깊은 네이비 배경 */
-  color: #c0caf5 !important; /* 기본 글자색 (연한 블루화이트) */
-}
-
+/* 4-3. Tokyo Night 신택스 하이라이팅 상세 색상 */
 .highlight {
-  /* 예약어 (let, const, function 등) - 사진 속 코랄 레드 */
+  /* 예약어 (let, const, function 등) */
   .k, .kd, .kv, .kr { color: #f7768e !important; } 
   
-  /* 문자열 ('click', 'div.sign_up_wrap' 등) - 사진 속 옐로우/오렌지 */
+  /* 문자열 ('click', 'div.sign_up_wrap' 등) */
   .s, .s1, .s2 { color: #e0af68 !important; } 
   
-  /* 함수 및 메서드 (querySelector, addMember 등) - 사진 속 보라색 */
+  /* 함수 및 메서드 (querySelector, addMember 등) */
   .nf, .na, .m { color: #bb9af7 !important; } 
   
-  /* 내장 객체 및 속성 (document, console, alert 등) - 사진 속 시안(청록색) */
-  .nb, .nx, .nl { color: #7dcfff !important; } 
-  
-  /* 주석 (// 설명) - 눈이 편안한 톤다운된 보랏빛 회색 */
-  .c, .c1, .cm { 
-    color: #565f89 !important; 
-    font-style: italic !important; 
-  } 
-  
-  /* 괄호, 점, 세미콜론 등 구두점 - 연한 파란색 */
-  .p, .o { color: #89ddff !important; } 
-}
+  /* 내장 객체 및 속성 (document, console, alert 등) */
+  .nb, .nx, .nl { color: #
