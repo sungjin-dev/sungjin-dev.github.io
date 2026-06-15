@@ -68,6 +68,23 @@ code {
   color: #c0caf5 !important;
 }
 
+div.highlighter-rouge {
+  background-color: transparent !important; 
+  margin-bottom: 1.5em; 
+}
+
+
+.highlight {
+  padding: 20px 25px !important;
+  width: fit-content !important; 
+  min-width: 400px !important;   
+  line-height: 1.6 !important;
+  background-color: #1a1b26 !important; 
+  color: #c0caf5 !important;
+  border-radius: 8px !important;
+}
+
+
 div.highlighter-rouge div.highlight code,
 div.highlighter-rouge pre code,
 .page__content pre code {
@@ -80,6 +97,7 @@ div.highlighter-rouge pre code,
   font-size: 1.1em !important; 
   font-weight: normal !important;
 }
+
 
 .highlight {
   .k, .kd, .kv, .kr { color: #f7768e !important; } 
