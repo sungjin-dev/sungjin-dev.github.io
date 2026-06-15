@@ -169,7 +169,9 @@ const myButton = document.querySelector('.btn');
 ```javascript
 signUpWrap = document.querySelector('div.sign_up_wrap');
 ```
-이 코드는 `div` 태그 중 클래스명이 `sign_up_wrap`인 아이만 딱 고른 거다. 정리하면, 화면의 각각 블록을 짚어내고, view 함수에서 이를 매개변수로 사용하기 위해 전역변수화 한 것이다. 
+이 코드는 `div` 태그 중 클래스명이 `sign_up_wrap`인 아이만 딱 고른 거다. 
+<br><br>
+정리하면, 효과를 줄 각각 블록을 짚어내 객체로 만들고, view 함수에서 이를 매개변수로 사용하기 위해 전역변수화 한 것이다. 
 
 ---
 
