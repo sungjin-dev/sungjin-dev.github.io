@@ -1,7 +1,8 @@
 ---
+# Only the main Sass file needs front matter (the dashes are enough)
 ---
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
-@import "minimal-mistakes"; // main partials
+
+@charset "utf-8";
 
 /* =======================================================
    1. 사용자 정의 디자인 (오답 노트, 형광펜, 여백 등)
@@ -57,7 +58,6 @@ code {
   color: #eb5757 !important;
   padding: 3px 6px !important;
   border-radius: 4px !important;
-  /* 맹해 보이던 폰트 대신 깔끔하고 모던한 폰트로 변경 및 굵기 추가 */
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace !important;
   font-weight: bold !important;
   font-size: 0.9em !important;
@@ -88,4 +88,7 @@ div.highlighter-rouge pre code,
   background-color: transparent !important; 
   box-shadow: none !important;            
   border: none !important;                
-  padding: 0
+  padding: 0 !important;                  
+  font-size: 18px !important;
+  font-weight: normal !important;
+}
