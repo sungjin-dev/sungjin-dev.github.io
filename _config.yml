@@ -22,3 +22,14 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:tjdwlsl8888@gmail.com"
+
+# =======================================================
+# 블로그 글 기본 설정 (오른쪽 목차 메뉴 자동 고정)
+# =======================================================
+defaults:
+  - scope:
+      path: ""       # 블로그의 모든 경로에 있는
+      type: "posts"  # 모든 포스팅 글들에 대하여
+    values:
+      toc: true      # 오른쪽 목차(TOC) 창을 자동으로 켜기
+      toc_sticky: true # 스크롤을 내려도 목차가 화면에 계속 고정되어 따라오도록 설정
