@@ -50,7 +50,6 @@ p, li {
   line-height: 1.8 !important;
 }
 
-/* 인라인 코드 블록 (글 뼈대 안의 `코드` 요소) */
 code {
   background-color: #f1f3f5 !important;
   color: #eb5757 !important;
@@ -61,16 +60,14 @@ code {
   font-size: 0.9em !important;
 }
 
-/* 오답 노트 안의 인라인 코드 */
 .my-wrong-note code {
   background-color: transparent !important;
   color: #fbd38d !important;
 }
 
 /* =======================================================
-   3. 제목 계층 구조 디자인 (새로 추가된 부분!)
+   3. 제목 계층 구조 디자인
    ======================================================= */
-/* H2 제목: 왼쪽에 연보라색 기둥 추가 */
 .page__content h2 {
   color: #c0caf5 !important;
   padding-left: 12px !important;
@@ -80,7 +77,6 @@ code {
   font-weight: 700 !important;
 }
 
-/* H3 제목: 하늘색 텍스트 포인트 */
 .page__content h3 {
   color: #7dcfff !important; 
   margin-top: 1.5em !important;
@@ -96,7 +92,6 @@ div.highlighter-rouge {
   margin-bottom: 1.5em;
 }
 
-/* (정리됨) 중복되던 .highlight 코드를 하나로 깔끔하게 합쳤습니다 */
 .highlight, .highlight pre {
   padding: 20px 25px !important;
   width: fit-content !important;
@@ -109,4 +104,20 @@ div.highlighter-rouge {
 
 div.highlighter-rouge div.highlight code,
 div.highlighter-rouge pre code,
-.
+.page__content pre code {
+  background: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  font-family: 'Consolas', 'Menlo', 'Monaco', monospace !important;
+  font-size: 1.1em !important;
+  font-weight: normal !important;
+}
+
+/* 도쿄 나이트 구문 강조 (에러 방지를 위해 평면 구조로 전면 교체) */
+.highlight .k, .highlight .kd, .highlight .kv, .highlight .kr { color: #f7768e !important; }
+.highlight .s, .highlight .s1, .highlight .s2 { color: #e0af68 !important; }
+.highlight .nf, .highlight .na, .highlight .m { color: #bb9af7 !important; }
+.highlight .nb, .highlight .nx, .highlight .nl { color: #7dcfff !important; }
+.highlight .c, .highlight .c
