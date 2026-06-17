@@ -5,6 +5,9 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
+/* =======================================================
+   1. 커스텀 박스 및 여백 설정
+   ======================================================= */
 .my-wrong-note {
   background-color: #2d3748;
   border-left: 5px solid #fc8181;
@@ -40,10 +43,14 @@
   padding-right: 20px !important;
 }
 
+/* =======================================================
+   2. 본문 텍스트 및 인라인 코드 (기본 골격)
+   ======================================================= */
 p, li {
   line-height: 1.8 !important;
 }
 
+/* 인라인 코드 블록 (글 뼈대 안의 `코드` 요소) */
 code {
   background-color: #f1f3f5 !important;
   color: #eb5757 !important;
@@ -54,59 +61,52 @@ code {
   font-size: 0.9em !important;
 }
 
+/* 오답 노트 안의 인라인 코드 */
 .my-wrong-note code {
   background-color: transparent !important;
   color: #fbd38d !important;
 }
 
+/* =======================================================
+   3. 제목 계층 구조 디자인 (새로 추가된 부분!)
+   ======================================================= */
+/* H2 제목: 왼쪽에 연보라색 기둥 추가 */
+.page__content h2 {
+  color: #c0caf5 !important;
+  padding-left: 12px !important;
+  border-left: 5px solid #bb9af7 !important; 
+  margin-top: 2em !important;
+  margin-bottom: 1em !important;
+  font-weight: 700 !important;
+}
+
+/* H3 제목: 하늘색 텍스트 포인트 */
+.page__content h3 {
+  color: #7dcfff !important; 
+  margin-top: 1.5em !important;
+  margin-bottom: 0.8em !important;
+  font-weight: 700 !important;
+}
+
+/* =======================================================
+   4. 코드 블록 (도쿄 나이트 테마 적용)
+   ======================================================= */
+div.highlighter-rouge {
+  background-color: transparent !important;
+  margin-bottom: 1.5em;
+}
+
+/* (정리됨) 중복되던 .highlight 코드를 하나로 깔끔하게 합쳤습니다 */
 .highlight, .highlight pre {
   padding: 20px 25px !important;
-  width: fit-content !important; 
-  min-width: 400px !important;   
+  width: fit-content !important;
+  min-width: 400px !important;
   line-height: 1.6 !important;
   background-color: #1a1b26 !important;
-  color: #c0caf5 !important;
-}
-
-div.highlighter-rouge {
-  background-color: transparent !important; 
-  margin-bottom: 1.5em; 
-}
-
-
-.highlight {
-  padding: 20px 25px !important;
-  width: fit-content !important; 
-  min-width: 400px !important;   
-  line-height: 1.6 !important;
-  background-color: #1a1b26 !important; 
   color: #c0caf5 !important;
   border-radius: 8px !important;
 }
 
-
 div.highlighter-rouge div.highlight code,
 div.highlighter-rouge pre code,
-.page__content pre code {
-  background: none !important;            
-  background-color: transparent !important; 
-  box-shadow: none !important;            
-  border: none !important;                
-  padding: 0 !important;                  
-  font-family: 'Consolas', 'Menlo', 'Monaco', monospace !important;
-  font-size: 1.1em !important; 
-  font-weight: normal !important;
-}
-
-
-.highlight {
-  .k, .kd, .kv, .kr { color: #f7768e !important; } 
-  .s, .s1, .s2 { color: #e0af68 !important; } 
-  .nf, .na, .m { color: #bb9af7 !important; } 
-  .nb, .nx, .nl { color: #7dcfff !important; } 
-  .c, .c1, .cm { 
-    color: #565f89 !important; 
-    font-style: italic !important; 
-  } 
-  .p, .o { color: #89ddff !important; } 
-}
+.
