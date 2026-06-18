@@ -1,3 +1,15 @@
+---
+title:  "Include란? 중복 코드를 없애는 마법"
+excerpt: "플라스크(Flask) 템플릿의 가장 핵심적이고 편리한 기능"
+categories: [Flask]
+tags:
+  - Python
+  - Flask
+toc: true
+toc_sticky: true
+---
+
+
 오늘 플라스크(Flask) 템플릿의 가장 핵심적이고 편리한 기능을 배우셨네요! 올려주신 코드를 보니 로그인 상태에 따라 메뉴가 다르게 보이는 똑똑한 내비게이션 바(Navigation Bar)를 잘 분리해서 만드셨습니다.
 
 중복되는 코드를 빼내는 include의 원리와 사용 방법을 아주 쉽게 비유해서 설명해 드릴게요.
