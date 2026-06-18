@@ -21,7 +21,7 @@ toc_sticky: true
 공통으로 쓰이는 코드만 똑 떼어 nav.html이라는 하나의 조각(레고 블록) 파일로 만든다. 그리고 실제 화면에는 "여기 nav.html 조각을 끼워 넣어!"라는 명령어 한 줄만 남겨두면 된다.
 <br><br>
 2. 실제 적용 방법 (Jinja2 문법)
-nav.html 파일에 중복 코드를 모아두고, 본문 페이지에서는 `{% include %}` 태그를 사용해 조립한다.
+nav.html 파일에 중복 코드를 모아두고, 본문 페이지에서는 {% raw %}`{% include %}`{% endraw %} 태그를 사용해 조립한다.
 <br><br><br>
 A. 네비게이션 조각 파일 (nav.html)
 <br><br>
@@ -29,7 +29,6 @@ A. 네비게이션 조각 파일 (nav.html)
 <br><br>
 
 <img width="1280" height="938" alt="1" src="https://github.com/user-attachments/assets/7626c746-221a-4ec8-bddb-00289e2a682f" />
-
 
 <br><br><br>
 B. 본문 페이지 적용 (index.html)
@@ -40,13 +39,12 @@ B. 본문 페이지 적용 (index.html)
 
 <img width="1752" height="1088" alt="2" src="https://github.com/user-attachments/assets/dd4d7e4b-f5cb-4914-9344-edd8a48d92cb" />
 
-
 <br><br><br>
 3. 왜 이렇게 복잡하게 쪼갤까요?
 - 유지보수의 혁신: 메뉴를 수정할 때, 이제는 nav.html 파일 하나만 고치면 된다. 엄청난 반복 노동에서 해방된 것이다.
 - 조건부 렌더링(Conditional Rendering): 로그인 상태라는 '인증 티켓'에 따라 화면을 분리해 보여줌으로써, 사용자에게 꼭 필요한 정보만 `동적 렌더링(Dynamic Rendering)`한다.
 <br><br>
-플라스크는 사용자가 화면을 요청하는 바로 그 순간, `{% include %}` 태그를 발견하면 조각 코드를 즉시 복사해서 완전한 하나의 페이지로 합쳐서 전달한다. 이 마법 같은 Include 방식을 활용해 여러분의 프로젝트도 훨씬 스마트하게 관리해 보자!
+플라스크는 사용자가 화면을 요청하는 바로 그 순간, {% raw %}`{% include %}`{% endraw %} 태그를 발견하면 조각 코드를 즉시 복사해서 완전한 하나의 페이지로 합쳐서 전달한다. 이 마법 같은 Include 방식을 활용해 여러분의 프로젝트도 훨씬 스마트하게 관리해 보자!
 <br><br>
 다음 글에서는 세션과 쿠키가 서버와 브라우저 사이에서 어떻게 암호화되어 움직이는지 더 깊이 고찰해보는 시간을 가져보겠다.
 <br><br>
