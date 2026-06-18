@@ -1,4 +1,81 @@
-/* 5. 코드 블록(Syntax Highlighting) 박스 스타일 (강력 적용) */
+---
+# Only the main Sass file needs front matter
+---
+@charset "utf-8";
+
+$max-width: 1600px;
+$large: 1200px;
+$content-width: 1000px; 
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+/* ================================================= */
+/* 1. 포스트 본문 전체 오답 노트(다크모드) 스타일 */
+/* ================================================= */
+.page__content {
+  background-color: #2d3748;
+  border-left: 5px solid #fc8181;
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  color: #f7fafc;
+}
+
+.my-box {
+  background-color: #2d3748;
+  padding: 24px;
+}
+
+.page__inner-wrap, .archive {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+p, li {
+  line-height: 1.8;
+}
+
+/* ================================================= */
+/* 2. 제목 (h2, h3) 스타일 */
+/* ================================================= */
+.page__content h2 {
+  color: #c0caf5;
+  padding-left: 12px;
+  border-left: 5px solid #bb9af7; 
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-weight: 700;
+}
+
+.page__content h3 {
+  color: #7dcfff; 
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  font-weight: 700;
+}
+
+/* ================================================= */
+/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 */
+/* ================================================= */
+code {
+  background-color: #f1f3f5;
+  color: #eb5757;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.page__content p code, .page__content li code {
+  background-color: transparent;
+  color: #fbd38d;
+}
+
+/* ================================================= */
+/* 4. 코드 블록(Syntax Highlighting) 박스 스타일 (강력 적용) */
+/* ================================================= */
 div.highlighter-rouge {
   margin-bottom: 1.5em;
 }
@@ -26,7 +103,9 @@ div.highlighter-rouge {
   font-weight: normal;
 }
 
-/* 6. 도쿄 나이트(Tokyo Night) 테마 구문 강조 (우선순위 최상) */
+/* ================================================= */
+/* 5. 도쿄 나이트(Tokyo Night) 테마 구문 강조 (우선순위 최상) */
+/* ================================================= */
 .page__content .highlight .k, .page__content .highlight .kd, .page__content .highlight .kv, .page__content .highlight .kr, .page__content .highlight .kp { color: #bb9af7 !important; } 
 .page__content .highlight .nc, .page__content .highlight .kt { color: #f7768e !important; } 
 .page__content .highlight .nt { color: #f7768e !important; } /* HTML 태그 핑크색으로 강조 */
