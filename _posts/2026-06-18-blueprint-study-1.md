@@ -1,9 +1,17 @@
 ---
-title: "[Flask] Blueprint란? 방대한 라우트 코드를 깔끔하게 분리하는 마법"
-category: "Flask"
+title:  "Blueprint란? 방대한 라우트 코드를 깔끔하게 분리하는 마법"
+excerpt: "외부 css파일에 선택자 입력하는 방법"
+categories:
+  - Python(flask)
+tags:
+  - Python
+  - flask
 toc: true
 toc_sticky: true
 ---
+
+<div class="my-wrong-note" markdown="1">
+
 오늘은 플라스크(Flask)의 핵심 기능 중 하나인 **Blueprint(블루프린트)**에 대해 알아보자.
 
 직역하면 '청사진'이라는 뜻이다. 단어 자체에서부터 뭔가 체계적이고 구조적인 느낌이 들지 않는가? 프로그래밍 세계, 특히 플라스크에서 블루프린트는 방대한 라우트(Route) 코드들을 기능별로 쪼개서 깔끔하게 정리해 주는 아주 고마운 도구다.
