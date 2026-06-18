@@ -51,4 +51,8 @@ author:
 defaults:
   - scope:
       path: ""       # 블로그의 모든 경로에 있는
-      type: "posts
+      type: "posts"  # <- 여기에 닫는 따옴표가 빠져있었습니다!
+    values:
+      layout: "single"  # 포스트 기본 레이아웃
+      toc: true         # 목차(TOC) 활성화
+      toc_sticky: true  # 스크롤 시 목차 오른쪽 고정
