@@ -1,15 +1,37 @@
+# =======================================================
+# 사이트 기본 설정
+# =======================================================
 title: "한 개발자의 성장 블로그"
 description: "필기 및 오답 노트와 개발 공부 기록"
 baseurl: ""
+url: "" # 깃허브 페이지 주소(https://아이디.github.io)를 나중에 여기에 입력하세요.
 
+timezone: "Asia/Seoul" # 한국 시간대 설정 (포스팅 시간이 정확해집니다)
+
+# =======================================================
+# 테마 및 플러그인 설정
+# =======================================================
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "dark"
 
 plugins:
   - jekyll-include-cache
+  - jekyll-paginate
 
 search: true
 
+# =======================================================
+# 마크다운 렌더링 설정 (코드 블록 및 줄바꿈 최적화)
+# =======================================================
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+# =======================================================
+# 작성자(Author) 정보
+# =======================================================
 author:
   name: "성진 (Sungjin)"
   avatar: "https://turbulentflux.com/wp-content/uploads/2020/09/20200831_Data_Information_Knowledge.png" 
@@ -29,7 +51,4 @@ author:
 defaults:
   - scope:
       path: ""       # 블로그의 모든 경로에 있는
-      type: "posts"  # 모든 포스팅 글들에 대하여
-    values:
-      toc: true      # 오른쪽 목차(TOC) 창을 자동으로 켜기
-      toc_sticky: true # 스크롤을 내려도 목차가 화면에 계속 고정되어 따라오도록 설정
+      type: "posts
