@@ -1,7 +1,7 @@
 ---
 title: "CSS 공부 기록"
 layout: archive
-permalink: /CSS/
+permalink: /css/
 sidebar:
   nav: "sidebar_category"
 ---
