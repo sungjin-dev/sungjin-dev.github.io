@@ -9,7 +9,7 @@ toc: true
 toc_sticky: true
 ---
 
-{% include_relative nav.html %}
+{% include my_nav.html %}  
 
 중복되는 코드를 빼내는 include의 원리와 사용 방법을 알아 보자. 
 <br><br><br>
