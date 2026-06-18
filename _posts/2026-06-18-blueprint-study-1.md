@@ -132,3 +132,4 @@ member_bp = Blueprint(
 @member_bp.route('/signup_form', methods=['GET']) 
 def signup_form():
 ```
+</div>
