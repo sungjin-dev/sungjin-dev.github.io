@@ -1,6 +1,16 @@
 ---
+# Only the main Sass file needs front matter (the dashes are enough)
 ---
 @charset "utf-8";
+
+/* =======================================================
+   0. 전체 화면 및 본문 넓이 설정 (TOC 오른쪽 유지)
+   ======================================================= */
+// 블로그 전체 최대 너비
+$max-width: 1600px;
+// 사이드바(TOC) 유지 구간 및 본문 영역 너비
+$large: 1200px;
+$content-width: 1000px; 
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
@@ -78,63 +88,4 @@ code {
 }
 
 .page__content h3 {
-  color: #7dcfff !important; 
-  margin-top: 1.5em !important;
-  margin-bottom: 0.8em !important;
-  font-weight: 700 !important;
-}
-
-/* =======================================================
-   4. 코드 블록 기본 설정
-   ======================================================= */
-div.highlighter-rouge {
-  background-color: transparent !important;
-  margin-bottom: 1.5em;
-}
-
-.highlight, .highlight pre {
-  padding: 20px 25px !important;
-  width: fit-content !important;
-  min-width: 400px !important;
-  line-height: 1.6 !important;
-  background-color: #1a1b26 !important;
-  color: #c0caf5 !important;
-  border-radius: 8px !important;
-}
-
-div.highlighter-rouge div.highlight code,
-div.highlighter-rouge pre code,
-.page__content pre code {
-  background: none !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
-  padding: 0 !important;
-  font-family: 'Consolas', 'Menlo', 'Monaco', monospace !important;
-  font-size: 1.1em !important;
-  font-weight: normal !important;
-}
-
-/* =======================================================
-   5. 도쿄 나이트 구문 강조 (객체, 함수, 변수 색상 세분화)
-   ======================================================= */
-/* 예약어 (function, const, if, for 등) */
-.highlight .k, .highlight .kd, .highlight .kv, .highlight .kr, .highlight .kp { color: #bb9af7 !important; } 
-/* 클래스 이름, 타입 */
-.highlight .nc, .highlight .kt { color: #f7768e !important; } 
-/* 내장 객체 및 모듈 (document, window, Math 등) */
-.highlight .nb, .highlight .nn { color: #e0af68 !important; } 
-/* 함수 선언 및 호출 이름 */
-.highlight .nf, .highlight .fm { color: #7aa2f7 !important; } 
-/* 객체의 속성 및 메서드 (addEventListener 등) */
-.highlight .na, .highlight .py { color: #7dcfff !important; } 
-/* 일반 변수 및 사용자가 만든 식별자 (init 등) */
-.highlight .nx, .highlight .nv { color: #c0caf5 !important; } 
-/* 문자열 ('hello', "world") */
-.highlight .s, .highlight .s1, .highlight .s2, .highlight .sr { color: #9ece6a !important; } 
-/* 숫자 (1, 2.5) */
-.highlight .m, .highlight .mi, .highlight .mf { color: #ff9e64 !important; } 
-/* 주석 (// comment) */
-.highlight .c, .highlight .c1, .highlight .cm { color: #565f89 !important; font-style: italic !important; } 
-/* 기호, 연산자 (괄호, 쉼표, = 등) */
-.highlight .p, .highlight .o { color: #89ddff !important; }
+  color: #7dc
