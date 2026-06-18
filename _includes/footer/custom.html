@@ -1,1 +1,70 @@
+<div class="my-custom-sidebar-widget" style="display: none;">
+  
+  <div class="my-clock">
+    <div id="live-time"></div>
+    <div id="live-date"></div>
+  </div>
 
+  <a class="weatherwidget-io" href="https://forecast7.com/en/36d35127d38/daejeon/" data-label_1="대전" data-label_2="날씨" data-theme="dark" data-basecolor="#1a1b26" data-textcolor="#c0caf5" >대전 날씨</a>
+  <script>
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+  </script>
+
+</div>
+
+<style>
+  .my-custom-sidebar-widget {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed #565f89;
+  }
+  .my-clock {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #1a1b26;
+    border-radius: 8px;
+    border-left: 4px solid #bb9af7; /* 도쿄 나이트 보라색 포인트 */
+  }
+  #live-time { 
+    font-size: 1.8em; 
+    font-weight: 700; 
+    color: #7dcfff; /* 도쿄 나이트 하늘색 */
+    font-family: 'Consolas', monospace; 
+  }
+  #live-date { 
+    font-size: 0.85em; 
+    color: #9ece6a; /* 도쿄 나이트 연두색 */
+    margin-top: 5px; 
+  }
+</style>
+
+<script>
+  // 1. DOM 조작: 위젯 덩어리를 찾아서 왼쪽 사이드바 밑으로 이동시킵니다.
+  document.addEventListener("DOMContentLoaded", function() {
+    const sidebar = document.querySelector('.sidebar');
+    const widget = document.querySelector('.my-custom-sidebar-widget');
+    
+    if (sidebar && widget) {
+      sidebar.appendChild(widget); // 사이드바 자식 요소 맨 끝에 추가
+      widget.style.display = 'block'; // 이동 완료 후 화면에 표시
+    }
+  });
+
+  // 2. 시계 로직: 1초마다 현재 시간을 가져와서 화면에 업데이트합니다.
+  function updateClock() {
+    const now = new Date();
+    
+    // 시간 포맷 (예: 14:30:05)
+    const timeStr = now.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit' });
+    // 날짜 포맷 (예: 2026. 06. 18. (목))
+    const dateStr = now.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short' });
+    
+    document.getElementById('live-time').innerText = timeStr;
+    document.getElementById('live-date').innerText = dateStr;
+  }
+  
+  // 함수 최초 1회 실행 후, 1000ms(1초)마다 반복 실행
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
