@@ -28,6 +28,7 @@ A. 네비게이션 조각 파일 (nav.html)
 <br><br>
 이 파일은 단순한 구조뿐만 아니라, 세션(Session) 정보를 활용하여 사용자별 맞춤 메뉴를 보여준다.
 <br><br>
+{% raw %}
 ```HTML
 <nav>
     <div class="nav_wrap">
@@ -44,6 +45,7 @@ A. 네비게이션 조각 파일 (nav.html)
     </div>
 </nav>
 ```
+{% endraw %}
 <br><br><br>
 B. 본문 페이지 적용 (index.html)
 본문은 복잡한 로직 없이 조각을 불러오기만 하면 된다.
