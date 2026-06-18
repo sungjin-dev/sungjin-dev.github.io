@@ -8,9 +8,7 @@ tags:
 toc: true
 toc_sticky: true
 ---
-
-{% include my_nav.html %}  
-
+ 
 중복되는 코드를 빼내는 include의 원리와 사용 방법을 알아 보자. 
 <br><br><br>
 1. include의 핵심 원리 (레고 조립하기)
