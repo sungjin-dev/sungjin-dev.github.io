@@ -1,108 +1,41 @@
----
-# Only the main Sass file needs front matter
----
-@charset "utf-8";
-
-
-$max-width: 1600px;
-$large: 1200px;
-$content-width: 1000px; 
-
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
-@import "minimal-mistakes";
-
-
-.my-wrong-note {
-  background-color: #2d3748;
-  border-left: 5px solid #fc8181;
-  padding: 30px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  color: #f7fafc;
-}
-
-.my-box {
-  background-color: #2d3748;
-  padding: 24px;
-}
-
-.page__inner-wrap, .archive {
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-p, li {
-  line-height: 1.8;
-}
-
-code {
-  background-color: #f1f3f5;
-  color: #eb5757;
-  padding: 3px 6px;
-  border-radius: 4px;
-  font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-  font-weight: bold;
-  font-size: 0.9em;
-}
-
-.my-wrong-note code {
-  background-color: transparent;
-  color: #fbd38d;
-}
-
-
-.page__content h2 {
-  color: #c0caf5;
-  padding-left: 12px;
-  border-left: 5px solid #bb9af7; 
-  margin-top: 2em;
-  margin-bottom: 1em;
-  font-weight: 700;
-}
-
-.page__content h3 {
-  color: #7dcfff; 
-  margin-top: 1.5em;
-  margin-bottom: 0.8em;
-  font-weight: 700;
-}
-
-
+/* 5. 코드 블록(Syntax Highlighting) 박스 스타일 (강력 적용) */
 div.highlighter-rouge {
   margin-bottom: 1.5em;
 }
 
-.highlight, .highlight pre {
+.page__content .highlight, 
+.page__content .highlight pre {
   padding: 20px 25px !important;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   line-height: 1.6;
-  background-color: #1a1b26;
-  color: #c0caf5;
+  background-color: #1a1b26 !important; /* 도쿄나이트 찐한 배경 */
+  color: #c0caf5 !important;
   border-radius: 8px;
 }
 
-div.highlighter-rouge div.highlight code,
-div.highlighter-rouge pre code,
+.page__content div.highlighter-rouge div.highlight code,
+.page__content div.highlighter-rouge pre code,
 .page__content pre code {
-  background: none;
-  border: none;
-  padding: 0;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
   font-size: 1.1em;
   font-weight: normal;
 }
 
-
-.highlight .k, .highlight .kd, .highlight .kv, .highlight .kr, .highlight .kp { color: #bb9af7; } 
-.highlight .nc, .highlight .kt { color: #f7768e; } 
-.highlight .nb, .highlight .nn { color: #e0af68; } 
-.highlight .nf, .highlight .fm { color: #7aa2f7; } 
-.highlight .na, .highlight .py { color: #7dcfff; } 
-.highlight .nx, .highlight .nv { color: #c0caf5; } 
-.highlight .s, .highlight .s1, .highlight .s2, .highlight .sr { color: #9ece6a; } 
-.highlight .m, .highlight .mi, .highlight .mf { color: #ff9e64; } 
-.highlight .c, .highlight .c1, .highlight .cm { color: #565f89; font-style: italic; } 
-.highlight .p, .highlight .o { color: #89ddff; }
-
+/* 6. 도쿄 나이트(Tokyo Night) 테마 구문 강조 (우선순위 최상) */
+.page__content .highlight .k, .page__content .highlight .kd, .page__content .highlight .kv, .page__content .highlight .kr, .page__content .highlight .kp { color: #bb9af7 !important; } 
+.page__content .highlight .nc, .page__content .highlight .kt { color: #f7768e !important; } 
+.page__content .highlight .nt { color: #f7768e !important; } /* HTML 태그 핑크색으로 강조 */
+.page__content .highlight .nb, .page__content .highlight .nn { color: #e0af68 !important; } 
+.page__content .highlight .nf, .page__content .highlight .fm { color: #7aa2f7 !important; } 
+.page__content .highlight .na, .page__content .highlight .py { color: #7dcfff !important; } 
+.page__content .highlight .nx, .page__content .highlight .nv { color: #c0caf5 !important; } 
+.page__content .highlight .s, .page__content .highlight .s1, .page__content .highlight .s2, .page__content .highlight .sr { color: #9ece6a !important; } 
+.page__content .highlight .m, .page__content .highlight .mi, .page__content .highlight .mf { color: #ff9e64 !important; } 
+.page__content .highlight .c, .page__content .highlight .c1, .page__content .highlight .cm { color: #565f89 !important; font-style: italic; } 
+.page__content .highlight .p, .page__content .highlight .o { color: #89ddff !important; }
+.page__content .highlight .err { color: #c0caf5 !important; background-color: transparent !important; } /* 못생긴 빨간 에러 표시 제거 */
