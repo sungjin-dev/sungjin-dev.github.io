@@ -5,6 +5,9 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
+/* =======================================================
+   1. 커스텀 박스 및 여백 설정
+   ======================================================= */
 .my-wrong-note {
   background-color: #2d3748;
   border-left: 5px solid #fc8181;
@@ -40,6 +43,9 @@
   padding-right: 20px !important;
 }
 
+/* =======================================================
+   2. 본문 텍스트 및 인라인 코드
+   ======================================================= */
 p, li {
   line-height: 1.8 !important;
 }
@@ -59,6 +65,9 @@ code {
   color: #fbd38d !important;
 }
 
+/* =======================================================
+   3. 제목 계층 구조 디자인
+   ======================================================= */
 .page__content h2 {
   color: #c0caf5 !important;
   padding-left: 12px !important;
@@ -75,6 +84,9 @@ code {
   font-weight: 700 !important;
 }
 
+/* =======================================================
+   4. 코드 블록 기본 설정
+   ======================================================= */
 div.highlighter-rouge {
   background-color: transparent !important;
   margin-bottom: 1.5em;
@@ -103,10 +115,26 @@ div.highlighter-rouge pre code,
   font-weight: normal !important;
 }
 
-/* 도쿄 나이트 구문 강조 (에러 방지를 위해 평면 구조로 전면 교체) */
-.highlight .k, .highlight .kd, .highlight .kv, .highlight .kr { color: #f7768e !important; }
-.highlight .s, .highlight .s1, .highlight .s2 { color: #e0af68 !important; }
-.highlight .nf, .highlight .na, .highlight .m { color: #bb9af7 !important; }
-.highlight .nb, .highlight .nx, .highlight .nl { color: #7dcfff !important; }
-.highlight .c, .highlight .c1, .highlight .cm { color: #565f89 !important; font-style: italic !important; }
-.highlight .p, .highlight .o { color: #89ddff
+/* =======================================================
+   5. 도쿄 나이트 구문 강조 (객체, 함수, 변수 색상 세분화)
+   ======================================================= */
+/* 예약어 (function, const, if, for 등) */
+.highlight .k, .highlight .kd, .highlight .kv, .highlight .kr, .highlight .kp { color: #bb9af7 !important; } 
+/* 클래스 이름, 타입 */
+.highlight .nc, .highlight .kt { color: #f7768e !important; } 
+/* 내장 객체 및 모듈 (document, window, Math 등) */
+.highlight .nb, .highlight .nn { color: #e0af68 !important; } 
+/* 함수 선언 및 호출 이름 */
+.highlight .nf, .highlight .fm { color: #7aa2f7 !important; } 
+/* 객체의 속성 및 메서드 (addEventListener 등) */
+.highlight .na, .highlight .py { color: #7dcfff !important; } 
+/* 일반 변수 및 사용자가 만든 식별자 (init 등) */
+.highlight .nx, .highlight .nv { color: #c0caf5 !important; } 
+/* 문자열 ('hello', "world") */
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sr { color: #9ece6a !important; } 
+/* 숫자 (1, 2.5) */
+.highlight .m, .highlight .mi, .highlight .mf { color: #ff9e64 !important; } 
+/* 주석 (// comment) */
+.highlight .c, .highlight .c1, .highlight .cm { color: #565f89 !important; font-style: italic !important; } 
+/* 기호, 연산자 (괄호, 쉼표, = 등) */
+.highlight .p, .highlight .o { color: #89ddff !important; }
