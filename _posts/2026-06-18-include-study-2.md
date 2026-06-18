@@ -26,52 +26,20 @@ A. 네비게이션 조각 파일 (nav.html)
 <br><br>
 이 파일은 단순한 구조뿐만 아니라, 세션(Session) 정보를 활용하여 사용자별 맞춤 메뉴를 보여준다.
 <br><br>
-{% raw %}
-```MARKDOWN
-<nav>
-    <div class="nav_wrap">
-        <a href="/">HOME</a>
-        
-        {% if not session.get('signinedMemberId') %}
-            | <a href="/member/signup_form">SIGN-UP</a>
-            | <a href="/member/signin_form">SIGN-IN</a>
-        {% else %}
-            | <a href="/member/signout_confirm">SIGN-OUT</a>
-            | <a href="/member/modify_form">MODIFY</a>
-            | <a href="/member/delete_confirm">DELETE</a>
-        {% endif %}
-    </div>
-</nav>
-```
-{% endraw %}
+
+<img width="1280" height="938" alt="carbon" src="https://github.com/user-attachments/assets/0cf050d5-5f3f-415a-b3bf-4987e788dcd5" />
+
+
 <br><br><br>
 B. 본문 페이지 적용 (index.html)
 본문은 복잡한 로직 없이 조각을 불러오기만 하면 된다.
 <br><br>
  성능 최적화 팁: `CSS 링크(link 태그)`는 매번 조각 파일마다 넣으면 브라우저가 파일을 중복해서 읽어 성능이 저하될 수 있다. 본문 페이지의 <head>에서 한 번만 호출하는 것이 훨씬 효율적이다!
 <br><br>
-{% raw %}
-```MARKDOWN
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>홈 화면</title>
-    <link href="{{url_for('static', filename='css/include/nav.css')}}" rel="stylesheet">
-</head>
-<body> 
 
-    {% include 'nav.html' %}
+<img width="1752" height="1088" alt="carbon (1)" src="https://github.com/user-attachments/assets/b7de7218-a0c8-42a0-83f1-4a113356a100" />
 
-    <main>
-        <h1>메인 화면입니다!</h1>
-        <p>로그인 상태에 따라 메뉴가 자동으로 변하는 시스템입니다.</p>
-    </main>
 
-</body>
-</html>
-```
-{% endraw %}
 <br><br><br>
 3. 왜 이렇게 복잡하게 쪼갤까요?
 - 유지보수의 혁신: 메뉴를 수정할 때, 이제는 nav.html 파일 하나만 고치면 된다. 엄청난 반복 노동에서 해방된 것이다.
