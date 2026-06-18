@@ -1,1 +1,121 @@
+---
+# Only the main Sass file needs front matter
+---
+@charset "utf-8";
+
+/* =======================================================
+   0. 전체 화면 및 본문 넓이 설정
+   ======================================================= */
+$max-width: 1600px;
+$large: 1200px;
+$content-width: 1000px; 
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+/* =======================================================
+   1. 커스텀 박스 및 레이아웃
+   ======================================================= */
+.my-wrong-note {
+  background-color: #2d3748;
+  border-left: 5px solid #fc8181;
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  color: #f7fafc;
+}
+
+.my-box {
+  background-color: #2d3748;
+  padding: 24px;
+}
+
+.page__inner-wrap, .archive {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* =======================================================
+   2. 본문 텍스트 및 인라인 코드
+   ======================================================= */
+p, li {
+  line-height: 1.8;
+}
+
+code {
+  background-color: #f1f3f5;
+  color: #eb5757;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.my-wrong-note code {
+  background-color: transparent;
+  color: #fbd38d;
+}
+
+/* =======================================================
+   3. 제목 계층 구조
+   ======================================================= */
+.page__content h2 {
+  color: #c0caf5;
+  padding-left: 12px;
+  border-left: 5px solid #bb9af7; 
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-weight: 700;
+}
+
+.page__content h3 {
+  color: #7dcfff; 
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  font-weight: 700;
+}
+
+/* =======================================================
+   4. 코드 블록 (모바일 최적화)
+   ======================================================= */
+div.highlighter-rouge {
+  margin-bottom: 1.5em;
+}
+
+.highlight, .highlight pre {
+  padding: 20px 25px !important;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  line-height: 1.6;
+  background-color: #1a1b26;
+  color: #c0caf5;
+  border-radius: 8px;
+}
+
+div.highlighter-rouge div.highlight code,
+div.highlighter-rouge pre code,
+.page__content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-size: 1.1em;
+  font-weight: normal;
+}
+
+/* =======================================================
+   5. 도쿄 나이트 구문 강조
+   ======================================================= */
+.highlight .k, .highlight .kd, .highlight .kv, .highlight .kr, .highlight .kp { color: #bb9af7; } 
+.highlight .nc, .highlight .kt { color: #f7768e; } 
+.highlight .nb, .highlight .nn { color: #e0af68; } 
+.highlight .nf, .highlight .fm { color: #7aa2f7; } 
+.highlight .na, .highlight .py { color: #7dcfff; } 
+.highlight .nx, .highlight .nv { color: #c0caf5; } 
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sr { color: #9ece6a; } 
+.highlight .m, .highlight .mi, .highlight .mf { color: #ff9e64; } 
+.highlight .c, .highlight .c1, .highlight .cm { color: #565f89; font-style: italic; } 
+.highlight .p, .highlight .o { color: #89ddff; }
 
