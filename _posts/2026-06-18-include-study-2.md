@@ -60,7 +60,7 @@ B. 본문 페이지 적용 (index.html)
     <title>홈 화면</title>
     <link href="{{url_for('static', filename='css/include/nav.css')}}" rel="stylesheet">
 </head>
-<body>
+<body> 
 
     {% include 'nav.html' %}
 
