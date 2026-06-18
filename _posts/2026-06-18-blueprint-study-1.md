@@ -72,7 +72,7 @@ from flask import Blueprint  # 블루프린트 클래스를 불러온다.
 member_bp = Blueprint(
     'member',              # 1. 플라스크 내에서 사용할 블루프린트 이름
     __name__,              # 2. 현재 모듈의 위치
-    url_prefix='/member'   # 3. URL 접두사 (공통 주소 앞머리) ⭐️
+    url_prefix='/member'   # 3. URL 접두사 (공통 주소 앞머리) 
 )
 
 @member_bp.route('/')
