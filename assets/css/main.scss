@@ -5,7 +5,6 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
-
 .my-wrong-note {
   background-color: #2d3748;
   border-left: 5px solid #fc8181;
@@ -41,7 +40,6 @@
   padding-right: 20px !important;
 }
 
-
 p, li {
   line-height: 1.8 !important;
 }
@@ -61,7 +59,6 @@ code {
   color: #fbd38d !important;
 }
 
-
 .page__content h2 {
   color: #c0caf5 !important;
   padding-left: 12px !important;
@@ -77,7 +74,6 @@ code {
   margin-bottom: 0.8em !important;
   font-weight: 700 !important;
 }
-
 
 div.highlighter-rouge {
   background-color: transparent !important;
@@ -112,4 +108,5 @@ div.highlighter-rouge pre code,
 .highlight .s, .highlight .s1, .highlight .s2 { color: #e0af68 !important; }
 .highlight .nf, .highlight .na, .highlight .m { color: #bb9af7 !important; }
 .highlight .nb, .highlight .nx, .highlight .nl { color: #7dcfff !important; }
-.highlight .c, .highlight .c
+.highlight .c, .highlight .c1, .highlight .cm { color: #565f89 !important; font-style: italic !important; }
+.highlight .p, .highlight .o { color: #89ddff
