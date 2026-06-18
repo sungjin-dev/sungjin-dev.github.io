@@ -9,8 +9,6 @@ toc: true
 toc_sticky: true
 ---
 
-<div class="my-wrong-note" markdown="1">
-
 오늘은 JavaScript에 대해서 기초부터 차근차근 살펴보자.
 <br>
 우선 JavaScript란 **웹 페이지를 동적이고 상호작용할 수 있게 만들어주는 프로그래밍 언어**라고 보면 된다. 그 덕에 우리가 매일 마주하는 웹 브라우저에서 다양한 움직임을 볼 수 있는 것이다. 
@@ -311,4 +309,4 @@ const addMember = (id, pw, mail) => {
 
 `addMember` 함수를 통해 건네받은 매개변수(id, pw, mail)들을 차곡차곡 사물함(DB)에 저장하면서 오늘 배운 자바스크립트 기초 흐름이 완성된다.
 
-</div>
+
