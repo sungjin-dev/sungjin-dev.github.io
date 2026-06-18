@@ -54,5 +54,6 @@ defaults:
       type: "posts"
     values:
       layout: "single"  # 포스트 기본 레이아웃
+      classes: wide
       toc: true         # 목차(TOC) 활성화
       toc_sticky: true  # 스크롤 시 목차 오른쪽 고정
