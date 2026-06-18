@@ -1,7 +1,7 @@
 ---
 title: "JavaScrpit 공부 기록"
 layout: archive
-permalink: /JavaScrpit/
+permalink: /javascript/
 sidebar:
   nav: "sidebar_category"
 ---
