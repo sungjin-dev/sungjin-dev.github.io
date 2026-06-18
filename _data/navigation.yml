@@ -1,8 +1,18 @@
 
-main:
-  - title: "Python"
-    url: /categories/python/
-  - title: "오답노트"
-    url: /categories/오답노트/
-  - title: "전체보기"
-    url: /year-archive/
+# 왼쪽 사이드바에 들어갈 카테고리 목록
+sidebar_category:
+  - title: "개발 공부 기록"
+    children:
+      - title: "Python"
+        url: /python/
+      - title: "JavaScript"
+        url: /javascript/
+      - title: "CSS"
+        url: /css/
+      - title: "Flask"
+        url: /flask/
+  
+  - title: "필기노트"
+    children:
+      - title: "전체보기"
+        url: /wrong-note/
