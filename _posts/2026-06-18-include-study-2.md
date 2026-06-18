@@ -27,7 +27,7 @@ A. 네비게이션 조각 파일 (nav.html)
 이 파일은 단순한 구조뿐만 아니라, 세션(Session) 정보를 활용하여 사용자별 맞춤 메뉴를 보여준다.
 <br><br>
 {% raw %}
-```HTML
+```MARKDOWN
 <nav>
     <div class="nav_wrap">
         <a href="/">HOME</a>
@@ -51,7 +51,7 @@ B. 본문 페이지 적용 (index.html)
  성능 최적화 팁: `CSS 링크(link 태그)`는 매번 조각 파일마다 넣으면 브라우저가 파일을 중복해서 읽어 성능이 저하될 수 있다. 본문 페이지의 <head>에서 한 번만 호출하는 것이 훨씬 효율적이다!
 <br><br>
 {% raw %}
-```
+```MARKDOWN
 <!DOCTYPE html>
 <html lang="ko">
 <head>
