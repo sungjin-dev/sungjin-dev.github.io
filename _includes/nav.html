@@ -1,9 +1,8 @@
+{% raw %}
 <nav>
     <div class="nav_wrap">
         <a href="/">HOME</a>
         
-        <pre>
-        {% raw %}
         {% if not session.get('signinedMemberId') %}
             | <a href="/member/signup_form">SIGN-UP</a>
             | <a href="/member/signin_form">SIGN-IN</a>
@@ -12,7 +11,6 @@
             | <a href="/member/modify_form">MODIFY</a>
             | <a href="/member/delete_confirm">DELETE</a>
         {% endif %}
-        {% endraw %}
-        </pre>
     </div>
 </nav>
+{% endraw %}
