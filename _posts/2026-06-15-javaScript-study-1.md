@@ -69,7 +69,7 @@ console.log('num: ', num);
 
 DOM이란, **HTML 텍스트 문자를 자바스크립트가 이해할 수 있는 객체(Object) 형태로 만들어 낸 것**이라고 보면 된다. 보통 **DOM TREE 구조**라고 부르는데, 대충 아래와 같은 HTML 코드 문서가 있다고 치자.
 
-```html
+```javascript
 <html>
     <head>
         <title>성진 블로그</title>
