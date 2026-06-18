@@ -8,6 +8,7 @@ tags:
 toc: true
 toc_sticky: true
 --- 
+<div class="my-wrong-note" markdown="1">
 
 중복되는 코드를 빼내는 include의 원리와 사용 방법을 알아 보자. 
 <br><br><br>
@@ -49,3 +50,5 @@ B. 본문 페이지 적용 (index.html)
 <br><br>
 다음 글에서는 세션과 쿠키가 서버와 브라우저 사이에서 어떻게 암호화되어 움직이는지 더 깊이 고찰해보는 시간을 가져보겠다.
 <br><br>
+
+</div>
