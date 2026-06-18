@@ -131,3 +131,4 @@ member_bp = Blueprint(
 # 회원가입 화면 보여주기 (최종 URL: /member/signup_form)
 @member_bp.route('/signup_form', methods=['GET']) 
 def signup_form():
+```
