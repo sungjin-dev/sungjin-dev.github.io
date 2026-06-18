@@ -1,8 +1,7 @@
 ---
 title: "JavaScript 기초"
 excerpt: "onlineDiary를 만들어보자"
-categories:
-  - JavaScript
+categories: [JavaScript]
 tags:
   - JavaScript
   - 필기노트
