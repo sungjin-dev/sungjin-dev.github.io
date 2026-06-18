@@ -25,6 +25,7 @@ toc_sticky: true
 nav.html 파일에 중복 코드를 모아두고, 본문 페이지에서는 `{% include %}` 태그를 사용해 조립한다.
 <br><br><br>
 A. 네비게이션 조각 파일 (nav.html)
+<br><br>
 이 파일은 단순한 구조뿐만 아니라, 세션(Session) 정보를 활용하여 사용자별 맞춤 메뉴를 보여준다.
 <br><br>
 ```HTML
