@@ -64,7 +64,11 @@ def index():
 {% endraw %}
 
 <br>
-{% raw %}<h1>Name : {{name}}</h1>{% endraw %}
+{% raw %
+```
+}<h1>Name : {{name}}</h1>
+```
+{% endraw %}
 는 템플릿 엔진이 가장 흔하게 사용하는 방식이며, 데이터가 name = 'psj'라면 최종적으로 <h1>Name : psj</h1>가 되어 브라우저에 표시되게 된다. 
 <br>
 {% raw %}{{ 변수명 }}{% endraw %} : 변수의 값을 그 자리에 그대로 출력 
