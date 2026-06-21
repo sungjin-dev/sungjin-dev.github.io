@@ -137,61 +137,12 @@ point : 특히 화면에 넘겨줄 데이터(변수)가 복잡할 때 주로 사
 <br>
 point : redirect를 하면 이전 페이지에서 쓰던 변수들은 전부 증발하고, 새로 접속하는 주소의 함수가 다시 실행된다. 
 <br><br>
-```html
-<style>
-  .custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-family: sans-serif;
-  }
-  .custom-table th, .custom-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
-  .custom-table th {
-    background-color: #f4f4f9;
-    font-weight: bold;
-  }
-  .highlight {
-    background-color: #f0f0f0;
-    font-family: monospace;
-    font-weight: bold;
-  }
-</style>
-
-<table class="custom-table">
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>render_template</th>
-      <th>redirect</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>비유</td>
-      <td>"직접 밥상을 차려줌"</td>
-      <td>"식당을 새로 안내함"</td>
-    </tr>
-    <tr>
-      <td>주소창</td>
-      <td>그대로 유지됨</td>
-      <td>새로운 주소로 변경됨</td>
-    </tr>
-    <tr>
-      <td>데이터 전달</td>
-      <td>템플릿으로 변수를 직접 보냄</td>
-      <td>전달 불가 (세션/쿠키 등을 써야 함)</td>
-    </tr>
-    <tr>
-      <td>서버 동작</td>
-      <td>템플릿 엔진 가동</td>
-      <td>HTTP 302 응답 (주소 이동)</td>
-    </tr>
-  </tbody>
-</table>
+| 구분 | render_template | redirect |
+| :--- | :--- | :--- |
+| **비유** | "직접 밥상을 차려줌" | "식당을 새로 안내함" |
+| **주소창** | 그대로 유지됨 | 새로운 주소로 변경됨 |
+| **데이터 전달** | 템플릿으로 변수를 직접 보냄 | 전달 불가 (세션/쿠키 등을 써야 함) |
+| **서버 동작** | 템플릿 엔진 가동 | HTTP 302 응답 (주소 이동) |
 ```
 <br><br>
 ##6. 그밖의 함수들 (ur_for)
