@@ -64,9 +64,7 @@ def index():
 {% endraw %}
 
 <br>
-{% raw %}
-<h1>Name : {{name}}</h1>
-{% endraw %}
+{% raw %}<h1>Name : {{name}}</h1>{% endraw %}
 는 템플릿 엔진이 가장 흔하게 사용하는 방식이며, 데이터가 name = 'psj'라면 최종적으로 <h1>Name : psj</h1>가 되어 브라우저에 표시되게 된다. 
 <br>
 {% raw %}{{ 변수명 }}{% endraw %} : 변수의 값을 그 자리에 그대로 출력 
@@ -117,7 +115,9 @@ def show_name(name):
    변수를 해당 파일경로의 html 템플릿 엔진에게 건넨다. 
 ```
 <br><br>
+
 ##5. render_template vs redirect
+
 <br>
 `render_template`과 `redirect`는 웹 개발을 할 때 혼동될 수 있는데 둘의 차이는 **"누가 화면을 결정하는가?"**를 보면 된다. 
 <br>
