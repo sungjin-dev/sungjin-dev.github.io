@@ -1,11 +1,5 @@
 <div class="my-custom-sidebar-widget" style="display: none;">
   
-  <div style="text-align: center; margin-bottom: 20px;">
-    <a href="https://hits.seeyoufarm.com">
-        <img src=”https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter”/></a>                        
-    </a>
-  </div>
-
   <div class="my-clock">
     <div id="live-time"></div>
     <div id="live-date"></div>
@@ -13,12 +7,27 @@
 
   <a class="weatherwidget-io" href="https://forecast7.com/en/36d35127d38/daejeon/" data-label_1="대전" data-label_2="오늘 날씨" data-theme="dark" data-basecolor="#1a1b26" data-textcolor="#c0caf5" data-mode="Current">대전 날씨</a>
   <script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
   </script>
-
+  
+  <div>
+      <a href=”https://hits.seeyoufarm.com”>
+          <img src=”https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter”/>
+      </a>                        
+  </div>
 </div>
 
 <style>
+  /* 사이드바 스크롤바 완전히 숨기기*/
+  .sidebar {
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .sidebar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  /* 커스텀 위젯 디자인 */
   .my-custom-sidebar-widget {
     margin-top: 2rem;
     padding-top: 1.5rem;
@@ -32,20 +41,41 @@
     border-radius: 8px;
     border-left: 4px solid #bb9af7;
   }
-  #live-time { font-size: 1.2em; font-weight: 700; color: #7dcfff; font-family: 'Consolas', monospace; }
-  #live-date { font-size: 0.85em; color: #9ece6a; margin-top: 5px; }
+  #live-time { 
+    font-size: 1.2em; 
+    font-weight: 700; 
+    color: #7dcfff; 
+    font-family: 'Consolas', monospace; 
+  }
+  #live-date { 
+    font-size: 0.85em; 
+    color: #9ece6a; 
+    margin-top: 5px; 
+  }
 </style>
 
 <script>
+  // 1. 위젯 위치 이동
+  document.addEventListener("DOMContentLoaded", function() {
+    const sidebar = document.querySelector('.sidebar');
+    const widget = document.querySelector('.my-custom-sidebar-widget');
+    
+    if (sidebar && widget) {
+      sidebar.appendChild(widget);
+      widget.style.display = 'block';
+    }
+  });
+
+  // 2. 실시간 시계 로직
   function updateClock() {
     const now = new Date();
     const timeStr = now.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit' });
     const dateStr = now.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short' });
-    if(document.getElementById('live-time')) {
-        document.getElementById('live-time').innerText = timeStr;
-        document.getElementById('live-date').innerText = dateStr;
-    }
+    
+    document.getElementById('live-time').innerText = timeStr;
+    document.getElementById('live-date').innerText = dateStr;
   }
+  
   updateClock();
   setInterval(updateClock, 1000);
 </script>
