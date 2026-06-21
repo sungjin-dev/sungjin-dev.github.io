@@ -65,14 +65,14 @@ code {
   border-radius: 4px;
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
   font-weight: bold;
-  font-size: 1.15em; /* 0.9em에서 1.15em으로 크기 대폭 확대 */
+  font-size: 1.05em;
 }
 
 .page__content p code, .page__content li code {
-  /* 기존 transparent 대신 글자색(#fbd38d)과 어울리는 아주 옅은 배경색 추가 */
   background-color: rgba(251, 211, 141, 0.15); 
   color: #fbd38d;
-  padding: 2px 6px;  /* 배경색이 들어갔으므로 여백 확보 */
+  font-size: 1.05em; 
+  padding: 2px 6px;  
   border-radius: 4px;
 }
 
