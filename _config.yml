@@ -1,12 +1,16 @@
+# =======================================================
+# 작성자(Author) 정보
+# =======================================================
 author:
-  name     : "성진 (Sungjin)"
-  bio      : "매일 코딩하는 꿈을 꾸는 청년 | DW Academy"
+  name: "성진 (Sungjin)"
+  avatar: "https://turbulentflux.com/wp-content/uploads/2020/09/20200831_Data_Information_Knowledge.png"
+  bio: "매일 코딩하는 꿈을 꾸는 청년 | DW Academy"
   url: "https://sungjin-dev.github.io"
-  location : "South Korea"
+  location: "South Korea"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:tjdwlsl8888@gmail.com" 
+      url: "mailto:tjdwlsl8888@gmail.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/sungjin-dev"
@@ -34,21 +38,6 @@ kramdown:
   syntax_highlighter: rouge
   hard_wrap: false
 
-# =======================================================
-# 작성자(Author) 정보
-# =======================================================
-author:
-  name: "성진 (Sungjin)"
-  avatar: "https://turbulentflux.com/wp-content/uploads/2020/09/20200831_Data_Information_Knowledge.png" 
-  bio: "매일 코딩하는 꿈을 꾸는 청년"
-  location: "South Korea"
-  links:
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/sungjin-dev"
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:tjdwlsl8888@gmail.com"
 
 # =======================================================
 # 블로그 글 기본 설정 (오른쪽 목차 메뉴 자동 고정)
