@@ -1,10 +1,16 @@
-# =======================================================
-# 사이트 기본 설정
-# =======================================================
-title: "한 개발자의 성장 블로그"
-description: "필기 및 오답 노트와 개발 공부 기록"
-baseurl: ""
-url: "" # 깃허브 페이지 주소(https://아이디.github.io)를 나중에 여기에 입력하세요.
+# _config.yml 파일 내부
+
+author:
+  name     : "성진 (Sungjin)"
+  bio      : "매일 코딩하는 꿈을 꾸는 청년"
+  location : "South Korea"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:tjdwlsl8888@gmail.com" 
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/sungjin-dev"
 
 timezone: "Asia/Seoul" # 한국 시간대 설정 (포스팅 시간이 정확해집니다)
 
