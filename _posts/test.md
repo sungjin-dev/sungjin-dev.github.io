@@ -1,3 +1,15 @@
+---
+title: "MVC 패턴(Model-View-Controller)이란?"
+excerpt: "플라스크 코드에 대입해보면서 필요성 깨닫기"
+categories: [Flask]
+tags:
+  - Python
+  - Flask
+toc: true
+toc_sticky: true
+--- 
+
+
 MVC 패턴(Model-View-Controller)은 소프트웨어 공학에서 가장 유명하고 널리 쓰이는 건축 설계도(디자인 패턴) 중 하나입니다. 
 
 한마디로 정의하자면 "코드를 역할에 따라 세 가지 구역으로 완벽하게 나누어 작업하자"는 십계명과도 같습니다.
