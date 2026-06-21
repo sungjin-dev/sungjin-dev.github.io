@@ -120,8 +120,9 @@ from flask import Flask, render_template
  
 @app.route('/name/<name>')   
 def show_name(name):
-    변수를 해당 파일경로의 html 템플릿 엔진에게 건넨다. 		       
-	 return render_template('index.html', name=name) 
+     		       
+	 return render_template('index.html', name=name)
+	 #변수를 해당 파일경로의 html 템플릿 엔진에게 건넨다.
 ```
 <br><br>
 
