@@ -115,13 +115,34 @@ introduce("성진", 35);
 ## 3. 파이썬 vs 자바스크립트 사고 전환 팁
 파이썬이 "함수에게 데이터를 던져주는 방식"이라면, 자바스크립트는 "객체(물건)가 자기 기능을 스스로 수행하는 방식"이다
 <br>
-Markdown
 
-| 구분 | 파이썬 (함수 중심) | 자바스크립트 (객체 중심) |
-| :---: | :---: | :---: |
-| **공백 제거** | `strip(data)` | `data.trim()` |
-| **길이 측정** | `len(data)` | `data.length` |
-| **화면 출력** | `print(data)` | `console.log(data)` |
+HTML
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>파이썬 (함수 중심)</th>
+      <th>자바스크립트 (객체 중심)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>공백 제거</strong></td>
+      <td><code>strip(data)</code></td>
+      <td><code>data.trim()</code></td>
+    </tr>
+    <tr>
+      <td><strong>길이 측정</strong></td>
+      <td><code>len(data)</code></td>
+      <td><code>data.length</code></td>
+    </tr>
+    <tr>
+      <td><strong>화면 출력</strong></td>
+      <td><code>print(data)</code></td>
+      <td><code>console.log(data)</code></td>
+    </tr>
+  </tbody>
+</table>
 
 <br>
 이젠 자바스크립트 코드를 볼 때, `점(.)`이 보이면 '왼쪽 덩어리(객체) 안에 오른쪽 기능(메서드나 속성)이 들어있구나!' 라고 생각하면 편하다. 
