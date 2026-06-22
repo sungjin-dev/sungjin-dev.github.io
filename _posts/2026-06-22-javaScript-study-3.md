@@ -92,21 +92,17 @@ let aPw = form.aPw.value.trim();
 `인자`: 함수를 호출할 때 괄호 안에 넣는 '실제 데이터'
 <br>
 예시 :
-{%raw%}
-```JavaScript
 
-//함수 선언(매개변수: 임시 이름표)
-JavaScript
-function introduce(name, age) {
-    console.log(`이름은 ${name}이고, 나이는 ${age}살입니다.`);
-}
-//함수 호출(인자: 실제 데이터)
-introduce("성진", 35);
-//호출할 때 전달하는 "성진"과 35가 바로 '인자(Argument)'
 ```
-{%endraw%}
+function introduce(name, age) {
+    console.log(`이름은 ${name}이고, 나이는 ${age}살입니다.`);}
 
-출력 : 이름은 성진이고 나이는 35입니다. 
+introduce("성진", 35);
+```
+호출할 때 전달하는 "성진"과 35가 바로 '인자(Argument)'고 선언부에
+name, age가 매개변수 즉 임시 이름표다. 
+
+출력하면 '이름은 성진이고 나이는 35입니다.'가 나온다. 
 <br><br>
 반면
 
