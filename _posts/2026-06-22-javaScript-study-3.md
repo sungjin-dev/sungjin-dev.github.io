@@ -46,7 +46,7 @@ let aPw = form.aPw.value.trim();
 ```
 이제 기본 배경은 알아봤으니 하나씩 뜯어 보자.
 <br><br>
-먼저 **form.aPw** -> form이라는 커다란 객체에 있는 aPw 입력창을 지칭한다. (참고로 '<input>'태그를 사용하면 해당 입력창이 뜬다) 
+먼저 **form.aPw** -> form이라는 커다란 객체에 있는 aPw 입력창을 지칭한다. (참고로 'input'태그를 사용하면 해당 입력창이 뜬다) 
 <br><br>
 **form.aPw.value**: value는 그 aPw 입력창 속에 담겨있는 실제 텍스트(데이터)이다.
 <br>
