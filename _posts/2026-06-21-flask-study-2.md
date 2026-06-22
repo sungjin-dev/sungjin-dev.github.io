@@ -78,53 +78,29 @@ MVC 패턴으로 코드를 `분업화(Decoupling)`해두면:
 my_flask_app/               # 프로젝트 최상위 폴더 (우리 식당 건물)
 
 │
-
 ├── app.py                  # 식당 지배인 (앱 실행 및 환경 설정)
-
 │
-
 ├── models/                 # [M] Model (주방장과 식재료)
-
 │   ├── __init__.py
-
 │   ├── database.py         # DB 연결 설정
-
 │   └── user_model.py       # 회원(User) 데이터 처리 로직 및 규칙
-
 │
-
 ├── templates/              # [V] View (예쁜 접시와 메뉴판)
-
 │   ├── index.html          # 메인 화면
-
 │   ├── signUp.html          # 회원 가입 (render_template)
-
 │   └── siginIn.html        # 회원 로그인 
-
 │
-
 ├── controllers/            # [C] Controller (웨이터)
-
 │   ├── __init__.py
-
 │   ├── main_controller.py  # 메인 페이지 관련 라우팅 (@app.route)
-
 │   └── user_controller.py  # 회원가입/로그인 관련 라우팅 (@app.route)
-
 │
-
 └── static/                 # 인테리어 (디자인)
-
     ├── css/
-
     │   └── style.css       # 화면을 예쁘게 꾸미는 CSS
-
     ├── js/
-
     │   └── script.js       # 동적 움직임을 부여하는 자바스크립트
-
     └── images/
-
         └── logo.png        # 웹사이트 로고 이미지
 
 ```
