@@ -86,7 +86,9 @@ let aPw = form.aPw.value.trim();
 <br>
 예시 :
 
-```JavaScript
+```Markdown
+
+//JavaScript
 
 // 함수 선언 (매개변수: 임시 이름표)
 function introduce(name, age) {
