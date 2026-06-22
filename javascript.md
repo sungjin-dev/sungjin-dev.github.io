@@ -5,7 +5,6 @@ permalink: /javascript/
 sidebar:
   nav: "sidebar_category"
 ---
-
 {% for post in site.categories.JavaScrpit %}
   {% include archive-single.html %}
 {% endfor %}
