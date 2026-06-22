@@ -122,3 +122,20 @@ div.highlighter-rouge {
 .page__content .highlight .c, .page__content .highlight .c1, .page__content .highlight .cm { color: #565f89 !important; font-style: italic; } 
 .page__content .highlight .p, .page__content .highlight .o { color: #89ddff !important; }
 .page__content .highlight .err { color: #c0caf5 !important; background-color: transparent !important; } /* 못생긴 빨간 에러 표시 제거 */
+
+/* 표 전체 디자인 수정 */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+table th, table td {
+  border: 1px solid #ddd; /* 테두리 추가 */
+  padding: 12px;
+  text-align: center; /* 내용 중앙 정렬 */
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9; /* 줄마다 색상 교차 */
+}
