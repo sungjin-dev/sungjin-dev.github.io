@@ -118,7 +118,7 @@ introduce("성진", 35);
 Markdown
 
 | 구분 | 파이썬 (함수 중심) | 자바스크립트 (객체 중심) |
-| :--- | :--- | :--- |
+| :---: | :---: | :---: |
 | **공백 제거** | `strip(data)` | `data.trim()` |
 | **길이 측정** | `len(data)` | `data.length` |
 | **화면 출력** | `print(data)` | `console.log(data)` |
