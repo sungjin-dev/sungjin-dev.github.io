@@ -125,9 +125,10 @@ div.highlighter-rouge {
 
 /* 표 전체 디자인 수정 */
 table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 1em;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden; /* 둥근 모서리 적용 */
+  margin-bottom: 20px;
 }
 
 table th, table td {
