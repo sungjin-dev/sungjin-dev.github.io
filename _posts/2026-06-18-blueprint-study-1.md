@@ -1,6 +1,6 @@
 ---
-title:  "Blueprint란? 방대한 라우트 코드를 깔끔하게 분리하는 마법"
-excerpt: "외부 css파일에 선택자 입력하는 방법"
+title:  "Blueprint란? "
+excerpt: "방대한 라우트 코드를 깔끔하게 분리하는 마법"
 categories: [Flask]
 tags:
   - Python
