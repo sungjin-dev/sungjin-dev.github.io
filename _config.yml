@@ -4,7 +4,7 @@
 author:
   name: "성진 (Sungjin)"
   avatar: "https://turbulentflux.com/wp-content/uploads/2020/09/20200831_Data_Information_Knowledge.png"
-  bio: "매일 코딩하는 꿈을 <br> 꾸는 청년 | DW Academy"
+  bio: "매일 코딩하는 꿈을 꾸는 청년 | DW Academy"
   url: "https://sungjin-dev.github.io"
   location: "South Korea"
   links:
@@ -30,13 +30,13 @@ plugins:
 search: true
 
 # =======================================================
-# 마크다운 렌더링 설정 (코드 블록 및 줄바꿈 최적화)
+# 마크다운 렌더링 설정 (여기서 독립적으로 작성!)
 # =======================================================
 markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-  hard_wrap: false
+  hard_wrap: true
 
 
 # =======================================================
