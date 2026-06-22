@@ -99,9 +99,11 @@ function introduce(name, age) {
 
 introduce("성진", 35);
 ```
-호출할 때 전달하는 "성진"과 35가 바로 '인자(Argument)'고 선언부에
-name, age가 매개변수 즉 임시 이름표다. 
-
+<br>
+호출할 때 전달하는 "성진"과 35가 바로 `인자(Argument)`고 
+<br>
+선언부에 name, age가 `매개변수` 즉 임시 이름표다. 
+<br>
 출력하면 '이름은 성진이고 나이는 35입니다.'가 나온다. 
 <br><br>
 반면
