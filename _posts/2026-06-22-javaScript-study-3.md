@@ -108,7 +108,7 @@ introduce("성진", 35);
 <br><br>
 반면
 
-`console.log('aPw:', aPw)` 에서 'aPw:'와 aPw는 console.log라는 함수로 전달되는 인자고 그 값 그대로 출력한다. 
+`console.log('aPw:', aPw)` 에서 'aPw:'와 aPw는 {%raw%}console.log{%endraw%}라는 함수로 전달되는 인자고 그 값 그대로 출력한다. 
 
 ## 3. 파이썬 vs 자바스크립트 사고 전환 팁
 파이썬이 "함수에게 데이터를 던져주는 방식"이라면, 자바스크립트는 "객체(물건)가 자기 기능을 스스로 수행하는 방식"이다
