@@ -126,14 +126,38 @@ div.highlighter-rouge {
 /* ================================================= */
 /* 6. 표 디자인: 깔끔하고 환한 스타일 */
 /* ================================================= */
-/* 1. 일반적인 표 스타일 (SCSS 중첩 문법 제거) */
+
 table {
   border-collapse: collapse;
-  width: 100%;
-  max-width:100%;
+  width: auto;             /* 100% 대신 auto를 사용하여 내용물 크기에 맞춤 */
+  min-width: 400px;
+  max-width: 100%;
   margin: 20px auto;
-  border-radius: 6px;
+  background-color: #ffffff; /* 표 배경을 확실한 흰색으로 */
+  border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+table th, table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+  color: #2d3748; /* 표 내부 글자색을 어두운 회색으로 고정 */
+}
 
+table th {
+  background-color: #f8f9fa;
+  font-weight: 700;
+}
+
+/* ★ 중요: 표 안의 코드(code) 스타일을 전역 스타일에서 분리 */
+table code {
+  background-color: #f1f3f5 !important; /* 연한 회색 배경 */
+  color: #e83e8c !important;           /* 핑크색 글자 */
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 0.95em !important;        /* 글자 크기 조금 조정 */
+  font-weight: bold;
+  border: none !important;
+}
