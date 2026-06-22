@@ -124,11 +124,12 @@ div.highlighter-rouge {
 .page__content .highlight .err { color: #c0caf5 !important; background-color: transparent !important; } /* 못생긴 빨간 에러 표시 제거 */
 
 /* 표 전체 디자인 수정 */
-table {
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden; /* 둥근 모서리 적용 */
-  margin-bottom: 20px;
+table code {
+  background-color: #f4f4f4 !important; /* 배경색을 밝은 회색으로 */
+  color: #d63384 !important;           /* 글자 색상을 좀 더 잘 보이는 색으로 */
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
 }
 
 table th, table td {
