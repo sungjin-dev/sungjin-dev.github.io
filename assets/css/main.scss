@@ -126,33 +126,4 @@ div.highlighter-rouge {
 /* ================================================= */
 /* 6. 표 디자인: 깔끔하고 환한 스타일 */
 /* ================================================= */
-table {
-  border-collapse: collapse;
-  width: auto;
-  max-width: 100%;
-  table-layout: fixed;
-  margin: 20px 0;
-  color: #333;             /* 글자색을 어두운 회색으로 */
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 은은한 그림자 */
-}
 
-table th {
-  background-color: #f8f9fa; /* 헤더 배경은 연한 회색 */
-  color: #2d3748;
-  font-weight: 700;
-  padding: 15px;
-  border-bottom: 2px solid #e2e8f0;
-}
-
-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #edf2f7;
-  text-align: center;
-}
-
-/* 줄무늬 제거 (원하시면 다시 넣어도 됩니다) */
-table tr:nth-child(even) {
-  background-color: #fdfdfd;
-}
