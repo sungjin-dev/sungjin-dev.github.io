@@ -1,3 +1,14 @@
+---
+title: "프로젝트 협업할 때 지켜야할 ROUTIN"
+excerpt: ".gitignore, requirements.txt 등"
+categories: [Flask]
+tags:
+  - Python
+  - Flask
+toc: true
+toc_sticky: true
+--- 
+
 프로젝트를 하다보면 가상공간을 활용하게 되는데 git저장소를 활용하기에는 너무 헤비하다. 
 
 그래서 무거운 가상공간 데이터, 모듈을 빼고 홀가분하게 코드만 git에 올리는 방법에 대해 알아 보자. 
