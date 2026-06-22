@@ -12,21 +12,20 @@ toc_sticky: true
 프로젝트를 하다보면 가상공간을 활용하게 되는데 git저장소를 활용하기에는 너무 헤비하다. 
 <br>
 그래서 무거운 가상공간 데이터, 모듈을 빼고 홀가분하게 코드만 git에 올리는 방법에 대해 알아 보자. 
-<br><br>
+<br>
 우선 가상 공간을 생성하는 방법부터 차근차근 알아보아야 한다. 
 
 ## 1. 가상 환경 생성 및 활성화
 
 가상 환경은 프로젝트별로 필요한 패키지 버전을 독립적으로 관리하기 위한 '프로젝트 전용 격리 공간'이다.
-<br><br>
+<br>
 생성하는 방법은 매우 간단하다. vscode 터미널에
 <br>
 `python -m venv venv`   (참고로 py -m venv venv도 알아두자)
-<br>
 만 치면 된다. 
-<br><br>
+<br>
 활성화 방법 또한 간단하다. 
-<br><br>
+<br>
 Windows: `venv\Scripts\activate` (v tab키 s tab키 a tab키를 누르면 자동완성된다!)
 
 Mac/Linux: `source venv/bin/activate`
