@@ -56,7 +56,7 @@ let aPw = form.aPw.value.trim();
 <br><br>
 최종적으로 정리하면 'form 객체에 있는 aPw라는 입력창에서 입력받은 데이터 즉 value값을 가지고 trim()을 실행해 공백을 제거해라'이다. 
 <br>
-파이썬이라면 def trim(value) :  aPw = 블라블라 이런 방식으로 진행된다는 점과 확연히 다르다. 
+파이썬이라면 {%raw%}def trim(value) :  aPw = 블라블라 이런 방식으로 진행된다는 점과 확연히 다르다. {%endraw%}
 <br><br>
 **<심화내용>**
 자바스크립트에서 점(.)은 마치 가족 관계도를 따라가는 것과 같은데 
@@ -107,7 +107,7 @@ function introduce(name, age) {
 introduce("성진", 35); 
 // 호출할 때 전달하는 "성진"과 35가 바로 '인자(Argument)'
 ```
-
+<br><br>
 반면
 
 `console.log('aPw:', aPw)` 에서 'aPw:'와 aPw는 console.log라는 함수로 전달되는 인자고 그 값 그대로 출력한다. 
