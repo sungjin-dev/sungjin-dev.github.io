@@ -15,8 +15,6 @@ toc_sticky: true
 예시를 통해 한 번 알아보자!
 <br><br>
 <img width="892" height="666" alt="image" src="https://github.com/user-attachments/assets/3df8e534-8718-45ef-9342-573652fc0a8d" />
-<br><br>
-
 ## 1. 식당으로 이해하는 MVC
 <br><br>
 * **M (Model) : 주방장과 식재료 창고**
