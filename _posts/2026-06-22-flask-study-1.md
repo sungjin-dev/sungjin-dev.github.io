@@ -26,7 +26,7 @@ toc_sticky: true
 <br>
 활성화 방법 또한 간단하다. 
 <br>
-Windows: `venv\Scripts\activate` (v tab키 s tab키 a tab키를 누르면 자동완성된다!)
+Windows: `venv\Scripts\activate` (v+tab키 s+tab키 a+tab키를 누르면 자동완성된다!)
 
 Mac/Linux: `source venv/bin/activate`
 <br><br>
