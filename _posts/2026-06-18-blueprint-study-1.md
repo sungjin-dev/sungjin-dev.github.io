@@ -1,6 +1,6 @@
 ---
-title:  "Blueprint란? "
-excerpt: "방대한 라우트 코드를 깔끔하게 분리하는 마법"
+title:  "Blueprint란? 방대한 라우트 코드를 깔끔하게 분리하는 마법"
+excerpt: "Flask에서 꼭 필요한 유용한 기능"
 categories: [Flask]
 tags:
   - Python
