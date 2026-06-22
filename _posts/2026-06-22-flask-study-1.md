@@ -23,7 +23,8 @@ toc_sticky: true
 <br>
 `python -m venv venv`   (참고로 py -m venv venv도 알아두자)
 <br>
-
+만 치면 된다. 
+<br><br>
 활성화 방법 또한 간단하다. 
 <br><br>
 Windows: `venv\Scripts\activate` (v tab키 s tab키 a tab키를 누르면 자동완성된다!)
