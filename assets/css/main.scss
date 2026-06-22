@@ -129,7 +129,7 @@ table code {
   color: #d63384 !important;           /* 글자 색상을 좀 더 잘 보이는 색으로 */
   padding: 2px 5px;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 table th, table td {
@@ -138,6 +138,3 @@ table th, table td {
   text-align: center; /* 내용 중앙 정렬 */
 }
 
-table tr:nth-child(even) {
-  background-color: #f9f9f9; /* 줄마다 색상 교차 */
-}
