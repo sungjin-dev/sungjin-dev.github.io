@@ -84,8 +84,10 @@ let aPw = form.aPw.value.trim();
 <br>
 `인자`: 함수를 호출할 때 괄호 안에 넣는 '실제 데이터'
 <br>
-예시 : 
+예시 :
+
 ```JavaScript
+
 // 함수 선언 (매개변수: 임시 이름표)
 function introduce(name, age) {
     console.log("이름은 " + name + "이고, 나이는 " + age + "살입니다.");
@@ -103,10 +105,7 @@ console.log('aPw:', aPw) 에서 'aPw:'와 aPw는 console.log라는 함수로 전
 ## 3. 파이썬 vs 자바스크립트 사고 전환 팁
 파이썬이 "함수에게 데이터를 던져주는 방식"이라면, 자바스크립트는 "객체(물건)가 자기 기능을 스스로 수행하는 방식"
 <br>
-  구분	 파이썬 (함수 우선) 	자바스크립트 (객체 우선)
-공백 제거	strip(data)     	data.trim()
-길이 측정	len(data)	        data.length
-화면 출력	print(data)	     console.log(data)
+
 <br>
 이젠 자바스크립트 코드를 볼 때, `점(.)`이 보이면 '왼쪽 덩어리(객체) 안에 오른쪽 기능(메서드나 속성)이 들어있구나!' 라고 생각하면 편하다. 
 <br>
