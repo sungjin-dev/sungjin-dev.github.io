@@ -130,46 +130,12 @@ div.highlighter-rouge {
 table {
   border-collapse: collapse;
   width: 100%;
-  max-width: 800px;
+  max-width:100%;
   margin: 20px auto;
   background: white;
   border-radius: 6px;
   overflow: hidden;
+  display: inline-block;
 }
 
-table th {
-  height: 60px;
-  background: #FFED86;
-  font-size: 16px;
-  padding: 10px;
-  text-align: center;
-}
 
-table td {
-  height: 48px;
-  padding: 10px;
-  border-bottom: 1px solid #E3F1D5;
-  text-align: center;
-}
-
-/* 2. 모바일 반응형 처리 */
-@media screen and (max-width: 600px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-  
-  thead { display: none; }
-  
-  table td {
-    padding-left: 45%;
-    position: relative;
-    text-align: left;
-  }
-  
-  table td::before {
-    position: absolute;
-    left: 10px;
-    font-weight: 700;
-    content: attr(data-label); /* HTML에서 data-label 속성을 활용하는 것이 더 좋습니다 */
-  }
-}
