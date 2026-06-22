@@ -19,7 +19,7 @@ toc_sticky: true
 
 가상 환경은 프로젝트별로 필요한 패키지 버전을 독립적으로 관리하기 위한 '프로젝트 전용 격리 공간'이다.
 <br><br>
-생성하는 방법은 매우 간단하다. 
+생성하는 방법은 매우 간단하다. vscode 터미널에
 <br>
 `python -m venv venv`   (참고로 py -m venv venv도 알아두자)
 <br>
