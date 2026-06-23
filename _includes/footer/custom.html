@@ -1,111 +1,210 @@
 <div class="my-custom-sidebar-widget">
-  
+
   <details class="mobile-widget-toggle">
     <summary>🕒 시간 및 날씨 보기</summary>
+
     <div class="widget-content">
-  <div class="my-clock">
+
+      <!-- 시계 -->
+      <div class="my-clock">
         <div id="live-time"></div>
         <div id="live-date"></div>
       </div>
 
-      <a class="weatherwidget-io" href="https://forecast7.com/en/37d57126d98/seoul/" data-label_1="서울" data-label_2="오늘 날씨" data-theme="dark" data-basecolor="#1a1b26" data-textcolor="#c0caf5" data-mode="Current">서울 날씨</a>
+      <!-- 날씨 -->
+      <a
+        class="weatherwidget-io"
+        href="https://forecast7.com/en/37d57126d98/seoul/"
+        data-label_1="서울"
+        data-label_2="오늘 날씨"
+        data-theme="dark"
+        data-basecolor="#1a1b26"
+        data-textcolor="#c0caf5"
+        data-mode="Current">
+        서울 날씨
+      </a>
+
       <script>
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+      !function(d,s,id){
+        var js,fjs=d.getElementsByTagName(s)[0];
+        if(!d.getElementById(id)){
+          js=d.createElement(s);
+          js.id=id;
+          js.src='https://weatherwidget.io/js/widget.min.js';
+          fjs.parentNode.insertBefore(js,fjs);
+        }
+      }(document,'script','weatherwidget-io-js');
       </script>
-      
-      <div style="text-align: center; margin-bottom: 10px;">
+
+      <!-- 방문자 -->
+      <div class="visitor-badge">
         <a href="https://github.com/sungjin-dev/sungjin-dev.github.io">
-          <img src="https://visitor-badge.laobi.icu/badge?page_id=sungjin-dev.github.io" alt="visitor badge" style="height: 25px; width: auto;"/>
+          <img
+            src="https://visitor-badge.laobi.icu/badge?page_id=sungjin-dev.github.io"
+            alt="visitor badge">
         </a>
       </div>
 
-  </div>
+    </div>
+
   </details>
-  </div>
+
+</div>
 
 <style>
-  /* 사이드바 스크롤바 완전히 숨기기*/
-  .sidebar {
-    -ms-overflow-style: none; /* IE, Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-  .sidebar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
 
-  /* 커스텀 위젯 디자인 */
-  .my-custom-sidebar-widget {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px dashed #565f89;
-  }
-  .my-clock {
+/* =========================
+   사이드바 스크롤바 숨기기
+========================= */
+.sidebar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   위젯 전체
+========================= */
+.my-custom-sidebar-widget {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed #565f89;
+}
+
+/* summary 버튼 */
+.mobile-widget-toggle summary {
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+/* =========================
+   시계
+========================= */
+.my-clock {
   text-align: center;
-  margin-bottom: 15px;
-  padding: 10px;      
+  margin-bottom: 4px;
+  padding: 6px 8px;
   background-color: #1a1b26;
   border-radius: 8px;
   border-left: 4px solid #bb9af7;
 }
-  #live-time { 
-    font-size: 1.2em; 
-    font-weight: 700; 
-    color: #7dcfff; 
-    font-family: 'Consolas', monospace; 
-  }
-  #live-date { 
-    font-size: 0.85em; 
-    color: #9ece6a; 
-    margin-top: 5px; 
-  }
-  /* 날씨 위젯 여백 강제 조절 */
-  .weatherwidget-io {
-  margin-bottom: 15px !important; /* 아래쪽 방문자 뱃지와의 간격을 좁힘 */
-  line-height: 1 !important;      /* 내부 높이를 살짝 타이트하게 압축 */
+
+#live-time {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #7dcfff;
+  font-family: Consolas, monospace;
+  line-height: 1.1;
 }
+
+#live-date {
+  font-size: 0.82em;
+  color: #9ece6a;
+  margin-top: 2px;
+  line-height: 1.1;
+}
+
+/* =========================
+   날씨 위젯
+========================= */
+.weatherwidget-io {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+/* =========================
+   방문자 뱃지
+========================= */
+.visitor-badge {
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+.visitor-badge img {
+  height: 22px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* details 기본 여백 제거 */
+.mobile-widget-toggle {
+  margin: 0;
+  padding: 0;
+}
+
+.widget-content {
+  margin-top: 4px;
+}
+
 </style>
 
 <script>
-  // 1. 위젯 위치 이동 및 PC/모바일 상태 제어 (안전장치 추가됨)
-  document.addEventListener("DOMContentLoaded", function() {
-    const sidebar = document.querySelector('.sidebar');
-    const widget = document.querySelector('.my-custom-sidebar-widget');
-    const detailsTag = document.querySelector('.mobile-widget-toggle'); 
-    
-    // 위젯이 존재하면 무조건 보이게 설정
-    if (widget) {
-      widget.style.display = 'block';
-    }
 
-    // 사이드바로 위젯 옮기기
-    if (sidebar && widget) {
-      sidebar.appendChild(widget);
-    }
+/* =========================
+   위젯 이동 및 반응형
+========================= */
+document.addEventListener("DOMContentLoaded", function() {
 
-    // 화면 크기에 따라 폴더 강제로 열고 닫기
-    function handleResize() {
-      if (!detailsTag) return;
-      if (window.innerWidth >= 768) {
-        detailsTag.setAttribute('open', 'true'); // PC: 무조건 열어둠
-      } else {
-        detailsTag.removeAttribute('open'); // 모바일: 닫아둠 (압축)
-      }
-    }
+  const sidebar = document.querySelector('.sidebar');
+  const widget = document.querySelector('.my-custom-sidebar-widget');
+  const detailsTag = document.querySelector('.mobile-widget-toggle');
 
-    handleResize(); 
-    window.addEventListener('resize', handleResize); 
+  if (widget) {
+    widget.style.display = 'block';
+  }
+
+  if (sidebar && widget) {
+    sidebar.appendChild(widget);
+  }
+
+  function handleResize() {
+
+    if (!detailsTag) return;
+
+    if (window.innerWidth >= 768) {
+      detailsTag.setAttribute('open', 'true');
+    } else {
+      detailsTag.removeAttribute('open');
+    }
+  }
+
+  handleResize();
+  window.addEventListener('resize', handleResize);
+
+});
+
+/* =========================
+   실시간 시계
+========================= */
+function updateClock() {
+
+  const now = new Date();
+
+  const timeStr = now.toLocaleTimeString('ko-KR', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
   });
 
-  // 2. 실시간 시계 로직 (기존 그대로 유지)
-  function updateClock() {
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit' });
-    const dateStr = now.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short' });
-    
-    document.getElementById('live-time').innerText = timeStr;
-    document.getElementById('live-date').innerText = dateStr;
-  }
-  
-  updateClock();
-  setInterval(updateClock, 1000);
+  const dateStr = now.toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short'
+  });
+
+  document.getElementById('live-time').innerText = timeStr;
+  document.getElementById('live-date').innerText = dateStr;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
 </script>
