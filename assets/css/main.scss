@@ -134,7 +134,6 @@ table {
   min-width: 400px;                 /* 너무 좁아지는 것 방지 */
   max-width: 100% !important;       /* 화면 넘침 방지 */
   margin: 20px 0 !important;        /* 왼쪽 정렬 유지 */
-  background-color: #ffffff !important;
   border-radius: 8px !important;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -155,8 +154,7 @@ table th {
 
 /* ★ 중요: 표 안의 코드(code) 스타일을 전역 스타일에서 분리 */
 table code {
-  background-color: #f1f3f5 !important; /* 연한 회색 배경 */
-  color: #e83e8c !important;           /* 핑크색 글자 */
+  color: #F08080 !important;         
   padding: 2px 6px !important;
   border-radius: 4px !important;
   font-size: 0.95em !important;        /* 글자 크기 조금 조정 */
