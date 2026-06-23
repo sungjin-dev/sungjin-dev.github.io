@@ -29,9 +29,9 @@ toc_sticky: true
 Windows: `venv\Scripts\activate` (v+tab키 s+tab키 a+tab키를 누르면 자동완성된다!)
 
 Mac/Linux: `source venv/bin/activate`
-<br>
+<br><br>
 활성화되면 옆에 파일탐색기에도 /venv가 보일거고 터미널 앞에 (venv)라는 초록색 표시가 뜬다.
-<br>
+<br><br>
 <img width="613" height="85" alt="image" src="https://github.com/user-attachments/assets/3a0e33f0-af74-4fe7-841b-69590af2891c" />
 
 ## 2. 선별적 GIT PUSH 방법 (.gitignore 설정)
