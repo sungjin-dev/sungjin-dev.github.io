@@ -30,7 +30,9 @@ $content-width: 1200px;
 /* 사이드바 오염을 막기 위해 본문(.page__content) 내부의 p, li만 타겟팅하고 줄간격 최적화 */
 .page__content p, .page__content li {
   font-size: 16px;
-  line-height: 1.75; 
+  line-height: 1.9; /* 기존 1.75에서 1.9 (또는 2.0)으로 늘려 줄 간격 확보 */
+  margin-bottom: 1.2em; /* 문단(Enter로 구분된 덩어리) 사이의 간격을 추가 */
+  word-break: keep-all; /* 한글 단어가 줄 끝에서 뚝 끊기지 않도록 방지 */
 }
 
 /* ================================================= */
