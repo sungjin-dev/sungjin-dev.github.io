@@ -48,14 +48,13 @@ toc_sticky: true
 <br><br>
 
 **자료.1**
-```javascript
-# app.py
+```python
+from flask import Flask, render_template
 
-from flask import render_template
+app = Flask(__name__)
 
 @app.route('/')
 def index():
-               #  'psj'라는 데이터를 템플릿 엔진에 전달
     return render_template('index.html', name='psj')
 ```
 <br>
