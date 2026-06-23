@@ -184,3 +184,61 @@ table code {
     padding-right: 40px;
   }
 }
+
+/* ================================================= */
+/* 8. 사이드바 시계/날씨 위젯 접기(Toggle) 스타일 */
+/* ================================================= */
+
+.mobile-widget-toggle {
+  background-color: #2d3748; /* 기존 위젯 배경색과 맞춤 */
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* 닫혀있을 때 보이는 제목 부분 */
+.mobile-widget-toggle summary {
+  padding: 12px 15px;
+  color: #c0caf5;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  list-style: none; /* 기본 화살표 숨기기 */
+}
+
+/* 웹킷 브라우저 기본 화살표 숨기기 */
+.mobile-widget-toggle summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 커스텀 화살표 추가 */
+.mobile-widget-toggle summary::after {
+  content: " ▼";
+  font-size: 0.8em;
+  color: #7dcfff;
+}
+
+/* 열렸을 때 화살표 방향 변경 */
+.mobile-widget-toggle[open] summary::after {
+  content: " ▲";
+}
+
+.widget-content {
+  padding-top: 10px;
+  border-top: 1px solid #4a5568; /* 열렸을 때 구분선 */
+}
+
+/* ★ 핵심: PC 화면(768px 이상)에서는 항상 열려있게 고정하고, 접기 버튼(summary)을 숨김 */
+@media (min-width: 768px) {
+  .mobile-widget-toggle summary {
+    display: none; /* PC에선 '시간 및 날씨 보기' 버튼 숨김 */
+  }
+  .mobile-widget-toggle[open] summary {
+    display: none;
+  }
+  /* PC에선 강제로 내용물 보이기 */
+  .mobile-widget-toggle .widget-content {
+    display: block !important;
+    border-top: none;
+    padding-top: 0;
+  }
+}
