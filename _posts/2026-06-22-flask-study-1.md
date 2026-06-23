@@ -75,10 +75,11 @@ images/
 ## 3. 패키지 설치 및 연동 (requirements.txt)
 
 `pip freeze > requirements.txt`
-<br>
+<br><br>
 이 명령어만 치면 프로젝트 폴더 안에 `requirements.txt` 파일이 생성되는데 
 <br>
 현재 가상 환경에 설치된 모든 패키지와 그 버전 정보가 이 `requirements.txt`에 전부 기록된다.
+<br><br>
 <img width="703" height="298" alt="image" src="https://github.com/user-attachments/assets/c30d1006-1d77-4130-ba88-c33286bf0218" />
 
 <br><br>
@@ -93,7 +94,7 @@ images/
 `pip install -r requirements.txt`
 <br><br>
 그러면 그 프로젝트에 맞는 모듈들이 좌르륵 설치된다. 
-<br>
+<br><br>
 **주의사항** :
 
 * **가상환경(Virtual Environment) 필수**: 이 모든 작업은 반드시 프로젝트 전용 가상환경을 켜둔 상태에서 해야 한다.
