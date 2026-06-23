@@ -48,7 +48,7 @@ toc_sticky: true
 <br><br>
 
 **자료.1**
-```html
+```python
 # app.py
 
 from flask import render_template
