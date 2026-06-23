@@ -1,13 +1,9 @@
-<div class="my-custom-sidebar-widget" style="display: none;">
+<div class="my-custom-sidebar-widget">
   
-  <!-- 🔽 여기서부터 새로 추가된 껍데기 시작 -->
   <details class="mobile-widget-toggle">
     <summary>🕒 시간 및 날씨 보기</summary>
     <div class="widget-content">
-  <!-- 🔼 껍데기 시작 끝 -->
-
-      <!-- 기존 시계, 날씨, 뱃지 코드들 -->
-      <div class="my-clock">
+  <div class="my-clock">
         <div id="live-time"></div>
         <div id="live-date"></div>
       </div>
@@ -23,12 +19,9 @@
         </a>
       </div>
 
-  <!-- 🔽 여기서부터 새로 추가된 껍데기 닫기 -->
-    </div>
+  </div>
   </details>
-  <!-- 🔼 껍데기 닫기 끝 -->
-
-</div>
+  </div>
 
 <style>
   /* 사이드바 스크롤바 완전히 숨기기*/
@@ -68,17 +61,20 @@
 </style>
 
 <script>
-  <script>
-  // 1. 위젯 위치 이동 및 PC/모바일 상태 제어 (수정됨)
+  // 1. 위젯 위치 이동 및 PC/모바일 상태 제어 (안전장치 추가됨)
   document.addEventListener("DOMContentLoaded", function() {
     const sidebar = document.querySelector('.sidebar');
     const widget = document.querySelector('.my-custom-sidebar-widget');
     const detailsTag = document.querySelector('.mobile-widget-toggle'); 
     
+    // 위젯이 존재하면 무조건 보이게 설정
+    if (widget) {
+      widget.style.display = 'block';
+    }
+
     // 사이드바로 위젯 옮기기
     if (sidebar && widget) {
       sidebar.appendChild(widget);
-      widget.style.display = 'block';
     }
 
     // 화면 크기에 따라 폴더 강제로 열고 닫기
@@ -107,5 +103,4 @@
   
   updateClock();
   setInterval(updateClock, 1000);
-</script>
 </script>
