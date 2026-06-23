@@ -11,7 +11,7 @@ $content-width: 1000px;
 @import "minimal-mistakes";
 
 /* ================================================= */
-/* 1. 포스트 본문 전체 오답 노트(다크모드) 스타일 */
+/* 1. 포스트 본문 전체 (다크모드) 스타일 */
 /* ================================================= */
 .page__content {
   background-color: #2d3748;
@@ -25,11 +25,6 @@ $content-width: 1000px;
 .my-box {
   background-color: #2d3748;
   padding: 24px;
-}
-
-.page__inner-wrap, .archive {
-  padding-left: 40px;
-  padding-right: 40px;
 }
 
 p, li {
@@ -169,3 +164,37 @@ table code {
   font-weight: bold;
   border: none !important;
 } 
+
+
+/* ================================================= */
+/* 7. 본문 레이아웃 너비 확장 및 모바일 반응형 */
+/* ================================================= */
+
+/* 1. 전체 화면 틀 넓히기 (기존에 맨 위에서 선언한 1600px 변수 활용) */
+#main {
+  max-width: $max-width; 
+}
+
+/* 2. 우측 빈 공간으로 본문 뻗어나가게 넓히기 (1200px 변수 활용) */
+.page {
+  max-width: $large; /* 만약 더 넓히고 싶다면 이 부분을 1400px 등으로 직접 입력해도 됩니다. */
+  width: 100%;
+}
+
+/* 3. 모바일 및 PC 반응형 너비 조율 (아까 지운 코드 대체) */
+.page__inner-wrap, .archive {
+  /* 모바일 화면 (기본값): 양옆에 4%씩만 얇은 여백을 두고 꽉 차게 */
+  width: 92%; 
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* 4. 화면이 커질 때(태블릿/PC) 넓은 여백으로 자동 전환 */
+@media (min-width: 768px) {
+  .page__inner-wrap, .archive {
+    width: 100%;
+    padding-left: 40px; /* 기존에 쓰시던 40px 여백 복구 */
+    padding-right: 40px;
+  }
+}
