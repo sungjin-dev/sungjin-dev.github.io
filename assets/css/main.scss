@@ -27,9 +27,12 @@ $content-width: 1200px;
   padding: 24px;
 }
 
-p, li {
+/* 사이드바 오염을 막기 위해 본문(.page__content) 내부의 p, li만 타겟팅하고 줄간격 최적화 */
+.page__content p, .page__content li {
   font-size: 16px;
-  line-height: 2;
+  line-height: 1.9; /* 기존 1.75에서 1.9 (또는 2.0)으로 늘려 줄 간격 확보 */
+  margin-bottom: 1.2em; /* 문단(Enter로 구분된 덩어리) 사이의 간격을 추가 */
+  word-break: keep-all; /* 한글 단어가 줄 끝에서 뚝 끊기지 않도록 방지 */
 }
 
 /* ================================================= */
@@ -60,19 +63,20 @@ code {
   padding: 2px 5px;
   border-radius: 4px;
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-  font-size: 1em;
+  font-size: 0.95em;
 }
 
+/* 본문 안의 인라인 코드 크기가 본문보다 커지지 않도록 0.92em으로 밸런스 조정 */
 .page__content p code, .page__content li code {
   background-color: rgba(251, 211, 141, 0.15); 
   color: #fbd38d;
-  font-size: 1.05em; 
+  font-size: 0.92em;  
   padding: 2px 6px;  
   border-radius: 4px;
 }
 
 /* ================================================= */
-/* 4. 코드 블록(Syntax Highlighting) 박스 스타일 (강력 적용) */
+/* 4. 코드 블록(Syntax Highlighting) 박스 스타일 */
 /* ================================================= */
 div.highlighter-rouge {
   margin-bottom: 1.5em;
@@ -97,7 +101,7 @@ div.highlighter-rouge {
   border: none !important;
   padding: 0 !important;
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-  font-size: 1em;
+  font-size: 0.95em; /* 코드 블록 내부 글씨도 본문과 조화를 이루도록 살짝 조정 */
   font-weight: normal;
   color: #c0caf5 !important; 
 }
@@ -107,7 +111,7 @@ div.highlighter-rouge {
 /* ================================================= */
 .page__content .highlight .k, .page__content .highlight .kd, .page__content .highlight .kv, .page__content .highlight .kr, .page__content .highlight .kp { color: #bb9af7 !important; } 
 .page__content .highlight .nc, .page__content .highlight .kt { color: #f7768e !important; } 
-.page__content .highlight .nt { color: #f7768e !important; } /* HTML 태그 핑크색으로 강조 */
+.page__content .highlight .nt { color: #f7768e !important; } 
 .page__content .highlight .nb, .page__content .highlight .nn { color: #e0af68 !important; } 
 .page__content .highlight .nf, .page__content .highlight .fm { color: #7aa2f7 !important; } 
 .page__content .highlight .na, .page__content .highlight .py { color: #7dcfff !important; } 
@@ -116,11 +120,12 @@ div.highlighter-rouge {
 .page__content .highlight .m, .page__content .highlight .mi, .page__content .highlight .mf { color: #ff9e64 !important; } 
 .page__content .highlight .c, .page__content .highlight .c1, .page__content .highlight .cm { color: #565f89 !important; font-style: italic; } 
 .page__content .highlight .p, .page__content .highlight .o { color: #89ddff !important; }
-.page__content .highlight .err { color: #c0caf5 !important; background-color: transparent !important; } /* 못생긴 빨간 에러 표시 제거 */
+.page__content .highlight .err { color: #c0caf5 !important; background-color: transparent !important; } 
 
 /* ================================================= */
-/* 6. 표 디자인: 깔끔하고 환한 스타일 */
+/* 6. 표 디자인
 /* ================================================= */
+
 table {
   border-collapse: collapse !important;
   width: auto !important;
@@ -129,37 +134,72 @@ table {
   margin: 20px 0 !important;
   border-radius: 8px !important;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: table !important;
+  background-color: #1a1b26;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-table th, table td {
-  padding: 15px 20px;
-  border-bottom: 1px solid #e2e8f0;
+table th,
+table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #2d3748;
   text-align: center;
 }
 
-table tr {
-  text-align: center;
-  color: #dadada;
-} 
-
+/* 헤더 */
 table th {
-  background-color: #f8f9fa;
-  color: #242424; 
+  background-color: #24283b;
+  color: #c0caf5 !important;
   font-weight: 700;
 }
 
-table code {        
+/* 본문 */
+table td {
+  background-color: #1a1b26;
+  color: #c0caf5 !important;
+}
+
+/* 짝수 행 */
+table tr:nth-child(even) td {
+  background-color: #222436;
+}
+
+/* 마우스 오버 */
+table tr:hover td {
+  background-color: #2a2f45;
+}
+
+/* 표 내부 코드 */
+table code {
+  background-color: rgba(125, 207, 255, 0.15) !important;
+  color: #7dcfff !important;
   padding: 2px 6px !important;
   border-radius: 4px !important;
-  font-size: 0.95em !important;
-  font-weight: bold;
   border: none !important;
-} 
+  font-size: 0.95em !important;
+  font-weight: 600;
+}
 
+/* 표 내부 링크 */
+table a {
+  color: #7dcfff !important;
+}
+
+table a:hover {
+  color: #bb9af7 !important;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  table {
+    display: block !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    min-width: 100%;
+  }
+}
 /* ================================================= */
-/* 7. 본문 레이아웃 너비 확장 (수정본) */
+/* 7. 본문 레이아웃 너비 확장 */
 /* ================================================= */
 #main {
   max-width: $max-width; 
@@ -167,7 +207,6 @@ table code {
 
 .page, .archive {
   max-width: $large; 
-  /* width: 100%; <- 사이드바가 밑으로 떨어지는 원인이었던 이 줄을 제거했습니다. */
 }
 
 @media (max-width: 767px) {
@@ -223,7 +262,6 @@ table code {
   border-top: 1px solid #4a5568; 
 }
 
-/* ★ 핵심: PC 화면(768px 이상)에서는 버튼을 숨기고 강제로 열어두기 */
 @media (min-width: 768px) {
   .mobile-widget-toggle summary {
     display: none; 
