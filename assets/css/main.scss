@@ -159,27 +159,30 @@ table code {
 } 
 
 /* ================================================= */
-/* 7. 본문 레이아웃 너비 확장 및 모바일 반응형 (새로 추가) */
+/* 7. 본문 레이아웃 너비 확장 및 모바일 반응형 (수정본) */
 /* ================================================= */
 #main {
   max-width: $max-width; 
 }
 
-.page {
+.page, .archive {
   max-width: $large; 
-  width: 100%;
+  /* width: 100%; 👈 이 욕심쟁이 코드를 뺐습니다! (사이드바 공간 존중) */
 }
 
-.page__inner-wrap, .archive {
-  width: 92%; 
-  margin: 0 auto;
-  padding-left: 0;
-  padding-right: 0;
+/* 모바일 화면에서만 적용할 여백 */
+@media (max-width: 767px) {
+  .page__inner-wrap, .archive {
+    width: 92%; 
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
+/* PC 화면에서 여백 (너비는 테마 기본 비율을 따름) */
 @media (min-width: 768px) {
   .page__inner-wrap, .archive {
-    width: 100%;
     padding-left: 40px; 
     padding-right: 40px;
   }
