@@ -144,7 +144,6 @@ table th, table td {
   padding: 15px 20px;
   border-bottom: 1px solid #e2e8f0;
   text-align: center;
-  color: #2d3748; /* 표 내부 글자색을 어두운 회색으로 고정 */
 }
 
 table th {
@@ -153,8 +152,7 @@ table th {
 }
 
 /* ★ 중요: 표 안의 코드(code) 스타일을 전역 스타일에서 분리 */
-table code {
-  color: #F08080 !important;         
+table code {        
   padding: 2px 6px !important;
   border-radius: 4px !important;
   font-size: 0.95em !important;        /* 글자 크기 조금 조정 */
