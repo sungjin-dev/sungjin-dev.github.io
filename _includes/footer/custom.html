@@ -1,20 +1,33 @@
 <div class="my-custom-sidebar-widget" style="display: none;">
   
-  <div class="my-clock">
-    <div id="live-time"></div>
-    <div id="live-date"></div>
-  </div>
+  <!-- 🔽 여기서부터 새로 추가된 껍데기 시작 -->
+  <details class="mobile-widget-toggle">
+    <summary>🕒 시간 및 날씨 보기</summary>
+    <div class="widget-content">
+  <!-- 🔼 껍데기 시작 끝 -->
 
-  <a class="weatherwidget-io" href="https://forecast7.com/en/37d57126d98/seoul/" data-label_1="서울" data-label_2="오늘 날씨" data-theme="dark" data-basecolor="#1a1b26" data-textcolor="#c0caf5" data-mode="Current">서울 날씨</a>
-  <script>
-  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-  </script>
-  
-  <div style="text-align: center; margin-bottom: 20px;">
-    <a href="https://github.com/sungjin-dev/sungjin-dev.github.io">
-      <img src="https://visitor-badge.laobi.icu/badge?page_id=sungjin-dev.github.io" alt="visitor badge" style="height: 25px; width: auto;"/>
-    </a>
-  </div>
+      <!-- 기존 시계, 날씨, 뱃지 코드들 -->
+      <div class="my-clock">
+        <div id="live-time"></div>
+        <div id="live-date"></div>
+      </div>
+
+      <a class="weatherwidget-io" href="https://forecast7.com/en/37d57126d98/seoul/" data-label_1="서울" data-label_2="오늘 날씨" data-theme="dark" data-basecolor="#1a1b26" data-textcolor="#c0caf5" data-mode="Current">서울 날씨</a>
+      <script>
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+      </script>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <a href="https://github.com/sungjin-dev/sungjin-dev.github.io">
+          <img src="https://visitor-badge.laobi.icu/badge?page_id=sungjin-dev.github.io" alt="visitor badge" style="height: 25px; width: auto;"/>
+        </a>
+      </div>
+
+  <!-- 🔽 여기서부터 새로 추가된 껍데기 닫기 -->
+    </div>
+  </details>
+  <!-- 🔼 껍데기 닫기 끝 -->
+
 </div>
 
 <style>
