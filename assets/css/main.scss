@@ -107,22 +107,88 @@ div.highlighter-rouge {
 }
 
 /* ================================================= */
-/* 5. 도쿄 나이트(Tokyo Night) 테마 구문 강조 (우선순위 최상) */
+/* 5. 도쿄 나이트(Tokyo Night) 테마 구문 강조 */
 /* ================================================= */
-.page__content .highlight .k, .page__content .highlight .kd, .page__content .highlight .kv, .page__content .highlight .kr, .page__content .highlight .kp { color: #bb9af7 !important; } 
-.page__content .highlight .nc, .page__content .highlight .kt { color: #f7768e !important; } 
+
+/* 키워드: if, for, while, return */
+.page__content .highlight .k,
+.page__content .highlight .kd,
+.page__content .highlight .kv,
+.page__content .highlight .kr,
+.page__content .highlight .kp {
+  color: #bb9af7 !important;
+}
+
+/* 클래스명, 타입 */
+.page__content .highlight .nc,
+.page__content .highlight .kt {
+  color: #7dcfff !important;
+}
+
+/* HTML 태그: form, div, button */
 .page__content .highlight .nt {
   color: #7aa2f7 !important;
 }
-.page__content .highlight .nb, .page__content .highlight .nn { color: #e0af68 !important; } 
-.page__content .highlight .nf, .page__content .highlight .fm { color: #7aa2f7 !important; } 
-.page__content .highlight .na, .page__content .highlight .py { color: #7dcfff !important; } 
-.page__content .highlight .nx, .page__content .highlight .nv { color: #c0caf5 !important; } 
-.page__content .highlight .s, .page__content .highlight .s1, .page__content .highlight .s2, .page__content .highlight .sr { color: #9ece6a !important; } 
-.page__content .highlight .m, .page__content .highlight .mi, .page__content .highlight .mf { color: #ff9e64 !important; } 
-.page__content .highlight .c, .page__content .highlight .c1, .page__content .highlight .cm { color: #565f89 !important; font-style: italic; } 
-.page__content .highlight .p, .page__content .highlight .o { color: #89ddff !important; }
-.page__content .highlight .err { color: #c0caf5 !important; background-color: transparent !important; } 
+
+/* 내장 함수: len(), range(), print() */
+.page__content .highlight .nb,
+.page__content .highlight .nn {
+  color: #e0af68 !important;
+}
+
+/* 사용자 정의 함수 */
+.page__content .highlight .nf,
+.page__content .highlight .fm {
+  color: #7aa2f7 !important;
+  font-weight: 700;
+}
+
+/* HTML 속성: name, type, method */
+.page__content .highlight .na,
+.page__content .highlight .py {
+  color: #7dcfff !important;
+}
+
+/* 일반 변수 */
+.page__content .highlight .nx,
+.page__content .highlight .nv {
+  color: #c0caf5 !important;
+}
+
+/* 문자열 */
+.page__content .highlight .s,
+.page__content .highlight .s1,
+.page__content .highlight .s2,
+.page__content .highlight .sr {
+  color: #9ece6a !important;
+}
+
+/* 숫자 */
+.page__content .highlight .m,
+.page__content .highlight .mi,
+.page__content .highlight .mf {
+  color: #ff9e64 !important;
+}
+
+/* 주석 */
+.page__content .highlight .c,
+.page__content .highlight .c1,
+.page__content .highlight .cm {
+  color: #565f89 !important;
+  font-style: italic;
+}
+
+/* 괄호, 연산자 */
+.page__content .highlight .p,
+.page__content .highlight .o {
+  color: #89ddff !important;
+}
+
+/* Rouge 오류 토큰 */
+.page__content .highlight .err {
+  color: #c0caf5 !important;
+  background-color: transparent !important;
+}
 
 /* ================================================= */
 /* 6. 표 디자인
