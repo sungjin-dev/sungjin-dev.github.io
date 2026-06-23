@@ -128,3 +128,59 @@ table {
   max-width: 100% !important;
   margin: 20px 0 !important;
   border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: table !important;
+}
+
+table th, table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+table tr {
+  text-align: center;
+  color: #dadada;
+} 
+
+table th {
+  background-color: #f8f9fa;
+  color: #242424; 
+  font-weight: 700;
+}
+
+table code {        
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 0.95em !important;
+  font-weight: bold;
+  border: none !important;
+} 
+
+/* ================================================= */
+/* 7. 본문 레이아웃 너비 확장 및 모바일 반응형 (새로 추가) */
+/* ================================================= */
+#main {
+  max-width: $max-width; 
+}
+
+.page {
+  max-width: $large; 
+  width: 100%;
+}
+
+.page__inner-wrap, .archive {
+  width: 92%; 
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 768px) {
+  .page__inner-wrap, .archive {
+    width: 100%;
+    padding-left: 40px; 
+    padding-right: 40px;
+  }
+}
