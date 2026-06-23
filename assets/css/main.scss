@@ -3,9 +3,9 @@
 ---
 @charset "utf-8";
 
-$max-width: 1900px;
-$large: 1800px;
-$content-width: 1500px;
+$max-width: 1700px;
+$large: 1200px;
+$content-width: 1200px; 
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
@@ -16,14 +16,12 @@ $content-width: 1500px;
 .page__content {
   background-color: #2d3748;
   border-left: 5px solid #fc8181;
-
-  padding: 40px;
+  padding: 30px;
   margin-bottom: 20px;
-
-  border-radius: 8px;
-
-  max-width: 1400px;
+  border-radius: 5px;
+  color: #f7fafc;
 }
+
 .my-box {
   background-color: #2d3748;
   padding: 24px;
@@ -161,66 +159,33 @@ table code {
 } 
 
 /* ================================================= */
-/* 7. 본문 레이아웃 너비 확장 */
+/* 7. 본문 레이아웃 너비 확장 (수정본) */
 /* ================================================= */
-
 #main {
-  max-width: $max-width;
-  margin: 0 auto;
+  max-width: $max-width; 
 }
 
-.page,
-.archive {
-  max-width: none !important;
+.page, .archive {
+  max-width: $large; 
+  /* width: 100%; <- 사이드바가 밑으로 떨어지는 원인이었던 이 줄을 제거했습니다. */
 }
 
-/* 데스크톱 */
-@media (min-width: 1280px) {
-
-  /* 왼쪽 사이드바 */
-  .sidebar {
-    width: 260px;
-  }
-
-  /* 메인 영역 제한 해제 */
-  .page {
-    max-width: none !important;
-  }
-
-  .page__inner-wrap {
-    max-width: none !important;
-    width: calc(100% - 40px);
-  }
-
-  /* 실제 본문 */
-  .page__content {
-    max-width: 1400px;
-  }
-}
-
-/* 태블릿 */
-@media (min-width: 768px) and (max-width: 1279px) {
-
-  .page__inner-wrap,
-  .archive {
-    width: 96%;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-/* 모바일 */
 @media (max-width: 767px) {
-
-  .page__inner-wrap,
-  .archive {
-    width: 92%;
+  .page__inner-wrap, .archive {
+    width: 92%; 
     margin: 0 auto;
     padding-left: 0;
     padding-right: 0;
   }
 }
+
+@media (min-width: 768px) {
+  .page__inner-wrap, .archive {
+    padding-left: 40px; 
+    padding-right: 40px;
+  }
+}
+
 /* ================================================= */
 /* 8. 사이드바 시계/날씨 위젯 접기(Toggle) 스타일 */
 /* ================================================= */
