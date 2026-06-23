@@ -68,11 +68,12 @@
 </style>
 
 <script>
+  <script>
   // 1. 위젯 위치 이동 및 PC/모바일 상태 제어 (수정됨)
   document.addEventListener("DOMContentLoaded", function() {
     const sidebar = document.querySelector('.sidebar');
     const widget = document.querySelector('.my-custom-sidebar-widget');
-    const detailsTag = document.querySelector('.mobile-widget-toggle'); // 접기 태그 찾기
+    const detailsTag = document.querySelector('.mobile-widget-toggle'); 
     
     // 사이드바로 위젯 옮기기
     if (sidebar && widget) {
@@ -90,7 +91,21 @@
       }
     }
 
-    handleResize(); // 로딩될 때 바로 실행
-    window.addEventListener('resize', handleResize); // 창 크기 조절할 때도 알아서 실행
+    handleResize(); 
+    window.addEventListener('resize', handleResize); 
   });
+
+  // 2. 실시간 시계 로직 (기존 그대로 유지)
+  function updateClock() {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit' });
+    const dateStr = now.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short' });
+    
+    document.getElementById('live-time').innerText = timeStr;
+    document.getElementById('live-date').innerText = dateStr;
+  }
+  
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
 </script>
