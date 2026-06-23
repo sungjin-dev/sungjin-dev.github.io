@@ -40,7 +40,6 @@ $content-width: 1200px;
 /* ================================================= */
 .page__content h2 {
   color: #c0caf5;
-  border-radius: 4px;
   padding-left: 12px;
   border-left: 5px solid #bb9af7; 
   margin-top: 2em;
@@ -59,8 +58,8 @@ $content-width: 1200px;
 /* 3. 인라인 코드 (짧은 코드 글씨) 스타일 */
 /* ================================================= */
 code {
-  background-color: rgba(125, 207, 255, 0.15);
-  color: #7dcfff;
+  background-color: #f1f3f5;
+  color: #eb5757;
   padding: 2px 5px;
   border-radius: 4px;
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
@@ -126,7 +125,6 @@ div.highlighter-rouge {
 /* ================================================= */
 /* 6. 표 디자인: 깔끔하고 환한 스타일 */
 /* ================================================= */
-
 table {
   border-collapse: collapse !important;
   width: auto !important;
@@ -135,70 +133,35 @@ table {
   margin: 20px 0 !important;
   border-radius: 8px !important;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: table !important;
-  background-color: #1a1b26;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-table th,
-table td {
-  padding: 14px 20px;
-  border-bottom: 1px solid #2d3748;
+table th, table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e2e8f0;
   text-align: center;
 }
 
-/* 헤더 */
+table tr {
+  text-align: center;
+  color: #dadada;
+} 
+
 table th {
-  background-color: #24283b;
-  color: #c0caf5 !important;
+  background-color: #f8f9fa;
+  color: #242424; 
   font-weight: 700;
 }
 
-/* 본문 */
-table td {
-  background-color: #1a1b26;
-  color: #c0caf5 !important;
-}
-
-/* 짝수 행 */
-table tr:nth-child(even) td {
-  background-color: #222436;
-}
-
-/* 마우스 오버 */
-table tr:hover td {
-  background-color: #2a2f45;
-}
-
-/* 표 내부 코드 */
-table code {
-  background-color: rgba(125, 207, 255, 0.15) !important;
-  color: #7dcfff !important;
+table code {        
   padding: 2px 6px !important;
   border-radius: 4px !important;
-  border: none !important;
   font-size: 0.95em !important;
-  font-weight: 600;
-}
+  font-weight: bold;
+  border: none !important;
+} 
 
-/* 표 내부 링크 */
-table a {
-  color: #7dcfff !important;
-}
-
-table a:hover {
-  color: #bb9af7 !important;
-}
-
-/* 모바일 대응 */
-@media (max-width: 768px) {
-  table {
-    display: block !important;
-    overflow-x: auto;
-    white-space: nowrap;
-    min-width: 100%;
-  }
-}
 /* ================================================= */
 /* 7. 본문 레이아웃 너비 확장 */
 /* ================================================= */
@@ -275,16 +238,4 @@ table a:hover {
     border-top: none;
     padding-top: 0;
   }
-}
-
-/* ================================================ */
-/* 9. 코드블록 언어 표시 색상 */
-/* ================================================ */
-
-.language-html,
-.language-python,
-.language-css,
-.language-scss,
-.language-javascript {
-  color: #7aa2f7 !important;
 }
