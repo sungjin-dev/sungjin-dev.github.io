@@ -93,7 +93,7 @@ let aPw = form.aPw.value.trim();
 <br>
 예시 :
 
-```
+```JavaScript
 function introduce(name, age) {
     console.log(`이름은 ${name}이고, 나이는 ${age}살입니다.`);}
 
