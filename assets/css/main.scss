@@ -1,3 +1,6 @@
+---
+# Only the main Sass file needs front matter
+---
 @charset "utf-8";
 
 $max-width: 1600px;
@@ -118,7 +121,6 @@ div.highlighter-rouge {
 /* ================================================= */
 /* 6. 표 디자인: 깔끔하고 환한 스타일 */
 /* ================================================= */
-
 table {
   border-collapse: collapse !important;
   width: auto !important;
@@ -126,72 +128,3 @@ table {
   max-width: 100% !important;
   margin: 20px 0 !important;
   border-radius: 8px !important;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: table !important;
-}
-
-table th, table td {
-  padding: 15px 20px;
-  border-bottom: 1px solid #e2e8f0;
-  text-align: center;
-}
-
-/* 불필요해진 table thead의 color는 지워도 됩니다 */
-table thead {
-  text-align: center;
-}
-
-table tr {
-  text-align: center;
-  color: #dadada;
-} 
-
-table th {
-  background-color: #f8f9fa;
-  color: #242424; /* th에 직접 진한 색상을 지정해서 tr의 상속을 덮어씌웁니다. */
-  font-weight: 700;
-}
-
-/* ★ 중요: 표 안의 코드(code) 스타일을 전역 스타일에서 분리 */
-table code {        
-  padding: 2px 6px !important;
-  border-radius: 4px !important;
-  font-size: 0.95em !important;
-  font-weight: bold;
-  border: none !important;
-} 
-
-
-/* ================================================= */
-/* 7. 본문 레이아웃 너비 확장 및 모바일 반응형 */
-/* ================================================= */
-
-/* 1. 전체 화면 틀 넓히기 (기존에 맨 위에서 선언한 1600px 변수 활용) */
-#main {
-  max-width: $max-width; 
-}
-
-/* 2. 우측 빈 공간으로 본문 뻗어나가게 넓히기 (1200px 변수 활용) */
-.page {
-  max-width: $large; /* 만약 더 넓히고 싶다면 이 부분을 1400px 등으로 직접 입력해도 됩니다. */
-  width: 100%;
-}
-
-/* 3. 모바일 및 PC 반응형 너비 조율 (아까 지운 코드 대체) */
-.page__inner-wrap, .archive {
-  /* 모바일 화면 (기본값): 양옆에 4%씩만 얇은 여백을 두고 꽉 차게 */
-  width: 92%; 
-  margin: 0 auto;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* 4. 화면이 커질 때(태블릿/PC) 넓은 여백으로 자동 전환 */
-@media (min-width: 768px) {
-  .page__inner-wrap, .archive {
-    width: 100%;
-    padding-left: 40px; /* 기존에 쓰시던 40px 여백 복구 */
-    padding-right: 40px;
-  }
-}
