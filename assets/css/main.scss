@@ -40,6 +40,7 @@ $content-width: 1200px;
 /* ================================================= */
 .page__content h2 {
   color: #c0caf5;
+  border-radius: 4px;
   padding-left: 12px;
   border-left: 5px solid #bb9af7; 
   margin-top: 2em;
@@ -58,8 +59,8 @@ $content-width: 1200px;
 /* 3. 인라인 코드 (짧은 코드 글씨) 스타일 */
 /* ================================================= */
 code {
-  background-color: #f1f3f5;
-  color: #eb5757;
+  background-color: rgba(125, 207, 255, 0.15);
+  color: #7dcfff;
   padding: 2px 5px;
   border-radius: 4px;
   font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
@@ -274,4 +275,16 @@ table a:hover {
     border-top: none;
     padding-top: 0;
   }
+}
+
+/* ================================================ */
+/* 9. 코드블록 언어 표시 색상 */
+/* ================================================ */
+
+.language-html,
+.language-python,
+.language-css,
+.language-scss,
+.language-javascript {
+  color: #7aa2f7 !important;
 }
