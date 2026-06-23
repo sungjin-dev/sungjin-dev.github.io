@@ -127,12 +127,15 @@ port가 항구라는 의미라는건 모두 알거다. 어찌보면 교통정리
 `HTTP 통신(GET, POST 등)`의 목적에 따라 알아서 택배를 분류해 주는 아주 똑똑한 길잡이 역할을 담당한다.
 
 <참고> 플라스크(Python Server) 예시
-<br><br>
+
 ```python
 @app.route('/')   # 메인페이지
-def home():       # 서버에서 자동 실행 
+def home():       # 서버에서 자동 실행
     return "<h1>Hello Flask</h1>"
 ```
+
+추가로 아래와 같은 라우트도 만들 수 있다.
+
 ```python
 @app.route('/login')
 def login():
