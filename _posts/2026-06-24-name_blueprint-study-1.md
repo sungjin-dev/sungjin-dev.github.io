@@ -105,7 +105,7 @@ def home():
 
 근데 서버가 커질 수록 기능이 점차로 늘어난다.
 
-```
+```markdown
 @app.route("/login")
 @app.route("/logout")
 @app.route("/signup")
@@ -122,7 +122,7 @@ def home():
 그런데 Flask는 라우트가 app에 묶여있다
 
 
-```
+```python
 app = Flask(__name__)
 
 @app.route("/")
@@ -144,24 +144,23 @@ def home():
 Blueprint방식은 쉽게 말해 app에 바로 붙이지 말고 임시 보관하는거다. 
 
 예시
-```
+```python
 from flask import Blueprint
 
 member_bp = Blueprint("member", __name__)
-```
-이제
-```
+
 @member_bp.route("/login")
 def login():
     pass
 ```
-app이 없어도 가능하다. 즉 sign_up.py 혼자 존재 가능.
+
+이렇게 app이 없어도 가능하다. 즉 sign_up.py 혼자 존재 가능.
 
 ## 8. Blueprint는 작은 Flask 앱처럼 생각하면 된다
 
 실제로는 app.route() 대신 member_bp.route()를 쓰는 것이다.
 
-개념적으로는 작은 앱을 만드는 느낌.
+개념적으로는 작은 앱을 만드는 느낌이라고 보면 된다. 
 
 회원용 Blueprint
 
@@ -169,25 +168,23 @@ app이 없어도 가능하다. 즉 sign_up.py 혼자 존재 가능.
 
 관리자용 Blueprint
 
-를 각각 만든다.
+를 각각 만든다. 
 
 그럼 언제 실제 서버에 연결될까?
 
-마지막에 app.py
+```python
+# app.py
 
-```
 from member import memebr_bp
 
 app.register_blueprint(member_bp)
 ``
-한다.
 
-이 순간
-
-member_bp 안의 라우트들이 app으로 복사된다.
+마지막에 이 부분이 실행되는 순간 member_bp 안의 라우트들이 app으로 복사된다.
 
 
-```
+```markdown
+
 member.py
 ↓
 Blueprint 생성
@@ -199,9 +196,11 @@ app.py import
 register_blueprint()
 ↓
 실제 Flask 앱에 연결
-``
+```
 
 전체 흐름을 그림으로 보면
+
+```
 프로그램 시작
         │
         ▼
@@ -249,6 +248,7 @@ register_blueprint(board_bp)
 register_blueprint(admin_bp)
 
 --------------------------------
+```
 
 결국 하나의 Flask 앱으로 합쳐짐
 
