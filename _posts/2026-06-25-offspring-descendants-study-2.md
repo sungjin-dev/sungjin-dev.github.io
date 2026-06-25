@@ -1,5 +1,5 @@
 ---
-title: "자식/후손 선택자의 이해"
+title: "자식 및 자손/후손 선택자의 이해"
 excerpt: "헷갈리는 CSS문법"
 categories: [CSS]
 tags:
