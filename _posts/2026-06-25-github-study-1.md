@@ -84,24 +84,22 @@ git push origin main
 빨간색으로 마크된 compare & pull request를 입력한다. 
 <br><br>
 다음으로 초록색 버튼으로 된 `create pull request`를 누르면 된다. 
-<br>
-<img width="1131" height="295" alt="image" src="https://github.com/user-attachments/assets/a0696629-0db0-40be-900a-bf9d3c0fde00" />
-<br>
-다음으로 팀장이 병합을 승인하면 
-<br>
-<img width="1126" height="219" alt="image" src="https://github.com/user-attachments/assets/97d9c7c0-6945-463c-b9a4-70161830ec09" />
-<br>
-성공적으로 dev에 저장이 완료된다. 
 <br><br>
-팀장은 각각의 팀원들의 병합 요청에 대해 문제가 없을 경우 승인하면 된다. 
+다음으로 팀장이 병합을 승인하면 
+<img width="1131" height="295" alt="image" src="https://github.com/user-attachments/assets/a0696629-0db0-40be-900a-bf9d3c0fde00" />
+<br><br>
+이렇게 성공적으로 dev에 저장이 완료된다. 
+<img width="1126" height="219" alt="image" src="https://github.com/user-attachments/assets/97d9c7c0-6945-463c-b9a4-70161830ec09" />
+<br><br>
+팀장은 각각의 팀원들의 병합 요청에 대해 문제가 없을 경우 승인하면 되고 승인이 떨어지면 dev지점에 각 팀원들 자료가 병합된다. 
 <br><br>
 혹시나 팀원들이 main에 병합시도 하거나 main에 바로 push하는 일이 발생하면 안 되기 때문에 
 <br><br>
 이런 일을 방지하기 위해 팀장 외에는 main에 대한 접근성을 최대한 배제시킬 수 있다. (방법은 글 하단에 설명)
 <br><br>
-이렇게 각 팀원들 및 팀장이 각각의 작업 자료들을 dev에 병합했고, 현재 로컬과 원격 feature/member 등 지점에는 작업물이 남아 있는 상태다. 
+이렇게 각 팀원들 및 팀장이 각각의 작업 자료들을 dev에 병합했고, 현재 로컬과 원격 feature/member 등 지점에는 각자의 작업물이 남아 있는 상태다. 
 <br><br>
-그럼 팀장과 팀원 모두 그 브랜치 작업물들을 꺠끗하게 청소한다. 
+그럼 팀장과 팀원 모두 그 브랜치 작업물들을 깨끗하게 청소한다. 
 
 ## 3. dev 병합 승인 후 각 팀장 조원들이 할일
 
