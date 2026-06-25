@@ -138,14 +138,14 @@ git push origin main
 <br><br>
 **3. 규칙 추가 (Add rule)**
 <br>
--> Branch protection rules 섹션에서 `Add branch protection rule` 버튼을 눌러.
+-> Branch protection rules 섹션에서 `Add branch protection rule` 버튼 누르기.
 <br><br>
 **4. 보호할 브랜치 이름 지정**
 <br>
 `Branch name pattern` 칸에 보호하고 싶은 브랜치 이름인 `main`을 입력.
 
 **5. 핵심 제한 옵션 체크하기 (중요!)**
-여기서 직접 접근을 막고 조장님의 승인을 강제할 수 있다. 아래 항목들을 체크해보자.
+여기서 직접 접근을 막고 조장님의 승인을 강제할 수 있다. 아래 항목들을 체크해보자
 <br><br>
 ✅ `Require a pull request before merging`
 <br><br>
