@@ -65,7 +65,7 @@ git push origin main
 <br><br>
 작업을 완료하면 각 팀원들은 개개인의 브랜치를 생성한다.
 <br><br>
-'git checkout -b feature/부서명`
+`git checkout -b feature/부서명`
 <br><br>
 회원정보 관리라면 git checkout -b feature/memberservice 이런식으로 만드는 거다.
 <br><br>
