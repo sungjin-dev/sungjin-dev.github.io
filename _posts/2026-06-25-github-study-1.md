@@ -37,11 +37,13 @@ git push origin main
 <br>
 그러면 현재 main은 조촐하게 `.gitignore` 파일 말고는 텅 비어있는 상태다. 
 <br><br>
- 이제 팀장은 각 조원들에게 초대 메일을 전송한다.
+그 다음 `git checkout -b dev`를 입력하여 dev라는 완충지점을 새로 만든다. 
+<br><br>
+이제 팀장은 각 조원들에게 초대 메일을 전송한다.
 <br>
 <img width="1156" height="280" alt="image" src="https://github.com/user-attachments/assets/44de5163-a3d2-45f1-8478-14005c08550e" />
 <br>
-그 다음 팀장은 `git checkout -b dev`를 입력하여 dev라는 완충지점을 새로 만든다. 
+
 
 ## 2. 각 조원들이 할일
 
