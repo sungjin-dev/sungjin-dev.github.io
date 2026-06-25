@@ -9,24 +9,23 @@ toc: true
 toc_sticky: true
 --- 
 
-github에서 제공하는 repository에 팀원들의 작업 자료를 올리고 떙겨 받고 최신화하고 수정할 수 있어 
-<br>
-개발자들에게 git은 너무나도 소중하다. 
-<br>
-하지만 git을 사용하는데에는 많은 주의가 필요하다. 
-<br>
+`Github`에서 제공하는 `Repository`에 프로젝트의 소스 코드와 변경 이력을 기록하고 저장할 수 있어
+<br><br>
+개발자들에게 `Git`은 너무나도 소중하다. 
+<br><br>
+하지만 Git을 사용하는데에는 많은 주의가 필요하다. 
+<br><br>
 그래서 실수를 방지하고 팀원들의 작업들을 체계적으로 모으고 업데이트하는 방법에 대해 알아보자. 
-
 <br><br>
 우선 기본 구조 골격은 다음 그림과 같다. 
 <br>
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/ab0e3c5a-ea11-453f-87d2-9d5ac590f370" />
 <br>
-그럼 차근 차근 git저장소를 만드는 것부터 팀장과 조원이 어떻게 관리하면 되는지 알아보자 .
+그럼 차근 차근 Git저장소를 만드는 것부터 팀장과 조원이 어떻게 관리하면 되는지 알아보자 .
 
 ## 1. 먼저 팀장이 해야할일은 다음과 같다. 
 
-git에 새로운 저장소를 만들고 난 후 프로젝트를 진행할 파일경로에 새폴더를 만들어 `.gitignore` 파일 하나 생성한 후 다음과 같이 진행한다. 여기서 `.gitignore`는 저번 시간에 배운 git에 올리면 부담될 만한 녀셕들을 배제시키는 방식이자 파일이다. 
+Git에 새로운 저장소를 만들고 난 후 프로젝트를 진행할 파일경로에 새폴더를 만들어 `.gitignore` 파일 하나 생성한 후 다음과 같이 진행한다. 여기서 `.gitignore`는 저번 시간에 배운 git에 올리면 부담될 만한 녀셕들을 배제시키는 방식이자 파일이다. 
 <br>
 ```bash
 git add .
@@ -37,7 +36,7 @@ git push origin main
 ```
 <br>
 그러면 현재 main은 조촐하게 `.gitignore` 파일 말고는 텅 비어있는 상태다. 
-<br>
+<br><br>
  이제 팀장은 각 조원들에게 초대 메일을 전송한다.
 <br>
 <img width="1156" height="280" alt="image" src="https://github.com/user-attachments/assets/44de5163-a3d2-45f1-8478-14005c08550e" />
@@ -51,37 +50,37 @@ git push origin main
 <img width="1509" height="213" alt="image" src="https://github.com/user-attachments/assets/d5adfa8b-3f35-4815-a83a-40e1b41867a8" />
 <br>
 그러면 각 조원들은 초대를 수락하고 해당 저장소로 들어와 git 주소를 복사한다. 
-<br>
+<br><br>
 그 다음 새로운 폴더를 만들고 open git bash를 누른다. 
-<br>
+<br><br>
 이 때 주의할 점은 처음에 `git init` 명령어를 치지말고 바로 `git clone [repository 주소] .`를 입력한다. 
-<br>
+<br><br>
 여기서 처음 클론을 뜰 때 마지막에 `띄어쓰기 .` 이렇게 해야 불필요한 폴더가 생성되지 않는다. 
 <br>
 <img width="322" height="128" alt="image" src="https://github.com/user-attachments/assets/bbc136a4-ed63-4c47-9b12-59f2eded2640" />
 <br>
 그 상태에서 작업을 진행할 폴더를 하나 생성하고 안에 작업 파일들을 생성하여 진행한다. 
-<br>
+<br><br>
 작업을 완료하면 각 팀원들은 개개인의 브랜치를 생성한다.
-<br>
+<br><br>
 'git checkout -b feature/부서명`
-<br>
+<br><br>
 회원정보 관리라면 git checkout -b feature/memberservice 이런식으로 만드는 거다.
-<br>
+<br><br>
 다음으로 `git add .` , `git commit -m "커밋명"`을 차례로 입력한다 
-<br>
+<br><br>
 그 다음 `git push origin feature/부서명`을 입력한다. 
-<br>
+<br><br>
 꼼꼼하게 하려면 `git branch`를 자주 입력하여 현재 어느 지점에 있는지 잘 확인하면 된다. 
-<br>
+<br><br>
 지금 상태는 각각의 팀원들이 각자의 브랜치에 자신의 작업물을 올린 상태다. 
-<br>
+<br><br>
 이 상태에서 각 팀원은 각자의 feature/부서 지점에 있는 작업물들을 dev라는 곳으로 병합 요청을 보낸다.
 <br>
 <img width="1164" height="357" alt="image" src="https://github.com/user-attachments/assets/80b44feb-ed09-4996-a3cd-48a509dc268c" />
 <br>
 빨간색으로 마크된 compare & pull request를 입력한다. 
-<br>
+<br><br>
 다음으로 초록색 버튼으로 된 `create pull request`를 누르면 된다. 
 <br>
 <img width="1131" height="295" alt="image" src="https://github.com/user-attachments/assets/a0696629-0db0-40be-900a-bf9d3c0fde00" />
@@ -89,17 +88,17 @@ git push origin main
 다음으로 팀장이 병합을 승인하면 
 <br>
 <img width="1126" height="219" alt="image" src="https://github.com/user-attachments/assets/97d9c7c0-6945-463c-b9a4-70161830ec09" />
-
+<br>
 성공적으로 dev에 저장이 완료된다. 
-<br>
+<br><br>
 팀장은 각각의 팀원들의 병합 요청에 대해 문제가 없을 경우 승인하면 된다. 
-<br>
+<br><br>
 혹시나 팀원들이 main에 병합시도 하거나 main에 바로 push하는 일이 발생하면 안 되기 때문에 
-<br>
+<br><br>
 이런 일을 방지하기 위해 팀장 외에는 main에 대한 접근성을 최대한 배제시킬 수 있다. (방법은 글 하단에 설명)
-<br>
+<br><br>
 이렇게 각 팀원들 및 팀장이 각각의 작업 자료들을 dev에 병합했고, 현재 로컬과 원격 feature/member 등 지점에는 작업물이 남아 있는 상태다. 
-<br>
+<br><br>
 그럼 팀장과 팀원 모두 그 브랜치 작업물들을 꺠끗하게 청소한다. 
 
 ## 3. dev 병합 승인 후 각 팀장 조원들이 할일
