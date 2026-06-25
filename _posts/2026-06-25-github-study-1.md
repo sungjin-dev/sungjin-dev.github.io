@@ -103,15 +103,15 @@ git push origin main
 
 ## 3. dev 병합 승인 후 각 팀장 조원들이 할일
 
- > 1. 먼저 기준이 되는 dev 브랜치로 이동한다. `git checkout dev`
+ 1. 먼저 기준이 되는 dev 브랜치로 이동한다. `git checkout dev`
 <br><br>
- > 2. (기존 작업이 끝난) 로컬 feature 브랜치를 삭제한다. `git branch -D feature/부서명`
+ 2. (기존 작업이 끝난) 로컬 feature 브랜치를 삭제한다. `git branch -D feature/부서명`
 <br><br>
- > 3. 원격 저장소의 최신 상태를 동기화하고 정리한다. `git fetch --prune`
+ 3. 원격 저장소의 최신 상태를 동기화하고 정리한다. `git fetch --prune`
 <br><br>
- > 4. 최신 코드가 반영된 dev 브랜치를 내 로컬로 가져온다. (팀원들 소스 병합) `git pull origin dev`
+ 4. 최신 코드가 반영된 dev 브랜치를 내 로컬로 가져온다. (팀원들 소스 병합) `git pull origin dev`
 <br><br>
- > 5.  원격 브랜치 삭제   `git push origin --delete feature/부서명`
+ 5.  원격 브랜치 삭제   `git push origin --delete feature/부서명`
 <br><br>
 
 (참고자료: git config --global fetch.prune true  git fetch만 쳐도 이후로는  git fetch --prune 으로 처리)
