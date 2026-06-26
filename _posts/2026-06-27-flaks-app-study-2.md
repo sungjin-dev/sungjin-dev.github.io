@@ -1,3 +1,14 @@
+---
+title: "플라스크(Flask)에서 endpoint활용법"
+excerpt: "request.endpoint"
+categories: [Flask]
+tags:
+  - Python
+  - Flask
+toc: true
+toc_sticky: true
+--- 
+
 직역하면 '끝점'인데, 웹 개발에서는 쉽게 말해 "클라이언트(브라우저)와 서버가 데이터를 주고받기 위해 만나는 최종 목적지"를 뜻합니다.
 하지만 Flask 코드 안에서 request.endpoint는 조금 더 특별하고 구체적인 의미를 가집니다. 
 일반적인 URL 주소와 어떻게 다른지 이전의 '회사 건물' 비유로 아주 쉽게 비교해 드릴게요. 
