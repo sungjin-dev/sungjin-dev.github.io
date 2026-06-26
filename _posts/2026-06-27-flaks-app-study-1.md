@@ -46,6 +46,8 @@ Python
 from flask import request, abort
 
 # 차단할 악성 IP 목록
+
+```
 BLACKLIST_IPS = ['192.168.1.100', '203.0.113.50']
 
 @app.before_request
@@ -56,7 +58,7 @@ def block_malicious_ips():
     if client_ip in BLACKLIST_IPS:
         # 403 Forbidden 에러를 던져서 즉시 접근을 막음
         abort(403)
-
+```
 
 
 최근 프로젝트에서는 `@app.before_request`를 사용하여 session에 로그인한 ID가 있다고 가정하고 모듈이 잘 작동하는지 테스트하고 있다. 
@@ -111,13 +113,16 @@ def add_header(response):
 1. 백엔드 (Flask) : 요청마다 고유 ID(영수증 번호) 발급하기
 요청이 들어오는 순간(@app.before_request) 고유 ID를 만들어 Flask의 임시 저장소(g)에 넣어두고, 응답이 나갈 때(@app.after_request) 헤더에 이 ID를 꺼내서 붙여주는 구조입니다.
 
+```
 Python
 import uuid
 from flask import Flask, jsonify, g
 
 app = Flask(__name__)
+```
 
 # 1. 요청이 서버에 도착하자마자 실행
+```
 @app.before_request
 def assign_request_id():
     # uuid4를 사용해 절대 겹치지 않는 무작위 난수 생성 (예: a8f9-11c2...)
@@ -125,15 +130,21 @@ def assign_request_id():
     
     # 실무에서는 이때부터 남기는 모든 서버 로그에 g.request_id를 같이 찍습니다.
     # print(f"[REQ: {g.request_id}] 결제 요청 들어옴")
+```
 
 # 2. 클라이언트에게 응답을 보내기 직전에 실행
+
+```
 @app.after_request
 def append_request_id_to_header(response):
     # g 객체에 저장해뒀던 고유 ID를 꺼내서 'X-Request-ID' 헤더에 찰싹 붙임
     response.headers['X-Request-ID'] = getattr(g, 'request_id', 'unknown')
     return response
+```
 
 # 3. 에러가 발생하는 가상의 결제 API
+
+```
 @app.route('/api/payment', methods=['POST'])
 def process_payment():
     # DB 연결 타임아웃 등 치명적인 에러가 발생했다고 가정
@@ -144,9 +155,12 @@ def process_payment():
 
 if __name__ == '__main__':
     app.run(debug=True)
-2. 프론트엔드 (HTML/JS) : 헤더 읽어서 에러 화면에 띄우기
+```
+# 2. 프론트엔드 (HTML/JS) : 헤더 읽어서 에러 화면에 띄우기
 버튼을 누르면 에러가 나는 백엔드 API를 호출합니다. 이때 프론트엔드는 본문(Body)의 에러 메시지뿐만 아니라, 헤더(Header)에 담긴 X-Request-ID를 꺼내서 고객센터 안내용 코드로 사용합니다.
 
+
+```
 HTML
 <!DOCTYPE html>
 <html lang="ko">
@@ -186,9 +200,9 @@ HTML
     </script>
 </body>
 </html>
+```
 
-
-"왜 하필 g 객체를 쓰나요?"
+"왜 하필 `g 객체`를 쓰나요?"
 Flask의 g (global) 객체는 한 번의 HTTP 요청(Request) 안에서만 유지되는 임시 보관함입니다. A유저와 B유저가 동시에 결제를 요청해도 g 객체는 서로 철저히 분리되므로, ID가 꼬이거나 뒤섞일 위험 없이 안전하게 헤더까지 데이터를 전달할 수 있습니다.
 
 실무적 가치 강조
