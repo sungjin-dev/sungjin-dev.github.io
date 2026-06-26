@@ -7,6 +7,7 @@ tags:
   - Flask
 toc: true
 toc_sticky: true
+published: false
 --- 
 
 직역하면 '끝점'인데, 웹 개발에서는 쉽게 말해 "클라이언트(브라우저)와 서버가 데이터를 주고받기 위해 만나는 최종 목적지"를 뜻합니다.
