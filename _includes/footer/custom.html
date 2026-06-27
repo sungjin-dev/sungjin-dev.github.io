@@ -2,30 +2,11 @@
   <details class="mobile-widget-toggle">
     <summary>시간 및 날씨 보기</summary>
     <div class="widget-content">
-
-      .my-clock{
-          text-align:center;
-          background:#1a1b26;
-          border-radius:8px;
-          border-left:4px solid #bb9af7;
-          padding:8px;
-          margin-bottom:8px;
-      }
-
-      #live-time{
-          font-size:1.35rem;
-          font-weight:bold;
-          color:#7dcfff;
-          font-family:Consolas, monospace;
-          line-height:1.1;
-      }
-
-      #live-date{
-          color:#9ece6a;
-          font-size:.75rem;
-          margin-top:3px;
-      }
-
+       <div class="my-clock">
+        <div id="live-time"></div>
+        <div id="live-date"></div>
+      </div> 
+    
       <div class="weather-card">
         <div class="weather-title">
           서울 오늘 날씨
@@ -53,7 +34,7 @@
       <div class="latest-posts-card">
 
         <div class="latest-posts-title">
-          📝 Latest Posts
+          Latest Posts
         </div>
       
         <ul class="latest-posts-list">
@@ -108,27 +89,27 @@
 /* =========================
    시계
 ========================= */
-.my-clock {
-  text-align: center;
-  background: #1a1b26;
-  border-radius: 8px;
-  border-left: 4px solid #bb9af7;
-  padding: 8px;
-  margin-bottom: 4px;
+.my-clock{
+    text-align:center;
+    background:#1a1b26;
+    border-radius:8px;
+    border-left:4px solid #bb9af7;
+    padding:8px;
+    margin-bottom:8px;
 }
 
-#live-time {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #7dcfff;
-  font-family: Consolas, monospace;
-  line-height: 1.1;
+#live-time{
+    font-size:1.35rem;
+    font-weight:bold;
+    color:#7dcfff;
+    font-family:Consolas, monospace;
+    line-height:1.1;
 }
 
-#live-date {
-  color: #9ece6a;
-  font-size: 0.85rem;
-  margin-top: 3px;
+#live-date{
+    color:#9ece6a;
+    font-size:.75rem;
+    margin-top:3px;
 }
 
 /* =========================
