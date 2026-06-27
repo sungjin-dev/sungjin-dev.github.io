@@ -147,4 +147,3 @@ async function updateVisitorCount() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", updateVisitorCount);
