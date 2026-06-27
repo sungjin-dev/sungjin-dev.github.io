@@ -18,32 +18,24 @@
     display: none;
 }
 
-/* 사이드바 위젯이 렌더링 영역에서 누락되지 않도록 강제 */
+/* 부모 요소(body)의 flex 설정으로부터 위젯을 격리 */
 .my-custom-sidebar-widget {
     display: block !important;
-    min-width: 100% !important;
-    min-height: 50px !important;
+    position: relative !important;
+    flex: 0 0 auto !important; /* 플렉스 아이템으로 인한 너비/높이 왜곡 방지 */
+    width: 100% !important;
+    height: auto !important;
     visibility: visible !important;
     opacity: 1 !important;
-    position: relative !important;
-    z-index: 999 !important;
+    z-index: 9999 !important;
 }
 
-/* 부모 요소인 sidebar sticky가 PC에서 위젯을 가리지 않도록 강제 */
+/* sidebar sticky 요소가 body의 flex 영향을 받지 않도록 조치 */
 .sidebar.sticky {
     display: block !important;
-    position: relative !important; /* sticky를 잠시 해제하여 확인 */
-    overflow: visible !important;
-    height: auto !important;
-}
-
-/* 위젯 자체를 화면 정중앙이나 상단으로 강제 고정하여 노출 테스트 */
-.my-custom-sidebar-widget {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 9999 !important; /* 가장 위로 올림 */
+    flex: 0 0 auto !important;
+    align-self: flex-start !important; /* 플렉스 컨테이너 내에서 상단 정렬 */
+    width: 100% !important;
 }
 
 /* =========================
