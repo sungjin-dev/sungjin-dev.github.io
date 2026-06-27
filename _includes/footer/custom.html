@@ -164,6 +164,22 @@
     color:#7dcfff;
     font-weight:bold;
 }
+.visitor-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:6px 0;
+}
+
+.visitor-label{
+    color:#a9b1d6;
+}
+
+.visitor-value{
+    color:#7dcfff;
+    font-weight:bold;
+    font-size:1rem;
+}  
   
 </style>
 
@@ -261,8 +277,17 @@ async function loadVisitors() {
 
     const data = await res.json();
 
-    document.getElementById("goatcounter-total").textContent =
-      data.count;
+    document.getElementById("goatcounter-total").innerHTML = `
+      <div class="visitor-row">
+        <span class="visitor-label">Today</span>
+        <span class="visitor-value">${data.count_unique}</span>
+      </div>
+
+      <div class="visitor-row">
+        <span class="visitor-label">Total</span>
+        <span class="visitor-value">${data.count}</span>
+      </div>
+    `;
 
   } catch (e) {
 
@@ -275,11 +300,4 @@ async function loadVisitors() {
 
 }
 
-loadVisitors();  
-</script>
-
-<script
-  data-goatcounter="https://tjdwlsl888.goatcounter.com/count"
-  async
-  src="https://gc.zgo.at/count.js">
-</script>
+loadVisitors();
