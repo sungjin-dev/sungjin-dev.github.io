@@ -111,36 +111,44 @@ async function loadWeather() {
 // VISITOR COUNT (GoatCounter API)
 // =======================
 
-async function loadVisitors() {
+const BIN_ID = "너_BIN_ID";
+const API_KEY = "너_API_KEY";
+
+async function updateVisitorCount() {
     const el = document.getElementById("gc-total-count");
     if (!el) return;
 
     try {
-        const res = await fetch(
-            "https://tjdwlsl888.goatcounter.com/counter/TOTAL.json?t=" + Date.now(),
-            { cache: "no-store" }
-        );
-
-        if (!res.ok) throw new Error(`API error: ${res.status}`);
+        // 1. 현재 값 가져오기
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+            headers: {
+                "X-Master-Key": API_KEY
+            }
+        });
 
         const data = await res.json();
-        el.textContent = data.count ?? 0;
+        let count = data.record.count || 0;
+
+        // 2. +1 증가
+        count++;
+
+        // 3. 저장
+        await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Master-Key": API_KEY
+            },
+            body: JSON.stringify({ count })
+        });
+
+        // 4. UI 반영
+        el.textContent = count;
 
     } catch (e) {
-        console.error(e);
-        el.textContent = "-";
+        console.error("visitor error:", e);
+        el.textContent = "Error";
     }
 }
 
-// =======================
-// INIT ALL
-// =======================
-
-document.addEventListener("DOMContentLoaded", () => {
-    safe(initSidebar);
-    safe(initClock);
-    safe(loadWeather);
-    safe(loadVisitors);
-});
-
-// GoatCounter script (HTML에서 자동 실행됨)
+document.addEventListener("DOMContentLoaded", updateVisitorCount);
