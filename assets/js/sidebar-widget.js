@@ -111,8 +111,8 @@ async function loadWeather() {
 // VISITOR COUNT (GoatCounter API)
 // =======================
 
-const BIN_ID = "너_BIN_ID";
-const API_KEY = "너_API_KEY";
+const BIN_ID = "6a4007bd79fa234c87d986e4";
+const API_KEY = "$2a$10$c0EVRFLqpSK90EQ3cp0/SuOTsqNX7tu225aPB4hr7dtbli.EhTEnW";
 
 async function updateVisitorCount() {
     const el = document.getElementById("gc-total-count");
