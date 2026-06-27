@@ -127,8 +127,15 @@ async function updateVisitorCount() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    //  UI 먼저
     safe(initSidebar);
     safe(initClock);
-    safe(loadWeather);
-    updateVisitorCount();
+
+    // API는 따로 비동기 실행
+    setTimeout(() => {
+        loadWeather();
+        updateVisitorCount();
+    }, 0);
+
 });
