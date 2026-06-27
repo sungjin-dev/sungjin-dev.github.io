@@ -147,3 +147,9 @@ async function updateVisitorCount() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    safe(initSidebar);
+    safe(initClock);
+    safe(loadWeather);
+    updateVisitorCount();
+});
