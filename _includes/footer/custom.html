@@ -247,6 +247,35 @@ async function loadWeather() {
 }
 
 loadWeather();
+/* =========================
+   Visitor Counter
+========================= */
+
+async function loadVisitors() {
+
+  try {
+
+    const res = await fetch(
+      "https://tjdwlsl888.goatcounter.com/counter/%2F.json"
+    );
+
+    const data = await res.json();
+
+    document.getElementById("goatcounter-total").textContent =
+      data.count;
+
+  } catch (e) {
+
+    document.getElementById("goatcounter-total").textContent =
+      "불러오기 실패";
+
+    console.error(e);
+
+  }
+
+}
+
+loadVisitors();  
 </script>
 
 <script
