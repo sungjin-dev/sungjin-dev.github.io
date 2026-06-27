@@ -114,33 +114,33 @@ loadWeather();
 // GoatCounter (API fallback)
 // =======================
 
-async function loadVisitors() {
+// =======================
+// GoatCounter (API fallback) 수정본
+// =======================
 
+async function loadVisitors() {
     const el = document.getElementById("goatcounter-total");
+    if (!el) return;
 
     try {
-        const res = await fetch(
-            "https://tjdwlsl888.goatcounter.com/counter.json"
-        );
+        // 1. 올바른 누적 방문자 수 엔드포인트 (TOTAL.json)
+        const res = await fetch("https://tjdwlsl888.goatcounter.com/counter/TOTAL.json");
 
-        if (!res.ok) throw new Error("API error");
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
 
         const data = await res.json();
 
+        // 2. GoatCounter는 Today(오늘)를 제공하지 않으므로 Total만 렌더링
         el.innerHTML = `
             <div class="visitor-row">
-                <span class="visitor-label">Today</span>
-                <span class="visitor-value">${data.count_unique ?? 0}</span>
-            </div>
-            <div class="visitor-row">
-                <span class="visitor-label">Total</span>
-                <span class="visitor-value">${data.count ?? 0}</span>
+                <span class="visitor-label">Total Views</span>
+                <span class="visitor-value">${data.count || 0}</span>
             </div>
         `;
 
     } catch (e) {
-        if (el) el.textContent = "불러오기 실패";
-        console.error(e);
+        if (el) el.innerHTML = `<span style="color: #f7768e; font-size: 0.8rem;">불러오기 실패</span>`;
+        console.error("GoatCounter API Error:", e);
     }
 }
 
