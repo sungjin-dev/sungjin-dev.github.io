@@ -80,7 +80,7 @@ function initClock() {
 // =======================
 
 async function loadWeather() {
-    const API_KEY = "YOUR_API_KEY_HERE"; // ⚠️ 노출 최소화 권장
+    const API_KEY = "b5b782b414c92d9aae875d5e025317b2"; // 
 
     const tempEl = document.getElementById("weather-temp");
     const descEl = document.getElementById("weather-desc");
