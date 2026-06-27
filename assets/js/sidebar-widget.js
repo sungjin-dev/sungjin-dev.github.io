@@ -117,7 +117,8 @@ async function loadVisitors() {
 
     try {
         const res = await fetch(
-            "https://tjdwlsl888.goatcounter.com/counter/TOTAL.json"
+            "https://tjdwlsl888.goatcounter.com/counter/TOTAL.json?t=" + Date.now(),
+            { cache: "no-store" }
         );
 
         if (!res.ok) throw new Error(`API error: ${res.status}`);
