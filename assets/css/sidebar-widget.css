@@ -1,219 +1,65 @@
-.my-custom-sidebar-widget { display: block !important; }
-
+/* 1. 사이드바와 위젯 초기화 */
 .sidebar {
-    /* 렌더링 방해 요소 제거 */
-    /* will-change: transform; -> 제거 */
-    
-    /* 50vh 대신 콘텐츠만큼 자동으로 늘어나도록 변경 */
-    min-height: auto; 
-    
-    /* 기존 스타일 유지 */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-.sidebar::-webkit-scrollbar {
-    display: none;
-}
-
-/* 부모 요소(body)의 flex 설정으로부터 위젯을 격리 */
-.my-custom-sidebar-widget {
     display: block !important;
     position: relative !important;
-    flex: 0 0 auto !important; /* 플렉스 아이템으로 인한 너비/높이 왜곡 방지 */
     width: 100% !important;
-    height: auto !important;
+    min-height: auto !important;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar { display: none; }
+
+/* 2. Flex 충돌 방지: 위젯을 Flex 흐름에서 제외 */
+.my-custom-sidebar-widget {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    /* Flex 아이템 특성 제거 */
+    flex: none !important; 
+    align-self: auto !important;
     visibility: visible !important;
     opacity: 1 !important;
-    z-index: 9999 !important;
 }
 
-/* sidebar sticky 요소가 body의 flex 영향을 받지 않도록 조치 */
+/* 3. Sticky가 포함된 사이드바의 붕괴 방지 */
 .sidebar.sticky {
     display: block !important;
-    flex: 0 0 auto !important;
-    align-self: flex-start !important; /* 플렉스 컨테이너 내에서 상단 정렬 */
+    position: sticky !important;
+    top: 20px; /* 상단 여백 */
     width: 100% !important;
+    flex: none !important;
 }
 
-/* =========================
-   TOGGLE
-========================= */
-.mobile-widget-toggle {
-    margin: 0;
-    padding: 0;
-}
+/* 아래는 기존 위젯 디자인 요소들 */
+.mobile-widget-toggle { margin: 0; padding: 0; }
+.mobile-widget-toggle summary { cursor: pointer; margin-bottom: 6px; font-size: 0.9rem; }
+.widget-content { margin-top: 4px; }
 
-.mobile-widget-toggle summary {
-    cursor: pointer;
-    margin-bottom: 6px;
-    font-size: 0.9rem;
-}
+.my-clock { text-align: center; background: #1a1b26; border-radius: 8px; border-left: 4px solid #bb9af7; padding: 7px; margin-bottom: 8px; }
+#live-time { font-size: 1.15rem; font-weight: bold; color: #7dcfff; font-family: Consolas, monospace; line-height: 1.1; }
+#live-date { color: #9ece6a; font-size: 0.7rem; margin-top: 2px; }
 
-.widget-content {
-    margin-top: 4px;
-}
+.weather-card { background: #1a1b26; border-radius: 8px; border-left: 4px solid #e0af68; padding: 9px; margin-bottom: 8px; }
+.weather-title { text-align: center; color: #c0caf5; font-size: 0.75rem; margin-bottom: 5px; }
+.weather-body { display: flex; justify-content: center; align-items: center; gap: 8px; }
+#weather-icon { width: 38px; height: 38px; }
+#weather-temp { color: #7aa2f7; font-size: 1.1rem; font-weight: bold; }
+#weather-desc { color: #a9b1d6; font-size: 0.72rem; }
 
-/* =========================
-   CLOCK
-========================= */
-.my-clock {
-    text-align: center;
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #bb9af7;
-    padding: 7px;
-    margin-bottom: 8px;
-}
+.visitor-card { background: #1a1b26; border-radius: 8px; border-left: 4px solid #7aa2f7; padding: 9px; margin-bottom: 8px; text-align: center; }
+.visitor-title { color: #c0caf5; margin-bottom: 6px; font-size: 0.85rem; }
 
-#live-time {
-    font-size: 1.15rem;   /* ↓ 줄임 */
-    font-weight: bold;
-    color: #7dcfff;
-    font-family: Consolas, monospace;
-    line-height: 1.1;
-}
+.my-beautiful-badge { display: inline-flex; border-radius: 6px; overflow: hidden; font-size: 0.7rem; font-weight: bold; font-family: Consolas, monospace; box-shadow: 0 2px 4px rgba(0,0,0,0.2); margin-top: 4px; }
+.badge-label { background: #3b4261; color: #c0caf5; padding: 3px 7px; }
+.badge-value { background: #7aa2f7; color: #1a1b26; padding: 3px 7px; }
 
-#live-date {
-    color: #9ece6a;
-    font-size: 0.7rem;    /* ↓ 줄임 */
-    margin-top: 2px;
-}
-
-/* =========================
-   WEATHER
-========================= */
-.weather-card {
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #e0af68;
-    padding: 9px;
-    margin-bottom: 8px;
-}
-
-.weather-title {
-    text-align: center;
-    color: #c0caf5;
-    font-size: 0.75rem;   /* ↓ 줄임 */
-    margin-bottom: 5px;
-}
-
-.weather-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-
-#weather-icon {
-    width: 38px;   /* ↓ 줄임 */
-    height: 38px;
-}
-
-#weather-temp {
-    color: #7aa2f7;
-    font-size: 1.1rem;  /* ↓ 줄임 */
-    font-weight: bold;
-}
-
-#weather-desc {
-    color: #a9b1d6;
-    font-size: 0.72rem;  /* ↓ 줄임 */
-}
-
-/* =========================
-   VISITOR
-========================= */
-.visitor-card {
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #7aa2f7;
-    padding: 9px;
-    margin-bottom: 8px;
-    text-align: center;
-}
-
-.visitor-title {
-    color: #c0caf5;
-    margin-bottom: 6px;
-    font-size: 0.85rem;  /* ↓ 줄임 */
-}
-
-/* =========================
-   BADGE
-========================= */
-.my-beautiful-badge {
-    display: inline-flex;
-    border-radius: 6px;
-    overflow: hidden;
-    font-size: 0.7rem;  /* ↓ 줄임 */
-    font-weight: bold;
-    font-family: Consolas, monospace;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    margin-top: 4px;
-}
-
-.badge-label {
-    background: #3b4261;
-    color: #c0caf5;
-    padding: 3px 7px;   /* ↓ 줄임 */
-}
-
-.badge-value {
-    background: #7aa2f7;
-    color: #1a1b26;
-    padding: 3px 7px;   /* ↓ 줄임 */
-}
-
-/* =========================
-   POSTS
-========================= */
-.latest-posts-card {
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #9ece6a;
-    padding: 9px;
-}
-
-.latest-posts-title {
-    text-align: center;
-    color: #c0caf5;
-    margin-bottom: 8px;
-    font-size: 0.85rem;  /* ↓ 줄임 */
-}
-
-.latest-posts-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.latest-posts-list li {
-    padding: 7px 0;
-    border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.latest-posts-list a {
-    display: block;
-    color: #7dcfff;
-    text-decoration: none;
-    font-size: 0.8rem;   /* ↓ 줄임 */
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: .2s;
-}
-
-.latest-posts-list a:hover {
-    color: #bb9af7;
-    padding-left: 4px;
-}
-
-.latest-post-date {
-    color: #8b949e;
-    font-size: 0.68rem;  /* ↓ 줄임 */
-    margin-top: 2px;
-}
+.latest-posts-card { background: #1a1b26; border-radius: 8px; border-left: 4px solid #9ece6a; padding: 9px; }
+.latest-posts-title { text-align: center; color: #c0caf5; margin-bottom: 8px; font-size: 0.85rem; }
+.latest-posts-list { list-style: none; margin: 0; padding: 0; }
+.latest-posts-list li { padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.latest-posts-list a { display: block; color: #7dcfff; text-decoration: none; font-size: 0.8rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.latest-post-date { color: #8b949e; font-size: 0.68rem; margin-top: 2px; }
