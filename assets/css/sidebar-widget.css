@@ -16,14 +16,15 @@
     display: none;
 }
 
-/* 추가: 사이드바 내부 위젯이 영역을 확실히 차지하게 함 */
+/* 사이드바 위젯이 렌더링 영역에서 누락되지 않도록 강제 */
 .my-custom-sidebar-widget {
     display: block !important;
+    min-width: 100% !important;
+    min-height: 50px !important;
     visibility: visible !important;
     opacity: 1 !important;
-    margin-top: 0.9rem;
-    padding-top: 0.7rem;
-    border-top: 1px dashed #565f89;
+    position: relative !important;
+    z-index: 999 !important;
 }
 
 /* =========================
