@@ -128,3 +128,5 @@ async function loadVisitors() {
 }
 
 loadVisitors();
+
+goatcounter.count()
