@@ -7,10 +7,23 @@
     display: none;
 }
 
-.my-custom-sidebar-widget {
-    margin-top: 1rem;
-    padding-top: .8rem;
-    border-top: 1px dashed #565f89;
+/* 사이드바 내부의 위젯을 강제 표시 */
+.sidebar .my-custom-sidebar-widget {
+    display: block !important;
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    flex: none !important; /* 부모 flex의 영향 차단 */
+    margin-bottom: 20px !important;
+}
+
+/* 사이드바가 sticky일 경우 내용 넘침 방지 */
+.sidebar.sticky {
+    display: block !important;
+    overflow: visible !important;
+    position: sticky !important;
+    top: 20px !important;
 }
 
 .mobile-widget-toggle {
