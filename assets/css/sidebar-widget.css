@@ -136,7 +136,7 @@
     display: block;
     color: #7dcfff;
     text-decoration: none;
-    font-size: .85rem;
+    font-size: .75rem !important;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
@@ -146,7 +146,7 @@
 
 .latest-posts-list a:hover {
     color: #bb9af7;
-    padding-left: 4px;
+    transform: translateX(4px);
 }
 
 .latest-post-date {
