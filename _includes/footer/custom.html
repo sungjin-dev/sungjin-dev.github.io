@@ -25,9 +25,15 @@
       </div>
 
       <div class="visitor-badge">
-        <a href="https://github.com/sungjin-dev/sungjin-dev.github.io">
-          <img
-            src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsungjin-dev.github.io&amp;count_bg=%237aa2f7&amp;title_bg=%23555555&amp;title=visitors&amp;edge_flat=true"
+         <div class="visitor-card">
+           <div class="visitor-title">
+              👤 Visitors
+           </div>
+  
+           <div id="goatcounter-total">
+          방문자 로딩중...
+           </div>
+        </div>
             alt="visitor badge">
         </a>
       </div>
@@ -159,6 +165,25 @@
 .widget-content {
   margin-top: 4px;
 }
+
+.visitor-card{
+    background:#1a1b26;
+    border-radius:8px;
+    padding:10px;
+    margin-top:4px;
+    text-align:center;
+}
+
+.visitor-title{
+    color:#c0caf5;
+    margin-bottom:8px;
+}
+
+#goatcounter-total{
+    color:#7dcfff;
+    font-weight:bold;
+}
+  
 </style>
 
 <script>
@@ -242,6 +267,7 @@ async function loadWeather() {
 
 loadWeather();
 </script>
+
 <script
   data-goatcounter="https://tjdwlsl888.goatcounter.com/count"
   async
