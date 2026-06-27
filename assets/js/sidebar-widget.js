@@ -1,3 +1,5 @@
+console.log(localStorage.getItem("visitor"))
+
 // sidebar 이동
 
 document.addEventListener("DOMContentLoaded", () => {
