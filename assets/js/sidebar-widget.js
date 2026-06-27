@@ -1,8 +1,26 @@
-setTimeout(() => {
-  goatcounter.count()
-}, 1000)
+// =======================
+// GoatCounter (SAFE)
+// =======================
 
+function safeGoatCounter() {
+    try {
+        if (window.goatcounter && typeof window.goatcounter.count === "function") {
+            window.goatcounter.count();
+        }
+    } catch (e) {
+        console.error("GoatCounter error:", e);
+    }
+}
+
+// DOM + load 둘 다 안전하게 보장
+window.addEventListener("load", () => {
+    setTimeout(safeGoatCounter, 1000);
+});
+
+
+// =======================
 // sidebar 이동
+// =======================
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -14,93 +32,90 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebar.appendChild(widget);
     }
 
-    function resizeWidget(){
+    function resizeWidget() {
+        if (!details) return;
 
-        if(!details) return;
-
-        if(window.innerWidth >= 768){
-            details.open = true;
-        }else{
-            details.open = false;
-        }
-
+        details.open = window.innerWidth >= 768;
     }
 
     resizeWidget();
-
     window.addEventListener("resize", resizeWidget);
-
 });
 
-// 시계
 
-function updateClock(){
+// =======================
+// 시계
+// =======================
+
+function updateClock() {
 
     const now = new Date();
 
-    document.getElementById("live-time").textContent =
-        now.toLocaleTimeString("ko-KR",{
-            hour12:false,
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit"
-        });
+    const timeEl = document.getElementById("live-time");
+    const dateEl = document.getElementById("live-date");
 
-    document.getElementById("live-date").textContent =
-        now.toLocaleDateString("ko-KR",{
-            year:"numeric",
-            month:"2-digit",
-            day:"2-digit",
-            weekday:"short"
+    if (timeEl) {
+        timeEl.textContent = now.toLocaleTimeString("ko-KR", {
+            hour12: false,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
         });
+    }
 
+    if (dateEl) {
+        dateEl.textContent = now.toLocaleDateString("ko-KR", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            weekday: "short"
+        });
+    }
 }
 
 updateClock();
+setInterval(updateClock, 1000);
 
-setInterval(updateClock,1000);
 
+// =======================
 // 날씨
+// =======================
 
-async function loadWeather(){
+async function loadWeather() {
 
-    const API_KEY="75b94b0a271713289690c3adcbefcb3a";
+    const API_KEY = "75b94b0a271713289690c3adcbefcb3a";
 
-    try{
-
+    try {
         const res = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric&lang=kr`
         );
 
         const data = await res.json();
 
-        document.getElementById("weather-temp").textContent =
-            Math.round(data.main.temp)+"°C";
+        const tempEl = document.getElementById("weather-temp");
+        const descEl = document.getElementById("weather-desc");
+        const iconEl = document.getElementById("weather-icon");
 
-        document.getElementById("weather-desc").textContent =
-            data.weather[0].description;
+        if (tempEl) tempEl.textContent = Math.round(data.main.temp) + "°C";
+        if (descEl) descEl.textContent = data.weather[0].description;
+        if (iconEl) iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
-        document.getElementById("weather-icon").src =
-            `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-
-    }
-
-    catch(e){
-
-        document.getElementById("weather-desc").textContent =
-            "로드 실패";
-
+    } catch (e) {
+        const descEl = document.getElementById("weather-desc");
+        if (descEl) descEl.textContent = "로드 실패";
         console.error(e);
-
     }
-
 }
 
 loadWeather();
 
-// GoatCounter
+
+// =======================
+// GoatCounter (API fallback)
+// =======================
 
 async function loadVisitors() {
+
     const el = document.getElementById("goatcounter-total");
 
     try {
@@ -124,13 +139,9 @@ async function loadVisitors() {
         `;
 
     } catch (e) {
-        el.textContent = "불러오기 실패";
+        if (el) el.textContent = "불러오기 실패";
         console.error(e);
     }
 }
 
 loadVisitors();
-
-if (window.goatcounter && goatcounter.count) {
-    goatcounter.count();
-}
