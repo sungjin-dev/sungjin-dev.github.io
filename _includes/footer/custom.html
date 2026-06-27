@@ -37,9 +37,75 @@
           Loading...
         </div>
 
+        
+/* =========================
+   Visitor Card
+========================= */
+
+.visitor-card{
+    background:#1a1b26;
+    border-radius:8px;
+    padding:10px;
+    margin-top:4px;
+    text-align:center;
+}
+
+.visitor-title{
+    color:#c0caf5;
+    font-size:.9rem;
+    margin-bottom:8px;
+}
+
+#goatcounter-total{
+    color:#7dcfff;
+    font-size:1rem;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:24px;
+}        
+        
+
       </div>
 
     </div>
 
   </details>
 </div>
+
+/* =========================
+   GoatCounter
+========================= */
+
+function loadVisitorCounter(){
+
+    if(window.goatcounter && window.goatcounter.visit_count){
+
+        window.goatcounter.visit_count({
+
+            append:"#goatcounter-total",
+
+            path:"TOTAL",
+
+            type:"html",
+
+            no_branding:true
+
+        });
+
+    }else{
+
+        setTimeout(loadVisitorCounter,300);
+
+    }
+
+}
+
+loadVisitorCounter();
+
+<script
+  data-goatcounter="https://tjdwlsl888.goatcounter.com/count"
+  async
+  src="//gc.zgo.at/count.js">
+</script>
