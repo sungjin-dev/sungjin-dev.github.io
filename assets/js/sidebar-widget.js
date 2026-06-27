@@ -19,15 +19,20 @@ function initSidebar() {
 
     if (!sidebar || !widget) return;
 
-    // 요소를 사이드바에 넣은 직후, 브라우저가 다시 그리게 만듭니다.
-    sidebar.appendChild(widget);
-    
-    // 레이아웃 강제 새로고침
-    widget.style.display = 'none';
-    widget.offsetHeight; // 이 한 줄이 핵심입니다. 브라우저가 레이아웃을 다시 계산하게 함
-    widget.style.display = '';
-}
+    // 1. 사이드바 영역 확보 (강제)
+    sidebar.style.display = "block";
+    sidebar.style.minHeight = "200px"; 
 
+    // 2. 위젯 스타일 강제 초기화 (CSS 충돌 방지)
+    widget.style.display = "block"; // 숨겨져 있는 것을 강제로 보여줌
+    widget.style.visibility = "visible";
+    widget.style.opacity = "1";
+    widget.style.height = "auto";
+    widget.style.minHeight = "50px";
+
+    // 3. 이동
+    sidebar.appendChild(widget);
+}
 // =======================
 // CLOCK
 // =======================
