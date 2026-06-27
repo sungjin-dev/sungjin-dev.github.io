@@ -7,23 +7,10 @@
     display: none;
 }
 
-/* 사이드바 내부의 위젯을 강제 표시 */
-.sidebar .my-custom-sidebar-widget {
-    display: block !important;
-    width: 100% !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    flex: none !important; /* 부모 flex의 영향 차단 */
-    margin-bottom: 20px !important;
-}
-
-/* 사이드바가 sticky일 경우 내용 넘침 방지 */
-.sidebar.sticky {
-    display: block !important;
-    overflow: visible !important;
-    position: sticky !important;
-    top: 20px !important;
+.my-custom-sidebar-widget {
+    margin-top: 1rem;
+    padding-top: .8rem;
+    border-top: 1px dashed #565f89;
 }
 
 .mobile-widget-toggle {
@@ -113,32 +100,6 @@
 .visitor-title {
     color: #c0caf5;
     margin-bottom: 8px;
-}
-
-/* =========================
-   커스텀 방문자 뱃지 디자인
-========================= */
-.my-beautiful-badge {
-  display: inline-flex;
-  border-radius: 6px;
-  overflow: hidden;
-  font-size: 0.75rem;
-  font-weight: bold;
-  font-family: Consolas, monospace;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  margin-top: 4px;
-}
-
-.badge-label {
-  background: #3b4261; /* 부드러운 남색 */
-  color: #c0caf5; /* 연한 글자색 */
-  padding: 4px 8px;
-}
-
-.badge-value {
-  background: #7aa2f7; /* 블로그 테마 파란색 */
-  color: #1a1b26; /* 진한 배경색 */
-  padding: 4px 8px;
 }
 
 .latest-posts-card {
