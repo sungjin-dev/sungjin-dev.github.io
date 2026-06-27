@@ -102,6 +102,32 @@
     margin-bottom: 8px;
 }
 
+/* =========================
+   커스텀 방문자 뱃지 디자인
+========================= */
+.my-beautiful-badge {
+  display: inline-flex;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.75rem;
+  font-weight: bold;
+  font-family: Consolas, monospace;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin-top: 4px;
+}
+
+.badge-label {
+  background: #3b4261; /* 부드러운 남색 */
+  color: #c0caf5; /* 연한 글자색 */
+  padding: 4px 8px;
+}
+
+.badge-value {
+  background: #7aa2f7; /* 블로그 테마 파란색 */
+  color: #1a1b26; /* 진한 배경색 */
+  padding: 4px 8px;
+}
+
 .latest-posts-card {
     background: #1a1b26;
     border-radius: 8px;
