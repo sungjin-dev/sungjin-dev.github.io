@@ -127,10 +127,21 @@ async function updateVisitorCount() {
     }
 }
 
+// 요소가 렌더링될 때까지 기다렸다가 실행하는 함수
+function waitForElement(selector, callback) {
+    const el = document.querySelector(selector);
+    if (el) {
+        callback(el);
+    } else {
+        setTimeout(() => waitForElement(selector, callback), 100);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     safe(initSidebar);
     safe(initClock);
 
-    // 병렬 실행으로 대기 시간 감소
-    Promise.allSettled([loadWeather(), updateVisitorCount()]);
+    // API 호출을 요소가 준비된 후에 실행하도록 변경
+    waitForElement("#weather-temp", loadWeather);
+    waitForElement("#gc-total-count", updateVisitorCount);
 });
