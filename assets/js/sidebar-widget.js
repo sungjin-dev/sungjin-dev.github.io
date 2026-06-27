@@ -1,4 +1,6 @@
-console.log(localStorage.getItem("visitor"))
+setTimeout(() => {
+  goatcounter.count()
+}, 1000)
 
 // sidebar 이동
 
