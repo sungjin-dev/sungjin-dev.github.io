@@ -128,16 +128,14 @@ async function updateVisitorCount() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 즉시 UI
+    // UI 먼저
     safe(initSidebar);
     safe(initClock);
 
-    // API는 백그라운드
+    // API는 따로 비동기 실행
     setTimeout(() => {
-        Promise.all([
-            loadWeather(),
-            updateVisitorCount()
-        ]);
+        loadWeather();
+        updateVisitorCount();
     }, 0);
 
 });
