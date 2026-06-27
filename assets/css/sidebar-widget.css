@@ -1,7 +1,9 @@
 .sidebar {
-    min-height: 100vh; /* 사이드바 최소 높이 확보 */
-    display: block !important; /* 혹시라도 숨겨지지 않도록 강제 */
+    min-height: 200px; /* 상황에 맞춰 조절하세요 */
+    display: block !important; 
+    overflow-y: auto; /* 숨기더라도 스크롤 기능은 살려둠 */
 }
+
 .sidebar::-webkit-scrollbar {
     display: none;
 }
