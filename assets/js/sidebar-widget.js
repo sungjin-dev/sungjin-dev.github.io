@@ -119,20 +119,17 @@ async function updateVisitorCount() {
     if (!el) return;
 
     try {
-        // 1. 현재 값 가져오기
-        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
             headers: {
                 "X-Master-Key": API_KEY
             }
         });
 
         const data = await res.json();
-        let count = data.record.count || 0;
+        let count = data?.record?.count ?? 0;
 
-        // 2. +1 증가
         count++;
 
-        // 3. 저장
         await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
             method: "PUT",
             headers: {
@@ -142,7 +139,6 @@ async function updateVisitorCount() {
             body: JSON.stringify({ count })
         });
 
-        // 4. UI 반영
         el.textContent = count;
 
     } catch (e) {
