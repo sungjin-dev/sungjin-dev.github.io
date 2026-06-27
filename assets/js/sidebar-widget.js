@@ -114,15 +114,34 @@ loadWeather();
 // GoatCounter (API fallback)
 // =======================
 
-<div class="visitor-badge" style="text-align: center; margin-top: 10px;">
-  <div class="visitor-title" style="color: #c0caf5; font-size: 0.85rem; margin-bottom: 6px;">
-    방문자 통계
-  </div>
-  <a href="https://tjdwlsl888.goatcounter.com" target="_blank">
-    <img
-      src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsungjin-dev.github.io&amp;count_bg=%237aa2f7&amp;title_bg=%23555555&amp;title=Views&amp;edge_flat=true"
-      alt="visitor badge"
-      style="height: 24px; display: inline-block;">
-  </a>
-</div>
+// =======================
+// GoatCounter (API fallback) 수정본
+// =======================
 
+async function loadVisitors() {
+    const el = document.getElementById("goatcounter-total");
+    if (!el) return;
+
+    try {
+        // 1. 올바른 누적 방문자 수 엔드포인트 (TOTAL.json)
+        const res = await fetch("https://tjdwlsl888.goatcounter.com/counter/TOTAL.json");
+
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
+
+        const data = await res.json();
+
+        // 2. GoatCounter는 Today(오늘)를 제공하지 않으므로 Total만 렌더링
+        el.innerHTML = `
+            <div class="visitor-row">
+                <span class="visitor-label">Total Views</span>
+                <span class="visitor-value">${data.count || 0}</span>
+            </div>
+        `;
+
+    } catch (e) {
+        if (el) el.innerHTML = `<span style="color: #f7768e; font-size: 0.8rem;">불러오기 실패</span>`;
+        console.error("GoatCounter API Error:", e);
+    }
+}
+
+loadVisitors();
