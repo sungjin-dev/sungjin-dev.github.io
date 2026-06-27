@@ -1,26 +1,19 @@
 /* 부모 flex 컨텍스트로부터 사이드바 강제 독립 */
-.sidebar {
-    display: block !important;
-    flex: 0 0 auto !important; /* Flex 크기 계산에서 제외 */
-    width: 100% !important;
-    position: relative !important;
-    z-index: 10 !important;
-    overflow: visible !important;
-}
+/* 사이드바 위젯이 존재하는 위치의 부모를 확인하고 
+   아래 스타일을 그 위치에 맞는 클래스로 적용하세요 */
 
-/* 위젯이 사이드바 안에서 제대로 보이도록 강제 */
 .my-custom-sidebar-widget {
     display: block !important;
     width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    position: relative !important;
-    /* Flex 아이템 간섭 차단 */
-    flex: none !important; 
     visibility: visible !important;
     opacity: 1 !important;
-    /* 렌더링 누락 방지 */
-    transform: none !important;
+    position: relative !important;
+    z-index: 999 !important;
+}
+
+/* 기존 사이드바가 sticky라면, 그것을 해제하지 말고 그대로 두되 위젯만 보이게 설정 */
+.sidebar {
+    overflow: visible !important; /* 내용이 넘쳐도 다 보이게 */
 }
 
 /* sticky 사이드바 보정 */
