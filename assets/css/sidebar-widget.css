@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="{{ '/assets/css/sidebar-widget.css' | relative_url }}">
 
 .sidebar{
     -ms-overflow-style:none;
