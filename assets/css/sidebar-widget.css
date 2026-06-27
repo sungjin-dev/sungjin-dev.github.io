@@ -1,3 +1,5 @@
+.my-custom-sidebar-widget { display: block !important; }
+
 .sidebar {
     /* 렌더링 방해 요소 제거 */
     /* will-change: transform; -> 제거 */
