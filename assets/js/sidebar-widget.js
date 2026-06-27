@@ -13,26 +13,24 @@ function safe(fn) {
 // SIDEBAR MOVE + RESPONSIVE TOGGLE
 // =======================
 
+// JS의 initSidebar 함수 시작 부분
 function initSidebar() {
     const sidebar = document.querySelector(".sidebar");
     const widget = document.querySelector(".my-custom-sidebar-widget");
-    const details = document.querySelector(".mobile-widget-toggle");
+    
+    // 강제로 스타일 보장
+    if (sidebar) {
+        sidebar.style.display = "block";
+        sidebar.style.minHeight = "100px";
+    }
 
-    if (!sidebar || !widget) return;
+    if (!sidebar || !widget) {
+        console.warn("사이드바 요소를 찾을 수 없습니다.");
+        return;
+    }
 
     sidebar.appendChild(widget);
-
-    if (details) {
-        details.addEventListener("toggle", () => {
-            details.dataset.userTouched = "true";
-        });
-
-        window.addEventListener("resize", () => {
-            if (!details.dataset.userTouched) {
-                details.open = window.innerWidth >= 768;
-            }
-        });
-    }
+    // ... 이하 동일
 }
 
 // =======================
