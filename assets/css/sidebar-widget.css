@@ -29,6 +29,23 @@
     z-index: 999 !important;
 }
 
+/* 부모 요소인 sidebar sticky가 PC에서 위젯을 가리지 않도록 강제 */
+.sidebar.sticky {
+    display: block !important;
+    position: relative !important; /* sticky를 잠시 해제하여 확인 */
+    overflow: visible !important;
+    height: auto !important;
+}
+
+/* 위젯 자체를 화면 정중앙이나 상단으로 강제 고정하여 노출 테스트 */
+.my-custom-sidebar-widget {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 9999 !important; /* 가장 위로 올림 */
+}
+
 /* =========================
    TOGGLE
 ========================= */
