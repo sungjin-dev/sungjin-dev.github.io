@@ -2,12 +2,10 @@
 // 위젯 실행부
 // =======================
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. 위젯이 일단 보이도록 강제 처리 (JS 이동 전에도 표시)
-    const widget = document.querySelector(".my-custom-sidebar-widget");
-    if (widget) {
-        widget.style.display = "block";
-        widget.style.visibility = "visible";
-    }
+    initClock();
+    loadWeather();
+    updateVisitorCount();
+});
 
     // 2. 사이드바 내부로 이동 (사이드바 클래스가 없을 경우 대비)
     const sidebar = document.querySelector(".sidebar");
