@@ -1,29 +1,19 @@
 // =======================
-// GoatCounter (SAFE)
+// UTIL SAFE WRAPPER
 // =======================
-
-function safeGoatCounter() {
+function safe(fn) {
     try {
-        if (window.goatcounter && typeof window.goatcounter.count === "function") {
-            window.goatcounter.count();
-        }
+        fn();
     } catch (e) {
-        console.error("GoatCounter error:", e);
+        console.error(e);
     }
 }
 
-// DOM + load 둘 다 안전하게 보장
-window.addEventListener("load", () => {
-    setTimeout(safeGoatCounter, 1000);
-});
-
-
 // =======================
-// sidebar 이동
+// SIDEBAR MOVE + RESPONSIVE TOGGLE
 // =======================
 
-document.addEventListener("DOMContentLoaded", () => {
-
+function initSidebar() {
     const sidebar = document.querySelector(".sidebar");
     const widget = document.querySelector(".my-custom-sidebar-widget");
     const details = document.querySelector(".mobile-widget-toggle");
@@ -32,103 +22,124 @@ document.addEventListener("DOMContentLoaded", () => {
         sidebar.appendChild(widget);
     }
 
-    function resizeWidget() {
+    function handleResize() {
         if (!details) return;
 
-        details.open = window.innerWidth >= 768;
+        // 처음 로딩 기준으로만 반응 (사용자 조작 방해 방지)
+        if (!details.dataset.userTouched) {
+            details.open = window.innerWidth >= 768;
+        }
     }
 
-    resizeWidget();
-    window.addEventListener("resize", resizeWidget);
-});
-
-
-// =======================
-// 시계
-// =======================
-
-function updateClock() {
-
-    const now = new Date();
-
-    const timeEl = document.getElementById("live-time");
-    const dateEl = document.getElementById("live-date");
-
-    if (timeEl) {
-        timeEl.textContent = now.toLocaleTimeString("ko-KR", {
-            hour12: false,
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
+    if (details) {
+        details.addEventListener("toggle", () => {
+            details.dataset.userTouched = "true";
         });
     }
 
-    if (dateEl) {
-        dateEl.textContent = now.toLocaleDateString("ko-KR", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            weekday: "short"
-        });
-    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
 }
 
-updateClock();
-setInterval(updateClock, 1000);
+// =======================
+// CLOCK
+// =======================
 
+function initClock() {
+    function updateClock() {
+        const now = new Date();
+
+        const timeEl = document.getElementById("live-time");
+        const dateEl = document.getElementById("live-date");
+
+        if (timeEl) {
+            timeEl.textContent = now.toLocaleTimeString("ko-KR", {
+                hour12: false,
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            });
+        }
+
+        if (dateEl) {
+            dateEl.textContent = now.toLocaleDateString("ko-KR", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                weekday: "short"
+            });
+        }
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+}
 
 // =======================
-// 날씨
+// WEATHER
 // =======================
 
 async function loadWeather() {
+    const API_KEY = "YOUR_API_KEY_HERE"; // ⚠️ 노출 최소화 권장
 
-    const API_KEY = "75b94b0a271713289690c3adcbefcb3a";
+    const tempEl = document.getElementById("weather-temp");
+    const descEl = document.getElementById("weather-desc");
+    const iconEl = document.getElementById("weather-icon");
 
     try {
         const res = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric&lang=kr`
         );
 
+        if (!res.ok) throw new Error(`Weather API error: ${res.status}`);
+
         const data = await res.json();
 
-        const tempEl = document.getElementById("weather-temp");
-        const descEl = document.getElementById("weather-desc");
-        const iconEl = document.getElementById("weather-icon");
-
-        if (tempEl) tempEl.textContent = Math.round(data.main.temp) + "°C";
-        if (descEl) descEl.textContent = data.weather[0].description;
-        if (iconEl) iconEl.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+        if (tempEl) tempEl.textContent = `${Math.round(data.main.temp)}°C`;
+        if (descEl) descEl.textContent = data.weather?.[0]?.description ?? "정보 없음";
+        if (iconEl) {
+            iconEl.src = `https://openweathermap.org/img/wn/${data.weather?.[0]?.icon}@2x.png`;
+        }
 
     } catch (e) {
-        const descEl = document.getElementById("weather-desc");
-        if (descEl) descEl.textContent = "로드 실패";
         console.error(e);
+        if (descEl) descEl.textContent = "날씨 로드 실패";
     }
 }
 
-loadWeather();
+// =======================
+// VISITOR COUNT (GoatCounter API)
+// =======================
 
-// =======================
-// 방문자 수 뱃지에 데이터 넣기 (네이티브 UI)
-// =======================
 async function loadVisitors() {
     const el = document.getElementById("gc-total-count");
     if (!el) return;
 
     try {
-        const res = await fetch("https://tjdwlsl888.goatcounter.com/counter/TOTAL.json");
-        if (!res.ok) throw new Error(`API error: ${res.status}`);
-        const data = await res.json();
+        const res = await fetch(
+            "https://tjdwlsl888.goatcounter.com/counter/TOTAL.json"
+        );
 
-        // 뱃지 안에 숫자만 깔끔하게 삽입
-        el.textContent = data.count || 0;
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
+
+        const data = await res.json();
+        el.textContent = data.count ?? 0;
 
     } catch (e) {
-        el.textContent = "Error";
-        console.error("GoatCounter API Error:", e);
+        console.error(e);
+        el.textContent = "-";
     }
 }
 
-// 화면 로딩이 끝난 후 안전하게 실행
-document.addEventListener("DOMContentLoaded", loadVisitors);
+// =======================
+// INIT ALL
+// =======================
+
+document.addEventListener("DOMContentLoaded", () => {
+    safe(initSidebar);
+    safe(initClock);
+    safe(loadWeather);
+    safe(loadVisitors);
+});
+
+// GoatCounter script (HTML에서 자동 실행됨)
