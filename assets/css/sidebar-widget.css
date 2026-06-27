@@ -11,6 +11,8 @@
     margin-top: 1rem;
     padding-top: .8rem;
     border-top: 1px dashed #565f89;
+    font-size: 0.85rem;
+}
 }
 
 .mobile-widget-toggle {
