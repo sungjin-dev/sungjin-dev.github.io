@@ -120,7 +120,7 @@ async function loadVisitors() {
 
     try {
         const res = await fetch(
-            "https://tjdwlsl888.goatcounter.com/counter/%2F.json"
+            "https://tjdwlsl888.goatcounter.com/counter.json"
         );
 
         if (!res.ok) throw new Error("API error");
