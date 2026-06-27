@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", () => {
+    safe(initSidebar);
+    safe(initClock);
+    safe(loadWeather);
+    safe(updateVisitorCount);
+});
+
 // =======================
 // UTIL SAFE WRAPPER
 // =======================
@@ -8,6 +15,8 @@ function safe(fn) {
         console.error(e);
     }
 }
+
+
 
 // =======================
 // SIDEBAR MOVE + RESPONSIVE TOGGLE
@@ -114,25 +123,24 @@ async function loadWeather() {
 const BIN_ID = "6a4007bd79fa234c87d986e4";
 const API_KEY = "$2a$10$c0EVRFLqpSK90EQ3cp0/SuOTsqNX7tu225aPB4hr7dtbli.EhTEnW";
 
-async function updateVisitorCount() {
+aasync function updateVisitorCount() {
     const el = document.getElementById("gc-total-count");
     if (!el) return;
 
+    // 중복 호출 방지를 위해 세션 스토리지 확인
+    if (sessionStorage.getItem("visitor_counted")) return;
+
     try {
-        // 1. 현재 값 가져오기
         const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-            headers: {
-                "X-Master-Key": API_KEY
-            }
+            headers: { "X-Master-Key": API_KEY }
         });
 
         const data = await res.json();
-        let count = data.record.count || 0;
+        let count = (data.record.count || 0) + 1;
+        
+        el.textContent = count;
+        sessionStorage.setItem("visitor_counted", "true"); // 중복 카운트 방지
 
-        // 2. +1 증가
-        count++;
-
-        // 3. 저장
         await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
             method: "PUT",
             headers: {
@@ -141,14 +149,8 @@ async function updateVisitorCount() {
             },
             body: JSON.stringify({ count })
         });
-
-        // 4. UI 반영
-        el.textContent = count;
-
     } catch (e) {
         console.error("visitor error:", e);
-        el.textContent = "Error";
+        el.textContent = "0";
     }
 }
-
-document.addEventListener("DOMContentLoaded", updateVisitorCount);
