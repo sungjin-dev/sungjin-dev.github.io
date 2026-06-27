@@ -1,46 +1,71 @@
-<div class="my-custom-sidebar-widget">
-  <details class="mobile-widget-toggle" open>
-    <summary>시간 및 날씨 보기</summary>
-    <div class="widget-content">
-      
-      <div class="my-clock">
-        <div id="live-time"></div>
-        <div id="live-date"></div>
-      </div>
+<!DOCTYPE html>
+<html lang="ko">
 
-      <div class="weather-card">
-        <div class="weather-title">서울 오늘 날씨</div>
-        <div class="weather-body">
-          <img id="weather-icon" alt="weather">
-          <div class="weather-info">
-            <div id="weather-temp">--°C</div>
-            <div id="weather-desc">불러오는 중...</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="{{ '/assets/css/sidebar-widget.css' | relative_url }}">
+</head>
+
+<body>
+
+  <aside class="sidebar">
+  <div class="my-custom-sidebar-widget">
+    <details class="mobile-widget-toggle" open>
+      <summary>시간 및 날씨 보기</summary>
+      <div class="widget-content">
+        
+        <div class="my-clock">
+          <div id="live-time"></div>
+          <div id="live-date"></div>
+        </div>
+
+        <div class="weather-card">
+          <div class="weather-title">서울 오늘 날씨</div>
+          <div class="weather-body">
+            <img id="weather-icon" alt="weather">
+            <div class="weather-info">
+              <div id="weather-temp">--°C</div>
+              <div id="weather-desc">불러오는 중...</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="visitor-card">
-        <div class="visitor-title">👤 Visitors</div>
-        <a href="https://tjdwlsl888.goatcounter.com" target="_blank" style="text-decoration:none;">
-          <div class="my-beautiful-badge">
-            <div class="badge-label">TOTAL VIEWS</div>
-            <div class="badge-value" id="gc-total-count">...</div>
-          </div>
-        </a>
-      </div>
+        <div class="visitor-card">
+          <div class="visitor-title">👤 Visitors</div>
+          <a href="https://tjdwlsl888.goatcounter.com" target="_blank" style="text-decoration:none;">
+            <div class="my-beautiful-badge">
+              <div class="badge-label">TOTAL VIEWS</div>
+              <div class="badge-value" id="gc-total-count">...</div>
+            </div>
+          </a>
+        </div>
 
-      <div class="latest-posts-card">
-        <div class="latest-posts-title">Latest Posts</div>
-        <ul class="latest-posts-list">
-          {% for post in site.posts limit:3 %}
-            <li>
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-              <div class="latest-post-date">{{ post.date | date: "%Y.%m.%d" }}</div>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
+        <div class="latest-posts-card">
+          <div class="latest-posts-title">Latest Posts</div>
+          <ul class="latest-posts-list">
+            {% for post in site.posts limit:3 %}
+              <li>
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                <div class="latest-post-date">{{ post.date | date: "%Y.%m.%d" }}</div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
 
-    </div>
-  </details>
-</div>
+      </div>
+    </details>
+  </div>
+</aside>
+
+  <script src="{{ '/assets/js/sidebar-widget.js' | relative_url }}"></script>
+
+  <script
+    data-goatcounter="https://tjdwlsl888.goatcounter.com/count"
+    async
+    src="https://gc.zgo.at/count.js">
+  </script>
+
+</body>
+</html>
