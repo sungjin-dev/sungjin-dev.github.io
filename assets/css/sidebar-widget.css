@@ -1,7 +1,11 @@
 .sidebar {
-    min-height: 200px; /* 상황에 맞춰 조절하세요 */
-    display: block !important; 
-    overflow-y: auto; /* 숨기더라도 스크롤 기능은 살려둠 */
+    /* 렌더링 엔진에 이 요소가 중요함을 알림 */
+    will-change: transform; 
+    /* 영역이 작아져도 최소한의 크기를 유지하도록 강제 */
+    min-height: 50vh; 
+    /* 요소가 숨겨지지 않도록 함 */
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .sidebar::-webkit-scrollbar {
