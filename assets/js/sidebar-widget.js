@@ -98,47 +98,33 @@ loadWeather();
 
 // GoatCounter
 
-async function loadVisitors(){
+async function loadVisitors() {
+    const el = document.getElementById("goatcounter-total");
 
-    try{
-
+    try {
         const res = await fetch(
             "https://tjdwlsl888.goatcounter.com/counter/%2F.json"
         );
 
+        if (!res.ok) throw new Error("API error");
+
         const data = await res.json();
 
-        document.getElementById("goatcounter-total").innerHTML = `
-
+        el.innerHTML = `
             <div class="visitor-row">
-
                 <span class="visitor-label">Today</span>
-
-                <span class="visitor-value">${data.count_unique}</span>
-
+                <span class="visitor-value">${data.count_unique ?? 0}</span>
             </div>
-
             <div class="visitor-row">
-
                 <span class="visitor-label">Total</span>
-
-                <span class="visitor-value">${data.count}</span>
-
+                <span class="visitor-value">${data.count ?? 0}</span>
             </div>
-
         `;
 
-    }
-
-    catch(e){
-
-        document.getElementById("goatcounter-total").textContent =
-            "불러오기 실패";
-
+    } catch (e) {
+        el.textContent = "불러오기 실패";
         console.error(e);
-
     }
-
 }
 
 loadVisitors();
