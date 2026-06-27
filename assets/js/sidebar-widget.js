@@ -131,4 +131,6 @@ async function loadVisitors() {
 
 loadVisitors();
 
-goatcounter.count()
+if (window.goatcounter && goatcounter.count) {
+    goatcounter.count();
+}
