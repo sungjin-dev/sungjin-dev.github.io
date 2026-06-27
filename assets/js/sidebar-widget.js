@@ -95,9 +95,13 @@ async function loadWeather() {
 const BIN_ID = "6a4007edf5f4af5e2939c15b";
 const API_KEY = "$2a$10$c0EVRFLqpSK90EQ3cp0/SuOTsqNX7tu225aPB4hr7dtbli.EhTEnW";
 
+// 추천: 방문자 수를 즉시 보여주기 위한 개선
 async function updateVisitorCount() {
     const el = document.getElementById("gc-total-count");
     if (!el) return;
+
+    // 1. 서버 호출 전, 캐시나 로컬 저장소에서 먼저 보여줄 수 있다면 그렇게 하세요.
+    // el.textContent = localStorage.getItem("last_count") || "...";
 
     try {
         const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
@@ -106,19 +110,16 @@ async function updateVisitorCount() {
 
         const data = await res.json();
         let count = data?.record?.count ?? 0;
+        
+        // 2. 숫자가 불러와지는 즉시 UI 반영
+        el.textContent = ++count;
 
-        count++;
-
-        await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        // 3. 업데이트는 나중에(비동기로) 수행하여 UI 차단 방지
+        fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Master-Key": API_KEY
-            },
+            headers: { "Content-Type": "application/json", "X-Master-Key": API_KEY },
             body: JSON.stringify({ count })
-        });
-
-        el.textContent = count;
+        }).catch(console.error);
 
     } catch (e) {
         console.error("[visitor] failed", e);
@@ -127,15 +128,9 @@ async function updateVisitorCount() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    // UI 먼저
     safe(initSidebar);
     safe(initClock);
 
-    // API는 따로 비동기 실행
-    setTimeout(() => {
-        loadWeather();
-        updateVisitorCount();
-    }, 0);
-
+    // 병렬 실행으로 대기 시간 감소
+    Promise.allSettled([loadWeather(), updateVisitorCount()]);
 });
