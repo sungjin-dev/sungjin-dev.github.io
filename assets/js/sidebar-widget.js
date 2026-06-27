@@ -13,7 +13,6 @@ function safe(fn) {
 // SIDEBAR MOVE + RESPONSIVE TOGGLE
 // =======================
 
-// JS의 initSidebar 함수 시작 부분
 function initSidebar() {
     const sidebar = document.querySelector(".sidebar");
     const widget = document.querySelector(".my-custom-sidebar-widget");
