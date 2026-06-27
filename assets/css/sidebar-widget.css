@@ -1,9 +1,13 @@
 .sidebar {
-    /* 렌더링 엔진에 이 요소가 중요함을 알림 */
-    will-change: transform; 
-    /* 영역이 작아져도 최소한의 크기를 유지하도록 강제 */
-    min-height: 50vh; 
-    /* 요소가 숨겨지지 않도록 함 */
+    /* 렌더링 방해 요소 제거 */
+    /* will-change: transform; -> 제거 */
+    
+    /* 50vh 대신 콘텐츠만큼 자동으로 늘어나도록 변경 */
+    min-height: auto; 
+    
+    /* 기존 스타일 유지 */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     visibility: visible !important;
     opacity: 1 !important;
 }
@@ -12,7 +16,11 @@
     display: none;
 }
 
+/* 추가: 사이드바 내부 위젯이 영역을 확실히 차지하게 함 */
 .my-custom-sidebar-widget {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     margin-top: 0.9rem;
     padding-top: 0.7rem;
     border-top: 1px dashed #565f89;
