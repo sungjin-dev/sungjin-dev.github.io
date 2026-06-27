@@ -1,37 +1,33 @@
-/* 1. 사이드바와 위젯 초기화 */
+/* 부모 flex 컨텍스트로부터 사이드바 강제 독립 */
 .sidebar {
     display: block !important;
-    position: relative !important;
+    flex: 0 0 auto !important; /* Flex 크기 계산에서 제외 */
     width: 100% !important;
-    min-height: auto !important;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    position: relative !important;
+    z-index: 10 !important;
+    overflow: visible !important;
 }
 
-.sidebar::-webkit-scrollbar { display: none; }
-
-/* 2. Flex 충돌 방지: 위젯을 Flex 흐름에서 제외 */
+/* 위젯이 사이드바 안에서 제대로 보이도록 강제 */
 .my-custom-sidebar-widget {
     display: block !important;
     width: 100% !important;
-    max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
     position: relative !important;
-    /* Flex 아이템 특성 제거 */
+    /* Flex 아이템 간섭 차단 */
     flex: none !important; 
-    align-self: auto !important;
     visibility: visible !important;
     opacity: 1 !important;
+    /* 렌더링 누락 방지 */
+    transform: none !important;
 }
 
-/* 3. Sticky가 포함된 사이드바의 붕괴 방지 */
+/* sticky 사이드바 보정 */
 .sidebar.sticky {
-    display: block !important;
     position: sticky !important;
-    top: 20px; /* 상단 여백 */
-    width: 100% !important;
-    flex: none !important;
+    top: 20px !important;
+    display: block !important;
 }
 
 /* 아래는 기존 위젯 디자인 요소들 */
