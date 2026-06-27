@@ -1,145 +1,199 @@
-// =======================
-// UTIL SAFE WRAPPER
-// =======================
-function safe(fn) {
-    try {
-        fn();
-    } catch (e) {
-        console.error(e);
-    }
+.sidebar {
+    /* 렌더링 엔진에 이 요소가 중요함을 알림 */
+    will-change: transform; 
+    /* 영역이 작아져도 최소한의 크기를 유지하도록 강제 */
+    min-height: 50vh; 
+    /* 요소가 숨겨지지 않도록 함 */
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-// =======================
-// SIDEBAR MOVE + RESPONSIVE TOGGLE
-// =======================
-
-// JS의 initSidebar 함수 시작 부분
-function initSidebar() {
-    const sidebar = document.querySelector(".sidebar");
-    const widget = document.querySelector(".my-custom-sidebar-widget");
-    
-    // 강제로 스타일 보장
-    if (sidebar) {
-        sidebar.style.display = "block";
-        sidebar.style.minHeight = "100px";
-    }
-
-    if (!sidebar || !widget) {
-        console.warn("사이드바 요소를 찾을 수 없습니다.");
-        return;
-    }
-
-    sidebar.appendChild(widget);
-    // ... 이하 동일
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
-// =======================
-// CLOCK
-// =======================
-
-function initClock() {
-    const timeEl = document.getElementById("live-time");
-    const dateEl = document.getElementById("live-date");
-
-    if (!timeEl && !dateEl) return;
-
-    setInterval(() => {
-        const now = new Date();
-
-        if (timeEl) {
-            timeEl.textContent = now.toLocaleTimeString("ko-KR");
-        }
-
-        if (dateEl) {
-            dateEl.textContent = now.toLocaleDateString("ko-KR");
-        }
-    }, 1000);
+.my-custom-sidebar-widget {
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px dashed #565f89;
 }
 
-// =======================
-// WEATHER
-// =======================
-
-async function loadWeather() {
-    const API_KEY = "b5b782b414c92d9aae875d5e025317b2";
-
-    const tempEl = document.getElementById("weather-temp");
-    const descEl = document.getElementById("weather-desc");
-    const iconEl = document.getElementById("weather-icon");
-
-    if (!tempEl && !descEl && !iconEl) return;
-
-    try {
-        const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric&lang=kr`
-        );
-
-        if (!res.ok) return;
-
-        const data = await res.json();
-
-        if (tempEl) tempEl.textContent = `${Math.round(data.main.temp)}°C`;
-        if (descEl) descEl.textContent = data.weather?.[0]?.description ?? "";
-        if (iconEl) iconEl.src = `https://openweathermap.org/img/wn/${data.weather?.[0]?.icon}@2x.png`;
-
-    } catch (e) {
-        console.error("[weather] failed", e);
-    }
-}
-// =======================
-// VISITOR COUNT (GoatCounter API)
-// =======================
-
-const BIN_ID = "6a4007edf5f4af5e2939c15b";
-const API_KEY = "$2a$10$c0EVRFLqpSK90EQ3cp0/SuOTsqNX7tu225aPB4hr7dtbli.EhTEnW";
-
-// 추천: 방문자 수를 즉시 보여주기 위한 개선
-async function updateVisitorCount() {
-    const el = document.getElementById("gc-total-count");
-    if (!el) return;
-
-    // 1. 서버 호출 전, 캐시나 로컬 저장소에서 먼저 보여줄 수 있다면 그렇게 하세요.
-    // el.textContent = localStorage.getItem("last_count") || "...";
-
-    try {
-        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-            headers: { "X-Master-Key": API_KEY }
-        });
-
-        const data = await res.json();
-        let count = data?.record?.count ?? 0;
-        
-        // 2. 숫자가 불러와지는 즉시 UI 반영
-        el.textContent = ++count;
-
-        // 3. 업데이트는 나중에(비동기로) 수행하여 UI 차단 방지
-        fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json", "X-Master-Key": API_KEY },
-            body: JSON.stringify({ count })
-        }).catch(console.error);
-
-    } catch (e) {
-        console.error("[visitor] failed", e);
-        el.textContent = "0";
-    }
+/* =========================
+   TOGGLE
+========================= */
+.mobile-widget-toggle {
+    margin: 0;
+    padding: 0;
 }
 
-// 요소가 렌더링될 때까지 기다렸다가 실행하는 함수
-function waitForElement(selector, callback) {
-    const el = document.querySelector(selector);
-    if (el) {
-        callback(el);
-    } else {
-        setTimeout(() => waitForElement(selector, callback), 100);
-    }
+.mobile-widget-toggle summary {
+    cursor: pointer;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    safe(initSidebar);
-    safe(initClock);
+.widget-content {
+    margin-top: 4px;
+}
 
-    // API 호출을 요소가 준비된 후에 실행하도록 변경
-    waitForElement("#weather-temp", loadWeather);
-    waitForElement("#gc-total-count", updateVisitorCount);
-});
+/* =========================
+   CLOCK
+========================= */
+.my-clock {
+    text-align: center;
+    background: #1a1b26;
+    border-radius: 8px;
+    border-left: 4px solid #bb9af7;
+    padding: 7px;
+    margin-bottom: 8px;
+}
+
+#live-time {
+    font-size: 1.15rem;   /* ↓ 줄임 */
+    font-weight: bold;
+    color: #7dcfff;
+    font-family: Consolas, monospace;
+    line-height: 1.1;
+}
+
+#live-date {
+    color: #9ece6a;
+    font-size: 0.7rem;    /* ↓ 줄임 */
+    margin-top: 2px;
+}
+
+/* =========================
+   WEATHER
+========================= */
+.weather-card {
+    background: #1a1b26;
+    border-radius: 8px;
+    border-left: 4px solid #e0af68;
+    padding: 9px;
+    margin-bottom: 8px;
+}
+
+.weather-title {
+    text-align: center;
+    color: #c0caf5;
+    font-size: 0.75rem;   /* ↓ 줄임 */
+    margin-bottom: 5px;
+}
+
+.weather-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+#weather-icon {
+    width: 38px;   /* ↓ 줄임 */
+    height: 38px;
+}
+
+#weather-temp {
+    color: #7aa2f7;
+    font-size: 1.1rem;  /* ↓ 줄임 */
+    font-weight: bold;
+}
+
+#weather-desc {
+    color: #a9b1d6;
+    font-size: 0.72rem;  /* ↓ 줄임 */
+}
+
+/* =========================
+   VISITOR
+========================= */
+.visitor-card {
+    background: #1a1b26;
+    border-radius: 8px;
+    border-left: 4px solid #7aa2f7;
+    padding: 9px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.visitor-title {
+    color: #c0caf5;
+    margin-bottom: 6px;
+    font-size: 0.85rem;  /* ↓ 줄임 */
+}
+
+/* =========================
+   BADGE
+========================= */
+.my-beautiful-badge {
+    display: inline-flex;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.7rem;  /* ↓ 줄임 */
+    font-weight: bold;
+    font-family: Consolas, monospace;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-top: 4px;
+}
+
+.badge-label {
+    background: #3b4261;
+    color: #c0caf5;
+    padding: 3px 7px;   /* ↓ 줄임 */
+}
+
+.badge-value {
+    background: #7aa2f7;
+    color: #1a1b26;
+    padding: 3px 7px;   /* ↓ 줄임 */
+}
+
+/* =========================
+   POSTS
+========================= */
+.latest-posts-card {
+    background: #1a1b26;
+    border-radius: 8px;
+    border-left: 4px solid #9ece6a;
+    padding: 9px;
+}
+
+.latest-posts-title {
+    text-align: center;
+    color: #c0caf5;
+    margin-bottom: 8px;
+    font-size: 0.85rem;  /* ↓ 줄임 */
+}
+
+.latest-posts-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.latest-posts-list li {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.latest-posts-list a {
+    display: block;
+    color: #7dcfff;
+    text-decoration: none;
+    font-size: 0.8rem;   /* ↓ 줄임 */
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: .2s;
+}
+
+.latest-posts-list a:hover {
+    color: #bb9af7;
+    padding-left: 4px;
+}
+
+.latest-post-date {
+    color: #8b949e;
+    font-size: 0.68rem;  /* ↓ 줄임 */
+    margin-top: 2px;
+}
