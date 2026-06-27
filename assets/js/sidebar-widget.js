@@ -17,20 +17,16 @@ function safe(fn) {
 function initSidebar() {
     const sidebar = document.querySelector(".sidebar");
     const widget = document.querySelector(".my-custom-sidebar-widget");
-    
-    // 강제로 스타일 보장
-    if (sidebar) {
-        sidebar.style.display = "block";
-        sidebar.style.minHeight = "100px";
-    }
 
-    if (!sidebar || !widget) {
-        console.warn("사이드바 요소를 찾을 수 없습니다.");
-        return;
-    }
+    if (!sidebar || !widget) return;
 
+    // 요소를 사이드바에 넣은 직후, 브라우저가 다시 그리게 만듭니다.
     sidebar.appendChild(widget);
-    // ... 이하 동일
+    
+    // 레이아웃 강제 새로고침
+    widget.style.display = 'none';
+    widget.offsetHeight; // 이 한 줄이 핵심입니다. 브라우저가 레이아웃을 다시 계산하게 함
+    widget.style.display = '';
 }
 
 // =======================
