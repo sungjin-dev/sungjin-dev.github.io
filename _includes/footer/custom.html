@@ -3,10 +3,28 @@
     <summary>시간 및 날씨 보기</summary>
     <div class="widget-content">
 
-      <div class="my-clock">
-        <div id="live-time"></div>
-        <div id="live-date"></div>
-      </div>
+      .my-clock{
+          text-align:center;
+          background:#1a1b26;
+          border-radius:8px;
+          border-left:4px solid #bb9af7;
+          padding:8px;
+          margin-bottom:8px;
+      }
+
+      #live-time{
+          font-size:1.35rem;
+          font-weight:bold;
+          color:#7dcfff;
+          font-family:Consolas, monospace;
+          line-height:1.1;
+      }
+
+      #live-date{
+          color:#9ece6a;
+          font-size:.75rem;
+          margin-top:3px;
+      }
 
       <div class="weather-card">
         <div class="weather-title">
@@ -116,43 +134,35 @@
 /* =========================
    날씨
 ========================= */
-.weather-card {
-  background: #1a1b26;
-  border-radius: 8px;
-  padding: 8px;
-  margin-bottom: 4px;
+.weather-card{
+    background:#1a1b26;
+    border-radius:8px;
+    border-left:4px solid #f7768e;
+    padding:8px;
+    margin-bottom:8px;
 }
 
-.weather-title {
-  text-align: center;
-  color: #c0caf5;
-  font-size: 0.85rem;
-  margin-bottom: 6px;
+.weather-title{
+    text-align:center;
+    color:#c0caf5;
+    font-size:.8rem;
+    margin-bottom:6px;
 }
 
-.weather-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+#weather-icon{
+    width:40px;
+    height:40px;
 }
 
-#weather-icon {
-  width: 48px;
-  height: 48px;
+#weather-temp{
+    color:#7aa2f7;
+    font-size:1.2rem;
+    font-weight:bold;
 }
 
-#weather-temp {
-  color: #7aa2f7;
-  font-size: 1.5rem;
-  font-weight: bold;
-  line-height: 1;
-}
-
-#weather-desc {
-  color: #a9b1d6;
-  font-size: 0.8rem;
-  margin-top: 2px;
+#weather-desc{
+    color:#a9b1d6;
+    font-size:.75rem;
 }
 
 /* =========================
@@ -170,37 +180,34 @@
 .visitor-card{
     background:#1a1b26;
     border-radius:8px;
-    border-left:4px solid #7aa2f7;   
+    border-left:4px solid #7aa2f7;
     padding:10px;
-    margin-top:4px;
-    text-align:center;
+    margin-bottom:8px;
 }
 
 .visitor-title{
     color:#c0caf5;
+    text-align:center;
+    font-size:.85rem;
     margin-bottom:8px;
 }
 
-#goatcounter-total{
-    color:#7dcfff;
-    font-weight:bold;
-}
 .visitor-row{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     margin:6px 0;
 }
 
 .visitor-label{
     color:#a9b1d6;
+    font-size:.8rem;
 }
 
 .visitor-value{
     color:#7dcfff;
+    font-size:.9rem;
     font-weight:bold;
-    font-size:1rem;
-}  
+}
 
 /* =========================
    Latest Posts
@@ -211,12 +218,12 @@
     border-radius:8px;
     border-left:4px solid #9ece6a;
     padding:10px;
-    margin-top:4px;
 }
 
 .latest-posts-title{
     color:#c0caf5;
     text-align:center;
+    font-size:.85rem;
     margin-bottom:10px;
 }
 
@@ -238,18 +245,25 @@
 }
 
 .latest-posts-list a{
+    display:block;
     color:#7dcfff;
     text-decoration:none;
-    font-size:.9rem;
+    font-size:.82rem;
+    font-weight:600;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    transition:.2s;
 }
 
 .latest-posts-list a:hover{
     color:#bb9af7;
-} 
-  
+    padding-left:4px;
+}
+
 .latest-post-date{
     color:#8b949e;
-    font-size:.75rem;
+    font-size:.68rem;
     margin-top:2px;
 }
 
