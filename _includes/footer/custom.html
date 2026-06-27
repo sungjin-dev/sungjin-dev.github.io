@@ -1,68 +1,88 @@
-<link rel="stylesheet" href="{{ '/assets/css/sidebar-widget.css' | relative_url }}">
+<!DOCTYPE html>
+<html lang="ko">
 
-<div class="my-custom-sidebar-widget">
-  <details class="mobile-widget-toggle">
-    <summary>시간 및 날씨 보기</summary>
-    <div class="widget-content">
-       <div class="my-clock">
-        <div id="live-time"></div>
-        <div id="live-date"></div>
-      </div> 
-    
-      <div class="weather-card">
-        <div class="weather-title">
-          서울 오늘 날씨
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Blog</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ '/assets/css/sidebar-widget.css' | relative_url }}">
+</head>
+
+<body>
+
+  <!-- ===================== -->
+  <!-- 🔥 사이드바 위젯 -->
+  <!-- ===================== -->
+
+  <div class="my-custom-sidebar-widget">
+
+    <details class="mobile-widget-toggle">
+      <summary>시간 및 날씨 보기</summary>
+
+      <div class="widget-content">
+
+        <!-- 시계 -->
+        <div class="my-clock">
+          <div id="live-time"></div>
+          <div id="live-date"></div>
         </div>
-        <div class="weather-body">
-          <img
-            id="weather-icon"
-            src=""
-            alt="weather">
-          <div class="weather-info">
-            <div id="weather-temp">--°C</div>
-            <div id="weather-desc">불러오는 중...</div>
+
+        <!-- 날씨 -->
+        <div class="weather-card">
+          <div class="weather-title">서울 오늘 날씨</div>
+
+          <div class="weather-body">
+            <img id="weather-icon" src="" alt="weather">
+
+            <div class="weather-info">
+              <div id="weather-temp">--°C</div>
+              <div id="weather-desc">불러오는 중...</div>
+            </div>
           </div>
         </div>
-      </div>
-         <div class="visitor-card">
-           <div class="visitor-title">
-              👤 Visitors
-           </div>
-  
-           <div id="goatcounter-total">
-          방문자 로딩중...
+
+        <!-- 방문자 -->
+        <div class="visitor-card">
+          <div class="visitor-title">👤 Visitors</div>
+          <div id="goatcounter-total">로딩중...</div>
         </div>
-      </div>
-      <div class="latest-posts-card">
 
-        <div class="latest-posts-title">
-          Latest Posts
+        <!-- 최신 글 -->
+        <div class="latest-posts-card">
+          <div class="latest-posts-title">Latest Posts</div>
+
+          <ul class="latest-posts-list">
+            {% for post in site.posts limit:3 %}
+              <li>
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                <div class="latest-post-date">
+                  {{ post.date | date: "%Y.%m.%d" }}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
-      
-        <ul class="latest-posts-list">
-          {% for post in site.posts limit:3 %}
-            <li>
-              <a href="{{ post.url | relative_url }}">
-                {{ post.title }}
-              </a>
-      
-              <div class="latest-post-date">
-                {{ post.date | date: "%Y.%m.%d" }}
-              </div>
-            </li>
-          {% endfor %}
-        </ul>
-      
+
       </div>
-    </div>
-  </details>
-</div>
+    </details>
 
-<script src="{{ '/assets/js/sidebar-widget.js' | relative_url }}"></script>
+  </div>
 
-<script
-data-goatcounter="https://tjdwlsl888.goatcounter.com/count"
-async
-src="https://gc.zgo.at/count.js">
-</script>
+  <!-- ===================== -->
+  <!-- JS (중요: body 끝부분) -->
+  <!-- ===================== -->
 
+  <script src="{{ '/assets/js/sidebar-widget.js' | relative_url }}"></script>
+
+  <!-- GoatCounter (반드시 body 끝) -->
+  <script
+    data-goatcounter="https://tjdwlsl888.goatcounter.com/count"
+    async
+    src="https://gc.zgo.at/count.js">
+  </script>
+
+</body>
+</html>
