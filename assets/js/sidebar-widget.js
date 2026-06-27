@@ -19,19 +19,11 @@ function initSidebar() {
 
     if (!sidebar || !widget) return;
 
-    // 1. 사이드바 영역 확보 (강제)
-    sidebar.style.display = "block";
-    sidebar.style.minHeight = "200px"; 
-
-    // 2. 위젯 스타일 강제 초기화 (CSS 충돌 방지)
-    widget.style.display = "block"; // 숨겨져 있는 것을 강제로 보여줌
-    widget.style.visibility = "visible";
-    widget.style.opacity = "1";
-    widget.style.height = "auto";
-    widget.style.minHeight = "50px";
-
-    // 3. 이동
+    widget.style.display = "block";
     sidebar.appendChild(widget);
+
+    // [핵심] 브라우저 레이아웃을 강제로 재계산하게 함
+    document.body.offsetHeight; 
 }
 // =======================
 // CLOCK
