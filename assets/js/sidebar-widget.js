@@ -21,9 +21,7 @@ function initSidebar() {
 
     widget.style.display = "block";
     sidebar.appendChild(widget);
-
-    // [핵심] 브라우저 레이아웃을 강제로 재계산하게 함
-    document.body.offsetHeight; 
+}
 }
 // =======================
 // CLOCK
@@ -66,7 +64,9 @@ async function loadWeather() {
             `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric&lang=kr`
         );
 
-        if (!res.ok) return;
+        if (!res.ok) {
+            throw new Error("weather API failed");
+        }
 
         const data = await res.json();
 
@@ -123,7 +123,20 @@ function waitForElement(selector, callback) {
     if (el) {
         callback(el);
     } else {
-        setTimeout(() => waitForElement(selector, callback), 100);
+        function waitForElement(selector, callback) {
+    const el = document.querySelector(selector);
+    if (el) return callback(el);
+
+    const observer = new MutationObserver(() => {
+        const el = document.querySelector(selector);
+        if (el) {
+            observer.disconnect();
+            callback(el);
+        }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+}
     }
 }
 
