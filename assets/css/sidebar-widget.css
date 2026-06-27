@@ -8,11 +8,14 @@
 }
 
 .my-custom-sidebar-widget {
-    margin-top: 1rem;
-    padding-top: .8rem;
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
     border-top: 1px dashed #565f89;
 }
 
+/* =========================
+   TOGGLE
+========================= */
 .mobile-widget-toggle {
     margin: 0;
     padding: 0;
@@ -20,24 +23,28 @@
 
 .mobile-widget-toggle summary {
     cursor: pointer;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
 }
 
 .widget-content {
     margin-top: 4px;
 }
 
+/* =========================
+   CLOCK
+========================= */
 .my-clock {
     text-align: center;
     background: #1a1b26;
     border-radius: 8px;
     border-left: 4px solid #bb9af7;
-    padding: 8px;
+    padding: 7px;
     margin-bottom: 8px;
 }
 
 #live-time {
-    font-size: 1.35rem;
+    font-size: 1.15rem;   /* ↓ 줄임 */
     font-weight: bold;
     color: #7dcfff;
     font-family: Consolas, monospace;
@@ -46,99 +53,110 @@
 
 #live-date {
     color: #9ece6a;
-    font-size: .75rem;
-    margin-top: 3px;
+    font-size: 0.7rem;    /* ↓ 줄임 */
+    margin-top: 2px;
 }
 
+/* =========================
+   WEATHER
+========================= */
 .weather-card {
     background: #1a1b26;
     border-radius: 8px;
     border-left: 4px solid #e0af68;
-    padding: 10px;
+    padding: 9px;
     margin-bottom: 8px;
 }
 
 .weather-title {
     text-align: center;
     color: #c0caf5;
-    font-size: .82rem;
-    margin-bottom: 6px;
+    font-size: 0.75rem;   /* ↓ 줄임 */
+    margin-bottom: 5px;
 }
 
 .weather-body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 #weather-icon {
-    width: 42px;
-    height: 42px;
+    width: 38px;   /* ↓ 줄임 */
+    height: 38px;
 }
 
 #weather-temp {
     color: #7aa2f7;
-    font-size: 1.3rem;
+    font-size: 1.1rem;  /* ↓ 줄임 */
     font-weight: bold;
 }
 
 #weather-desc {
     color: #a9b1d6;
-    font-size: .78rem;
+    font-size: 0.72rem;  /* ↓ 줄임 */
 }
 
+/* =========================
+   VISITOR
+========================= */
 .visitor-card {
     background: #1a1b26;
     border-radius: 8px;
     border-left: 4px solid #7aa2f7;
-    padding: 10px;
+    padding: 9px;
     margin-bottom: 8px;
     text-align: center;
 }
 
 .visitor-title {
     color: #c0caf5;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-size: 0.85rem;  /* ↓ 줄임 */
 }
 
 /* =========================
-   커스텀 방문자 뱃지 디자인
+   BADGE
 ========================= */
 .my-beautiful-badge {
-  display: inline-flex;
-  border-radius: 6px;
-  overflow: hidden;
-  font-size: 0.75rem;
-  font-weight: bold;
-  font-family: Consolas, monospace;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  margin-top: 4px;
+    display: inline-flex;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.7rem;  /* ↓ 줄임 */
+    font-weight: bold;
+    font-family: Consolas, monospace;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-top: 4px;
 }
 
 .badge-label {
-  background: #3b4261; /* 부드러운 남색 */
-  color: #c0caf5; /* 연한 글자색 */
-  padding: 4px 8px;
+    background: #3b4261;
+    color: #c0caf5;
+    padding: 3px 7px;   /* ↓ 줄임 */
 }
 
 .badge-value {
-  background: #7aa2f7; /* 블로그 테마 파란색 */
-  color: #1a1b26; /* 진한 배경색 */
-  padding: 4px 8px;
+    background: #7aa2f7;
+    color: #1a1b26;
+    padding: 3px 7px;   /* ↓ 줄임 */
 }
 
+/* =========================
+   POSTS
+========================= */
 .latest-posts-card {
     background: #1a1b26;
     border-radius: 8px;
     border-left: 4px solid #9ece6a;
-    padding: 10px;
+    padding: 9px;
 }
 
 .latest-posts-title {
     text-align: center;
     color: #c0caf5;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;  /* ↓ 줄임 */
 }
 
 .latest-posts-list {
@@ -148,19 +166,15 @@
 }
 
 .latest-posts-list li {
-    padding: 8px 0;
+    padding: 7px 0;
     border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.latest-posts-list li:last-child {
-    border: none;
 }
 
 .latest-posts-list a {
     display: block;
     color: #7dcfff;
     text-decoration: none;
-    font-size: .85rem;
+    font-size: 0.8rem;   /* ↓ 줄임 */
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
@@ -175,6 +189,6 @@
 
 .latest-post-date {
     color: #8b949e;
-    font-size: .72rem;
-    margin-top: 3px;
+    font-size: 0.68rem;  /* ↓ 줄임 */
+    margin-top: 2px;
 }
