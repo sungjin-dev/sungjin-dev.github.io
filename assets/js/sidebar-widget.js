@@ -109,39 +109,34 @@ async function loadWeather() {
 
 loadWeather();
 
-
 // =======================
-// GoatCounter (API fallback)
+// 방문자 수 뱃지에 데이터 넣기 (수정본)
 // =======================
-
-// =======================
-// GoatCounter (API fallback) 수정본
-// =======================
-
 async function loadVisitors() {
-    const el = document.getElementById("goatcounter-total");
-    if (!el) return;
+    const totalBadge = document.getElementById("badge-total");
+    const todayBadge = document.getElementById("badge-today");
+    
+    // HTML 요소를 못 찾으면 중단 (에러 방지)
+    if (!totalBadge || !todayBadge) return;
 
     try {
-        // 1. 올바른 누적 방문자 수 엔드포인트 (TOTAL.json)
         const res = await fetch("https://tjdwlsl888.goatcounter.com/counter/TOTAL.json");
-
         if (!res.ok) throw new Error(`API error: ${res.status}`);
-
         const data = await res.json();
 
-        // 2. GoatCounter는 Today(오늘)를 제공하지 않으므로 Total만 렌더링
-        el.innerHTML = `
-            <div class="visitor-row">
-                <span class="visitor-label">Total Views</span>
-                <span class="visitor-value">${data.count || 0}</span>
-            </div>
-        `;
+        // Total 뱃지 업데이트 (API에서 받아온 숫자 적용)
+        // 쉼표 등이 뱃지 URL을 망가뜨리지 않도록 안전하게 변환(encodeURIComponent)
+        const safeCount = encodeURIComponent(data.count || 0);
+        totalBadge.src = `https://img.shields.io/badge/Total-${safeCount}-7aa2f7?style=flat-square&logo=github`;
+        
+        // Today 뱃지는 GoatCounter API 미지원으로 임시 안내 텍스트 처리
+        todayBadge.src = `https://img.shields.io/badge/Today-Check_Stats-9ece6a?style=flat-square&logo=github`;
 
     } catch (e) {
-        if (el) el.innerHTML = `<span style="color: #f7768e; font-size: 0.8rem;">불러오기 실패</span>`;
+        totalBadge.src = `https://img.shields.io/badge/Total-Error-f7768e?style=flat-square&logo=github`;
         console.error("GoatCounter API Error:", e);
     }
 }
 
-loadVisitors();
+// 핵심 해결책: HTML이 화면에 완전히 로드된 직후에 방문자 수를 불러오도록 설정
+document.addEventListener("DOMContentLoaded", loadVisitors);
