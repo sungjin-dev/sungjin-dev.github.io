@@ -1,56 +1,154 @@
 // =======================
-// 위젯 실행부
+// UTIL SAFE WRAPPER
 // =======================
-document.addEventListener("DOMContentLoaded", () => {
-    initClock();
-    loadWeather();
-    updateVisitorCount();
-});
+function safe(fn) {
+    try {
+        fn();
+    } catch (e) {
+        console.error(e);
+    }
+}
 
-    // 2. 사이드바 내부로 이동 (사이드바 클래스가 없을 경우 대비)
+// =======================
+// SIDEBAR MOVE + RESPONSIVE TOGGLE
+// =======================
+
+function initSidebar() {
     const sidebar = document.querySelector(".sidebar");
+    const widget = document.querySelector(".my-custom-sidebar-widget");
+    const details = document.querySelector(".mobile-widget-toggle");
+
     if (sidebar && widget) {
         sidebar.appendChild(widget);
-    } else {
-        console.warn("사이드바 요소를 찾을 수 없어 위젯을 원래 위치에 둡니다.");
     }
 
-    // 3. 기능 초기화
-    initClock();
-    loadWeather();
-    updateVisitorCount();
-});
+    function handleResize() {
+        if (!details) return;
 
-// 나머지 함수들은 그대로 두셔도 됩니다.
-function initClock() {
-    const timeEl = document.getElementById("live-time");
-    const dateEl = document.getElementById("live-date");
-    if (!timeEl && !dateEl) return;
-    setInterval(() => {
-        const now = new Date();
-        if (timeEl) timeEl.textContent = now.toLocaleTimeString("ko-KR");
-        if (dateEl) dateEl.textContent = now.toLocaleDateString("ko-KR");
-    }, 1000);
+        // 처음 로딩 기준으로만 반응 (사용자 조작 방해 방지)
+        if (!details.dataset.userTouched) {
+            details.open = window.innerWidth >= 768;
+        }
+    }
+
+    if (details) {
+        details.addEventListener("toggle", () => {
+            details.dataset.userTouched = "true";
+        });
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
 }
+
+// =======================
+// CLOCK
+// =======================
+
+function initClock() {
+    function updateClock() {
+        const now = new Date();
+
+        const timeEl = document.getElementById("live-time");
+        const dateEl = document.getElementById("live-date");
+
+        if (timeEl) {
+            timeEl.textContent = now.toLocaleTimeString("ko-KR", {
+                hour12: false,
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            });
+        }
+
+        if (dateEl) {
+            dateEl.textContent = now.toLocaleDateString("ko-KR", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                weekday: "short"
+            });
+        }
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+}
+
+// =======================
+// WEATHER
+// =======================
 
 async function loadWeather() {
+    const API_KEY = "b5b782b414c92d9aae875d5e025317b2"; // 
+
     const tempEl = document.getElementById("weather-temp");
-    if (!tempEl) return;
+    const descEl = document.getElementById("weather-desc");
+    const iconEl = document.getElementById("weather-icon");
+
     try {
-        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=b5b782b414c92d9aae875d5e025317b2&units=metric&lang=kr`);
+        const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}&units=metric&lang=kr`
+        );
+
+        if (!res.ok) throw new Error(`Weather API error: ${res.status}`);
+
         const data = await res.json();
-        tempEl.textContent = `${Math.round(data.main.temp)}°C`;
-        document.getElementById("weather-desc").textContent = data.weather[0].description;
-        document.getElementById("weather-icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-    } catch (e) { console.error(e); }
+
+        if (tempEl) tempEl.textContent = `${Math.round(data.main.temp)}°C`;
+        if (descEl) descEl.textContent = data.weather?.[0]?.description ?? "정보 없음";
+        if (iconEl) {
+            iconEl.src = `https://openweathermap.org/img/wn/${data.weather?.[0]?.icon}@2x.png`;
+        }
+
+    } catch (e) {
+        console.error(e);
+        if (descEl) descEl.textContent = "날씨 로드 실패";
+    }
 }
+
+// =======================
+// VISITOR COUNT (GoatCounter API)
+// =======================
+
+const BIN_ID = "6a4007bd79fa234c87d986e4";
+const API_KEY = "$2a$10$c0EVRFLqpSK90EQ3cp0/SuOTsqNX7tu225aPB4hr7dtbli.EhTEnW";
 
 async function updateVisitorCount() {
     const el = document.getElementById("gc-total-count");
     if (!el) return;
+
     try {
-        const res = await fetch(`https://api.jsonbin.io/v3/b/6a4007edf5f4af5e2939c15b`, { headers: { "X-Master-Key": "$2a$10$c0EVRFLqpSK90EQ3cp0/SuOTsqNX7tu225aPB4hr7dtbli.EhTEnW" } });
+        // 1. 현재 값 가져오기
+        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+            headers: {
+                "X-Master-Key": API_KEY
+            }
+        });
+
         const data = await res.json();
-        el.textContent = (data?.record?.count ?? 0) + 1;
-    } catch (e) { console.error(e); }
+        let count = data.record.count || 0;
+
+        // 2. +1 증가
+        count++;
+
+        // 3. 저장
+        await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "X-Master-Key": API_KEY
+            },
+            body: JSON.stringify({ count })
+        });
+
+        // 4. UI 반영
+        el.textContent = count;
+
+    } catch (e) {
+        console.error("visitor error:", e);
+        el.textContent = "Error";
+    }
 }
+
+document.addEventListener("DOMContentLoaded", updateVisitorCount);
