@@ -80,9 +80,9 @@ self.after_request_funcs  = { None: [my_after_func], 'blueprint_name': [] }
 
 ## 5  심화 예시 - 백엔드 (Flask) : 요청(request)마다 고유 ID(영수증 번호) 발급
 
-요청이 들어오는 순간(@app.before_request) `고유 ID`를 만들어 Flask의 임시 저장소(`g`)에 넣어두고, 응답이 나갈 때(@app.after_request) `헤더`에 이 ID를 꺼내서 붙여주는 구조.
+요청이 들어오는 순간 `@app.before_request` 데코레이터에서 `고유 ID`(uuid 등)를 만들어 Flask의 임시 저장소(`g`)에 넣어두고, 응답이 나갈 때 `@app.after_request` header에 이 ID를 꺼내서 붙여주는 구조다. 
 <br><br>
-코드가 살짝 길긴 하지만 아주 흥미로운 주제라서 들고 와봤다. 
+코드와 설명이 살짝 길긴 하지만 아주 흥미로운 주제라서 들고 와봤다. 
 
 <br><br>
 
@@ -93,21 +93,24 @@ from flask import Flask, jsonify, g
 
 app = Flask(__name__)
 ```
+플라스크 클래스에서 app이라는 객체로 인스턴스화 해준다. 
 <br><br>
 
-참고로 `jsonify`는 플라스크(Flask)에서 데이터(파이썬의 딕셔너리, 리스트 등)를 `JSON 형식`의 응답 객체로 쉽고 깔끔하게 변환해 주는 함수다.
+참고로 import된 `jsonify`는 플라스크(Flask)에서 데이터(파이썬의 딕셔너리, 리스트 등)를 `JSON 형식`의 응답 객체로 쉽고 깔끔하게 변환해 주는 함수다.
 즉 파이썬 데이터를 웹 API가 이해할 수 있는 JSON 문자열로 바꿔서 돌려보내 준다.  
 
 # 1. 요청이 서버에 도착하자마자 실행
 ```
-@app.before_request   # 이건 'before'다. 
+@app.before_request   
 def assign_request_id():
     # uuid4를 사용해 절대 겹치지 않는 무작위 난수 생성 (예: a8f9-11c2...)
-    g.request_id = str(uuid.uuid4())  # g는 "이 요청(Request)이 살아있는 동안만 유효한 저장소"
+    g.request_id = str(uuid.uuid4())  # g.request_id에다가 난수를 새겨 저장한다. 
     
-    #  모든 서버 로그에 g.request_id를 남김.
+    #  모든 서버 로그에 g.request_id를 남김. 
     # print(f"[REQ: {g.request_id}] 결제 요청 들어옴")
 ```
+<br><br>
+>참고 : 로그는 '과정'을 저장하는 것을 말한다. 로그는 추가만 가능(Append-only)하며 이미 기록된 내용을 수정하거나 삭제하지 않는다. 시간 순으로 그냥 밑으로 쭉 이어 붙인다. 
 
 # 2. 클라이언트에게 응답을 보내기 직전에 실행
 
@@ -202,18 +205,16 @@ HTML
 ```
 <br><br>
 ><로직 흐름>
-1. Request 도착 → before_request가 UUID 생성 후 g에 저장.
+1. Request 도착 → before_request가 UUID 생성 후 `g.request_id`에 그 난수번호로 찍고나서 g라는 임시저장소에 저장. (요청별 독립적으로 운영)
+ <br><br>
+2. View 실행 → 서버 내부 로직에서 에러 발생 시 log.error(f"{g.request_id} 에러 발생!") 기록. 로그에 `g.request_id`가 전부 찍혀있다.
+<br><br>
+4. 서버가 Response 객체 생성 → after_request가 임시저장소 g 객체에서 ID를 꺼내 헤더에 삽입. 서버 내부 휘발성 데이터(g)에서 브라우저라는 외부 공간으로 영구적으로 전달
+<br><br>
+5. 결과: 사용자 화면엔 "고객센터 문의 코드: a8f9..." 출력. 
+<br><br>
 
-2. View 실행 → 에러 발생 시 log.error(f"{g.request_id} 에러 발생!") 기록.
-
-3. Response 생성 → after_request가 g에서 ID를 꺼내 헤더에 삽입.
-
-4. 결과: 사용자 화면엔 "고객센터 문의 코드: a8f9..." 출력.
+이렇게 헤더에 `X-Request-ID`가 붙어 있다면, 사용자가 에러 화면을 캡처해서 보내거나 "번호가 req_`난수(uuid)`이었어요"라고 알려줄 수 있게 된다. 그러면 개발자는 로그에서 req_난수(uuid)만 검색하면 1초 만에 그 사용자가 겪은 모든 과정을 복구할 수 있다. 
 
 <br><br>
-# 4. 왜 하필 `g 객체`를 쓸까?
-<br><br>
-Flask의 g (global) 객체는 딱 **한 번의 HTTP 요청(Request) 안에서만** 유지되는 `임시 보관함`이다. A유저와 B유저가 동시에 결제를 요청해도 g 객체는 서로 철저히 분리되므로, ID가 꼬이거나 뒤섞일 위험 없이 안전하게 헤더까지 데이터를 전달할 수 있다.
-<br><br>
-사용자가 보는 화면에는 "알 수 없는 오류"라고 뭉뚱그려 보여주어 내부 시스템 구조(DB 에러 등)를 해커에게 숨길 수 있으면서도, 개발자는 고유 코드를 통해 완벽하게 디버깅할 수 있는 일석이조의 보안/운영 테크닉인 셈이다. 
-
+총평을 해보자면, 사용자가 보는 화면에는 "알 수 없는 오류"라고 뭉뚱그려 보여주어 내부 시스템 구조(DB 에러 등)를 해커에게 숨길 수 있으면서도, 개발자는 고유 코드를 통해 완벽하게 디버깅할 수 있는 일석이조의 보안/운영 테크닉인 셈이다. 다음 시간에는 `g`객체에 대해서 더 심도 있게 알아 보자!
