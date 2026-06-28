@@ -12,8 +12,6 @@ toc_sticky: true
 
 `endpoint`라는 영단어를 직역하면 '끝점'이다. 웹 개발에서는 쉽게 말해 "클라이언트(브라우저)와 서버가 데이터를 주고받기 위해 만나는 최종 목적지"를 말한다.
 
-특히 Flask 안에서 `request.endpoint`는 조금 더 특별하다.
-
 <예시>
 ```python
 Python@app.route('/user/login-page')  # URL 
@@ -22,12 +20,13 @@ def login():                    #  Endpoint
 ```
 <br><br>   
 
-> request.path (URL)   ->   /user/login-page    
-  request.endpoint(엔드포인트)  ->   login (파이썬 함수 이름)
+> `request.path (URL)`   ->   /user/login-page    
+  `request.endpoint(엔드포인트)`  ->   login (파이썬 함수 이름)
 
 쉽게 말하자면 플라스크(Flask)에서 엔드포인트(Endpoint)는 기본적으로 '라우팅된 함수를 가리키는 고유한 이름'을 의미한다. 
 
 하지만 이렇게 endpoint 옵션을 통해 강제로 바꿀 수도 있다. 
+
 ```python
 @app.route('/login', endpoint='login_page')
 def login():
@@ -56,6 +55,7 @@ def require_login():
 <br><br> 
 하지만 Endpoint(함수 이름)를 기준으로 코드를 짜면 이런 불상사를 미연이 방지할 수 있다. 
 <br><br> 
+
 ```Python
 # Endpoint를 기준으로 검사할 때
 
@@ -73,7 +73,7 @@ def require_login():
 
 만약 `member_bp`라는 블루프린트 안에 login 함수가 있다면, 
 <br><br> 
-엔드포인트 이름은 자동으로 **member_bp.login**처럼 `[블루프린트이름].[함수이름]` 형태로 합쳐집니다. 
+엔드포인트 이름은 자동으로 **member_bp.login**처럼 `[블루프린트이름].[함수이름]` 형태로 합쳐진다. 
 <br><br> 
 블루프린트를 쓴다면 이 점을 꼭 기억하자. 
                  
@@ -82,7 +82,7 @@ def require_login():
 
 ## 4. endpoint와 url_for
 
-아마 설명을 들으면서 처음부터 `url_for`를 떠올린 분들이 많을거다.
+아마 endpoint 설명을 들으면서 처음부터 `url_for`를 떠올린 분들이 많을거다.
 <br><br> 
 이 둘은 Flask에서 영혼의 단짝이자 동전의 양면 같은 관계이다. 
 <br><br> 
