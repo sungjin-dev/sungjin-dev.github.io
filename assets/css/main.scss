@@ -343,3 +343,13 @@ table a:hover {
     padding-top: 0;
   }
 }
+
+
+.archive__item {
+    margin-bottom: 15px; /* 항목 아래 여백을 15px로 늘림 */
+}
+
+/* 글자 줄 간격 조정 */
+.archive__item-title {
+    line-height: 1.5; /* 글자 간의 행간을 넓게 */
+}
