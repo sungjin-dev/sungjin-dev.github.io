@@ -13,6 +13,6 @@ sidebar_category:
         url: /flask/
   
   - title: "필기노트"
-    children:
-      - title: "전체보기"
-        url: /wrong-note/
+  children:
+    - title: "전체보기"
+      url: /year-archive/
