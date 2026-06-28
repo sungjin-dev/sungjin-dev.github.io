@@ -31,12 +31,11 @@ toc_sticky: true
 1. 일반적인 header 추가 
 
 ```python
-
 @app.after_request
 def add_header(response):
     response.headers['X-Custom-Header'] = 'MyValue'
     response.headers['Cache-Control'] = 'no-cache'  
-    return response    # 꼭 response 객체를 반환하자
+    return response  # 꼭 response 객체를 반환하자
 
 ```
 
