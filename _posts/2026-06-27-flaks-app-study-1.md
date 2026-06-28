@@ -7,7 +7,6 @@ tags:
   - Flask
 toc: true
 toc_sticky: true
-published: false
 --- 
 
 Flask의 app 객체에는 요청 생명주기(Lifecycle)를 관리하거나 전역적인 처리를 도와주는 매우 유용한 데코레이터들이 많다.
