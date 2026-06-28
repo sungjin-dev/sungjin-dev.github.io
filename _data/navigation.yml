@@ -1,5 +1,3 @@
-
-# 왼쪽 사이드바에 들어갈 카테고리 목록
 sidebar_category:
   - title: "개발 공부 기록"
     children:
@@ -11,8 +9,8 @@ sidebar_category:
         url: /css/
       - title: "Flask"
         url: /flask/
-  
+
   - title: "필기노트"
-  children:
-    - title: "전체보기"
-      url: /year-archive/
+    children:
+      - title: "전체보기"
+        url: /year-archive/
