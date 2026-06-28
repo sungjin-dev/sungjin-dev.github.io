@@ -17,7 +17,7 @@ toc_sticky: true
 <br><br>
 비유적으로 표현해보자면, `@app.after_request`는 플라스크의 **'요청 처리 흐름(Request Lifecycle)'**에서 중간에 훅~!(Hook) 끼어드는 갈고리 같은 존재다.
 
-# 1 .주요 용도: 공통 HTTP 헤더 추가(`CORS` 설정 등), 응답 로그 기록 등이 있다. 
+## 2 .주요 용도: 공통 HTTP 헤더 추가(`CORS` 설정 등), 응답 로그 기록 등이 있다. 
 <br><br>
 주의점: 반드시 `response 객체`를 **인자**로 받고, 수정된 `response 객체`를 **반환**해야 한다. (처리 중 에러가 발생했다면 실행 X.)
 <br><br>
@@ -33,7 +33,7 @@ def add_header(response):
 
 `response.headers['Cache-Control'] = 'no-cache'` 애초에 데이터를 보낼 때 `@app.after_request`로 no-cache 스티커를 붙여서 브라우저가 낡은 데이터를 쓰지 않도록 통제한다. 
 
-# 2. 사용 목적
+## 3. 사용 목적
 
 > 로그 기록: 요청이 끝날 때마다 응답 상태 코드(200, 404 등)를 기록하여 모니터링할 때 사용.
 
@@ -41,23 +41,27 @@ def add_header(response):
 
 보안: 모든 페이지에 보안 관련 헤더(예: Content-Security-Policy)를 적용할 때 일일이 함수마다 넣지 않고 한곳에서 해결 가능하다. 
 
-# 3  심화 예시 - 백엔드 (Flask) : 요청(request)마다 고유 ID(영수증 번호) 발급
+## 4  심화 예시 - 백엔드 (Flask) : 요청(request)마다 고유 ID(영수증 번호) 발급
 
 요청이 들어오는 순간(@app.before_request) `고유 ID`를 만들어 Flask의 임시 저장소(`g`)에 넣어두고, 응답이 나갈 때(@app.after_request) `헤더`에 이 ID를 꺼내서 붙여주는 구조.
 <br><br>
 코드가 살짝 길긴 하지만 아주 흥미로운 주제라서 들고 와봤다. 
+
 <br><br>
-``~Python
+
+```Python
 
 import uuid
 from flask import Flask, jsonify, g
 
 app = Flask(__name__)
 ```
+<br><br>
+
 참고로 `jsonify`는 플라스크(Flask)에서 데이터(파이썬의 딕셔너리, 리스트 등)를 `JSON 형식`의 응답 객체로 쉽고 깔끔하게 변환해 주는 함수다.
 즉 파이썬 데이터를 웹 API가 이해할 수 있는 JSON 문자열로 바꿔서 돌려보내 준다.  
 
-**1. 요청이 서버에 도착하자마자 실행**
+# 1. 요청이 서버에 도착하자마자 실행
 ```
 @app.before_request   # 이건 'before'다. 
 def assign_request_id():
@@ -68,19 +72,39 @@ def assign_request_id():
     # print(f"[REQ: {g.request_id}] 결제 요청 들어옴")
 ```
 
-**2. 클라이언트에게 응답을 보내기 직전에 실행**
+# 2. 클라이언트에게 응답을 보내기 직전에 실행
 
-```
+앞서 설명했듯이 응답이 가기 전 훅~ 헤더(header)를 추가한다. 
+<br><br>
+```python
 @app.after_request
 def append_request_id_to_header(response):
     # g 객체에 저장해뒀던 고유 ID를 꺼내서 'X-Request-ID' 헤더에 찰싹 붙임
     response.headers['X-Request-ID'] = getattr(g, 'request_id', 'unknown')
     return response
 ```
+<br><br>
+참고로 여기서 `getattr()`은 python의 내장함수다. 
+
+여기서 눈치 빠른 사람은 `get()`함수에서 따왔다는걸 이미 캐치했을 것이다. 에러를 뿜어내고 프로그램이 셧다운될 바에 반환값을 내고 서비스를 유지시키는 거다. 
+
+세부적으로 살펴보면, 
+<br><br>
+`getattr(객체, '속성이름', '기본값')` 순서로 매개변수가 구성되는데
+<br><br>
+>`g`는 우리가 찾을 객체플라스크의 전역 저장소인 g 객체다.
+주의할 점은 현재 처리 중인 `요청(Request) 안`에서만 유지되는 전역 저장소다.
+
+>'request_id'는 찾고 싶은 속성 이름을 말하는데, `g` 안에 저장되어 있을 것으로 예상되는 이름이다.
+주의할 점은 `request_id`는 '유저 ID(User ID)'와는 완전히 다른 개념이다. 어떤 요청인지 식별하는 것으로 해당 요청이 끝날 때까지만 유효하다. 
+
+'unknown'는 기본값. 즉 Default 값이다. 만약 g 안에 request_id가 없다면 대신 반환할 값을 말한다. `get()`사용하듯이 넣는거다.  
 
 **3. 에러가 발생한 가상결제 시뮬레이션 API**
 
-```
+<백엔드 에러 발생 상황 예시>
+
+```python 
 @app.route('/api/payment', methods=['POST'])
 def process_payment():
     # DB 연결 타임아웃 등 치명적인 에러가 발생했다고 가정
@@ -94,7 +118,7 @@ if __name__ == '__main__':
 ```
 
 # 3. 프론트엔드 (HTML/JS) : 헤더 읽어서 에러 화면에 띄우기
-버튼을 누르면 에러가 나는 백엔드 API를 호출한다. 이때 프론트엔드는 본문(Body)의 에러 메시지뿐만 아니라, 헤더(Header)에 담긴 X-Request-ID를 꺼내서 고객센터 안내용 코드로 사용하는 것.
+버튼을 누르면 에러가 나는 백엔드 API를 호출. 이때 프론트엔드는 본문(Body)의 에러 메시지뿐만 아니라, 헤더(Header)에 담긴 X-Request-ID를 꺼내서 고객센터로 보내면 된다. 
 
 <br><br>
 <예시>
@@ -150,8 +174,9 @@ HTML
 4. 결과: 사용자 화면엔 "고객센터 문의 코드: a8f9..." 출력.
 
 <br><br>
-"왜 하필 `g 객체`를 쓸까?"
+# 4. 왜 하필 `g 객체`를 쓸까?
 <br><br>
-Flask의 g (global) 객체는 한 번의 HTTP 요청(Request) 안에서만 유지되는 임시 보관함이다. A유저와 B유저가 동시에 결제를 요청해도 g 객체는 서로 철저히 분리되므로, ID가 꼬이거나 뒤섞일 위험 없이 안전하게 헤더까지 데이터를 전달할 수 있다.
+Flask의 g (global) 객체는 딱 **한 번의 HTTP 요청(Request) 안에서만** 유지되는 `임시 보관함`이다. A유저와 B유저가 동시에 결제를 요청해도 g 객체는 서로 철저히 분리되므로, ID가 꼬이거나 뒤섞일 위험 없이 안전하게 헤더까지 데이터를 전달할 수 있다.
 <br><br>
 사용자가 보는 화면에는 "알 수 없는 오류"라고 뭉뚱그려 보여주어 내부 시스템 구조(DB 에러 등)를 해커에게 숨길 수 있으면서도, 개발자는 고유 코드를 통해 완벽하게 디버깅할 수 있는 일석이조의 보안/운영 테크닉인 셈이다. 
+
