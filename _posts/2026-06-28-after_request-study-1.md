@@ -7,6 +7,7 @@ tags:
   - Flask
 toc: true
 toc_sticky: true
+published : false
 --- 
 
 오늘은 `@app.after_request`에 대해서 알아보자. 
