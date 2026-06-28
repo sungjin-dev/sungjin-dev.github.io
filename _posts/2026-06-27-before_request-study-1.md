@@ -88,9 +88,13 @@ def delete():
 이렇게 `*(Asterisk)`가 붙으면 `가변 인자(Variable Arguments)`라고 부른다. common.css에서 `*{ 속성:값 }` 이런식으로 전체 속성을 부여할 때도 이 `*`가 쓰였다. 
 
 # 2. 악성 IP 차단 (블랙리스트 필터링)
+
 특정 IP에서 디도스(DDoS) 공격을 하거나 비정상적인 요청을 마구 보내 서버 리소스를 낭비하기 전에 차단해 버리는 방법이다. 
+
 <br><br>
+
 <사용 예시>
+
 ```Python
 
 from flask import request, abort
@@ -104,9 +108,11 @@ def block_malicious_ips():
     
     if client_ip in BLACKLIST_IPS:
         # 403 Forbidden 에러를 던져서 즉시 접근을 막음
-        abort(403) 
+        abort(403)
+
 ```
 <br><br>
+
  `abort(403)`을 실행하면 파이썬 코드는 즉시 실행을 멈춰버리며, 해당 오류 페이지로 바로 간다. **남은 코드는 절대 실행되지 않는다.**
  
 <심화 학습>
