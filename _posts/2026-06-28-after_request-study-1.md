@@ -236,6 +236,8 @@ if __name__ == '__main__':
 
 <예시>
 
+먼저 에러 메시지를 표시할 영역을 HTML에 준비한다. 
+
 ```HTML
 
 <!DOCTYPE html>
@@ -249,8 +251,12 @@ if __name__ == '__main__':
     <button id="payBtn">17,950원 결제하기</button>
     
     <div id="errorBox"></div>
+```
 
-    <script>
+이제 fetch 요청을 통해 서버 응답 헤더에서 X-Request-ID를 추출한다. 
+
+```JavaScript
+
         document.getElementById('payBtn').addEventListener('click', () => {
             fetch('/api/payment', { method: 'POST' })
                 .then(response => {
@@ -273,13 +279,9 @@ if __name__ == '__main__':
                     console.error("네트워크 에러:", error);
                 });
         });
-    </script>
-</body>
-</html>
-
 ```
 
-예시를 위해 어쩔 수 없이 전부 인라인 방식으로 코딩했지만 실전에서는 html,js,css 전부 구분해서 external방식으로 작업하는게 좋다. 
+주의) 예시를 위해 어쩔 수 없이 전부 인라인 방식으로 코딩했지만 실전에서는 html,js,css 전부 구분해서 external방식으로 작업하는게 좋다. 
 
 <br><br>
 
