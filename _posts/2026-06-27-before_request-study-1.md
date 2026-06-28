@@ -118,7 +118,7 @@ def block_malicious_ips():
 <심화 학습>
 `request.remote_addr`가 진짜 사용자의 IP가 아닐 수 있다. 만약 웹 서비스 앞에 `Nginx`나 `Apache` 같은 **웹 서버(Reverse Proxy)**를 두거나, `AWS의 로드 밸런서(ALB)` 같은 것을 사용 중이라면 remote_addr에는 실제 사용자의 IP가 아니라 **'앞단에 있는 서버의 IP'**가 찍히게 된다. 
 
-해결 방법: 이런 환경에서는 프록시 서버가 실제 사용자의 IP를 `X-Forwarded-For`라는 header에 담아서 넘겨주면 된다. 이 경우, request.remote_addr 대신 `request.headers.get('X-Forwarded-For')`를 사용하거나, 플라스크의 `ProxyFix 미들웨어`를 설정해야 정확한 IP를 얻을 수 있다. 참고하자!
+해결 방법: 이런 환경에서는 프록시 서버가 실제 사용자의 IP를 `X-Forwarded-For`라는 header에 담아서 넘겨주면 된다. 이 경우, `request.remote_addr` 대신 `request.headers.get('X-Forwarded-For')`를 사용하거나, 플라스크의 `ProxyFix 미들웨어`를 설정해야 정확한 IP를 얻을 수 있다. 참고하자!
  
 # 3. 개인 프로젝트 모듈을 점검할 때 
 
@@ -147,6 +147,7 @@ def home():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+
 ```
 <br><br>
 이처럼 라우트 함수 실행 전,  즉 함수 로직이 실현되기 전에 개발자 모드로 조건을 충족시켜서 모듈을 돌려볼 수 있다.
