@@ -1,6 +1,6 @@
 ---
 title: "플라스크(Flask)에서 endpoint활용법"
-excerpt: "request.endpoint"
+excerpt: "url_for와의 관계"
 categories: [Flask]
 tags:
   - Python
