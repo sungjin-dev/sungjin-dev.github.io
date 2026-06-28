@@ -78,7 +78,7 @@ def add_cors_headers(response):
 `Access-Control-Allow-Headers`: 프론트엔드가 요청 시 보낸 커스텀 헤더(예: 인증을 위한 Authorization 토큰 등)를 서버가 허용할지 정의
 
 주의사항: `Preflight` 요청과 `OPTIONS` 메서드
-위의 코드는 일반적인 요청에는 잘 작동하지만, Preflight(사전 확인) 요청이 들어올 때 문제가 될 수 있다. 브라우저는 OPTIONS 메서드로 먼저 서버에게 물어보는데, 이때 서버가 200 OK 응답과 함께 CORS 헤더를 잘 반환해줘야 한다.
+위의 코드는 일반적인 요청에는 잘 작동하지만, `Preflight`(사전 확인) 요청이 들어올 때 문제가 될 수 있다. 브라우저는 `OPTIONS` 메서드로 먼저 서버에게 물어보는데, 이때 서버가 200 OK 응답과 함께 CORS 헤더를 잘 반환해줘야 한다.
 
 만약 위와 같은 수동 설정이 번거롭다면, Flask에서는 Flask-CORS 라이브러리를 사용하는 것이 훨씬 강력하고 권장되는 방법이다.
 
