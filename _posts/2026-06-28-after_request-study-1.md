@@ -1,6 +1,6 @@
 ---
-title: "플라스크(Flask) app객체에 내장된 함수들 2편"
-excerpt: "(@app.after_request)"
+title: "(@app.after_request) 파헤치기 " 
+excerpt: "플라스크(Flask) app객체에 내장된 함수들 2편"
 categories: [Flask]
 tags:
   - Python
@@ -162,8 +162,7 @@ if __name__ == '__main__':
 
 <br><br>
 <예시>
-```
-HTML
+```HTML
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -203,8 +202,11 @@ HTML
 </body>
 </html>
 ```
+
+예시를 위해 어쩔 수 없이 전부 인라인 방식으로 코딩했지만 실전에서는 html,js,css 전부 구분해서 external방식으로 작업하는게 좋다. 
 <br><br>
-><로직 흐름>
+
+<로직 흐름>
 1. Request 도착 → before_request가 UUID 생성 후 `g.request_id`에 그 난수번호로 찍고나서 g라는 임시저장소에 저장. (요청별 독립적으로 운영)
  <br><br>
 2. View 실행 → 서버 내부 로직에서 에러 발생 시 log.error(f"{g.request_id} 에러 발생!") 기록. 로그에 `g.request_id`가 전부 찍혀있다.
