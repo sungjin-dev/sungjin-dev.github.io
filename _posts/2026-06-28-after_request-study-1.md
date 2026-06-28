@@ -43,31 +43,21 @@ def add_header(response):
 
 `response.headers['Cache-Control'] = 'no-cache'` 애초에 데이터를 보낼 때 `@app.after_request`로 no-cache 스티커를 붙여서 브라우저가 낡은 데이터를 쓰지 않도록 통제한다. 
 
-2. CORS 설정 추가
+2. CORS 설정
 
-우선 CORS(Cross-Origin Resource Sharing)란 "Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy" 이 에러메시지 현상의 주인공이다. 
-
-웹 브라우저에는 **'동일 출처 정책(SOP, Same-Origin Policy)'**이라는 보안 규칙이 있다. 이는 "내 도메인에서 가져온 스크립트가 다른 도메인의 데이터에 함부로 접근하지 못하게" 차단하는 것을 말한다. 하지만 서비스가 성장하면서 서버를 분리(예: 프론트엔드는 Vercel, 백엔드는 AWS EC2)하게 되면, 서로 다른 도메인 간의 통신이 필수다. 그러므로 이때 브라우저가 "안전한 요청인지 확인"하는 과정이 바로 **CORS(Cross-Origin Resource Sharing)** 인 것이다. 즉, 서버가 "이 도메인은 내가 신뢰해!"라고 인증마크(헤더)를 달아주는 것
-
-<br><br>
+우선 CORS(Cross-Origin Resource Sharing)란 "Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy" 이 에러 메시지 현상의 주인공이다.
 
 <사용 예시>
-
 ```python
-
 @app.after_request
 def add_cors_headers(response):
-    # 허용할 도메인 설정 (예: http://localhost:3000)
+    # 허용할 도메인 설정
     response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
-    
     # 허용할 HTTP 메서드 설정
     response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-    
     # 허용할 헤더 설정
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-    
     return response
-
 ```
 
 `Access-Control-Allow-Origin`: 브라우저에게 "이 도메인에서 온 요청만 데이터를 읽을 수 있어!"라고 명시. `*`를 사용하면 모든 곳에서 접근이 가능하지만, 보안상 특정 도메인만 적는 것을 지향
