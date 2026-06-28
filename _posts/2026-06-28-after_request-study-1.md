@@ -26,7 +26,9 @@ toc_sticky: true
 주의점: 반드시 `response 객체`를 **인자**로 받고, 수정된 `response 객체`를 **반환**해야 한다. (처리 중 에러가 발생했다면 실행 X.)
 <br><br>
 
-# 1. 공통 HTTP 헤더 추가
+# 1. 공통 HTTP 헤더 추가(CORS 설정 등)
+
+1. 일반적인 header 추가 
 
 ```python
 
@@ -42,11 +44,11 @@ def add_header(response):
 
 `response.headers['Cache-Control'] = 'no-cache'` 애초에 데이터를 보낼 때 `@app.after_request`로 no-cache 스티커를 붙여서 브라우저가 낡은 데이터를 쓰지 않도록 통제한다. 
 
-# 2. CORS 설정 
+2. CORS 설정 추가
 
 우선 CORS(Cross-Origin Resource Sharing)란 "Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy" 이 에러메시지 현상의 주인공이다. 
 
------> 부가설명 필요 
+웹 브라우저에는 **'동일 출처 정책(SOP, Same-Origin Policy)'**이라는 보안 규칙이 있다. 이는 "내 도메인에서 가져온 스크립트가 다른 도메인의 데이터에 함부로 접근하지 못하게" 차단하는 것을 말한다. 하지만 서비스가 성장하면서 서버를 분리(예: 프론트엔드는 Vercel, 백엔드는 AWS EC2)하게 되면, 서로 다른 도메인 간의 통신이 필수다. 그러므로 이때 브라우저가 "안전한 요청인지 확인"하는 과정이 바로 **CORS(Cross-Origin Resource Sharing)** 인 것이다. 즉, 서버가 "이 도메인은 내가 신뢰해!"라고 인증마크(헤더)를 달아주는 것
 
 <사용 예시>
 ```python
@@ -101,16 +103,27 @@ CORS(app)  # 단 한 줄로 모든 복잡한 CORS 처리를 해결
 <br><br>
 Flask는 내부적으로 `WSGI(Web Server Gateway Interface)`라는 표준을 따른다. 서버가 요청을 받으면 Flask는 거대한 Dispatching(배분) 과정을 거치는데, 이를 간략하게 정리하면 다음과 같다. 
 <br><br>
+
 1. 요청 도착: 서버가 요청을 받음
+  
 <br><br>
-2. before_request 루프: **모든 함수가 실행되기 전**, 공통적으로 해야 할 일(인증 체크 등)
+
+3. before_request 루프: **모든 함수가 실행되기 전**, 공통적으로 해야 할 일(인증 체크 등)
+ 
 <br><br>
-3. 메인 라우트 함수: 우리가 정의한 @app.route('/...') 함수가 실행되어 결과를 만듦
+
+5. 메인 라우트 함수: 우리가 정의한 @app.route('/...') 함수가 실행되어 결과를 만듦
+   
 <br><br>
-4. after_request 루프: [검수 단계] 라우트 함수가 만든 Response 객체를 낚아채서 처리. 마치 컨테이너 벨트에 있는 응답객체를 들어올려서 헤더에 추가 정보도 넣고 내용도 수정해서 다시 내려놓는다고 이해하면 좋다. 
+
+7. after_request 루프: [검수 단계] 라우트 함수가 만든 Response 객체를 낚아채서 처리. 마치 컨테이너 벨트에 있는 응답객체를 들어올려서 헤더에 추가 정보도 넣고 내용도 수정해서 다시 내려놓는다고 이해하면 좋다.
+
 <br><br>
-5. 응답 전송: 클라이언트에게 최종 결과 반환
+
+9. 응답 전송: 클라이언트에게 최종 결과 반환
+
 <br><br>
+
 우리가 `@app.after_request 데코레이터`를 입력하면, 플라스크는 내부의 `after_request_funcs`라는 리스트에 당신이 만든 그 함수를 '이 리스트에 담긴 함수들은 응답이 나가기 전에 무조건 실행하라고 등록해두는거다. 
 <br><br>
 
@@ -187,13 +200,17 @@ def append_request_id_to_header(response):
 여기서 눈치 빠른 사람은 `get()`함수에서 따왔다는걸 이미 캐치했을 것이다. 에러를 뿜어내고 프로그램이 셧다운될 바에 반환값을 내고 서비스를 유지시키는 거다. 
 
 세부적으로 살펴보면, 
+
 <br><br>
+
 `getattr(객체, '속성이름', '기본값')` 순서로 매개변수가 구성되는데
+
 <br><br>
+
 >`g`는 우리가 찾을 객체플라스크의 전역 저장소인 g 객체다.
 주의할 점은 현재 처리 중인 `요청(Request) 안`에서만 유지되는 전역 저장소다.
 
->'request_id'는 찾고 싶은 속성 이름을 말하는데, `g` 안에 저장되어 있을 것으로 예상되는 이름이다.
+'request_id'는 찾고 싶은 속성 이름을 말하는데, `g` 안에 저장되어 있을 것으로 예상되는 이름이다.
 주의할 점은 `request_id`는 '유저 ID(User ID)'와는 완전히 다른 개념이다. 어떤 요청인지 식별하는 것으로 해당 요청이 끝날 때까지만 유효하다. 
 
 'unknown'는 기본값. 즉 Default 값이다. 만약 g 안에 request_id가 없다면 대신 반환할 값을 말한다. `get()`사용하듯이 넣는거다.  
@@ -202,7 +219,8 @@ def append_request_id_to_header(response):
 
 <백엔드 에러 발생 상황 예시>
 
-```python 
+```python
+
 @app.route('/api/payment', methods=['POST'])
 def process_payment():
     # DB 연결 타임아웃 등 치명적인 에러가 발생했다고 가정
@@ -213,14 +231,19 @@ def process_payment():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 ```
 
 # 3. 프론트엔드 (HTML/JS) : 헤더 읽어서 에러 화면에 띄우기
+
 버튼을 누르면 에러가 나는 백엔드 API를 호출. 이때 프론트엔드는 본문(Body)의 에러 메시지뿐만 아니라, 헤더(Header)에 담긴 X-Request-ID를 꺼내서 고객센터로 보내면 된다. 
 
 <br><br>
+
 <예시>
+
 ```HTML
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -259,19 +282,21 @@ if __name__ == '__main__':
     </script>
 </body>
 </html>
+
 ```
 
 예시를 위해 어쩔 수 없이 전부 인라인 방식으로 코딩했지만 실전에서는 html,js,css 전부 구분해서 external방식으로 작업하는게 좋다. 
+
 <br><br>
 
 <로직 흐름>
 1. Request 도착 → before_request가 UUID 생성 후 `g.request_id`에 그 난수번호로 찍고나서 g라는 임시저장소에 저장. (요청별 독립적으로 운영)
- <br><br>
-2. View 실행 → 서버 내부 로직에서 에러 발생 시 log.error(f"{g.request_id} 에러 발생!") 기록. 로그에 `g.request_id`가 전부 찍혀있다.
 <br><br>
-4. 서버가 Response 객체 생성 → after_request가 임시저장소 g 객체에서 ID를 꺼내 헤더에 삽입. 서버 내부 휘발성 데이터(g)에서 브라우저라는 외부 공간으로 영구적으로 전달
+4. View 실행 → 서버 내부 로직에서 에러 발생 시 log.error(f"{g.request_id} 에러 발생!") 기록. 로그에 `g.request_id`가 전부 찍혀있다.
 <br><br>
-5. 결과: 사용자 화면엔 "고객센터 문의 코드: a8f9..." 출력. 
+5. 서버가 Response 객체 생성 → after_request가 임시저장소 g 객체에서 ID를 꺼내 헤더에 삽입. 서버 내부 휘발성 데이터(g)에서 브라우저라는 외부 공간으로 영구적으로 전달
+<br><br>
+6. 결과: 사용자 화면엔 "고객센터 문의 코드: a8f9..." 출력. 
 <br><br>
 
 이렇게 헤더에 `X-Request-ID`가 붙어 있다면, 사용자가 에러 화면을 캡처해서 보내거나 "번호가 req_`난수(uuid)`이었어요"라고 알려줄 수 있게 된다. 그러면 개발자는 로그에서 req_난수(uuid)만 검색하면 1초 만에 그 사용자가 겪은 모든 과정을 복구할 수 있다. 
