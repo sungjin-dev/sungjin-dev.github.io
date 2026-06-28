@@ -21,22 +21,69 @@ toc_sticky: true
 <br><br>
 그만큼 알아볼 가치가 매우 높다는게 아닐까?
 
+## 2 .주요 용도: 공통 HTTP 헤더 추가(CORS` 설정 등), 응답 로그 기록 등이 있다. 
 
-## 2 .주요 용도: 공통 HTTP 헤더 추가(`CORS` 설정 등), 응답 로그 기록 등이 있다. 
-<br><br>
 주의점: 반드시 `response 객체`를 **인자**로 받고, 수정된 `response 객체`를 **반환**해야 한다. (처리 중 에러가 발생했다면 실행 X.)
 <br><br>
+
+# 1. 공통 HTTP 헤더 추가
+
 ```python
+
 @app.after_request
 def add_header(response):
     response.headers['X-Custom-Header'] = 'MyValue'
     response.headers['Cache-Control'] = 'no-cache'  
     return response    # 꼭 response 객체를 반환하자
+
 ```
 
-`response.headers['X-Custom-Header']` : 특별히 'MyValue'라는 메모를 'X-Custom-Header'라는 이름으로 붙여서 보낼테니 프론트엔드가 해석해"라는 이름표다. (보통 개발자 마음대로 지을 때는 앞에 X-를 붙이는 관례) 일종의 비밀 메모.
+`response.headers['X-Custom-Header']` : 특별히 'MyValue'라는 메모를 'X-Custom-Header'라는 이름으로 붙여서 보낼테니 프론트엔드가 알아서 해석해"라는 이름표다. (보통 개발자 마음대로 지을 때는 앞에 X-를 붙이는 관례다) 일종의 비밀 메모다. 
 
 `response.headers['Cache-Control'] = 'no-cache'` 애초에 데이터를 보낼 때 `@app.after_request`로 no-cache 스티커를 붙여서 브라우저가 낡은 데이터를 쓰지 않도록 통제한다. 
+
+# 2. CORS 설정 
+
+우선 CORS(Cross-Origin Resource Sharing)란 "Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy" 이 에러메시지 현상의 주인공이다. 
+
+-----> 부가설명 필요 
+
+<사용 예시>
+```python
+
+@app.after_request
+def add_cors_headers(response):
+    # 허용할 도메인 설정 (예: http://localhost:3000)
+    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+    
+    # 허용할 HTTP 메서드 설정
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
+    
+    # 허용할 헤더 설정
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    
+    return response
+```
+
+`Access-Control-Allow-Origin`: 브라우저에게 "이 도메인에서 온 요청만 데이터를 읽을 수 있어!"라고 명시. `*`를 사용하면 모든 곳에서 접근이 가능하지만, 보안상 특정 도메인만 적는 것을 지향
+
+`Access-Control-Allow-Methods`: 단순히 데이터를 가져오는(GET) 것 외에, 데이터를 생성(POST)하거나 수정(PUT)하는 것도 허용할지 결정
+
+`Access-Control-Allow-Headers`: 프론트엔드가 요청 시 보낸 커스텀 헤더(예: 인증을 위한 Authorization 토큰 등)를 서버가 허용할지 정의
+
+>주의사항: `Preflight` 요청과 `OPTIONS` 메서드
+위의 코드는 일반적인 요청에는 잘 작동하지만, Preflight(사전 확인) 요청이 들어올 때 문제가 될 수 있다. 브라우저는 OPTIONS 메서드로 먼저 서버에게 물어보는데, 이때 서버가 200 OK 응답과 함께 CORS 헤더를 잘 반환해줘야 한다.
+
+만약 위와 같은 수동 설정이 번거롭다면, Flask에서는 Flask-CORS 라이브러리를 사용하는 것이 훨씬 강력하고 권장되는 방법이다.
+
+```Python
+
+# 라이브러리 사용 시 예시
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app)  # 단 한 줄로 모든 복잡한 CORS 처리를 해결
+
+```
 
 ## 3. 사용 목적
 
