@@ -1,18 +1,25 @@
+---
+title: "플라스크(Flask) app객체에 내장된 함수들"
+excerpt: "매우 유용한 데코레이터들 모음(@app.after_request)"
+categories: [Flask]
+tags:
+  - Python
+  - Flask
+toc: true
+toc_sticky: true
+--- 
 
+오늘은 `@app.after_request`에 대해서 알아보자. 
 
+## 1. 응답을 클라이언트에게 보내기 직전에 개입: `@app.after_request`
 
-
-## 2. 응답을 클라이언트에게 보내기 직전에 개입: `@app.after_request`
-
- 다음으로 `@app.after_request`을 활용하는 방법에 대해 알아보자. 
- 
 **@app.after_request**는 `뷰 함수(라우트)`가 정상적으로 처리를 끝내고 `응답(Response) 객체`를 만들었을 때, 이를 **클라이언트에게 전송하기 직전**에 가로채서 수정할 수 있게 해준다.
 <br><br>
-비유적으로 표현해보자면, `@app.after_request`는 플라스크의 **'요청 처리 흐름(Request Lifecycle)'**에서 중간에 끼어드는 갈고리(Hook) 같은 존재다.
+비유적으로 표현해보자면, `@app.after_request`는 플라스크의 **'요청 처리 흐름(Request Lifecycle)'**에서 중간에 훅~!(Hook) 끼어드는 갈고리 같은 존재다.
 
 # 1 .주요 용도: 공통 HTTP 헤더 추가(`CORS` 설정 등), 응답 로그 기록 등이 있다. 
 <br><br>
-주의점: 반드시 `response 객체`를 **인자**로 받고, 수정된 `response 객체`를 **반환**해야 한다. (처리 중 에러가 발생했다면 실행되지 않음.)
+주의점: 반드시 `response 객체`를 **인자**로 받고, 수정된 `response 객체`를 **반환**해야 한다. (처리 중 에러가 발생했다면 실행 X.)
 <br><br>
 ```python
 @app.after_request
@@ -22,43 +29,46 @@ def add_header(response):
     return response    # 꼭 response 객체를 반환하자
 ```
 
-`response.headers['X-Custom-Header']` : 특별히 'MyValue'라는 메모를 'X-Custom-Header'라는 이름으로 붙여서 보낼테니 프론트엔드 찰떡같이 해석해"라는 이름표다. (보통 개발자 마음대로 지을 때는 앞에 X-를 붙이는 관례) 일종의 비밀 메모
+`response.headers['X-Custom-Header']` : 특별히 'MyValue'라는 메모를 'X-Custom-Header'라는 이름으로 붙여서 보낼테니 프론트엔드가 해석해"라는 이름표다. (보통 개발자 마음대로 지을 때는 앞에 X-를 붙이는 관례) 일종의 비밀 메모.
 
-`response.headers['Cache-Control'] = 'no-cache'` 애초에 데이터를 보낼 때 `@app.after_request`로 no-cache 스티커를 붙여서 브라우저가 알아서 낡은 데이터를 쓰지 않도록 통제하는 것이다. 
+`response.headers['Cache-Control'] = 'no-cache'` 애초에 데이터를 보낼 때 `@app.after_request`로 no-cache 스티커를 붙여서 브라우저가 낡은 데이터를 쓰지 않도록 통제한다. 
 
-# 2. 사용하는 목적
+# 2. 사용 목적
 
 > 로그 기록: 요청이 끝날 때마다 응답 상태 코드(200, 404 등)를 기록하여 모니터링할 때 사용.
 
 공통 응답 처리: 모든 API 응답에 공통으로 들어갈 JSON 포맷이나 헤더를 일괄적으로 입힐 때 유용함.
 
-보안: 모든 페이지에 보안 관련 헤더(예: Content-Security-Policy)를 적용할 때 일일이 함수마다 넣지 않고 한곳에서 해결 가능.
+보안: 모든 페이지에 보안 관련 헤더(예: Content-Security-Policy)를 적용할 때 일일이 함수마다 넣지 않고 한곳에서 해결 가능하다. 
 
-
-# 3  심화 예시 - 백엔드 (Flask) : 요청마다 고유 ID(영수증 번호) 발급
+# 3  심화 예시 - 백엔드 (Flask) : 요청(request)마다 고유 ID(영수증 번호) 발급
 
 요청이 들어오는 순간(@app.before_request) `고유 ID`를 만들어 Flask의 임시 저장소(`g`)에 넣어두고, 응답이 나갈 때(@app.after_request) `헤더`에 이 ID를 꺼내서 붙여주는 구조.
+<br><br>
+코드가 살짝 길긴 하지만 아주 흥미로운 주제라서 들고 와봤다. 
+<br><br>
+``~Python
 
-```
-Python
 import uuid
 from flask import Flask, jsonify, g
 
 app = Flask(__name__)
 ```
+참고로 `jsonify`는 플라스크(Flask)에서 데이터(파이썬의 딕셔너리, 리스트 등)를 `JSON 형식`의 응답 객체로 쉽고 깔끔하게 변환해 주는 함수다.
+즉 파이썬 데이터를 웹 API가 이해할 수 있는 JSON 문자열로 바꿔서 돌려보내 준다.  
 
-1. 요청이 서버에 도착하자마자 실행
+**1. 요청이 서버에 도착하자마자 실행**
 ```
-@app.before_request
+@app.before_request   # 이건 'before'다. 
 def assign_request_id():
     # uuid4를 사용해 절대 겹치지 않는 무작위 난수 생성 (예: a8f9-11c2...)
     g.request_id = str(uuid.uuid4())  # g는 "이 요청(Request)이 살아있는 동안만 유효한 저장소"
     
-    # 실무에서는 이때부터 남기는 모든 서버 로그에 g.request_id를 남김.
+    #  모든 서버 로그에 g.request_id를 남김.
     # print(f"[REQ: {g.request_id}] 결제 요청 들어옴")
 ```
 
-2. 클라이언트에게 응답을 보내기 직전에 실행
+**2. 클라이언트에게 응답을 보내기 직전에 실행**
 
 ```
 @app.after_request
@@ -68,7 +78,7 @@ def append_request_id_to_header(response):
     return response
 ```
 
-3. 에러가 발생하는 가상의 결제 API
+**3. 에러가 발생한 가상결제 시뮬레이션 API**
 
 ```
 @app.route('/api/payment', methods=['POST'])
@@ -87,6 +97,7 @@ if __name__ == '__main__':
 버튼을 누르면 에러가 나는 백엔드 API를 호출한다. 이때 프론트엔드는 본문(Body)의 에러 메시지뿐만 아니라, 헤더(Header)에 담긴 X-Request-ID를 꺼내서 고객센터 안내용 코드로 사용하는 것.
 
 <br><br>
+<예시>
 ```
 HTML
 <!DOCTYPE html>
@@ -96,10 +107,10 @@ HTML
     <title>결제 페이지</title>
 </head>
 <body>
-    <h2>o튜브 프리미엄 멤버십 결제</h2>
-    <button id="payBtn">29,900원 결제하기</button>
+    <h2>땡튜브 프리미엄 멤버십 결제</h2>
+    <button id="payBtn">17,950원 결제하기</button>
     
-    <div id="errorBox" style="margin-top: 20px; color: red; font-weight: bold;"></div>
+    <div id="errorBox"></div>
 
     <script>
         document.getElementById('payBtn').addEventListener('click', () => {
@@ -114,7 +125,7 @@ HTML
                         const errorBox = document.getElementById('errorBox');
                         errorBox.innerHTML = `
                             [결제 실패] 알 수 없는 오류가 발생했습니다.<br>
-                            <span style="color: gray; font-size: 0.8em; font-weight: normal;">
+                            <span>
                                 (고객센터 문의 코드: ${reqId})
                             </span>
                         `;
