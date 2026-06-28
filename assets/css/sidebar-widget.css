@@ -39,7 +39,7 @@
 }
 
 #live-time {
-     font-size: 1.1rem;
+     font-size: 1rem;
     font-weight: bold;
     color: #7dcfff;
     font-family: Consolas, monospace;
@@ -56,14 +56,14 @@
     background: #1a1b26;
     border-radius: 8px;
     border-left: 4px solid #e0af68;
-    padding: 10px;
+    padding: 7px;
     margin-bottom: 8px;
 }
 
 .weather-title {
     text-align: center;
     color: #c0caf5;
-    font-size: .82rem;
+    font-size: .8rem;
     margin-bottom: 6px;
 }
 
@@ -71,12 +71,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 #weather-icon {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
 }
 
 #weather-temp {
@@ -97,7 +97,7 @@
     padding: 7px;
     margin-bottom: 8px;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 .visitor-title {
