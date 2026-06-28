@@ -1,6 +1,6 @@
 ---
-title: "플라스크(Flask) app객체에 내장된 함수들"
-excerpt: "매우 유용한 데코레이터들 모음(@app.after_request)"
+title: "플라스크(Flask) app객체에 내장된 함수들 1편"
+excerpt: "(@app.after_request)"
 categories: [Flask]
 tags:
   - Python
