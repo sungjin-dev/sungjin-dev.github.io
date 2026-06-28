@@ -1,6 +1,6 @@
 ---
-title:"(@app.before_request) 파헤치기"
-excerpt:"플라스크(Flask) app객체에 내장된 함수들 1편" 
+title: "(@app.before_request) 파헤치기"
+excerpt: "플라스크(Flask) app객체에 내장된 함수들 1편" 
 categories: [Flask]
 tags:
   - Python
