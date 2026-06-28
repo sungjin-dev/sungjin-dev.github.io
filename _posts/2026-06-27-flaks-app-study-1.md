@@ -1,5 +1,5 @@
 ---
-title: "플라스크(Flask) app객체에 내장된 함수들"
+title: "플라스크(Flask) app객체에 내장된 함수들 1편"
 excerpt: "(@app.before_request)"
 categories: [Flask]
 tags:
