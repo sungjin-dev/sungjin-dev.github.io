@@ -47,16 +47,20 @@ def add_header(response):
 
 우선 CORS(Cross-Origin Resource Sharing)란 "Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy" 이 에러 메시지 현상의 주인공이다.
 
+웹 브라우저에는 **'동일 출처 정책(SOP, Same-Origin Policy)'**이라는 보안 규칙이 있다. 이는 "내 도메인에서 가져온 스크립트가 다른 도메인의 데이터에 함부로 접근하지 못하게" 차단하는 것이다. 하지만 서비스가 성장하면서 서버를 분리(예: 프론트엔드는 Vercel, 백엔드는 AWS EC2)하게 되면, 서로 다른 도메인 간의 통신이 필수다. 그러므로 이때 브라우저가 "안전한 요청인지 확인"하는 과정이 바로 **CORS(Cross-Origin Resource Sharing)** 이다. 즉, 서버가 "이 도메인은 내가 신뢰해!"라고 허락해 주는 인증마크(헤더)를 달아주는 것.
+
 <사용 예시>
+
 ```python
 @app.after_request
-def add_cors_headers(response):
-    # 허용할 도메인 설정
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
-    # 허용할 HTTP 메서드 설정
-    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-    # 허용할 헤더 설정
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+def handle_preflight(response):
+    # 만약 요청 메서드가 OPTIONS라면
+    if request.method == 'OPTIONS':
+        # 200 OK와 함께 필요한 헤더를 직접 세팅
+        response.status_code = 200
+        response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
     return response
 ```
 
