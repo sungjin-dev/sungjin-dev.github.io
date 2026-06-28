@@ -34,7 +34,7 @@
     background: #1a1b26;
     border-radius: 8px;
     border-left: 4px solid #bb9af7;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 8px;
 }
 
@@ -57,7 +57,7 @@
     border-radius: 8px;
     border-left: 4px solid #e0af68;
     padding: 10px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .weather-title {
@@ -97,7 +97,7 @@
     padding: 10px;
     margin-bottom: 8px;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.9em;
 }
 
 .visitor-title {
