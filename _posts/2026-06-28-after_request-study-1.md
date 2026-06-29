@@ -77,13 +77,11 @@ def handle_preflight(response):
 
 만약 위와 같은 수동 설정이 번거롭다면, Flask에서는 Flask-CORS 라이브러리를 사용하는 것이 훨씬 강력하고 권장되는 방법이다.
 
-```Python
-
+```python
 # 라이브러리 사용 시 예시
 from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)  # 단 한 줄로 모든 복잡한 CORS 처리를 해결
-
 ```
 
 ## 3. 사용 목적
@@ -231,7 +229,7 @@ if __name__ == '__main__':
 
 먼저 에러 메시지를 표시할 영역을 HTML에 준비한다. 
 
-```HTML
+```html
 
 <!DOCTYPE html>
 <html lang="ko">
