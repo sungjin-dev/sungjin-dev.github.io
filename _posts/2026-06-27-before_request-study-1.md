@@ -12,7 +12,7 @@ published: true
 
 Flask의 app 객체에는 요청 생명주기(Lifecycle)를 관리하거나 전역적인 처리를 도와주는 매우 유용한 데코레이터들이 많다. 하나씩 자세하게 살펴보자. 
 
-## 1. 본격적인 라우트(뷰) 함수 실행 직전에 개입 : `@app.before_request`
+## 1. 본격적인 라우트(view) 함수 실행 직전에 개입 : `@app.before_request`
 
  `@app.before_request`는 이미 플라스크 제작자들이 app이라는 객체 안에 만들어둔 '기능(메서드)'이다. 
 <br>
