@@ -133,15 +133,13 @@ self.after_request_funcs  = { None: [my_after_func], 'blueprint_name': [] }
 <br><br>
 이런 과정을 거쳐 우리는 굉장히 쉽고 간편하게 공통된 작업을 수행할 수 있게 된다. 
 
-## 5  심화 예시 - 백엔드 (Flask) : 요청(request)마다 고유 ID(영수증 번호) 발급
+## 5. 심화 예시 - 백엔드(Flask) : 요청(request)마다 고유 ID(영수증 번호) 발급
 
 요청이 들어오는 순간 `@app.before_request` 데코레이터에서 `고유 ID`(uuid 등)를 만들어 Flask의 임시 저장소(`g`)에 넣어두고, 응답이 나갈 때 `@app.after_request` header에 이 ID를 꺼내서 붙여주는 구조다. 
-<br><br>
+<br>
 코드와 설명이 살짝 길긴 하지만 아주 흥미로운 주제라서 들고 와봤다. 
 
-<br><br>
-
-```Python
+```python
 
 import uuid
 from flask import Flask, jsonify, g
@@ -149,7 +147,7 @@ from flask import Flask, jsonify, g
 app = Flask(__name__)
 ```
 플라스크 클래스에서 app이라는 객체로 인스턴스화 해준다. 
-<br><br>
+<br>
 
 참고로 import된 `jsonify`는 플라스크(Flask)에서 데이터(파이썬의 딕셔너리, 리스트 등)를 `JSON 형식`의 응답 객체로 쉽고 깔끔하게 변환해 주는 함수다.
 즉 파이썬 데이터를 웹 API가 이해할 수 있는 JSON 문자열로 바꿔서 돌려보내 준다.  
@@ -166,15 +164,15 @@ def assign_request_id():
     #  모든 서버 로그에 g.request_id를 남김. 
     # print(f"[REQ: {g.request_id}] 결제 요청 들어옴")
 ```
-<br><br>
+<br>
 
->참고 : 로그는 '과정'을 저장하는 것을 말한다. 로그는 추가만 가능(Append-only)하며 이미 기록된 내용을 수정하거나 삭제하지 않는다. 시간 순으로 그냥 밑으로 쭉 이어 붙인다. 
+참고 : 로그는 '과정'을 저장하는 것을 말한다. 로그는 추가만 가능(Append-only)하며 이미 기록된 내용을 수정하거나 삭제하지 않는다. 시간 순으로 그냥 밑으로 쭉 이어 붙인다. 
 
 # 2. 클라이언트에게 응답을 보내기 직전에 실행
 
 앞서 설명했듯이 응답이 가기 전 훅~ 헤더(header)를 추가한다. 
 
-<br><br>
+<br>
 
 ```python
 @app.after_request
@@ -183,7 +181,7 @@ def append_request_id_to_header(response):
     response.headers['X-Request-ID'] = getattr(g, 'request_id', 'unknown')
     return response
 ```
-<br><br>
+<br>
 
 참고로 여기서 `getattr()`은 python의 내장함수다. 
 
@@ -191,13 +189,13 @@ def append_request_id_to_header(response):
 
 세부적으로 살펴보면, 
 
-<br><br>
+<br>
 
 `getattr(객체, '속성이름', '기본값')` 순서로 매개변수가 구성되는데
 
-<br><br>
+<br>
 
->`g`는 우리가 찾을 객체플라스크의 전역 저장소인 g 객체다.
+`g`는 우리가 찾을 객체플라스크의 전역 저장소인 g 객체다.
 주의할 점은 현재 처리 중인 `요청(Request) 안`에서만 유지되는 전역 저장소다.
 
 'request_id'는 찾고 싶은 속성 이름을 말하는데, `g` 안에 저장되어 있을 것으로 예상되는 이름이다.
@@ -207,7 +205,7 @@ def append_request_id_to_header(response):
 
 **3. 에러가 발생한 가상결제 시뮬레이션 API**
 
-<백엔드 에러 발생 상황 예시>
+- 백엔드 에러 발생 상황 예시 -
 
 ```python
 
@@ -228,7 +226,7 @@ if __name__ == '__main__':
 
 버튼을 누르면 에러가 나는 백엔드 API를 호출. 이때 프론트엔드는 본문(Body)의 에러 메시지뿐만 아니라, 헤더(Header)에 담긴 X-Request-ID를 꺼내서 고객센터로 보내면 된다. 
 
-<br><br>
+<br>
 
 - 예시 -
 
