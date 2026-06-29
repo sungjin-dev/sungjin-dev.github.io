@@ -95,7 +95,7 @@ def delete():
 
 <br><br>
 
- - 사용 예시 -
+ - 사용 예시
 
 ```python
 
@@ -117,7 +117,7 @@ def block_malicious_ips():
 
  `abort(403)`을 실행하면 파이썬 코드는 즉시 실행을 멈춰버리며, 해당 오류 페이지로 바로 간다. **남은 코드는 절대 실행되지 않는다.**
  
-<심화 학습>
+ - 심화 학습
 `request.remote_addr`가 진짜 사용자의 IP가 아닐 수 있다. 만약 웹 서비스 앞에 `Nginx`나 `Apache` 같은 **웹 서버(Reverse Proxy)**를 두거나, `AWS의 로드 밸런서(ALB)` 같은 것을 사용 중이라면 remote_addr에는 실제 사용자의 IP가 아니라 **'앞단에 있는 서버의 IP'**가 찍히게 된다. 
 
 해결 방법: 이런 환경에서는 프록시 서버가 실제 사용자의 IP를 `X-Forwarded-For`라는 header에 담아서 넘겨주면 된다. 이 경우, `request.remote_addr` 대신 `request.headers.get('X-Forwarded-For')`를 사용하거나, 플라스크의 `ProxyFix 미들웨어`를 설정해야 정확한 IP를 얻을 수 있다. 참고하자!
@@ -126,7 +126,7 @@ def block_malicious_ips():
 
 최근 프로젝트에서는 `@app.before_request`를 사용하여 session에 로그인한 ID가 있다고 가정하고 모듈이 잘 작동하는지 테스트하고 있다. 
 <br><br>
-- 예시 -
+- 예시
 
 ```python
 
