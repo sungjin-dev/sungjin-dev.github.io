@@ -7,7 +7,7 @@ tags:
   - Flask
 toc: true
 toc_sticky: true
-published : false
+published: true
 --- 
 
 Flask의 app 객체에는 요청 생명주기(Lifecycle)를 관리하거나 전역적인 처리를 도와주는 매우 유용한 데코레이터들이 많다. 하나씩 자세하게 살펴보자. 
@@ -94,7 +94,7 @@ def delete():
 
 <br><br>
 
-<사용 예시>
+ - 사용 예시 -
 
 ```Python
 
@@ -125,7 +125,7 @@ def block_malicious_ips():
 
 최근 프로젝트에서는 `@app.before_request`를 사용하여 session에 로그인한 ID가 있다고 가정하고 모듈이 잘 작동하는지 테스트하고 있다. 
 <br><br>
-<예시>
+- 예시 -
 
 ```python
 
