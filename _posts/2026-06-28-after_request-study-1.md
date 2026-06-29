@@ -27,9 +27,9 @@ published: true
 주의점: 반드시 `response 객체`를 **인자**로 받고, 수정된 `response 객체`를 **반환**해야 한다. (처리 중 에러가 발생했다면 실행 X.)
 <br><br>
 
-# 1. 공통 HTTP 헤더 추가(CORS 설정 등)
+### 1. 공통 HTTP 헤더 추가(CORS 설정 등)
 
-1. 일반적인 header 추가 
+**1. 일반적인 header 추가** 
 
 ```python
 @app.after_request
@@ -44,7 +44,7 @@ def add_header(response):
 
 `response.headers['Cache-Control'] = 'no-cache'` 애초에 데이터를 보낼 때 `@app.after_request`로 no-cache 스티커를 붙여서 브라우저가 낡은 데이터를 쓰지 않도록 통제한다. 
 
-2. CORS 설정
+**2. CORS 설정**
 
 우선 CORS(Cross-Origin Resource Sharing)란 "Access to XMLHttpRequest at '...' from origin '...' has been blocked by CORS policy" 이 에러 메시지 현상의 주인공이다.
 
@@ -152,7 +152,7 @@ app = Flask(__name__)
 참고로 import된 `jsonify`는 플라스크(Flask)에서 데이터(파이썬의 딕셔너리, 리스트 등)를 `JSON 형식`의 응답 객체로 쉽고 깔끔하게 변환해 주는 함수다.
 즉 파이썬 데이터를 웹 API가 이해할 수 있는 JSON 문자열로 바꿔서 돌려보내 준다.  
 
-# 1. 요청이 서버에 도착하자마자 실행
+### 1. 요청이 서버에 도착하자마자 실행
 
 ```python
 
@@ -168,7 +168,7 @@ def assign_request_id():
 
 참고 : 로그는 '과정'을 저장하는 것을 말한다. 로그는 추가만 가능(Append-only)하며 이미 기록된 내용을 수정하거나 삭제하지 않는다. 시간 순으로 그냥 밑으로 쭉 이어 붙인다. 
 
-# 2. 클라이언트에게 응답을 보내기 직전에 실행
+### 2. 클라이언트에게 응답을 보내기 직전에 실행
 
 앞서 설명했듯이 응답이 가기 전 훅~ 헤더(header)를 추가한다. 
 
@@ -222,10 +222,9 @@ if __name__ == '__main__':
 
 ```
 
-# 3. 프론트엔드 (HTML/JS) : 헤더 읽어서 에러 화면에 띄우기
+### 3. 프론트엔드 (HTML/JS) : 헤더 읽어서 에러 화면에 띄우기
 
 버튼을 누르면 에러가 나는 백엔드 API를 호출. 이때 프론트엔드는 본문(Body)의 에러 메시지뿐만 아니라, 헤더(Header)에 담긴 X-Request-ID를 꺼내서 고객센터로 보내면 된다. 
-
 <br>
 
 - 예시 -
@@ -249,30 +248,30 @@ if __name__ == '__main__':
 
 이제 fetch 요청을 통해 서버 응답 헤더에서 X-Request-ID를 추출한다. 
 
-```JavaScript
+```javascript
 
-        document.getElementById('payBtn').addEventListener('click', () => {
-            fetch('/api/payment', { method: 'POST' })
-                .then(response => {
-                    // 응답이 정상(200)이 아닌 경우 (에러 발생 시)
-                    if (!response.ok) {
-                        // 핵심: 서버가 숨겨둔 'X-Request-ID' 헤더를 꺼낸다
-                        const reqId = response.headers.get('X-Request-ID');
-                        
-                        // 화면에 에러 문구와 함께 문의 코드를 출력.
-                        const errorBox = document.getElementById('errorBox');
-                        errorBox.innerHTML = `
-                            [결제 실패] 알 수 없는 오류가 발생했습니다.<br>
-                            <span>
-                                (고객센터 문의 코드: ${reqId})
-                            </span>
-                        `;
-                    }
-                })
-                .catch(error => {
-                    console.error("네트워크 에러:", error);
-                });
+document.getElementById('payBtn').addEventListener('click', () => {
+    fetch('/api/payment', { method: 'POST' })
+        .then(response => {
+            // 응답이 정상(200)이 아닌 경우 (에러 발생 시)
+            if (!response.ok) {
+                // 핵심: 서버가 숨겨둔 'X-Request-ID' 헤더를 꺼낸다
+                const reqId = response.headers.get('X-Request-ID');
+                
+                // 화면에 에러 문구와 함께 문의 코드를 출력.
+                const errorBox = document.getElementById('errorBox');
+                errorBox.innerHTML = `
+                    [결제 실패] 알 수 없는 오류가 발생했습니다.<br>
+                    <span>
+                        (고객센터 문의 코드: ${reqId})
+                    </span>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error("네트워크 에러:", error);
         });
+});
 ```
 
 주의) 예시를 위해 어쩔 수 없이 전부 인라인 방식으로 코딩했지만 실전에서는 html,js,css 전부 구분해서 external방식으로 작업하는게 좋다. 
