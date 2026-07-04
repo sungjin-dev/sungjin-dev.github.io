@@ -112,14 +112,14 @@ toc_sticky: true
 
 ### 2. CSS (디자인)
 
-핵심은 `position: fixed`로 **화면 중앙에 고정**하는 것이다.
+기본값으로 모달화면을 숨기고, 그 위치는 고정시키며 배경은 반투명으로 한다. 
 
 ```css
 #modal_test {
   display:none; /* 기본값으로 숨긴다 */
 }
 .memo_modal {
-  position: fixed;  /* 바로 이부분 */
+  position: fixed;  
   top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.5); /* 반투명 배경을 해야 주목받음 */
   display: flex; justify-content: center; align-items: center;
