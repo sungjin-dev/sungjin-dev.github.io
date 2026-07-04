@@ -40,7 +40,7 @@ toc_sticky: true
 <br><br>
 한마디로 데이터 하나 전송하는데도 절차가 너무 복잡했다. 
 
-## 3. HTML Form + 템플릿 엔진 vs Fetch AP
+## 3. 'HTML Form + 템플릿 엔진'  vs  'Fetch API'
 
 비단 Fetch가 조상님보다 뛰어난게 다가 아니다. 
 
