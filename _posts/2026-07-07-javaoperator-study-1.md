@@ -3,7 +3,6 @@ title: "Java 연산자(Operator)"
 excerpt: "신용권의『이것이 자바다』저서 참조"
 categories: [Java]
 tags:
-  - Python
   - Java
 toc: true
 toc_sticky: true
