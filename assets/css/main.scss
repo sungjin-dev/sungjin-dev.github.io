@@ -409,6 +409,7 @@ table a:hover {
 }
 
 .hero-terminal {
+  display: block; 
   position: absolute;
   right: 7%;
   top: 50%;
@@ -422,6 +423,7 @@ table a:hover {
 }
 
 .hero-terminal__bar {
+  display: block;
   background: #24283b;
   padding: 9px 12px;
 }
@@ -436,6 +438,7 @@ table a:hover {
 .hero-terminal__bar span:nth-child(3) { background: #9ece6a; }
 
 .hero-terminal__body {
+  display: block;
   margin: 0;
   padding: 16px 18px;
   font-family: 'D2Coding', monospace;
@@ -443,6 +446,7 @@ table a:hover {
   line-height: 1.9;
   background: transparent;
   color: #c0caf5;
+  text-align: left;
 }
 .hero-terminal__body .prompt { color: #9ece6a; font-weight: 700; }
 .hero-terminal__body .out    { color: #a9b1d6; }
