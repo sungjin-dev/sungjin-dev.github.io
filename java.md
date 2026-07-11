@@ -1,11 +1,11 @@
 ---
 title: "JAVA 공부 기록"
 layout: archive
-permalink: /Java/
+permalink: /java/
 sidebar:
   nav: "sidebar_category"
 ---
 
-{% for post in site.categories.Java %}
+{% for post in site.categories.java %}
   {% include archive-single.html %}
 {% endfor %}
