@@ -1,9 +1,9 @@
 ---
 title: "Java 클래스와 객체, 그리고 생성자"
 excerpt: "설계도에서 실물이 만들어지기까지"
-categories: [Java]
+categories: [java]
 tags:
-  - Java
+  - java
 toc: true
 toc_sticky: true
 --- 
