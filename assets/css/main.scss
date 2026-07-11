@@ -591,3 +591,95 @@ table a:hover {
   font-size: 1.3em;
 }
 
+/* =================================================
+   10. About 페이지 — 이력 터미널 스타일
+   main.scss 맨 아래에 추가
+   ================================================= */
+
+.about-terminal {
+  max-width: 760px;
+  margin: 0.5em 0 2.2em;
+  background: #16161e;
+  border: 1px solid #3b4261;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* 상단 바: 신호등 + 창 제목 */
+.about-terminal__bar {
+  display: flex;
+  align-items: center;
+  background: #24283b;
+  padding: 10px 14px;
+}
+
+.about-terminal__bar .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+.about-terminal__bar .dot:nth-child(1) { background: #f7768e; }
+.about-terminal__bar .dot:nth-child(2) { background: #e0af68; }
+.about-terminal__bar .dot:nth-child(3) { background: #9ece6a; }
+
+.about-terminal__title {
+  margin-left: 10px;
+  color: #828bb8;
+  font-family: 'D2Coding', monospace;
+  font-size: 0.85em;
+}
+
+/* 본문 */
+.about-terminal__body {
+  margin: 0 !important;
+  padding: 22px 26px !important;
+  background: transparent !important;
+  border: none !important;
+  font-family: 'D2Coding', monospace;
+  font-size: 0.95em;
+  line-height: 1.95;
+  color: #e8edf9;
+  white-space: pre-wrap;      /* 좁은 화면에서 줄바꿈 허용 */
+  word-break: keep-all;
+}
+
+.about-terminal__body .prompt {
+  color: #9ece6a;
+  font-weight: 700;
+}
+
+.about-terminal__body .out {
+  color: #a9b1d6;
+}
+
+/* 출력 안의 링크 */
+.about-terminal__body a {
+  color: #7dcfff;
+  text-decoration: none;
+  border-bottom: 1px dashed #3b4261;
+}
+.about-terminal__body a:hover {
+  color: #bb9af7;
+  border-bottom-color: #bb9af7;
+}
+
+/* 깜빡이는 커서 */
+.about-terminal__body .cursor {
+  color: #9ece6a;
+  animation: about-blink 1.1s steps(1) infinite;
+}
+@keyframes about-blink {
+  50% { opacity: 0; }
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  .about-terminal__body {
+    padding: 16px 16px !important;
+    font-size: 0.82em;
+    line-height: 1.85;
+  }
+}
+
