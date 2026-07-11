@@ -17,14 +17,15 @@ author_profile: true
     <span class="about-terminal__title">sungjin@dev: ~/about</span>
   </div>
   <pre class="about-terminal__body"><span class="prompt">$</span> whoami
-<span class="out">박성진 (SungJin Park) — 백엔드 개발자 지망</span>  <!-- 지망 직무 -->
+<span class="out">박성진 (SungJin Park) — 풀스택 개발자 지망</span>  <!-- 지망 직무 -->
 
 <span class="prompt">$</span> cat profile.txt
 <span class="out">"선명한 기억보다 희미한 기록이 낫다"
 동작하는 코드보다 '왜 동작하는지'를 먼저 파는 것을 좋아합니다.
 DW Academy에서 개발을 공부하고 있습니다. (2026)</span>  <!-- 소개 문장 -->
 <span class="prompt">$</span> cat education.txt
-        성균관대학교 경제학과 (졸업) </span>  <!-- 학력 -->
+<span class="out">성균관대학교 경제학과 (졸업)
+2026 ~ 진행 중   DW Academy — 풀스택 개발 과정</span>
 <span class="prompt">$</span> ls skills/
 <span class="out">Python/   Java/   Flask/   SQL/
 C/   C++/   JavaScript/   CSS/   Git/</span>
