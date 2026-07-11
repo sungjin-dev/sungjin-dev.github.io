@@ -1,3 +1,15 @@
+---
+title: "re.compile() 메서드 활용하기"
+excerpt: "re.compile()과 플래그"
+categories: [Python]
+tags:
+  - Python
+  - Flask
+toc: true
+toc_sticky: true
+--- 
+
+
 # 파이썬 re.compile()과 플래그 — 정규표현식을 더 빠르고 유연하게
 
 지난 글에서 re 모듈 4대장(`match`, `search`, `findall`, `sub`)을 정리했다. 이번 글의 주제는 두 가지다. 하나는 같은 패턴을 여러 번 쓸 때 성능과 가독성을 챙겨주는 `re.compile()`, 다른 하나는 패턴을 훨씬 유연하게 만들어주는 **플래그**(`re.IGNORECASE` 등)다. 이 둘을 알고 나면 정규표현식 코드가 눈에 띄게 깔끔해진다.
