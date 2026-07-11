@@ -768,3 +768,52 @@ table a:hover {
   }
 }
 
+/* =================================================
+   12. 카테고리/목록 페이지 — 글 목록 카드화
+   (/java/, /python/ 등 모든 카테고리 + 메인 최근 글 공통 적용)
+   ================================================= */
+
+.archive .list__item {
+  margin-bottom: 6px;
+}
+
+.archive__item {
+  padding: 16px 18px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #2b3045;
+  transition: background 0.15s ease, border-color 0.15s ease,
+              transform 0.15s ease;
+}
+
+.archive__item:hover {
+  background: #24283b;
+  border-color: #3b4261;
+  transform: translateX(4px);
+}
+
+/* 제목: 밑줄 제거 + 흰색에 가깝게 */
+.archive__item-title {
+  margin: 0;
+  font-size: 1.12em;
+  font-weight: 700;
+}
+
+.archive__item-title a {
+  color: #e8edf9;
+  text-decoration: none;
+  border-bottom: none;
+  transition: color 0.15s ease;
+}
+
+.archive__item:hover .archive__item-title a {
+  color: #7dcfff;
+}
+
+/* 부제(excerpt): 한 톤 낮춰 보조 정보로 */
+.archive__item-excerpt {
+  margin: 6px 0 0;
+  font-size: 0.88em;
+  color: #828bb8;
+  line-height: 1.6;
+}
