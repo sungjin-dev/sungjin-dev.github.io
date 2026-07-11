@@ -5,37 +5,37 @@ permalink: /about/
 author_profile: true
 ---
 
-<!-- ─────────────────────────────────────────────
-  수정 가이드: [수정] 표시가 있는 줄은 본인 상황에 맞게 고쳐 쓰세요.
-  <span class="prompt">$</span> 가 붙은 줄 = 명령어 (건드리지 않아도 됨)
-  <span class="out"> 안의 내용 = 출력 (여기가 실제 이력 내용)
-───────────────────────────────────────────── -->
-
 <div class="about-terminal">
   <div class="about-terminal__bar">
     <span class="dot"></span><span class="dot"></span><span class="dot"></span>
     <span class="about-terminal__title">sungjin@dev: ~/about</span>
   </div>
-  <pre class="about-terminal__body"><span class="prompt">$</span> whoami
-<span class="out">박성진 (SungJin Park) — 풀스택 개발자 지망</span>  <!-- 지망 직무 -->
+  <pre class="about-terminal__body"><span class="cmt"># ── 소개 ─────────────────────────────</span>
+<span class="prompt">$</span> <span class="cmd">whoami</span>
+<span class="out">박성진 (SungJin Park) — 백엔드 개발자 지망</span>
 
-<span class="prompt">$</span> cat profile.txt
+<span class="prompt">$</span> <span class="cmd">cat profile.txt</span>
 <span class="out">"선명한 기억보다 희미한 기록이 낫다"
-동작하는 코드보다 '왜 동작하는지'를 먼저 파는 것을 좋아합니다.
-DW Academy에서 개발을 공부하고 있습니다. (2026)</span>  <!-- 소개 문장 -->
-<span class="prompt">$</span> cat education.txt
+경제학에서 개발로 방향을 바꿔, 기초부터 구조로 쌓아가는 중입니다.
+동작하는 코드보다 '왜 동작하는지'를 먼저 파는 것을 좋아합니다.</span>
+
+<span class="cmt"># ── 학력 · 교육 ──────────────────────</span>
+<span class="prompt">$</span> <span class="cmd">cat education.txt</span>
 <span class="out">성균관대학교 경제학과 (졸업)
-2026 ~ 진행 중   DW Academy — 풀스택 개발 과정</span>
-<span class="prompt">$</span> ls skills/
+2026 ~ 진행 중 · DW Academy 백엔드 개발 과정</span>
+
+<span class="cmt"># ── 기술 · 학습 ──────────────────────</span>
+<span class="prompt">$</span> <span class="cmd">ls skills/</span>
 <span class="out">Python/   Java/   Flask/   SQL/
 C/   C++/   JavaScript/   CSS/   Git/</span>
 
-<span class="prompt">$</span> cat learning.log
-<span class="out">[진행 중]  Java — JVM 메모리 구조 · 참조 타입 연재
-[완결]    Python 정규표현식 시리즈 (전 4편)
-[습관]    배운 것은 블로그에 구조부터 정리해 기록</span>
+<span class="prompt">$</span> <span class="cmd">cat learning.log</span>
+<span class="out">[진행중]  Java — JVM 메모리 구조 · 참조 타입 연재
+[완결됨]  Python 정규표현식 시리즈 (전 4편)
+[습관화]  배운 것은 블로그에 구조부터 정리해 기록</span>
 
-<span class="prompt">$</span> cat contact.txt
+<span class="cmt"># ── 연락처 ───────────────────────────</span>
+<span class="prompt">$</span> <span class="cmd">cat contact.txt</span>
 <span class="out">Email    : <a href="mailto:tjdwlsl8888@gmail.com">tjdwlsl8888@gmail.com</a>
 GitHub   : <a href="https://github.com/sungjin-dev" target="_blank">github.com/sungjin-dev</a>
 Blog     : <a href="https://sungjin-dev.github.io">sungjin-dev.github.io</a>
