@@ -1,4 +1,14 @@
-# 자바 코드는 어떻게 실행되는가 — javac부터 JIT까지
+---
+title: "Java 코드가 실행되는 과정"
+excerpt: "javac부터 JIT까지"
+categories: [Java]
+tags:
+  - Java
+toc: true
+toc_sticky: true
+--- 
+
+# 자바 코드는 어떻게 실행되는가 
 
 `System.out.println("Hello")` 한 줄이 화면에 글자로 출력되기까지 생각보다 긴 여정이 숨겨져 있다. <br>
 컴파일, 클래스 로딩, 상수풀 해석, 그리고 기계어 번역 등등 이런 구조적인 흐름을 파악하고 코딩을 하는 것은 생각보다 굉장히 큰 도움이 된다. 
