@@ -12,6 +12,9 @@ $right-sidebar-width-narrow: 260px;
 $right-sidebar-width: 340px;
 $right-sidebar-width-wide: 400px;
 
+$sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+             "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
@@ -394,3 +397,143 @@ table a:hover {
     padding-top: 0;
   }
 }
+
+/* =========================================================
+   [B] 9. 메인 페이지(splash) 스타일 
+   .layout--splash 로 스코프를 잡아 개별 글에는 영향 없음
+   ========================================================= */
+
+/* ---------- 히어로: 민무늬 → 그라데이션 + 타이포 강화 ---------- */
+.layout--splash .page__hero--overlay {
+  background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
+  padding: 5em 0 4.5em;
+}
+
+.layout--splash .page__hero--overlay .page__title {
+  font-size: 2.6em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* 제목의 포인트 컬러 밑줄 */
+.layout--splash .page__hero--overlay .page__title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 5px;
+  margin-top: 0.4em;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #7dcfff, #bb9af7);
+}
+
+.layout--splash .page__hero--overlay .page__lead {
+  font-size: 1.1em;
+  color: #a9b1d6;
+  max-width: 640px;
+}
+
+/* ---------- 시리즈 카드: 떠 있는 텍스트 → 진짜 카드 ---------- */
+.layout--splash .feature__item {
+  background: #24283b;
+  border: 1px solid #3b4261;
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.layout--splash .feature__item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  border-color: #565f89;
+}
+
+.layout--splash .feature__item .archive__item-body {
+  padding: 1.4em 1.5em 1.6em;
+}
+
+/* 카드 상단 컬러 띠 — 시리즈별 색 구분 */
+.layout--splash .feature__item .archive__item {
+  border-top: 4px solid #7dcfff;           /* 1번 카드: Python */
+}
+.layout--splash .feature__item:nth-child(2) .archive__item {
+  border-top-color: #e0af68;               /* 2번 카드: Java */
+}
+.layout--splash .feature__item:nth-child(3) .archive__item {
+  border-top-color: #bb9af7;               /* 3번 카드: 전체보기 */
+}
+
+.layout--splash .feature__item .archive__item-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #f4f7ff;
+  margin-top: 0.2em;
+}
+
+.layout--splash .feature__item .archive__item-excerpt {
+  color: #a9b1d6;
+  font-size: 0.92em;
+  line-height: 1.75;
+}
+
+/* 카드 버튼 — 청록 기본 버튼 → 팔레트 톤의 고스트 버튼 */
+.layout--splash .feature__item .btn--primary {
+  background: transparent;
+  border: 1.5px solid #7dcfff;
+  color: #7dcfff;
+  border-radius: 8px;
+  font-weight: 700;
+  padding: 0.55em 1.2em;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.layout--splash .feature__item .btn--primary:hover {
+  background: #7dcfff;
+  color: #1a1b26;
+}
+.layout--splash .feature__item:nth-child(2) .btn--primary {
+  border-color: #e0af68;
+  color: #e0af68;
+}
+.layout--splash .feature__item:nth-child(2) .btn--primary:hover {
+  background: #e0af68;
+  color: #1a1b26;
+}
+.layout--splash .feature__item:nth-child(3) .btn--primary {
+  border-color: #bb9af7;
+  color: #bb9af7;
+}
+.layout--splash .feature__item:nth-child(3) .btn--primary:hover {
+  background: #bb9af7;
+  color: #1a1b26;
+}
+
+/* ---------- "다른 주제들": 밑줄 링크 나열 → 알약 칩 ---------- */
+.layout--splash .topic-chips a {
+  display: inline-block;
+  background: #24283b;
+  border: 1px solid #3b4261;
+  color: #c0caf5;
+  padding: 0.4em 1em;
+  margin: 0.25em 0.3em 0.25em 0;
+  border-radius: 999px;
+  font-size: 0.9em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.layout--splash .topic-chips a:hover {
+  border-color: #7dcfff;
+  color: #7dcfff;
+  background: rgba(125, 207, 255, 0.08);
+}
+
+/* ---------- 섹션 제목 정리 ---------- */
+.layout--splash .page__content h2 {
+  border-left: none;          /* 본문용 보라 왼쪽 바는 메인에선 제거 */
+  padding-left: 0;
+  border-bottom: 1px solid #3b4261;
+  padding-bottom: 0.4em;
+  font-size: 1.3em;
+}
+
