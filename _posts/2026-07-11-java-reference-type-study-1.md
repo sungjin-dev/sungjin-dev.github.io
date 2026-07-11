@@ -1,9 +1,9 @@
 ---
 title: "Java 참조 타입 정리"
 excerpt: "신용권의『이것이 자바다』저서 참조"
-categories: [Java]
+categories: [java]
 tags:
-  - Java
+  - java
 toc: true
 toc_sticky: true
 --- 
