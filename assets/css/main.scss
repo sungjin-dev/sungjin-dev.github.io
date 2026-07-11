@@ -818,3 +818,21 @@ table a:hover {
   color: #828bb8;
   line-height: 1.6;
 }
+
+/* 제목 아래 그라데이션 언더라인 — 호버 시 늘어남 */
+.archive__item-title::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #7dcfff, #bb9af7);
+  opacity: 0.55;
+  transition: width 0.25s ease, opacity 0.25s ease;
+}
+
+.archive__item:hover .archive__item-title::after {
+  width: 84px;
+  opacity: 1;
+}
