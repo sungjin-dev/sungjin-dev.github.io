@@ -10,13 +10,28 @@ toc_sticky: true
 published: false
 --- 
 
-
 # 람다 정렬부터 판다스까지 — 정리 노트
 
-> Flask 트러블 관리 앱의 `error_list_view` 정렬 코드를 출발점으로, 람다 → split → datetime → 판다스(필터·groupby·다중 정렬)까지의 흐름 정리.
+>toy-project의 Flask 트러블슈팅 관리 앱의 `error_list_view` 정렬 코드를 바탕으로, 람다 → split → datetime → 판다스(필터·groupby·다중 정렬)까지의 흐름 정리하기
 
+현재 json 구조는 다음과 같다. 
+
+```javascript
+"SungJin": {    // ID 키값
+        "4b15fbd4-9c22-4e95-8f39-3f138156b749": {   //각 에러를 난수(uuid) 키값으로 정렬
+            "category": "HTML",
+            "error_code": "GET http://127.0.0.1:5000/static/css/trouble_css/include/trouble.css net::ERR_ABORTED 404 (NOT FOUND)",
+            "issue": "정적 파일 경로 오류 (Static File Path Error)",
+            "progress": "Resolved",
+            "resolution": "",
+            "date": "2026-07-01 15:09:06"
+        },            
+```
+즉 먼저 각 아이디 별로 구분하고, 해당 아이디로 작성한 에러들을 uuid 난수를 키값으로 하여 각각의 내용들이 차곡차곡 정리한 중첩딕셔너리 구조다. 
 
 ## 1. 람다 정렬 — 지금 코드가 하는 일
+
+우선 첫번째로 위 데이터를 최신순으로 정렬하고자 한다. 
 
 ```python
 all_error_list = sorted(all_error_list, key=lambda x: x['date'], reverse=True)
