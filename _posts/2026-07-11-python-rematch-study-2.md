@@ -1,6 +1,6 @@
 ---
 title: "Re.search(), findall() 메서드 활용하기"
-excerpt: "문자열 검사"
+excerpt: "문자열 검사 2"
 categories: [Python]
 tags:
   - Python
