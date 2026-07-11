@@ -96,7 +96,7 @@ import re
 
 BLOG_PATTERN = r"(\d{4})-(\d{2})-(\d{2})"
 
-m = re.match(, "2026-07-10 성진 블로그")
+m = re.match(BLOG_PATTERN, "2026-07-10 성진 블로그")
 if m:
     print(m.group())    # 2026-07-10  (매치된 전체)
     print(m.group(1))   # 2026        (첫 번째 괄호)
