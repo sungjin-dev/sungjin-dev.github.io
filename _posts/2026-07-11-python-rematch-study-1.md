@@ -129,7 +129,7 @@ def check_phone():
     if re.match(PHONE_PATTERN, phone):
         return jsonify({"valid": True, "message": "올바른 번호입니다."})
     else:
-        return jsonify({"valid": False, "message": "번호 형식을 확인해 주세요. (예: 010-1234-5678)"})
+        return jsonify({"valid": False, "message": "번호 형식을 확인해 주세요.)
 
 if __name__ == "__main__":
     app.run(debug=True)
