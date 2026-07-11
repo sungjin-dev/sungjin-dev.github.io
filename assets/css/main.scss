@@ -406,7 +406,8 @@ table a:hover {
 /* ---------- 히어로: 민무늬 → 그라데이션 + 타이포 강화 ---------- */
 .layout--splash .page__hero--overlay {
   background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
-  padding: 5em 0 4.5em;
+  padding: 2.2em 0 2em;      /* 5em 0 4.5em → 절반 이하로 */
+  min-height: 0;             /* 테마의 기본 최소 높이 해제 */
 }
 
 .layout--splash .page__hero--overlay .page__title {
