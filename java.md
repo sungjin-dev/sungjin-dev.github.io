@@ -6,6 +6,6 @@ sidebar:
   nav: "sidebar_category"
 ---
 
-{% for post in site.categories.java %}
+{% for post in site.categories.Java %}
   {% include archive-single.html %}
 {% endfor %}
