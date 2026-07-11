@@ -3,9 +3,20 @@
 ---
 @charset "utf-8";
 
-$max-width: 1700px;
-$large: 1200px;
-$content-width: 1200px; 
+/* ================================================= */
+/* 레이아웃 변수 — 반드시 @import 전에 선언해야 적용됨 */
+/* ================================================= */
+$max-width: 1800px;   /* 전체 틀 최대 폭 (기존 1700 → 1800) */
+
+/* 오른쪽 TOC(On this page) 사이드바 폭
+   - narrow: 창 925px~1280px 구간 / 기본: 1280px 이상 구간
+   - TOC 목차가 세 줄씩 꺾이던 것을 해소하고 우측 여백을 흡수 */
+$right-sidebar-width-narrow: 260px;  /* 기본 200px */
+$right-sidebar-width: 340px;         /* 기본 300px */
+$right-sidebar-width-wide: 400px;
+
+/* 주의: $large는 minimal-mistakes의 "반응형 분기점" 변수이므로
+   폭 제한 용도로 재정의하면 안 된다 (기존 $large: 1200px 제거) */
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
@@ -192,9 +203,6 @@ div.highlighter-rouge {
 }
 
 /* 주석 — 가독성 개선 */
-/* #565f89 → #828bb8: 배경 대비를 높여 눈에 편하게 */
-/* italic 제거: 한글 글리프가 없는 폰트에서 강제 기울임(가짜 이탤릭)으로 */
-/* 어색하게 보이던 문제 해결 */
 .page__content .highlight .c,
 .page__content .highlight .c1,
 .page__content .highlight .cm {
@@ -234,9 +242,9 @@ table {
 table th,
 table td {
   padding: 14px 20px;
-  border-bottom: 1px solid #3b4261; /* #2d3748 → #3b4261: 행 구분선이 보이도록 */
-  text-align: left; /* 가운데 → 왼쪽 정렬: 시선 시작점을 고정해 읽기 편하게 */
-  line-height: 1.7; /* 셀 안에서 줄바꿈될 때 답답하지 않도록 */
+  border-bottom: 1px solid #3b4261;
+  text-align: left;
+  line-height: 1.7;
   word-break: keep-all;
 }
 
@@ -254,7 +262,7 @@ table th {
   font-weight: 700;
   font-size: 1.02em;
   letter-spacing: 0.02em;
-  border-bottom: 2px solid #bb9af7; /* 헤더와 본문의 경계를 확실하게 */
+  border-bottom: 2px solid #bb9af7;
 }
 
 /* 본문 */
@@ -273,7 +281,7 @@ table tr:hover td {
   background-color: #2a2f45;
 }
 
-/* 마지막 행은 하단 구분선 제거 (둥근 모서리와 겹침 방지) */
+/* 마지막 행은 하단 구분선 제거 */
 table tr:last-child td {
   border-bottom: none;
 }
@@ -307,17 +315,25 @@ table a:hover {
     min-width: 100%;
   }
 }
+
 /* ================================================= */
-/* 7. 본문 레이아웃 너비 확장 */
+/* 7. 본문 레이아웃 — 좌우 빈 공간 없이 꽉 채우기      */
 /* ================================================= */
+
+/* 전체 틀 */
 #main {
-  max-width: $max-width; 
+  max-width: $max-width;
 }
 
+/* 핵심 수정:
+   기존에는 .page 폭을 1200px로 제한해서, 왼쪽 사이드바와 본문 사이에
+   (1800 - 1200 - 사이드바)만큼의 죽은 공간이 생겼다.
+   제한을 풀어 "사이드바와 TOC를 제외한 나머지"를 본문이 전부 쓰게 한다. */
 .page, .archive {
-  max-width: $large; 
+  max-width: none;
 }
 
+/* 본문 안쪽 여백 — 좌우 균형 */
 @media (max-width: 767px) {
   .page__inner-wrap, .archive {
     width: 92%; 
@@ -329,8 +345,17 @@ table a:hover {
 
 @media (min-width: 768px) {
   .page__inner-wrap, .archive {
-    padding-left: 40px; 
-    padding-right: 40px;
+    padding-left: 32px; 
+    padding-right: 32px;
+  }
+}
+
+/* 아주 넓은 화면(1500px+)에서 글줄이 과도하게 길어지는 것 방지:
+   본문 카드 자체는 꽉 채우되, 안쪽 최대 폭에 상한을 둔다.
+   더 넓게 쓰고 싶으면 이 값을 올리거나 이 블록을 삭제하면 된다. */
+@media (min-width: 1500px) {
+  .page__inner-wrap {
+    max-width: 1250px;
   }
 }
 
