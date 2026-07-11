@@ -12,7 +12,7 @@ author_profile: true
   </div>
   <pre class="about-terminal__body"><span class="cmt"># ── 소개 ─────────────────────────────</span>
 <span class="prompt">$</span> <span class="cmd">whoami</span>
-<span class="out">박성진 (SungJin Park) — 백엔드 개발자 지망</span>
+<span class="out">박성진 (SungJin Park) — 풀스택 개발자 지망</span>
 
 <span class="prompt">$</span> <span class="cmd">cat profile.txt</span>
 <span class="out">"선명한 기억보다 희미한 기록이 낫다"
@@ -22,7 +22,7 @@ author_profile: true
 <span class="cmt"># ── 학력 · 교육 ──────────────────────</span>
 <span class="prompt">$</span> <span class="cmd">cat education.txt</span>
 <span class="out">성균관대학교 경제학과 (졸업)
-2026 ~ 진행 중 · DW Academy 백엔드 개발 과정</span>
+2026 ~ 진행 중 · DW Academy 풀스택 개발 과정</span>
 
 <span class="cmt"># ── 기술 · 학습 ──────────────────────</span>
 <span class="prompt">$</span> <span class="cmd">ls skills/</span>
