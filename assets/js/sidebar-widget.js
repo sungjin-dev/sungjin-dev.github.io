@@ -11,6 +11,8 @@ function safe(fn) {
 
 // =======================
 // SIDEBAR MOVE + RESPONSIVE TOGGLE
+// [수정 1] 사이드바가 없는 페이지(메인 splash 등)에서는
+//          위젯을 제거해서 푸터 하단에 노출되지 않게 함
 // =======================
 
 function initSidebar() {
@@ -18,7 +20,13 @@ function initSidebar() {
     const widget = document.querySelector(".my-custom-sidebar-widget");
     const details = document.querySelector(".mobile-widget-toggle");
 
-    if (!sidebar || !widget) return;
+    if (!widget) return;
+
+    // 사이드바가 없는 레이아웃 → 위젯 자체를 제거
+    if (!sidebar) {
+        widget.remove();
+        return;
+    }
 
     sidebar.appendChild(widget);
 
@@ -37,6 +45,7 @@ function initSidebar() {
 
 // =======================
 // CLOCK
+// [수정 2] 첫 1초간 빈 칸으로 뜨던 것 → 즉시 1회 렌더 후 인터벌
 // =======================
 
 function initClock() {
@@ -45,17 +54,14 @@ function initClock() {
 
     if (!timeEl && !dateEl) return;
 
-    setInterval(() => {
+    function render() {
         const now = new Date();
+        if (timeEl) timeEl.textContent = now.toLocaleTimeString("ko-KR");
+        if (dateEl) dateEl.textContent = now.toLocaleDateString("ko-KR");
+    }
 
-        if (timeEl) {
-            timeEl.textContent = now.toLocaleTimeString("ko-KR");
-        }
-
-        if (dateEl) {
-            dateEl.textContent = now.toLocaleDateString("ko-KR");
-        }
-    }, 1000);
+    render();
+    setInterval(render, 1000);
 }
 
 // =======================
@@ -88,52 +94,42 @@ async function loadWeather() {
         console.error("[weather] failed", e);
     }
 }
+
 // =======================
-// VISITOR COUNT (GoatCounter API)
+// VISITOR COUNT
+// [수정 3 · 중요] jsonbin 자체 카운터 → GoatCounter 공식 카운터로 교체
+//  - 기존 코드는 jsonbin Master Key가 저장소에 그대로 노출되어 있었음 (보안 사고)
+//  - 이미 GoatCounter로 집계 중이므로, 공개 카운터 API를 읽기만 하면 됨
+//  - 키 불필요 + 새로고침으로 숫자가 뻥튀기되던 문제도 함께 해결
 // =======================
 
-const BIN_ID = "6a4007edf5f4af5e2939c15b";
-const API_KEY = "$2a$10$c0EVRFLqpSK90EQ3cp0/SuOTsqNX7tu225aPB4hr7dtbli.EhTEnW";
-
-// 추천: 방문자 수를 즉시 보여주기 위한 개선
 async function updateVisitorCount() {
     const el = document.getElementById("gc-total-count");
     if (!el) return;
 
-    // 1. 서버 호출 전, 캐시나 로컬 저장소에서 먼저 보여줄 수 있다면 그렇게 하세요.
-    // el.textContent = localStorage.getItem("last_count") || "...";
-
     try {
-        const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-            headers: { "X-Master-Key": API_KEY }
-        });
+        const res = await fetch("https://tjdwlsl888.goatcounter.com/counter/TOTAL.json");
+        if (!res.ok) { el.textContent = "-"; return; }
 
         const data = await res.json();
-        let count = data?.record?.count ?? 0;
-        
-        // 2. 숫자가 불러와지는 즉시 UI 반영
-        el.textContent = ++count;
-
-        // 3. 업데이트는 나중에(비동기로) 수행하여 UI 차단 방지
-        fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json", "X-Master-Key": API_KEY },
-            body: JSON.stringify({ count })
-        }).catch(console.error);
-
+        el.textContent = data.count ?? "-";
     } catch (e) {
         console.error("[visitor] failed", e);
-        el.textContent = "0";
+        el.textContent = "-";
     }
 }
 
-// 요소가 렌더링될 때까지 기다렸다가 실행하는 함수
-function waitForElement(selector, callback) {
+// =======================
+// [수정 4] waitForElement 무한 폴링 방지
+//  - 요소가 없는 페이지에서 0.1초마다 영원히 재시도하던 것 → 최대 3초로 제한
+// =======================
+
+function waitForElement(selector, callback, maxTries = 30) {
     const el = document.querySelector(selector);
     if (el) {
         callback(el);
-    } else {
-        setTimeout(() => waitForElement(selector, callback), 100);
+    } else if (maxTries > 0) {
+        setTimeout(() => waitForElement(selector, callback, maxTries - 1), 100);
     }
 }
 
@@ -141,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     safe(initSidebar);
     safe(initClock);
 
-    // API 호출을 요소가 준비된 후에 실행하도록 변경
     waitForElement("#weather-temp", loadWeather);
     waitForElement("#gc-total-count", updateVisitorCount);
 });
