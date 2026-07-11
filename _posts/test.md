@@ -1,3 +1,15 @@
+---
+title: "람다(lambda)와 판다스(pandas)"
+excerpt: "정렬방법과 활용예시"
+categories: [Python]
+tags:
+  - Python
+  - Flask
+toc: true
+toc_sticky: true
+--- 
+
+
 # 람다 정렬부터 판다스까지 — 정리 노트
 
 > Flask 트러블 관리 앱의 `error_list_view` 정렬 코드를 출발점으로, 람다 → split → datetime → 판다스(필터·groupby·다중 정렬)까지의 흐름 정리.
