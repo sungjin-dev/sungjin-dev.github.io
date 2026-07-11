@@ -695,3 +695,76 @@ table a:hover {
   }
 }
 
+/* =================================================
+   11. 전체보기 — 포스트 타임라인 스타일
+   main.scss 맨 아래에 추가
+   ================================================= */
+
+.post-timeline {
+  list-style: none;      /* 글머리 점 제거 */
+  margin: 0 0 2em;
+  padding: 0;
+}
+
+.post-timeline li {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #2b3045;
+  transition: background 0.15s ease;
+}
+
+.post-timeline li:hover {
+  background: rgba(125, 207, 255, 0.05);
+}
+
+.post-timeline li:last-child {
+  border-bottom: none;
+}
+
+/* 날짜: 고정폭 폰트로 세로 정렬 맞춤 */
+.post-timeline__date {
+  flex-shrink: 0;
+  font-family: 'D2Coding', monospace;
+  font-size: 0.85em;
+  color: #828bb8;
+}
+
+/* 글 제목 링크 */
+.post-timeline a {
+  flex: 1;
+  min-width: 0;
+  color: #e8edf9;
+  font-weight: 600;
+  text-decoration: none;      /* 밑줄 제거 */
+  transition: color 0.15s ease;
+}
+
+.post-timeline li:hover a {
+  color: #7dcfff;
+}
+
+/* 카테고리 칩 */
+.post-timeline__cat {
+  flex-shrink: 0;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: #bb9af7;
+  background: rgba(187, 154, 247, 0.12);
+  border: 1px solid rgba(187, 154, 247, 0.35);
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+
+/* 모바일: 칩은 숨기고 날짜+제목만 */
+@media (max-width: 600px) {
+  .post-timeline li {
+    gap: 10px;
+    padding: 11px 4px;
+  }
+  .post-timeline__cat {
+    display: none;
+  }
+}
+
