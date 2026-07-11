@@ -26,8 +26,7 @@ minimal_mistakes_skin: "dark"
 
 plugins:
   - jekyll-include-cache
-  - jekyll-paginate
-
+  
 search: true
 
 # =======================================================
@@ -48,6 +47,7 @@ defaults:
       path: ""       # 블로그의 모든 경로에 있는
       type: "posts"
     values:
+      author_profile: true
       layout: "single"  # 포스트 기본 레이아웃
       toc: true         # 목차(TOC) 활성화
       toc_sticky: true  # 스크롤 시 목차 오른쪽 고정
