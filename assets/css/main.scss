@@ -11,6 +11,27 @@ $content-width: 1200px;
 @import "minimal-mistakes";
 
 /* ================================================= */
+/* 0. 코드용 한글 폰트 (D2Coding) 로드                */
+/*    - 한글+영문 폭이 맞는 코딩 전용 폰트            */
+/*    - 한글 주석이 시스템 폰트로 깨지는 문제 해결     */
+/* ================================================= */
+@font-face {
+  font-family: 'D2Coding';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'D2Coding';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2CodingBold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================================================= */
 /* 1. 포스트 본문 전체 (다크모드) 스타일 */
 /* ================================================= */
 .page__content {
@@ -30,9 +51,9 @@ $content-width: 1200px;
 /* 사이드바 오염을 막기 위해 본문(.page__content) 내부의 p, li만 타겟팅하고 줄간격 최적화 */
 .page__content p, .page__content li {
   font-size: 16px;
-  line-height: 1.9; /* 기존 1.75에서 1.9 (또는 2.0)으로 늘려 줄 간격 확보 */
-  margin-bottom: 1.2em; /* 문단(Enter로 구분된 덩어리) 사이의 간격을 추가 */
-  word-break: keep-all; /* 한글 단어가 줄 끝에서 뚝 끊기지 않도록 방지 */
+  line-height: 1.9;
+  margin-bottom: 1.2em;
+  word-break: keep-all;
 }
 
 /* ================================================= */
@@ -62,7 +83,7 @@ code {
   color: #eb5757;
   padding: 2px 5px;
   border-radius: 4px;
-  font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-family: 'D2Coding', 'Consolas', 'Menlo', 'Monaco', monospace;
   font-size: 0.95em;
 }
 
@@ -88,7 +109,7 @@ div.highlighter-rouge {
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
-  line-height: 1.6;
+  line-height: 1.75; /* 1.6 → 1.75: 한글 주석이 섞인 줄의 답답함 해소 */
   background-color: #1a1b26 !important; /* 도쿄나이트 찐한 배경 */
   color: #c0caf5 !important;
   border-radius: 8px;
@@ -100,8 +121,8 @@ div.highlighter-rouge {
   background: none !important;
   border: none !important;
   padding: 0 !important;
-  font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-  font-size: 0.95em; /* 코드 블록 내부 글씨도 본문과 조화를 이루도록 살짝 조정 */
+  font-family: 'D2Coding', 'Consolas', 'Menlo', 'Monaco', monospace;
+  font-size: 0.98em; /* 0.95 → 0.98: D2Coding이 살짝 작게 렌더링되는 것 보정 */
   font-weight: normal;
   color: #c0caf5 !important; 
 }
@@ -170,12 +191,15 @@ div.highlighter-rouge {
   color: #ff9e64 !important;
 }
 
-/* 주석 */
+/* 주석 — 가독성 개선 */
+/* #565f89 → #828bb8: 배경 대비를 높여 눈에 편하게 */
+/* italic 제거: 한글 글리프가 없는 폰트에서 강제 기울임(가짜 이탤릭)으로 */
+/* 어색하게 보이던 문제 해결 */
 .page__content .highlight .c,
 .page__content .highlight .c1,
 .page__content .highlight .cm {
-  color: #565f89 !important;
-  font-style: italic;
+  color: #828bb8 !important;
+  font-style: normal;
 }
 
 /* 괄호, 연산자 */
@@ -191,7 +215,7 @@ div.highlighter-rouge {
 }
 
 /* ================================================= */
-/* 6. 표 디자인
+/* 6. 표 디자인 — 가독성 개선                         */
 /* ================================================= */
 
 table {
@@ -210,8 +234,17 @@ table {
 table th,
 table td {
   padding: 14px 20px;
-  border-bottom: 1px solid #2d3748;
+  border-bottom: 1px solid #3b4261; /* #2d3748 → #3b4261: 행 구분선이 보이도록 */
+  text-align: left; /* 가운데 → 왼쪽 정렬: 시선 시작점을 고정해 읽기 편하게 */
+  line-height: 1.7; /* 셀 안에서 줄바꿈될 때 답답하지 않도록 */
+  word-break: keep-all;
+}
+
+/* 첫 번째 열(기호/표현 열)은 짧은 내용이 많으므로 가운데 정렬 유지 */
+table th:first-child,
+table td:first-child {
   text-align: center;
+  white-space: nowrap;
 }
 
 /* 헤더 */
@@ -219,6 +252,9 @@ table th {
   background-color: #24283b;
   color: #c0caf5 !important;
   font-weight: 700;
+  font-size: 1.02em;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #bb9af7; /* 헤더와 본문의 경계를 확실하게 */
 }
 
 /* 본문 */
@@ -237,11 +273,16 @@ table tr:hover td {
   background-color: #2a2f45;
 }
 
+/* 마지막 행은 하단 구분선 제거 (둥근 모서리와 겹침 방지) */
+table tr:last-child td {
+  border-bottom: none;
+}
+
 /* 표 내부 코드 */
 table code {
   background-color: rgba(125, 207, 255, 0.15) !important;
   color: #7dcfff !important;
-  padding: 2px 6px !important;
+  padding: 3px 8px !important;
   border-radius: 4px !important;
   border: none !important;
   font-size: 0.95em !important;
@@ -343,4 +384,3 @@ table a:hover {
     padding-top: 0;
   }
 }
-
