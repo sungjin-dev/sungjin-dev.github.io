@@ -606,6 +606,18 @@ table a:hover {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
 }
 
+/* 섹션 구분 주석 (# ── 소개 ──) */
+.about-terminal__body .cmt {
+  color: #565f89;
+  font-size: 0.9em;
+}
+
+/* 명령어 텍스트 강조 */
+.about-terminal__body .cmd {
+  color: #f4f7ff;
+  font-weight: 700;
+}
+
 /* 상단 바: 신호등 + 창 제목 */
 .about-terminal__bar {
   display: flex;
