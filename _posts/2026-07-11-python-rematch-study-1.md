@@ -184,6 +184,7 @@ print(m.group())   # 에러! AttributeError: 'NoneType' object has no attribute 
 ## 6. re.compile()로 성능 최적화하기
 
 ```python
+
 import re
 
 USER_ID_PATTERN = re.compile(r"^[a-z][a-z0-9_]{3,15}$") 
@@ -208,7 +209,7 @@ validate_user_id("python_lover99")
 
 특히 for문 같은 반복문 안에서 수만 건의 데이터를 검사한다고 상상해보자. 컴퓨터가 속으로 비명을 지를지도 모른다. 
 
-- 비효율적인 방식
+ⓐ비효율적인 방식
   
 ```python
 
@@ -223,8 +224,8 @@ for email in emails:
 (참고: 파이썬 내부적으로 최근 사용한 패턴을 임시 저장(캐싱)하긴 하지만, 캐시 용량 한계나 다른 패턴이 섞여 들어오면 캐시가 지워져 성능이 저하될 수 있음.)
 ```
 
-- 효율적인 방식 (미리 컴파일해 두고 검사만 수행)
-- 
+ⓑ효율적인 방식 (미리 컴파일해 두고 검사만 수행)
+
 ```python
 
 import re
