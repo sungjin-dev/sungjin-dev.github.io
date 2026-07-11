@@ -3,7 +3,7 @@ title: "Java 코드가 실행되는 과정"
 excerpt: "javac부터 JIT까지"
 categories: [Java]
 tags:
-  - java
+  - Java
 toc: true
 toc_sticky: true
 --- 
