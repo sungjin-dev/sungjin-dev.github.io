@@ -216,6 +216,17 @@ div.highlighter-rouge {
 /* 6. 표 디자인 */
 /* ================================================= */
 
+/* 열 구분 세로선 — 마지막 열 제외 */
+table th:not(:last-child),
+table td:not(:last-child) {
+  border-right: 1px solid #3b4261;
+}
+
+/* 헤더의 세로선은 살짝 밝게 (배경이 더 밝아서 같은 색이면 안 보임) */
+table th:not(:last-child) {
+  border-right-color: #454c6b;
+}
+
 table {
   border-collapse: collapse !important;
   width: auto !important;
