@@ -1016,3 +1016,21 @@ code {
   font-family: 'D2Coding', 'Consolas', monospace;
   font-size: 0.95em;
 }
+
+/* =================================================
+   16. 페이지 배경 — 명도 위계 정리
+   배경(#16181D) < 본문 카드(#1E1E1E) < 표(#21252B)
+   < 코드 블록(#282C34) 순으로 밝아지는 사다리 완성
+   ================================================= */
+body {
+  background-color: #16181D;
+}
+
+/* 상단 마스트헤드도 같은 계열로 (배경보다 한 톤 더 어둡게) */
+.masthead {
+  background-color: #101216;
+  border-bottom: 1px solid #262B35;
+}
+.greedy-nav {
+  background: #101216;
+}
