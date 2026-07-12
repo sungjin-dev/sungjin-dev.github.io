@@ -49,13 +49,17 @@ $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFon
 /* ================================================= */
 /* 1. 포스트 본문 전체 (다크모드) 스타일 — One Dark   */
 /* ================================================= */
+
 .page__content {
-  background-color: #1E1E1E;
-  border-left: 5px solid #E5C07B;
-  padding: 30px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  color: #D4D4D4;
+  background-color: #16161E;       /* 기존 #1E1E1E에서 확실히 더 어둡고 묵직한 블랙 톤으로 변경 */
+  border-left: 5px solid #E5C07B;  /* */
+  padding: 30px;                   /* */
+  margin-bottom: 20px;             /*[cite: 3] */
+  border-radius: 8px;              /* 조금 더 부드러운 라운딩 */
+  color: #D4D4D4;                  /*[cite: 3] */
+  
+  /* 은은한 입체감을 주어 바깥 배경(사이드바)과 경계를 확실히 분리 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); 
 }
 
 .my-box {
