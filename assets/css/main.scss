@@ -100,16 +100,15 @@ code {
 }
 
 .page__content p code, .page__content li code {
-  background-color: transparent;   /* 배경을 완전히 투명하게 처리 */
-  color: #E2E8F0;                  /* 본문보다 아주 살짝 밝은 미색 */
-  border: 1px solid #4A5568;       /* 존재감을 주는 차분한 흑철색 테두리 */
+  background-color: rgba(255, 255, 255, 0.08); /* 반투명 화이트로 본문 위에 은은한 레이어 생성 */
+  color: #E2E8F0;                               /* 부드러운 화이트 그레이 */
+  border: none;                                 /* 테두리를 과감히 생략 */
   font-size: 1.02em;
-  padding: 2px 6px;
+  padding: 3px 6px;
   margin: 0 2px;
   border-radius: 4px;
   font-weight: 700;
   vertical-align: middle;
-  white-space: nowrap;
 }
 
 /* ================================================= */
