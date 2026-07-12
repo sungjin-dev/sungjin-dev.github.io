@@ -1,7 +1,7 @@
 ---
 title: "SQL 공부 기록"
 layout: archive
-permalink: /SQL/
+permalink: /sql/
 sidebar:
   nav: "sidebar_category"
 ---
