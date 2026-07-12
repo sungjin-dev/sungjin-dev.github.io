@@ -1206,3 +1206,9 @@ body {
   transform: translateY(-2px);
   border-color: var(--accent);
 }
+
+.page__hero--overlay .page__title,
+.page__header-title,
+header .page__title {
+  display: none !important;
+}
