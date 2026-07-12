@@ -99,15 +99,15 @@ code {
   font-size: 0.95em;
 }
 
-/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 변경 - 그레이 모던 */
+/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 — 눈이 편안한 One Dark 톤 */
 .page__content p code, .page__content li code {
-  background-color: rgba(240, 240, 240, 0.15); /* 은은한 밝은 그레이 배경 */
-  color: #E8EDF9;                               /* 본문보다 아주 살짝만 더 밝은 미색 */
-  border: 1px solid rgba(255, 255, 255, 0.1);   /* 미세한 테두리 */
+  background-color: #282C34;                   /* 코드 블록과 동일한 다크 그레이 */
+  color: #ABB2BF;                              /* 쨍하지 않고 부드러운 미색/회색 */
+  border: 1px solid rgba(62, 68, 81, 0.5);     /* 은은한 경계선 선언 */
   font-size: 0.92em;
-  padding: 2px 6px;
+  padding: 3px 6px;
   border-radius: 4px;
-  font-weight: 600;                             /* 색상 대신 두께로 강조 */
+  font-weight: 600;                            /* 눈부심을 줄인 대신 두께로 식별력 확보 */
 }
 
 /* ================================================= */
