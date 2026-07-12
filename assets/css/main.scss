@@ -37,31 +37,165 @@ $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFon
   font-display: swap;
 }
 
-/* ================================================= */
-/* One Dark 팔레트 참고표
-   배경(본문) #1E1E1E   배경(코드) #282C34   배경(표) #21252B
-   본문 텍스트 #D4D4D4  코드 기본  #D7DAE0
-   앰버 #E5C07B  그린 #98C379  블루 #61AFEF
-   퍼플 #C678DD  코랄 #E06C75  시안 #56B6C2  주황 #D19A66
-   경계선 #3E4451  주석/보조 #7F848E
+/* =================================================
+   ★ 테마 변수 — 이 블록이 사이트 전체의 색을 결정
+   -------------------------------------------------
+   다크(기본): 지금까지 완성한 디자인 그대로
+     명도 사다리: 마스트헤드 < 배경 < 코드블록 < 카드 < 표
+   라이트: One Dark ↔ One Light 공식 대응 팔레트 기반
+     사다리 방향 반전: 표/코드가 흰 카드보다 살짝 어두움
    ================================================= */
+:root,
+html[data-theme="dark"] {
+  /* --- 표면(명도 사다리) --- */
+  --bg-page: #12141D;
+  --bg-masthead: #0E1017;
+  --border-masthead: #262B3A;
+  --bg-card: #23272F;
+  --bg-code: #1C1F26;
+  --border-code: #3A404E;
+  --bg-chip: #313742;
+  --bg-table: #262B33;
+  --bg-table-th: #2E333D;
+  --bg-table-even: #2A2F38;
+  --bg-table-hover: #333944;
+
+  /* --- 텍스트 --- */
+  --text-body: #DADDE3;
+  --text-strong: #F0EFEB;
+  --text-muted: #7F848E;
+  --code-text: #D7DAE0;
+  --chip-text: #E2E8F0;
+
+  /* --- 포인트 / 링크 --- */
+  --accent: #E5C07B;          /* 앰버 */
+  --accent-green: #98C379;
+  --link: #61AFEF;
+
+  /* --- 경계선 --- */
+  --border-table: #3E4451;
+  --border-table-th: #4B5263;
+  --chip-underline: #4B5263;
+  --border-panel: #3E4451;    /* TOC·위젯 카드 외곽선 */
+
+  /* --- TOC / 사이드 패널 --- */
+  --surface-panel: #21252B;
+  --toc-head-bg: #2C313A;
+  --toc-link: #ABB2BF;
+  --toc-divider: #2E333D;
+  --toc-hover: #B8E0D9;       /* 민트 */
+
+  /* --- 그림자 --- */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
+
+  /* --- 구문 강조 (One Dark) --- */
+  --syn-kw: #C678DD;
+  --syn-type: #E5C07B;
+  --syn-tag: #E06C75;
+  --syn-func: #61AFEF;
+  --syn-attr: #D19A66;
+  --syn-plain: #D7DAE0;
+  --syn-str: #56B6C2;
+  --syn-comment: #7F848E;
+
+  /* --- Tokyo Night 존 (메인/아카이브/타임라인) --- */
+  --tn-card: #24283b;
+  --tn-hover: #24283b;
+  --tn-border: #3b4261;
+  --tn-border-soft: #2b3045;
+  --tn-text: #a9b1d6;
+  --tn-strong: #e8edf9;
+  --tn-title: #c0caf5;
+  --tn-muted: #828bb8;
+  --tn-blue: #7dcfff;
+  --tn-purple: #bb9af7;
+  --tn-yellow: #e0af68;
+  --tn-btn-hover-text: #1a1b26;
+}
+
+html[data-theme="light"] {
+  /* --- 표면 --- */
+  --bg-page: #EEF0F5;
+  --bg-masthead: #FFFFFF;
+  --border-masthead: #E3E6EE;
+  --bg-card: #FFFFFF;
+  --bg-code: #F4F5F9;
+  --border-code: #E0E3EC;
+  --bg-chip: #EDEFF5;
+  --bg-table: #FAFBFD;
+  --bg-table-th: #F1F3F8;
+  --bg-table-even: #F5F6FB;
+  --bg-table-hover: #EDF0F7;
+
+  /* --- 텍스트 --- */
+  --text-body: #383A42;
+  --text-strong: #1F2329;
+  --text-muted: #8A8F98;
+  --code-text: #383A42;
+  --chip-text: #383A42;
+
+  /* --- 포인트 / 링크 (흰 배경 대비 확보를 위해 어둡게) --- */
+  --accent: #B0821F;
+  --accent-green: #3F8F3F;
+  --link: #3B6FDB;
+
+  /* --- 경계선 --- */
+  --border-table: #E4E7EF;
+  --border-table-th: #D6DAE5;
+  --chip-underline: #C9CEDC;
+  --border-panel: #E3E6EE;
+
+  /* --- TOC / 사이드 패널 --- */
+  --surface-panel: #FFFFFF;
+  --toc-head-bg: #F4F6FA;
+  --toc-link: #5A6070;
+  --toc-divider: #ECEEF4;
+  --toc-hover: #0F766E;
+
+  /* --- 그림자 --- */
+  --shadow-card: 0 4px 20px rgba(35, 45, 75, 0.08);
+
+  /* --- 구문 강조 (One Light) --- */
+  --syn-kw: #A626A4;
+  --syn-type: #C18401;
+  --syn-tag: #E45649;
+  --syn-func: #4078F2;
+  --syn-attr: #986801;
+  --syn-plain: #383A42;
+  --syn-str: #0184BC;
+  --syn-comment: #8E939D;
+
+  /* --- Tokyo Night 존 → Tokyo Night Day 대응 --- */
+  --tn-card: #FFFFFF;
+  --tn-hover: #F3F5FA;
+  --tn-border: #DDE1EC;
+  --tn-border-soft: #E8EBF2;
+  --tn-text: #5A6485;
+  --tn-strong: #2B3045;
+  --tn-title: #3B4468;
+  --tn-muted: #8A91AD;
+  --tn-blue: #2E7DE9;
+  --tn-purple: #7847BD;
+  --tn-yellow: #8C6C3E;
+  --tn-btn-hover-text: #FFFFFF;
+}
 
 /* ================================================= */
-/* 1. 포스트 본문 전체 (다크모드) 스타일 — One Dark   */
+/* 1. 포스트 본문 카드                                */
 /* ================================================= */
 
 .page__content {
-  background-color: #1E1E1E;       
-  border-left: 5px solid #E5C07B;  
-  padding: 30px;                   
-  margin-bottom: 20px;             
-  border-radius: 8px;              
-  color: #D4D4D4;                  
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); 
+  background-color: var(--bg-card);
+  border-left: 5px solid var(--accent);
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  color: var(--text-body);
+  box-shadow: var(--shadow-card);
 }
 
 .my-box {
-  background-color: #1E1E1E;
+  background-color: var(--bg-card);
   padding: 24px;
 }
 
@@ -72,51 +206,65 @@ $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFon
   word-break: keep-all;
 }
 
+.page__content a:not(.btn) {
+  color: var(--link);
+}
+
 /* ================================================= */
-/* 2. 제목 (h2, h3) 스타일 — 대제목 앰버, 소제목 그린 */
+/* 2. 제목 (h2, h3)                                   */
 /* ================================================= */
 .page__content h2 {
-  color: #E5C07B;
+  color: var(--accent);
   padding-left: 12px;
-  border-left: 5px solid #E5C07B;
+  border-left: 5px solid var(--accent);
   margin-top: 2em;
   margin-bottom: 1em;
   font-weight: 700;
 }
 
 .page__content h3 {
-  color: #98C379;
+  color: var(--accent-green);
   margin-top: 1.5em;
   margin-bottom: 0.8em;
   font-weight: 700;
 }
 
-/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 변경 - 주황 */
+/* ================================================= */
+/* 3. 인라인 코드                                     */
+/* ================================================= */
+
+/* 본문 밖(사이드바 등)에 나오는 code */
 code {
-  background-color: #f1f3f5;
-  color: #d19a66;
+  background-color: var(--bg-chip);
+  color: var(--syn-attr);
   padding: 2px 5px;
   border-radius: 4px;
   font-family: 'D2Coding', 'Consolas', monospace;
   font-size: 0.95em;
 }
 
-.page__content p code, .page__content li code {
-  background-color: #24283b;                     
-  color: #E2E8F0;
+/* 본문 안 인라인 코드 칩 */
+.page__content p code,
+.page__content li code,
+.page__content h2 code,
+.page__content h3 code,
+.page__content h4 code,
+.page__content blockquote code {
+  background-color: var(--bg-chip);
+  color: var(--chip-text);
   border: none;
-  border-bottom: 2px solid #565f89;              
+  border-bottom: 2px solid var(--chip-underline);
   font-size: 1.02em;
-  padding: 2px 6px 4px 6px;                     
+  padding: 2px 6px 4px 6px;
   margin: 0 2px;
-  border-radius: 3px 3px 0 0;                    
+  border-radius: 3px 3px 0 0;
   font-weight: 700;
   vertical-align: middle;
   white-space: nowrap;
 }
 
 /* ================================================= */
-/* 4. 코드 블록(Syntax Highlighting) 박스 스타일      */
+/* 4. 코드 블록 — 카드 아래로 "파인" 표면 + 외곽선     */
 /* ================================================= */
 div.highlighter-rouge {
   margin-bottom: 1.5em;
@@ -129,14 +277,13 @@ div.highlighter-rouge {
   max-width: 100%;
   overflow-x: auto;
   line-height: 1.75;
-  background-color: #1C1F26 !important;   /* 카드보다 오히려 어둡게 */
-  color: #D7DAE0 !important;
+  background-color: var(--bg-code) !important;
+  color: var(--code-text) !important;
   border-radius: 8px;
 }
 
-/* 코드 블록 외곽선 — 경계를 선으로 확정 */
 .page__content div.highlighter-rouge > .highlight {
-  border: 1px solid #3A404E;
+  border: 1px solid var(--border-code);
 }
 
 .page__content div.highlighter-rouge div.highlight code,
@@ -148,11 +295,11 @@ div.highlighter-rouge {
   font-family: 'D2Coding', 'Consolas', 'Menlo', 'Monaco', monospace;
   font-size: 1.05em;
   font-weight: normal;
-  color: #D7DAE0 !important;
+  color: var(--code-text) !important;
 }
 
 /* ================================================= */
-/* 5. One Dark 테마 구문 강조                          */
+/* 5. 구문 강조 — 다크: One Dark / 라이트: One Light  */
 /* ================================================= */
 
 /* 키워드: if, for, while, return */
@@ -161,43 +308,43 @@ div.highlighter-rouge {
 .page__content .highlight .kv,
 .page__content .highlight .kr,
 .page__content .highlight .kp {
-  color: #C678DD !important;
+  color: var(--syn-kw) !important;
 }
 
 /* 클래스명, 타입 */
 .page__content .highlight .nc,
 .page__content .highlight .kt {
-  color: #E5C07B !important;
+  color: var(--syn-type) !important;
 }
 
 /* HTML 태그: form, div, button */
 .page__content .highlight .nt {
-  color: #E06C75 !important;
+  color: var(--syn-tag) !important;
 }
 
 /* 내장 함수: len(), range(), print() */
 .page__content .highlight .nb,
 .page__content .highlight .nn {
-  color: #61AFEF !important;
+  color: var(--syn-func) !important;
 }
 
 /* 사용자 정의 함수 */
 .page__content .highlight .nf,
 .page__content .highlight .fm {
-  color: #61AFEF !important;
+  color: var(--syn-func) !important;
   font-weight: 700;
 }
 
 /* HTML 속성: name, type, method */
 .page__content .highlight .na,
 .page__content .highlight .py {
-  color: #D19A66 !important;
+  color: var(--syn-attr) !important;
 }
 
 /* 일반 변수 */
 .page__content .highlight .nx,
 .page__content .highlight .nv {
-  color: #D7DAE0 !important;
+  color: var(--syn-plain) !important;
 }
 
 /* 문자열 */
@@ -205,49 +352,47 @@ div.highlighter-rouge {
 .page__content .highlight .s1,
 .page__content .highlight .s2,
 .page__content .highlight .sr {
-  color: #56B6C2 !important; 
+  color: var(--syn-str) !important;
 }
 
 /* 숫자 */
 .page__content .highlight .m,
 .page__content .highlight .mi,
 .page__content .highlight .mf {
-  color: #D19A66 !important;
+  color: var(--syn-attr) !important;
 }
 
 /* 주석 */
 .page__content .highlight .c,
 .page__content .highlight .c1,
 .page__content .highlight .cm {
-  color: #7F848E !important;
+  color: var(--syn-comment) !important;
   font-style: normal;
 }
 
 /* 괄호, 연산자 */
 .page__content .highlight .p,
 .page__content .highlight .o {
-  color: #D7DAE0 !important;
+  color: var(--syn-plain) !important;
 }
 
 /* Rouge 오류 토큰 */
 .page__content .highlight .err {
-  color: #D7DAE0 !important;
+  color: var(--syn-plain) !important;
   background-color: transparent !important;
 }
 
 /* ================================================= */
-/* 6. 표 디자인 — One Dark                            */
+/* 6. 표 디자인                                       */
 /* ================================================= */
 
-/* 열 구분 세로선 — 마지막 열 제외 */
 table th:not(:last-child),
 table td:not(:last-child) {
-  border-right: 1px solid #3E4451;
+  border-right: 1px solid var(--border-table);
 }
 
-/* 헤더의 세로선은 살짝 밝게 (배경이 더 밝아서 같은 색이면 안 보임) */
 table th:not(:last-child) {
-  border-right-color: #4B5263;
+  border-right-color: var(--border-table-th);
 }
 
 table {
@@ -259,14 +404,14 @@ table {
   border-radius: 8px !important;
   overflow: hidden;
   display: table !important;
-  background-color: #21252B;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  background-color: var(--bg-table);
+  box-shadow: var(--shadow-card);
 }
 
 table th,
 table td {
   padding: 14px 20px;
-  border-bottom: 1px solid #3E4451;
+  border-bottom: 1px solid var(--border-table);
   text-align: left;
   line-height: 1.7;
   word-break: keep-all;
@@ -278,29 +423,27 @@ table td:first-child {
   white-space: nowrap;
 }
 
-/* 헤더 */
 table th {
-  background-color: #2C313A;
-  color: #F0EFEB !important;
+  background-color: var(--bg-table-th);
+  color: var(--text-strong) !important;
   font-weight: 700;
   font-size: 1.06em;
   letter-spacing: 0.02em;
-  border-bottom: 2px solid #E5C07B;
+  border-bottom: 2px solid var(--accent);
 }
 
-/* 본문 */
 table td {
-  background-color: #21252B;
-  color: #D4D4D4 !important;
+  background-color: var(--bg-table);
+  color: var(--text-body) !important;
   font-size: 1.03em;
 }
 
 table tr:nth-child(even) td {
-  background-color: #262A31;
+  background-color: var(--bg-table-even);
 }
 
 table tr:hover td {
-  background-color: #2C313A;
+  background-color: var(--bg-table-hover);
 }
 
 table tr:last-child td {
@@ -308,8 +451,8 @@ table tr:last-child td {
 }
 
 table code {
-  background-color: rgba(209, 154, 102, 0.13) !important;
-  color: #D19A66 !important;
+  background-color: color-mix(in srgb, var(--syn-attr) 13%, transparent) !important;
+  color: var(--syn-attr) !important;
   padding: 3px 8px !important;
   border-radius: 4px !important;
   border: none !important;
@@ -318,11 +461,11 @@ table code {
 }
 
 table a {
-  color: #61AFEF !important;
+  color: var(--link) !important;
 }
 
 table a:hover {
-  color: #E5C07B !important;
+  color: var(--accent) !important;
 }
 
 @media (max-width: 768px) {
@@ -335,7 +478,7 @@ table a:hover {
 }
 
 /* ================================================= */
-/* 7. 본문 레이아웃 — 좌우 빈 공간 없이 꽉 채우기      */
+/* 7. 본문 레이아웃                                   */
 /* ================================================= */
 
 #main {
@@ -369,17 +512,17 @@ table a:hover {
 }
 
 /* ================================================= */
-/* 8. 사이드바 시계/날씨 위젯 접기(Toggle) 스타일      */
+/* 8. 사이드바 시계/날씨 위젯 접기(Toggle)             */
 /* ================================================= */
 .mobile-widget-toggle {
-  background-color: #21252B;
+  background-color: var(--surface-panel);
   border-radius: 8px;
   margin-bottom: 20px;
 }
 
 .mobile-widget-toggle summary {
   padding: 12px 15px;
-  color: #D4D4D4;
+  color: var(--text-body);
   font-weight: bold;
   cursor: pointer;
   text-align: center;
@@ -393,7 +536,7 @@ table a:hover {
 .mobile-widget-toggle summary::after {
   content: " ▼";
   font-size: 0.8em;
-  color: #E5C07B;
+  color: var(--accent);
 }
 
 .mobile-widget-toggle[open] summary::after {
@@ -402,7 +545,7 @@ table a:hover {
 
 .widget-content {
   padding-top: 10px;
-  border-top: 1px solid #3E4451;
+  border-top: 1px solid var(--border-panel);
 }
 
 @media (min-width: 768px) {
@@ -420,23 +563,22 @@ table a:hover {
 }
 
 /* =========================================================
-   [B] 9. 메인 페이지(splash) 스타일 
-   .layout--splash 로 스코프를 잡아 개별 글에는 영향 없음
+   [B] 9. 메인 페이지(splash) 스타일
+   히어로와 터미널 카드는 라이트 모드에서도 다크 유지(의도)
    ========================================================= */
 
-/* ---------- 히어로 우측 터미널 카드 ---------- */
 .layout--splash .page__hero--overlay {
-  position: relative;   /* 기존 히어로 블록에 이 한 줄 추가 */
+  position: relative;
 }
 
 .hero-terminal {
-  display: block; 
+  display: block;
   position: absolute;
   right: 7%;
   top: 50%;
   transform: translateY(-50%);
   width: 340px;
-  background: #16161e;
+  background: #16161e;               /* 고정: 터미널은 항상 다크 */
   border: 1px solid #3b4261;
   border-radius: 10px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
@@ -472,25 +614,24 @@ table a:hover {
 .hero-terminal__body .prompt { color: #9ece6a; font-weight: 700; }
 .hero-terminal__body .out    { color: #a9b1d6; }
 
-/* 좁은 화면에서는 겹치므로 숨김 */
 @media (max-width: 1100px) {
   .hero-terminal { display: none; }
 }
 
-/* ---------- 히어로: 민무늬 → 그라데이션 + 타이포 강화 ---------- */
+/* 히어로: 고정 다크 그라데이션 (라이트 모드에서도 다크 밴드) */
 .layout--splash .page__hero--overlay {
   background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
-  padding: 2.2em 0 2em;      /* 5em 0 4.5em → 절반 이하로 */
-  min-height: 0;             /* 테마의 기본 최소 높이 해제 */
+  padding: 2.2em 0 2em;
+  min-height: 0;
 }
 
 .layout--splash .page__hero--overlay .page__title {
   font-size: 2.6em;
   font-weight: 800;
   letter-spacing: -0.02em;
+  color: #fff;                       /* 다크 밴드 위 고정 흰색 */
 }
 
-/* 제목의 포인트 컬러 밑줄 */
 .layout--splash .page__hero--overlay .page__title::after {
   content: "";
   display: block;
@@ -507,10 +648,10 @@ table a:hover {
   max-width: 640px;
 }
 
-/* ---------- 시리즈 카드: 떠 있는 텍스트 → 진짜 카드 ---------- */
+/* ---------- 시리즈 카드 ---------- */
 .layout--splash .feature__item {
-  background: #24283b;
-  border: 1px solid #3b4261;
+  background: var(--tn-card);
+  border: 1px solid var(--tn-border);
   border-radius: 12px;
   padding: 0;
   overflow: hidden;
@@ -519,75 +660,74 @@ table a:hover {
 
 .layout--splash .feature__item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-  border-color: #565f89;
+  box-shadow: var(--shadow-card);
+  border-color: var(--tn-muted);
 }
 
 .layout--splash .feature__item .archive__item-body {
   padding: 1.4em 1.5em 1.6em;
 }
 
-/* 카드 상단 컬러 띠 — 시리즈별 색 구분 */
 .layout--splash .feature__item .archive__item {
-  border-top: 4px solid #7dcfff;           /* 1번 카드: Python */
+  border-top: 4px solid var(--tn-blue);
 }
 .layout--splash .feature__item:nth-child(2) .archive__item {
-  border-top-color: #e0af68;               /* 2번 카드: Java */
+  border-top-color: var(--tn-yellow);
 }
 .layout--splash .feature__item:nth-child(3) .archive__item {
-  border-top-color: #bb9af7;               /* 3번 카드: 전체보기 */
+  border-top-color: var(--tn-purple);
 }
 
 .layout--splash .feature__item .archive__item-title {
   font-size: 1.15em;
   font-weight: 700;
-  color: #f4f7ff;
+  color: var(--tn-strong);
   margin-top: 0.2em;
 }
 
 .layout--splash .feature__item .archive__item-excerpt {
-  color: #a9b1d6;
+  color: var(--tn-text);
   font-size: 0.92em;
   line-height: 1.75;
 }
 
-/* 카드 버튼 — 청록 기본 버튼 → 팔레트 톤의 고스트 버튼 */
+/* 카드 고스트 버튼 */
 .layout--splash .feature__item .btn--primary {
   background: transparent;
-  border: 1.5px solid #7dcfff;
-  color: #7dcfff;
+  border: 1.5px solid var(--tn-blue);
+  color: var(--tn-blue);
   border-radius: 8px;
   font-weight: 700;
   padding: 0.55em 1.2em;
   transition: background 0.15s ease, color 0.15s ease;
 }
 .layout--splash .feature__item .btn--primary:hover {
-  background: #7dcfff;
-  color: #1a1b26;
+  background: var(--tn-blue);
+  color: var(--tn-btn-hover-text);
 }
 .layout--splash .feature__item:nth-child(2) .btn--primary {
-  border-color: #e0af68;
-  color: #e0af68;
+  border-color: var(--tn-yellow);
+  color: var(--tn-yellow);
 }
 .layout--splash .feature__item:nth-child(2) .btn--primary:hover {
-  background: #e0af68;
-  color: #1a1b26;
+  background: var(--tn-yellow);
+  color: var(--tn-btn-hover-text);
 }
 .layout--splash .feature__item:nth-child(3) .btn--primary {
-  border-color: #bb9af7;
-  color: #bb9af7;
+  border-color: var(--tn-purple);
+  color: var(--tn-purple);
 }
 .layout--splash .feature__item:nth-child(3) .btn--primary:hover {
-  background: #bb9af7;
-  color: #1a1b26;
+  background: var(--tn-purple);
+  color: var(--tn-btn-hover-text);
 }
 
-/* ---------- "다른 주제들": 밑줄 링크 나열 → 알약 칩 ---------- */
+/* ---------- 알약 칩 ---------- */
 .layout--splash .topic-chips a {
   display: inline-block;
-  background: #24283b;
-  border: 1px solid #3b4261;
-  color: #c0caf5;
+  background: var(--tn-card);
+  border: 1px solid var(--tn-border);
+  color: var(--tn-title);
   padding: 0.4em 1em;
   margin: 0.25em 0.3em 0.25em 0;
   border-radius: 999px;
@@ -598,48 +738,45 @@ table a:hover {
 }
 
 .layout--splash .topic-chips a:hover {
-  border-color: #7dcfff;
-  color: #7dcfff;
-  background: rgba(125, 207, 255, 0.08);
+  border-color: var(--tn-blue);
+  color: var(--tn-blue);
+  background: color-mix(in srgb, var(--tn-blue) 8%, transparent);
 }
 
-/* ---------- 섹션 제목 정리 ---------- */
+/* ---------- 섹션 제목 ---------- */
 .layout--splash .page__content h2 {
-  border-left: none;          /* 본문용 왼쪽 바는 메인에선 제거 */
+  border-left: none;
   padding-left: 0;
-  border-bottom: 1px solid #3b4261;
+  border-bottom: 1px solid var(--tn-border);
   padding-bottom: 0.4em;
   font-size: 1.3em;
 }
 
 /* =================================================
-   10. About 페이지 — 이력 터미널 스타일
-   main.scss 맨 아래에 추가
+   10. About 페이지 — 이력 터미널
+   터미널 카드는 라이트 모드에서도 다크 유지(의도)
    ================================================= */
 
 .about-terminal {
   max-width: 760px;
   margin: 0.5em 0 2.2em;
-  background: #16161e;
+  background: #171A26;               /* 고정 다크 */
   border: 1px solid #3b4261;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
 }
 
-/* 섹션 구분 주석 (# ── 소개 ──) */
 .about-terminal__body .cmt {
   color: #565f89;
   font-size: 0.9em;
 }
 
-/* 명령어 텍스트 강조 */
 .about-terminal__body .cmd {
   color: #f4f7ff;
   font-weight: 700;
 }
 
-/* 상단 바: 신호등 + 창 제목 */
 .about-terminal__bar {
   display: flex;
   align-items: center;
@@ -664,7 +801,6 @@ table a:hover {
   font-size: 0.85em;
 }
 
-/* 본문 */
 .about-terminal__body {
   margin: 0 !important;
   padding: 22px 26px !important;
@@ -674,7 +810,7 @@ table a:hover {
   font-size: 0.95em;
   line-height: 1.95;
   color: #e8edf9;
-  white-space: pre-wrap;      /* 좁은 화면에서 줄바꿈 허용 */
+  white-space: pre-wrap;
   word-break: keep-all;
 }
 
@@ -687,7 +823,6 @@ table a:hover {
   color: #a9b1d6;
 }
 
-/* 출력 안의 링크 */
 .about-terminal__body a {
   color: #7dcfff;
   text-decoration: none;
@@ -698,7 +833,6 @@ table a:hover {
   border-bottom-color: #bb9af7;
 }
 
-/* 깜빡이는 커서 */
 .about-terminal__body .cursor {
   color: #9ece6a;
   animation: about-blink 1.1s steps(1) infinite;
@@ -707,7 +841,6 @@ table a:hover {
   50% { opacity: 0; }
 }
 
-/* 모바일 */
 @media (max-width: 600px) {
   .about-terminal__body {
     padding: 16px 16px !important;
@@ -717,12 +850,11 @@ table a:hover {
 }
 
 /* =================================================
-   11. 전체보기 — 포스트 타임라인 스타일
-   main.scss 맨 아래에 추가
+   11. 전체보기 — 포스트 타임라인
    ================================================= */
 
 .post-timeline {
-  list-style: none;      /* 글머리 점 제거 */
+  list-style: none;
   margin: 0 0 2em;
   padding: 0;
 }
@@ -732,53 +864,49 @@ table a:hover {
   align-items: baseline;
   gap: 14px;
   padding: 12px 8px;
-  border-bottom: 1px solid #2b3045;
+  border-bottom: 1px solid var(--tn-border-soft);
   transition: background 0.15s ease;
 }
 
 .post-timeline li:hover {
-  background: rgba(125, 207, 255, 0.05);
+  background: color-mix(in srgb, var(--tn-blue) 5%, transparent);
 }
 
 .post-timeline li:last-child {
   border-bottom: none;
 }
 
-/* 날짜: 고정폭 폰트로 세로 정렬 맞춤 */
 .post-timeline__date {
   flex-shrink: 0;
   font-family: 'D2Coding', monospace;
   font-size: 0.85em;
-  color: #828bb8;
+  color: var(--tn-muted);
 }
 
-/* 글 제목 링크 */
 .post-timeline a {
   flex: 1;
   min-width: 0;
-  color: #e8edf9;
+  color: var(--tn-strong);
   font-weight: 600;
-  text-decoration: none;      /* 밑줄 제거 */
+  text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .post-timeline li:hover a {
-  color: #7dcfff;
+  color: var(--tn-blue);
 }
 
-/* 카테고리 칩 */
 .post-timeline__cat {
   flex-shrink: 0;
   font-size: 0.75em;
   font-weight: 700;
-  color: #bb9af7;
-  background: rgba(187, 154, 247, 0.12);
-  border: 1px solid rgba(187, 154, 247, 0.35);
+  color: var(--tn-purple);
+  background: color-mix(in srgb, var(--tn-purple) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tn-purple) 35%, transparent);
   padding: 2px 10px;
   border-radius: 999px;
 }
 
-/* 모바일: 칩은 숨기고 날짜+제목만 */
 @media (max-width: 600px) {
   .post-timeline li {
     gap: 10px;
@@ -791,7 +919,6 @@ table a:hover {
 
 /* =================================================
    12. 카테고리/목록 페이지 — 글 목록 카드화
-   (/java/, /python/ 등 모든 카테고리 + 메인 최근 글 공통 적용)
    ================================================= */
 
 .archive .list__item {
@@ -802,45 +929,42 @@ table a:hover {
   padding: 16px 18px;
   border-radius: 10px;
   border: 1px solid transparent;
-  border-bottom: 1px solid #2b3045;
+  border-bottom: 1px solid var(--tn-border-soft);
   transition: background 0.15s ease, border-color 0.15s ease,
               transform 0.15s ease;
 }
 
 .archive__item:hover {
-  background: #24283b;
-  border-color: #3b4261;
+  background: var(--tn-hover);
+  border-color: var(--tn-border);
   transform: translateX(4px);
 }
 
-/* 제목: 밑줄 제거 + 흰색에 가깝게 */
 .archive__item-title {
-  color: #c0caf5; 
+  color: var(--tn-title);
   margin: 0;
   font-size: 1.12em;
   font-weight: 700;
 }
 
 .archive__item-title a {
-  color: #e8edf9;
+  color: var(--tn-strong);
   text-decoration: none;
   border-bottom: none;
   transition: color 0.15s ease;
 }
 
 .archive__item:hover .archive__item-title a {
-  color: #7dcfff;
+  color: var(--tn-blue);
 }
 
-/* 부제(excerpt): 한 톤 낮춰 보조 정보로 */
 .archive__item-excerpt {
   margin: 6px 0 0;
   font-size: 0.88em;
-  color: #828bb8;
+  color: var(--tn-muted);
   line-height: 1.6;
 }
 
-/* 제목 아래 그라데이션 언더라인 — 호버 시 늘어남 */
 .archive__item-title::after {
   content: "";
   display: block;
@@ -848,7 +972,7 @@ table a:hover {
   height: 3px;
   margin-top: 8px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #7dcfff, #bb9af7);
+  background: linear-gradient(90deg, var(--tn-blue), var(--tn-purple));
   opacity: 0.55;
   transition: width 0.25s ease, opacity 0.25s ease;
 }
@@ -859,13 +983,7 @@ table a:hover {
 }
 
 /* =================================================
-   13. 본문 ↔ 우측 TOC 완전 분리 (겹침 해결)
-   main.scss 맨 아래에 추가
-   -------------------------------------------------
-   원리: .page의 오른쪽 padding을 "TOC 폭 + 여백"만큼
-   강제로 확보하고, TOC(.sidebar__right)를 정확히 그
-   padding 영역 안에 앉힌다. 본문 카드(.page__content)는
-   padding 안쪽에만 그려지므로 구조적으로 겹칠 수 없음.
+   13. 본문 ↔ 우측 TOC 완전 분리
    ================================================= */
 @media (min-width: 1024px) {
   .page {
@@ -892,14 +1010,9 @@ table a:hover {
 /* =================================================
    14. About 페이지 전용 레이아웃
    (about.md 프런트매터에 classes: about--page 필요)
-   -------------------------------------------------
-   - 이중 프레임 제거: 앰버 카드(.page__content) 안에
-     터미널 카드가 또 들어가던 것을 → 터미널만 남김
-   - 본문 폭을 터미널에 맞춰 880px로 제한
-   - TOC가 없는 페이지이므로 오른쪽 예약 공간도 해제
    ================================================= */
 .about--page .page {
-  padding-right: 0 !important;
+  padding-right: 0 !important;   /* TOC 없는 페이지 — 오른쪽 예약 공간만 해제 */
 }
 
 .about--page .page__inner-wrap {
@@ -919,137 +1032,164 @@ table a:hover {
   margin-top: 0.3em;
 }
 
-/* 터미널 아래 마무리 문단 — 조용한 아웃트로 톤 */
 .about--page .page__content > p {
-  color: #a9b1d6;
+  color: var(--tn-text);
   font-size: 16.5px;
   line-height: 1.9;
   max-width: 760px;
 }
 
 /* =================================================
-   15. 우측 TOC — One Dark 카드로 재스타일
-   (테마 기본 청록/민트 톤은 두 팔레트 어디에도 없어서 겉돎)
+   15. 우측 TOC — 현재 항목만 민트 점등
    ================================================= */
 .sidebar__right .toc {
-  background: #21252B;
-  border: 1px solid #3E4451;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-panel);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-card);
 }
 
 .sidebar__right .nav__title {
-  background: #2C313A;
-  color: #E5C07B;
+  background: var(--toc-head-bg);
+  color: var(--accent);
   margin: 0;
   border-radius: 0;
-  border-bottom: 2px solid #E5C07B;
+  border-bottom: 2px solid var(--accent);
 }
 
-/* 기본 상태: 전부 꺼진 상태(어두운 배경 + 회색 글자) */
+.sidebar__right .toc__menu {
+  background: transparent;
+}
+
+/* 기본 상태: 전부 꺼짐 */
 .sidebar__right .toc__menu a {
   background: transparent !important;
-  color: #ABB2BF;
+  color: var(--toc-link);
   font-weight: 500;
-  border-bottom: 1px solid #2E333D;
+  border-bottom: 1px solid var(--toc-divider);
 }
 
-/* 지금 읽고 있는 섹션만 민트로 점등 */
+/* 지금 읽고 있는 섹션만 민트로 점등 (toc_sticky: true 필요) */
 .sidebar__right .toc__menu a.active,
 .sidebar__right .toc__menu .active > a {
-  background: #B8E0D9 !important;   /* 스킨의 민트 톤 */
+  background: #B8E0D9 !important;
   color: #1E1E1E !important;
   font-weight: 700;
 }
 
-/* 마우스 올린 항목은 민트 기운만 살짝 */
 .sidebar__right .toc__menu a:hover {
-  color: #B8E0D9;
-  background: rgba(184, 224, 217, 0.08) !important;
+  color: var(--toc-hover);
+  background: color-mix(in srgb, #B8E0D9 8%, transparent) !important;
   text-decoration: none;
 }
 
-/* li에 배경을 주는 스킨 대비 안전장치 */
 .sidebar__right .toc__menu li {
   background: transparent !important;
 }
 
-/* =================================================
-   [교체 1] 기존 3번 섹션의
-   `.page__content p code, .page__content li code` 블록을
-   아래 블록으로 교체
-   -------------------------------------------------
-   기존 색(#24283b / #565f89)은 Tokyo Night 계열이라
-   One Dark 본문 카드(#1E1E1E) 위에서 색온도가 어긋남.
-   One Dark 회색 스케일(#2C313A / #4B5263)로 통일.
-   h2~h4, blockquote 안의 인라인 코드도 커버.
-   ================================================= */
-.page__content p code,
-.page__content li code,
-.page__content h2 code,
-.page__content h3 code,
-.page__content h4 code,
-.page__content blockquote code {
-  background-color: #2C313A;
-  color: #E2E8F0;
-  border: none;
-  border-bottom: 2px solid #4B5263;
-  font-size: 1.02em;
-  padding: 2px 6px 4px 6px;
-  margin: 0 2px;
-  border-radius: 3px 3px 0 0;
-  font-weight: 700;
-  vertical-align: middle;
-  white-space: nowrap;
+.sidebar__right .toc__menu li:last-child > a {
+  border-bottom: none;
+}
+
+.sidebar__right .toc__menu li ul li a {
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
 /* =================================================
-   [교체 2] 기존 3번 섹션 맨 위의 전역 `code` 블록을
-   아래 블록으로 교체
-   -------------------------------------------------
-   기존: 라이트 배경(#f1f3f5) + 주황(#d19a66)
-   → 대비 약 2.4:1로 WCAG 미달 + 다크 사이트에서 이질적.
-   본문 밖(사이드바 등)에 code가 나와도 어울리게 다크로.
+   16. 페이지 배경 + 테마 어댑터
+   스킨(빌드 시 고정)이 칠해둔 텍스트/배경을 변수로 덮음
    ================================================= */
-code {
-  background-color: #2C313A;
-  color: #D19A66;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-family: 'D2Coding', 'Consolas', monospace;
-  font-size: 0.95em;
+body {
+  background-color: var(--bg-page);
+  color: var(--text-body);
 }
 
-/* =================================================
-   16-수정. 명도 사다리 — 단 차이가 보이게 벌리기
-   배경 #131519 < 카드 #23272F < 표 #262B33 < 코드 #2B303A
-   ================================================= */
-body { background-color: #12141D; }              /* 딥 네이비 */
-.masthead, .greedy-nav { background: #0E1017; }  /* 네이비 한 톤 아래 */
-.masthead { border-bottom: 1px solid #262B3A; }
-
-/* 본문 카드: 한 톤 업 + 글자도 살짝 밝게 */
-.page__content {
-  background-color: #23272F;
-  color: #DADDE3;
+.masthead {
+  background-color: var(--bg-masthead);
+  border-bottom: 1px solid var(--border-masthead);
 }
-
-/* 코드 블록: 카드보다 확실히 한 단 위로
-   → 기존 4번 섹션의 background-color: #282C34 을 #2B303A 로 수정 */
-
-/* 인라인 코드 칩: 카드가 밝아진 만큼 칩도 한 단 위로
-   → [교체 1] 블록의 background-color 를 #313742 로 수정 */
-
-/* 표: 카드 위에서 살짝 떠 보이게 */
-table { background-color: #262B33; }
-table th { background-color: #2E333D; }
-table td { background-color: #262B33; }
-table tr:nth-child(even) td { background-color: #2A2F38; }
-table tr:hover td { background-color: #333944; }
-
-/* About 터미널: 배경과 거의 같은 색이라 묻혀 있었음 */
-.about-terminal { background: #171A26; }
 .greedy-nav {
-  background: #101216;
+  background: var(--bg-masthead);
+}
+.masthead .site-title {
+  color: var(--text-strong);
+}
+.greedy-nav a {
+  color: var(--text-body);
+}
+.greedy-nav a:hover {
+  color: var(--link);
+}
+.search__toggle {
+  color: var(--text-body);
+}
+
+/* 포스트 제목 (카드 밖) — 단, 히어로 위 제목은 9번에서 흰색 고정 */
+.page__title {
+  color: var(--text-strong);
+}
+
+/* 좌측 프로필 사이드바 */
+.sidebar .author__name {
+  color: var(--text-strong);
+}
+.sidebar .author__bio,
+.sidebar p,
+.sidebar li {
+  color: var(--text-body);
+}
+.author__urls a {
+  color: var(--text-body);
+}
+.author__urls a:hover {
+  color: var(--link);
+}
+.sidebar .nav__sub-title,
+.sidebar .nav__title {
+  color: var(--text-muted);
+}
+.sidebar .nav__items a {
+  color: var(--text-body);
+}
+.sidebar .nav__items a:hover {
+  color: var(--link);
+}
+
+/* 푸터 */
+.page__footer {
+  background-color: var(--bg-masthead);
+  color: var(--text-muted);
+}
+.page__footer a {
+  color: var(--link);
+}
+
+/* =================================================
+   17. 테마 토글 버튼 (footer/custom.html에서 삽입)
+   ================================================= */
+#theme-toggle {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-panel);
+  color: var(--text-strong);
+  border: 1px solid var(--border-panel);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  font-size: 1.15em;
+  line-height: 1;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+#theme-toggle:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
 }
