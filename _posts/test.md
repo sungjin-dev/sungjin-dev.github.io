@@ -1,4 +1,14 @@
-# [SQLD 단권화 #1] 데이터 모델링, 큰 그림부터 잡자
+---
+title: " [SQLD 단권화 #1] 데이터 모델링"
+excerpt: "모델링의 개념, 3단계 모델링, 3단계 스키마, ERD"
+categories: [SQL]
+tags:
+  - SQP
+toc: true
+toc_sticky: true
+--- 
+
+# [SQLD 단권화 #1] 데이터 모델링
 
 > SQLD 1과목 1장 전반부 — 모델링의 개념, 3단계 모델링, 3단계 스키마, ERD
 
