@@ -8,9 +8,9 @@
 /* ================================================= */
 $max-width: 1800px;
 
-$right-sidebar-width-narrow: 260px;
-$right-sidebar-width: 340px;
-$right-sidebar-width-wide: 400px;
+$right-sidebar-width-narrow: 220px;
+$right-sidebar-width: 300px;
+$right-sidebar-width-wide: 350px;
 
 $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
              "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -64,7 +64,7 @@ $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFon
 }
 
 .page__content p, .page__content li {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.9;
   margin-bottom: 1.2em;
   word-break: keep-all;
@@ -135,7 +135,7 @@ div.highlighter-rouge {
   border: none !important;
   padding: 0 !important;
   font-family: 'D2Coding', 'Consolas', 'Menlo', 'Monaco', monospace;
-  font-size: 0.98em;
+  font-size: 1.05em;
   font-weight: normal;
   color: #D7DAE0 !important;
 }
@@ -272,7 +272,7 @@ table th {
   background-color: #2C313A;
   color: #F0EFEB !important;
   font-weight: 700;
-  font-size: 1.02em;
+  font-size: 1.06em;
   letter-spacing: 0.02em;
   border-bottom: 2px solid #E5C07B;
 }
@@ -281,6 +281,7 @@ table th {
 table td {
   background-color: #21252B;
   color: #D4D4D4 !important;
+  font-size: 1.03em;
 }
 
 table tr:nth-child(even) td {
