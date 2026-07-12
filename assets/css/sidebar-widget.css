@@ -1,156 +1,184 @@
-.sidebar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+/* =================================================
+   사이드바 위젯 — One Dark 리디자인
+   assets/css/sidebar-widget.css 전체 교체
+   ================================================= */
 
+/* 사이드바 스크롤바 숨김 (기존 유지) */
+.sidebar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 .sidebar::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .my-custom-sidebar-widget {
-    margin-top: 1rem;
-    padding-top: .8rem;
-    border-top: 1px dashed #565f89;
-    font-size: 0.85rem;
+  margin-top: 1rem;
+  padding-top: .8rem;
+  border-top: 1px solid #2C313A;   /* 점선 → 은은한 실선 */
+  font-size: .85rem;
 }
 
-.mobile-widget-toggle {
-    margin: 0;
-    padding: 0;
+/* main.scss 8번 섹션의 토글 배경(#21252B)이 카드 뒤에 깔리면
+   이중 박스처럼 보이므로 여기서는 투명 처리 */
+.my-custom-sidebar-widget .mobile-widget-toggle {
+  margin: 0;
+  padding: 0;
+  background: transparent;
 }
 
-.mobile-widget-toggle summary {
-    cursor: pointer;
-    margin-bottom: 8px;
+.my-custom-sidebar-widget .mobile-widget-toggle summary {
+  cursor: pointer;
+  margin-bottom: 8px;
+  color: #7F848E;
+  font-size: .78rem;
 }
 
 .widget-content {
-    margin-top: 4px;
+  margin-top: 4px;
 }
 
+/* ---------- 공통 카드 ----------
+   색 띠 제거, 얇은 테두리 하나로 통일 */
+.my-clock,
+.weather-card,
+.visitor-card,
+.latest-posts-card {
+  background: #21252B;
+  border: 1px solid #3E4451;
+  border-radius: 10px;
+  padding: 14px 12px;
+  margin-bottom: 10px;
+}
+
+/* ---------- 공통 라벨 (작은 대문자 스타일) ---------- */
+.weather-title,
+.visitor-title,
+.latest-posts-title {
+  text-align: center;
+  color: #7F848E;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ---------- 시계 ---------- */
 .my-clock {
-    text-align: center;
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #bb9af7;
-    padding: 10px;
-    margin-bottom: 8px;
+  text-align: center;
 }
 
 #live-time {
-     font-size: 1rem;
-    font-weight: bold;
-    color: #7dcfff;
-    font-family: Consolas, monospace;
-    line-height: 1.1;
+  font-family: 'D2Coding', Consolas, monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #E2E5EB;
+  letter-spacing: .04em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;   /* 초가 바뀔 때 흔들림 방지 */
 }
 
 #live-date {
-    color: #9ece6a;
-    font-size: .75rem;
-    margin-top: 3px;
+  margin-top: 5px;
+  color: #7F848E;
+  font-size: .72rem;
+  letter-spacing: .04em;
 }
 
-.weather-card {
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #e0af68;
-    padding: 10px;
-    margin-bottom: 8px;
-}
-
-.weather-title {
-    text-align: center;
-    color: #c0caf5;
-    font-size: .8em;
-    margin-bottom: 6px;
-}
-
+/* ---------- 날씨 ---------- */
 .weather-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 #weather-icon {
-    width: 42px;
-    height: 42px;
+  width: 42px;
+  height: 42px;
 }
 
 #weather-temp {
-    color: #7aa2f7;
-    font-size: 1.2rem;
-    font-weight: bold;
+  color: #E2E5EB;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: 'D2Coding', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
 }
 
 #weather-desc {
-    color: #a9b1d6;
-    font-size: .78rem;
+  color: #A5ACB8;
+  font-size: .76rem;
 }
 
+/* ---------- 방문자 ---------- */
 .visitor-card {
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #7aa2f7;
-    padding: 10px;
-    margin-bottom: 8px;
-    text-align: center;
-    font-size: 0.9em;
+  text-align: center;
 }
 
-.visitor-title {
-    color: #c0caf5;
-    margin-bottom: 8px;
+.visitor-card a {
+  text-decoration: none;
 }
 
-.latest-posts-card {
-    background: #1a1b26;
-    border-radius: 8px;
-    border-left: 4px solid #9ece6a;
-    padding: 10px;
+.badge-label {
+  color: #7F848E;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
-.latest-posts-title {
-    text-align: center;
-    color: #c0caf5;
-    margin-bottom: 10px;
+.badge-value {
+  color: #E5C07B;                        /* 유일한 강조색: 앰버 */
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: 'D2Coding', Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  transition: color .15s ease;
 }
 
+.visitor-card a:hover .badge-value {
+  color: #F0D9A8;
+}
+
+/* ---------- 최근 글 ---------- */
 .latest-posts-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .latest-posts-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 9px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
 }
 
 .latest-posts-list li:last-child {
-    border: none;
+  border: none;
+  padding-bottom: 2px;
 }
 
 .latest-posts-list a {
-    display: block;
-    color: #7dcfff;
-    text-decoration: none;
-    font-size: .75rem !important;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: .2s;
+  display: block;
+  color: #D4D4D4;                        /* 본문과 같은 회백색 */
+  text-decoration: none;
+  font-size: .78rem !important;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color .15s ease;
 }
 
 .latest-posts-list a:hover {
-    color: #bb9af7;
-    transform: translateX(4px);
+  color: #E5C07B;                        /* 호버 시에만 앰버 */
 }
 
 .latest-post-date {
-    color: #8b949e;
-    font-size: .72rem;
-    margin-top: 3px;
+  color: #7F848E;
+  font-size: .68rem;
+  font-family: 'D2Coding', Consolas, monospace;
+  margin-top: 3px;
 }
