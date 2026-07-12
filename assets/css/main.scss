@@ -1214,3 +1214,7 @@ html[data-theme="dark"] #main .page__title {
 #main .page__meta a {
   color: var(--text-muted) !important;
 }
+
+code, pre {
+  font-family: 'D2Coding', Consolas, Monaco, monospace !important;
+}
