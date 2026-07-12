@@ -1214,6 +1214,12 @@ h1.page__title,
   color: var(--text-strong) !important;
 }
 
+/* 스플래시 히어로(다크 밴드) 위 제목만 흰색 — ID로 명세도 동률 확보 */
+.layout--splash .page__hero--overlay #page-title,
+.layout--splash .page__hero--overlay .page__title {
+  color: #fff !important;
+}
+
 /* 제목 아래 날짜/메타 정보도 같이 정리 */
 .page__meta,
 .page__meta a {
