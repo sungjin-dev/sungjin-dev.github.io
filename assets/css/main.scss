@@ -129,9 +129,14 @@ div.highlighter-rouge {
   max-width: 100%;
   overflow-x: auto;
   line-height: 1.75;
-  background-color: #282C34 !important;
+  background-color: #1C1F26 !important;   /* 카드보다 오히려 어둡게 */
   color: #D7DAE0 !important;
   border-radius: 8px;
+}
+
+/* 코드 블록 외곽선 — 경계를 선으로 확정 */
+.page__content div.highlighter-rouge > .highlight {
+  border: 1px solid #3A404E;
 }
 
 .page__content div.highlighter-rouge div.highlight code,
@@ -1020,10 +1025,9 @@ code {
    16-수정. 명도 사다리 — 단 차이가 보이게 벌리기
    배경 #131519 < 카드 #23272F < 표 #262B33 < 코드 #2B303A
    ================================================= */
-body { background-color: #131519; }
-
-.masthead, .greedy-nav { background: #101216; }
-.masthead { border-bottom: 1px solid #262B35; }
+body { background-color: #12141D; }              /* 딥 네이비 */
+.masthead, .greedy-nav { background: #0E1017; }  /* 네이비 한 톤 아래 */
+.masthead { border-bottom: 1px solid #262B3A; }
 
 /* 본문 카드: 한 톤 업 + 글자도 살짝 밝게 */
 .page__content {
@@ -1045,7 +1049,7 @@ table tr:nth-child(even) td { background-color: #2A2F38; }
 table tr:hover td { background-color: #333944; }
 
 /* About 터미널: 배경과 거의 같은 색이라 묻혀 있었음 */
-.about-terminal { background: #1A1C26; }
+.about-terminal { background: #171A26; }
 .greedy-nav {
   background: #101216;
 }
