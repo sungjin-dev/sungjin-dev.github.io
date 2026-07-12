@@ -1215,11 +1215,38 @@ html[data-theme="dark"] #main .page__title {
   color: var(--text-muted) !important;
 }
 
+/* ==========================================
+   1. 기본 상태 (라이트 모드 또는 공통)
+   ========================================== */
+/* 코드 블록 바탕이 밝은 편인데 글자가 안 보인다면, 기본 글자색을 진하게 잡습니다 */
 code, pre {
   font-family: 'D2Coding', Consolas, Monaco, monospace !important;
 }
 
-/* 하이라이트 테마 중 너무 밝아서 안 보이는 특정 요소들만 강제로 색상 부여 */
-.hljs-keyword, .token.keyword { color: #d73a49 !important; /* 예약어: 빨간색 계열 */ }
-.hljs-string, .token.string { color: #032f62 !important; /* 문자열: 진한 파란색 */ }
-.hljs-title, .hljs-section, .token.function { color: #6f42c1 !important; /* 함수명: 보라색 */ }
+/* 라이트 모드에서 글자들을 잘 보이게 처리 */
+code * {
+  color: #24292e !important; 
+}
+
+
+/* ==========================================
+   2. 다크 모드 대응 (내 블로그 테마에 맞게 선택)
+   ========================================== */
+
+/* 케이스 A: 내 테마가 <html>이나 <body>에 class="dark"를 붙이는 경우 */
+.dark code *, 
+[class*="dark"] code * {
+  color: #e1e4e8 !important; /* 다크모드용 밝은 회색/하얀색 계열 */
+}
+
+/* 케이스 B: 내 테마가 <html data-theme="dark"> 형태를 쓰는 경우 */
+[data-theme="dark"] code * {
+  color: #e1e4e8 !important;
+}
+
+/* 케이스 C: 시스템/브라우저 다크 모드 설정을 그대로 따르는 경우 */
+@media (prefers-color-scheme: dark) {
+  code * {
+    color: #e1e4e8 !important;
+  }
+}
