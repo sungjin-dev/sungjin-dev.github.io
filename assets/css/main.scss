@@ -1221,9 +1221,9 @@ code, pre {
   font-family: 'D2Coding', Consolas, Monaco, monospace !important;
 }
 /* ==========================================
-   2. 라이트 모드 (문법 강조 색상)
+   2. 라이트 모드 
    ========================================== */
-/* 기본 글자색 (기호, 변수 등) */
+/* 기본 글자색  */
 code * { color: #24292e !important; }
 
 /* 예약어 (if, def, return 등) */
@@ -1237,20 +1237,20 @@ code * { color: #24292e !important; }
 
 
 /* ==========================================
-   3. 다크 모드 (문법 강조 색상)
+   3. 다크 모드 
    ========================================== */
-/* [참고] 내 블로그 다크모드 인식 규칙에 맞춰 상위 클래스(.dark 또는 [data-theme="dark"])를 수정해 쓰세요 */
+/* 내 블로그 다크모드 인식 규칙에 맞춰 상위 클래스
 .dark code *, [data-theme="dark"] code *, @media (prefers-color-scheme: dark) {
   
   /* 다크모드 기본 글자색 */
   code * { color: #e1e4e8 !important; }
   
-  /* 다크모드 예약어 (주황/핑크 계열) */
+  /* 다크모드 예약어  */
   .hljs-keyword, .token.keyword, .pl-k { color: #ff7b72 !important; }
-  /* 다크모드 문자열 (연한 파란색/초록색 계열) */
+  /* 다크모드 문자열 ( */
   .hljs-string, .token.string, .pl-s { color: #a5d6ff !important; }
-  /* 다크모드 내장 함수 (보라/하늘색 계열) */
+  /* 다크모드 내장 함수 */
   .hljs-title, .hljs-built_in, .token.function, .pl-en { color: #d2a8ff !important; }
-  /* 다크모드 주석 (회색) */
+  /* 다크모드 주석 ) */
   .hljs-comment, .token.comment, .pl-c { color: #8b949e !important; }
 }
