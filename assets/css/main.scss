@@ -99,15 +99,14 @@ code {
   font-size: 0.95em;
 }
 
-/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 — 눈이 편안한 One Dark 톤 */
+/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 — 명확한 무채색 강조 */
 .page__content p code, .page__content li code {
-  background-color: #282C34;                   /* 코드 블록과 동일한 다크 그레이 */
-  color: #ABB2BF;                              /* 쨍하지 않고 부드러운 미색/회색 */
-  border: 1px solid rgba(62, 68, 81, 0.5);     /* 은은한 경계선 선언 */
-  font-size: 0.92em;
-  padding: 3px 6px;
+  background-color: #2F3542;       /* 블록 배경과 본문 중간 톤의 차분한 그레이 */
+  color: #E6E6E6;                  /* 눈부신 순백색(#FFFFFF) 대신 부드러운 화이트 그레이 */
+  border: 1px solid #4B5263;       /* 핵심: 테두리를 넣어 '입체감'과 '경계'를 확실히 함 */
+  padding: 2px 7px;                /* 좌우 여백을 살짝 더 줘서 글자가 갇히지 않게 */
   border-radius: 4px;
-  font-weight: 600;                            /* 눈부심을 줄인 대신 두께로 식별력 확보 */
+  font-weight: 600;                /* 본문보다 살짝 두껍게 설정하여 가독성 확보 */
 }
 
 /* ================================================= */
