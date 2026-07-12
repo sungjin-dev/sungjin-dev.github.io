@@ -1215,38 +1215,42 @@ html[data-theme="dark"] #main .page__title {
   color: var(--text-muted) !important;
 }
 
-/* ==========================================
-   1. 기본 상태 (라이트 모드 또는 공통)
-   ========================================== */
-/* 코드 블록 바탕이 밝은 편인데 글자가 안 보인다면, 기본 글자색을 진하게 잡습니다 */
+
+/* 1. 기본 폰트 설정 */
 code, pre {
   font-family: 'D2Coding', Consolas, Monaco, monospace !important;
 }
+/* ==========================================
+   2. 라이트 모드 (문법 강조 색상)
+   ========================================== */
+/* 기본 글자색 (기호, 변수 등) */
+code * { color: #24292e !important; }
 
-/* 라이트 모드에서 글자들을 잘 보이게 처리 */
-code * {
-  color: #24292e !important; 
-}
+/* 예약어 (if, def, return 등) */
+.hljs-keyword, .token.keyword, .pl-k { color: #d73a49 !important; }
+/* 문자열 ("user=...", 'text' 등) */
+.hljs-string, .token.string, .pl-s { color: #032f62 !important; }
+/* 내장 함수 및 메서드 (print, re.search 등) */
+.hljs-title, .hljs-built_in, .token.function, .pl-en { color: #6f42c1 !important; }
+/* 주석 (# 출력: ... 등) */
+.hljs-comment, .token.comment, .pl-c { color: #6a737d !important; font-style: italic; }
 
 
 /* ==========================================
-   2. 다크 모드 대응 (내 블로그 테마에 맞게 선택)
+   3. 다크 모드 (문법 강조 색상)
    ========================================== */
-
-/* 케이스 A: 내 테마가 <html>이나 <body>에 class="dark"를 붙이는 경우 */
-.dark code *, 
-[class*="dark"] code * {
-  color: #e1e4e8 !important; /* 다크모드용 밝은 회색/하얀색 계열 */
-}
-
-/* 케이스 B: 내 테마가 <html data-theme="dark"> 형태를 쓰는 경우 */
-[data-theme="dark"] code * {
-  color: #e1e4e8 !important;
-}
-
-/* 케이스 C: 시스템/브라우저 다크 모드 설정을 그대로 따르는 경우 */
-@media (prefers-color-scheme: dark) {
-  code * {
-    color: #e1e4e8 !important;
-  }
+/* [참고] 내 블로그 다크모드 인식 규칙에 맞춰 상위 클래스(.dark 또는 [data-theme="dark"])를 수정해 쓰세요 */
+.dark code *, [data-theme="dark"] code *, @media (prefers-color-scheme: dark) {
+  
+  /* 다크모드 기본 글자색 */
+  code * { color: #e1e4e8 !important; }
+  
+  /* 다크모드 예약어 (주황/핑크 계열) */
+  .hljs-keyword, .token.keyword, .pl-k { color: #ff7b72 !important; }
+  /* 다크모드 문자열 (연한 파란색/초록색 계열) */
+  .hljs-string, .token.string, .pl-s { color: #a5d6ff !important; }
+  /* 다크모드 내장 함수 (보라/하늘색 계열) */
+  .hljs-title, .hljs-built_in, .token.function, .pl-en { color: #d2a8ff !important; }
+  /* 다크모드 주석 (회색) */
+  .hljs-comment, .token.comment, .pl-c { color: #8b949e !important; }
 }
