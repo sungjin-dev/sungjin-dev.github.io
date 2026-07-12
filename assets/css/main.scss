@@ -99,22 +99,16 @@ code {
   font-size: 0.95em;
 }
 
-/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 — 크기 확대 및 밸런스 조정 버전 */
 .page__content p code, .page__content li code {
-  background-color: #2e3440;      
-  color: #e5e9f0;                 
-  border: 1px solid #4c566a;       
-  
-
-  font-size: 1.01em;              
-  padding: 2px 5px;               
-  margin: 0 2px;                   
-  border-radius: 5px;            
-  font-weight: 700;                
-  
-  vertical-align: middle;          
-  position: relative;
-  top: -1px;                      
+  background-color: transparent;   /* 배경을 완전히 투명하게 처리 */
+  color: #E2E8F0;                  /* 본문보다 아주 살짝 밝은 미색 */
+  border: 1px solid #4A5568;       /* 존재감을 주는 차분한 흑철색 테두리 */
+  font-size: 1.02em;
+  padding: 2px 6px;
+  margin: 0 2px;
+  border-radius: 4px;
+  font-weight: 700;
+  vertical-align: middle;
 }
 
 /* ================================================= */
