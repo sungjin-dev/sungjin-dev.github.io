@@ -943,30 +943,32 @@ table a:hover {
   border-bottom: 2px solid #E5C07B;
 }
 
-.sidebar__right .toc__menu {
-  background: transparent;
-}
-
+/* 기본 상태: 전부 꺼진 상태(어두운 배경 + 회색 글자) */
 .sidebar__right .toc__menu a {
+  background: transparent !important;
   color: #ABB2BF;
   font-weight: 500;
   border-bottom: 1px solid #2E333D;
 }
 
+/* 지금 읽고 있는 섹션만 민트로 점등 */
+.sidebar__right .toc__menu a.active,
+.sidebar__right .toc__menu .active > a {
+  background: #B8E0D9 !important;   /* 스킨의 민트 톤 */
+  color: #1E1E1E !important;
+  font-weight: 700;
+}
+
+/* 마우스 올린 항목은 민트 기운만 살짝 */
 .sidebar__right .toc__menu a:hover {
-  color: #61AFEF;
-  background: rgba(97, 175, 239, 0.06);
+  color: #B8E0D9;
+  background: rgba(184, 224, 217, 0.08) !important;
   text-decoration: none;
 }
 
-.sidebar__right .toc__menu li:last-child > a {
-  border-bottom: none;
-}
-
-/* 하위 목차는 한 톤 낮춰 계층 표현 */
-.sidebar__right .toc__menu li ul li a {
-  color: #7F848E;
-  font-weight: 400;
+/* li에 배경을 주는 스킨 대비 안전장치 */
+.sidebar__right .toc__menu li {
+  background: transparent !important;
 }
 
 /* =================================================
