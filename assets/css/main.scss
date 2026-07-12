@@ -1017,19 +1017,35 @@ code {
 }
 
 /* =================================================
-   16. 페이지 배경 — 명도 위계 정리
-   배경(#16181D) < 본문 카드(#1E1E1E) < 표(#21252B)
-   < 코드 블록(#282C34) 순으로 밝아지는 사다리 완성
+   16-수정. 명도 사다리 — 단 차이가 보이게 벌리기
+   배경 #131519 < 카드 #23272F < 표 #262B33 < 코드 #2B303A
    ================================================= */
-body {
-  background-color: #16181D;
+body { background-color: #131519; }
+
+.masthead, .greedy-nav { background: #101216; }
+.masthead { border-bottom: 1px solid #262B35; }
+
+/* 본문 카드: 한 톤 업 + 글자도 살짝 밝게 */
+.page__content {
+  background-color: #23272F;
+  color: #DADDE3;
 }
 
-/* 상단 마스트헤드도 같은 계열로 (배경보다 한 톤 더 어둡게) */
-.masthead {
-  background-color: #101216;
-  border-bottom: 1px solid #262B35;
-}
+/* 코드 블록: 카드보다 확실히 한 단 위로
+   → 기존 4번 섹션의 background-color: #282C34 을 #2B303A 로 수정 */
+
+/* 인라인 코드 칩: 카드가 밝아진 만큼 칩도 한 단 위로
+   → [교체 1] 블록의 background-color 를 #313742 로 수정 */
+
+/* 표: 카드 위에서 살짝 떠 보이게 */
+table { background-color: #262B33; }
+table th { background-color: #2E333D; }
+table td { background-color: #262B33; }
+table tr:nth-child(even) td { background-color: #2A2F38; }
+table tr:hover td { background-color: #333944; }
+
+/* About 터미널: 배경과 거의 같은 색이라 묻혀 있었음 */
+.about-terminal { background: #1A1C26; }
 .greedy-nav {
   background: #101216;
 }
