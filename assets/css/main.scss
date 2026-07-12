@@ -100,16 +100,17 @@ code {
 }
 
 .page__content p code, .page__content li code {
-  background-color: #24283b;                     /* 원 다크 스킨의 어두운 그레이 */
+  background-color: #24283b;                     
   color: #E2E8F0;
   border: none;
-  border-bottom: 2px solid #565f89;              /* 핵심: 하단에만 명확한 언더라인 배치 */
+  border-bottom: 2px solid #565f89;              
   font-size: 1.02em;
-  padding: 2px 6px 4px 6px;                      /* 밑줄 공간을 위해 아래쪽 패딩을 살짝 더 줌 */
+  padding: 2px 6px 4px 6px;                     
   margin: 0 2px;
-  border-radius: 3px 3px 0 0;                    /* 아래쪽은 각지게, 위쪽만 라운딩 */
+  border-radius: 3px 3px 0 0;                    
   font-weight: 700;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 /* ================================================= */
