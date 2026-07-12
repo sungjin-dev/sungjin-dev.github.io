@@ -40,7 +40,7 @@ $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFon
 /* ================================================= */
 /* One Dark 팔레트 참고표
    배경(본문) #1E1E1E   배경(코드) #282C34   배경(표) #21252B
-   본문 텍스트 #D4D4D4  코드 기본  #ABB2BF
+   본문 텍스트 #D4D4D4  코드 기본  #D7DAE0
    앰버 #E5C07B  그린 #98C379  블루 #61AFEF
    퍼플 #C678DD  코랄 #E06C75  시안 #56B6C2  주황 #D19A66
    경계선 #3E4451  주석/보조 #7F848E
@@ -124,7 +124,7 @@ div.highlighter-rouge {
   overflow-x: auto;
   line-height: 1.75;
   background-color: #282C34 !important;
-  color: #ABB2BF !important;
+  color: #D7DAE0 !important;
   border-radius: 8px;
 }
 
@@ -137,7 +137,7 @@ div.highlighter-rouge {
   font-family: 'D2Coding', 'Consolas', 'Menlo', 'Monaco', monospace;
   font-size: 0.98em;
   font-weight: normal;
-  color: #ABB2BF !important;
+  color: #D7DAE0 !important;
 }
 
 /* ================================================= */
@@ -186,7 +186,7 @@ div.highlighter-rouge {
 /* 일반 변수 */
 .page__content .highlight .nx,
 .page__content .highlight .nv {
-  color: #ABB2BF !important;
+  color: #D7DAE0 !important;
 }
 
 /* 문자열 */
@@ -215,12 +215,12 @@ div.highlighter-rouge {
 /* 괄호, 연산자 */
 .page__content .highlight .p,
 .page__content .highlight .o {
-  color: #ABB2BF !important;
+  color: #D7DAE0 !important;
 }
 
 /* Rouge 오류 토큰 */
 .page__content .highlight .err {
-  color: #ABB2BF !important;
+  color: #D7DAE0 !important;
   background-color: transparent !important;
 }
 
