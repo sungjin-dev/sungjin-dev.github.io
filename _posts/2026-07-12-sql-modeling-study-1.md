@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 --- 
 
-# [SQLD 단권화 #1] 데이터 모델링
+# [SQLD #1] 데이터 모델링 이해하기
 
 > SQLD 1과목 1장 전반부 — 모델링의 개념, 3단계 모델링, 3단계 스키마, ERD
 
