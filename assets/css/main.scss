@@ -1,854 +1,161 @@
----
-# Only the main Sass file needs front matter
----
-@charset "utf-8";
-
-/* ================================================= */
-/* 레이아웃 변수 — 반드시 @import 전에 선언해야 적용됨 */
-/* ================================================= */
-$max-width: 1800px;
-
-$right-sidebar-width-narrow: 220px;
-$right-sidebar-width: 300px;
-$right-sidebar-width-wide: 350px;
-
-$sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
-             "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
-@import "minimal-mistakes";
-
-/* ================================================= */
-/* 0. 코드용 한글 폰트 (D2Coding) 로드                */
-/* ================================================= */
-@font-face {
-  font-family: 'D2Coding';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'D2Coding';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2CodingBold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ================================================= */
-/* One Dark 팔레트 참고표
-   배경(본문) #1E1E1E   배경(코드) #282C34   배경(표) #21252B
-   본문 텍스트 #D4D4D4  코드 기본  #D7DAE0
-   앰버 #E5C07B  그린 #98C379  블루 #61AFEF
-   퍼플 #C678DD  코랄 #E06C75  시안 #56B6C2  주황 #D19A66
-   경계선 #3E4451  주석/보조 #7F848E
+/* =================================================
+   13. 본문 ↔ 우측 TOC 완전 분리 (겹침 해결)
+   main.scss 맨 아래에 추가
+   -------------------------------------------------
+   원리: .page의 오른쪽 padding을 "TOC 폭 + 여백"만큼
+   강제로 확보하고, TOC(.sidebar__right)를 정확히 그
+   padding 영역 안에 앉힌다. 본문 카드(.page__content)는
+   padding 안쪽에만 그려지므로 구조적으로 겹칠 수 없음.
    ================================================= */
-
-/* ================================================= */
-/* 1. 포스트 본문 전체 (다크모드) 스타일 — One Dark   */
-/* ================================================= */
-
-.page__content {
-  background-color: #1E1E1E;       
-  border-left: 5px solid #E5C07B;  
-  padding: 30px;                   
-  margin-bottom: 20px;             
-  border-radius: 8px;              
-  color: #D4D4D4;                  
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); 
+@media (min-width: 1024px) {
+  .page {
+    width: calc(100% - #{$right-sidebar-width-narrow}) !important;
+    padding-right: calc(#{$right-sidebar-width-narrow} + 28px) !important;
+  }
+  .sidebar__right {
+    width: $right-sidebar-width-narrow;
+    margin-right: calc(-1 * (#{$right-sidebar-width-narrow} + 28px)) !important;
+  }
 }
 
-.my-box {
-  background-color: #1E1E1E;
-  padding: 24px;
+@media (min-width: 1280px) {
+  .page {
+    width: calc(100% - #{$right-sidebar-width}) !important;
+    padding-right: calc(#{$right-sidebar-width} + 36px) !important;
+  }
+  .sidebar__right {
+    width: $right-sidebar-width;
+    margin-right: calc(-1 * (#{$right-sidebar-width} + 36px)) !important;
+  }
 }
 
-.page__content p, .page__content li {
-  font-size: 18px;
+/* =================================================
+   14. About 페이지 전용 레이아웃
+   (about.md 프런트매터에 classes: about--page 필요)
+   -------------------------------------------------
+   - 이중 프레임 제거: 앰버 카드(.page__content) 안에
+     터미널 카드가 또 들어가던 것을 → 터미널만 남김
+   - 본문 폭을 터미널에 맞춰 880px로 제한
+   - TOC가 없는 페이지이므로 오른쪽 예약 공간도 해제
+   ================================================= */
+.about--page .page {
+  width: 100% !important;
+  padding-right: 0 !important;
+}
+
+.about--page .page__inner-wrap {
+  max-width: 880px;
+}
+
+.about--page .page__content {
+  background: transparent;
+  border-left: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.about--page .about-terminal {
+  max-width: 100%;
+  margin-top: 0.3em;
+}
+
+/* 터미널 아래 마무리 문단 — 조용한 아웃트로 톤 */
+.about--page .page__content > p {
+  color: #a9b1d6;
+  font-size: 16.5px;
   line-height: 1.9;
-  margin-bottom: 1.2em;
-  word-break: keep-all;
+  max-width: 760px;
 }
 
-/* ================================================= */
-/* 2. 제목 (h2, h3) 스타일 — 대제목 앰버, 소제목 그린 */
-/* ================================================= */
-.page__content h2 {
+/* =================================================
+   15. 우측 TOC — One Dark 카드로 재스타일
+   (테마 기본 청록/민트 톤은 두 팔레트 어디에도 없어서 겉돎)
+   ================================================= */
+.sidebar__right .toc {
+  background: #21252B;
+  border: 1px solid #3E4451;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.sidebar__right .nav__title {
+  background: #2C313A;
   color: #E5C07B;
-  padding-left: 12px;
-  border-left: 5px solid #E5C07B;
-  margin-top: 2em;
-  margin-bottom: 1em;
-  font-weight: 700;
+  margin: 0;
+  border-radius: 0;
+  border-bottom: 2px solid #E5C07B;
 }
 
-.page__content h3 {
-  color: #98C379;
-  margin-top: 1.5em;
-  margin-bottom: 0.8em;
-  font-weight: 700;
+.sidebar__right .toc__menu {
+  background: transparent;
 }
 
-/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 변경 - 주황 */
-code {
-  background-color: #f1f3f5;
-  color: #d19a66;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-family: 'D2Coding', 'Consolas', monospace;
-  font-size: 0.95em;
+.sidebar__right .toc__menu a {
+  color: #ABB2BF;
+  font-weight: 500;
+  border-bottom: 1px solid #2E333D;
 }
 
-.page__content p code, .page__content li code {
-  background-color: #24283b;                     
+.sidebar__right .toc__menu a:hover {
+  color: #61AFEF;
+  background: rgba(97, 175, 239, 0.06);
+  text-decoration: none;
+}
+
+.sidebar__right .toc__menu li:last-child > a {
+  border-bottom: none;
+}
+
+/* 하위 목차는 한 톤 낮춰 계층 표현 */
+.sidebar__right .toc__menu li ul li a {
+  color: #7F848E;
+  font-weight: 400;
+}
+
+/* =================================================
+   [교체 1] 기존 3번 섹션의
+   `.page__content p code, .page__content li code` 블록을
+   아래 블록으로 교체
+   -------------------------------------------------
+   기존 색(#24283b / #565f89)은 Tokyo Night 계열이라
+   One Dark 본문 카드(#1E1E1E) 위에서 색온도가 어긋남.
+   One Dark 회색 스케일(#2C313A / #4B5263)로 통일.
+   h2~h4, blockquote 안의 인라인 코드도 커버.
+   ================================================= */
+.page__content p code,
+.page__content li code,
+.page__content h2 code,
+.page__content h3 code,
+.page__content h4 code,
+.page__content blockquote code {
+  background-color: #2C313A;
   color: #E2E8F0;
   border: none;
-  border-bottom: 2px solid #565f89;              
+  border-bottom: 2px solid #4B5263;
   font-size: 1.02em;
-  padding: 2px 6px 4px 6px;                     
+  padding: 2px 6px 4px 6px;
   margin: 0 2px;
-  border-radius: 3px 3px 0 0;                    
+  border-radius: 3px 3px 0 0;
   font-weight: 700;
   vertical-align: middle;
   white-space: nowrap;
 }
 
-/* ================================================= */
-/* 4. 코드 블록(Syntax Highlighting) 박스 스타일      */
-/* ================================================= */
-div.highlighter-rouge {
-  margin-bottom: 1.5em;
-}
-
-.page__content .highlight,
-.page__content .highlight pre {
-  padding: 20px 25px !important;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  line-height: 1.75;
-  background-color: #282C34 !important;
-  color: #D7DAE0 !important;
-  border-radius: 8px;
-}
-
-.page__content div.highlighter-rouge div.highlight code,
-.page__content div.highlighter-rouge pre code,
-.page__content pre code {
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-  font-family: 'D2Coding', 'Consolas', 'Menlo', 'Monaco', monospace;
-  font-size: 1.05em;
-  font-weight: normal;
-  color: #D7DAE0 !important;
-}
-
-/* ================================================= */
-/* 5. One Dark 테마 구문 강조                          */
-/* ================================================= */
-
-/* 키워드: if, for, while, return */
-.page__content .highlight .k,
-.page__content .highlight .kd,
-.page__content .highlight .kv,
-.page__content .highlight .kr,
-.page__content .highlight .kp {
-  color: #C678DD !important;
-}
-
-/* 클래스명, 타입 */
-.page__content .highlight .nc,
-.page__content .highlight .kt {
-  color: #E5C07B !important;
-}
-
-/* HTML 태그: form, div, button */
-.page__content .highlight .nt {
-  color: #E06C75 !important;
-}
-
-/* 내장 함수: len(), range(), print() */
-.page__content .highlight .nb,
-.page__content .highlight .nn {
-  color: #61AFEF !important;
-}
-
-/* 사용자 정의 함수 */
-.page__content .highlight .nf,
-.page__content .highlight .fm {
-  color: #61AFEF !important;
-  font-weight: 700;
-}
-
-/* HTML 속성: name, type, method */
-.page__content .highlight .na,
-.page__content .highlight .py {
-  color: #D19A66 !important;
-}
-
-/* 일반 변수 */
-.page__content .highlight .nx,
-.page__content .highlight .nv {
-  color: #D7DAE0 !important;
-}
-
-/* 문자열 */
-.page__content .highlight .s,
-.page__content .highlight .s1,
-.page__content .highlight .s2,
-.page__content .highlight .sr {
-  color: #56B6C2 !important; 
-}
-
-/* 숫자 */
-.page__content .highlight .m,
-.page__content .highlight .mi,
-.page__content .highlight .mf {
-  color: #D19A66 !important;
-}
-
-/* 주석 */
-.page__content .highlight .c,
-.page__content .highlight .c1,
-.page__content .highlight .cm {
-  color: #7F848E !important;
-  font-style: normal;
-}
-
-/* 괄호, 연산자 */
-.page__content .highlight .p,
-.page__content .highlight .o {
-  color: #D7DAE0 !important;
-}
-
-/* Rouge 오류 토큰 */
-.page__content .highlight .err {
-  color: #D7DAE0 !important;
-  background-color: transparent !important;
-}
-
-/* ================================================= */
-/* 6. 표 디자인 — One Dark                            */
-/* ================================================= */
-
-/* 열 구분 세로선 — 마지막 열 제외 */
-table th:not(:last-child),
-table td:not(:last-child) {
-  border-right: 1px solid #3E4451;
-}
-
-/* 헤더의 세로선은 살짝 밝게 (배경이 더 밝아서 같은 색이면 안 보임) */
-table th:not(:last-child) {
-  border-right-color: #4B5263;
-}
-
-table {
-  border-collapse: collapse !important;
-  width: auto !important;
-  min-width: 400px;
-  max-width: 100% !important;
-  margin: 20px 0 !important;
-  border-radius: 8px !important;
-  overflow: hidden;
-  display: table !important;
-  background-color: #21252B;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-table th,
-table td {
-  padding: 14px 20px;
-  border-bottom: 1px solid #3E4451;
-  text-align: left;
-  line-height: 1.7;
-  word-break: keep-all;
-}
-
-table th:first-child,
-table td:first-child {
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* 헤더 */
-table th {
-  background-color: #2C313A;
-  color: #F0EFEB !important;
-  font-weight: 700;
-  font-size: 1.06em;
-  letter-spacing: 0.02em;
-  border-bottom: 2px solid #E5C07B;
-}
-
-/* 본문 */
-table td {
-  background-color: #21252B;
-  color: #D4D4D4 !important;
-  font-size: 1.03em;
-}
-
-table tr:nth-child(even) td {
-  background-color: #262A31;
-}
-
-table tr:hover td {
-  background-color: #2C313A;
-}
-
-table tr:last-child td {
-  border-bottom: none;
-}
-
-table code {
-  background-color: rgba(209, 154, 102, 0.13) !important;
-  color: #D19A66 !important;
-  padding: 3px 8px !important;
-  border-radius: 4px !important;
-  border: none !important;
-  font-size: 0.95em !important;
-  font-weight: 600;
-}
-
-table a {
-  color: #61AFEF !important;
-}
-
-table a:hover {
-  color: #E5C07B !important;
-}
-
-@media (max-width: 768px) {
-  table {
-    display: block !important;
-    overflow-x: auto;
-    white-space: nowrap;
-    min-width: 100%;
-  }
-}
-
-/* ================================================= */
-/* 7. 본문 레이아웃 — 좌우 빈 공간 없이 꽉 채우기      */
-/* ================================================= */
-
-#main {
-  max-width: $max-width;
-}
-
-.page, .archive {
-  max-width: none;
-}
-
-@media (max-width: 767px) {
-  .page__inner-wrap, .archive {
-    width: 92%;
-    margin: 0 auto;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-@media (min-width: 768px) {
-  .page__inner-wrap, .archive {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-
-@media (min-width: 1500px) {
-  .page__inner-wrap {
-    max-width: 1250px;
-  }
-}
-
-/* ================================================= */
-/* 8. 사이드바 시계/날씨 위젯 접기(Toggle) 스타일      */
-/* ================================================= */
-.mobile-widget-toggle {
-  background-color: #21252B;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-.mobile-widget-toggle summary {
-  padding: 12px 15px;
-  color: #D4D4D4;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  list-style: none;
-}
-
-.mobile-widget-toggle summary::-webkit-details-marker {
-  display: none;
-}
-
-.mobile-widget-toggle summary::after {
-  content: " ▼";
-  font-size: 0.8em;
-  color: #E5C07B;
-}
-
-.mobile-widget-toggle[open] summary::after {
-  content: " ▲";
-}
-
-.widget-content {
-  padding-top: 10px;
-  border-top: 1px solid #3E4451;
-}
-
-@media (min-width: 768px) {
-  .mobile-widget-toggle summary {
-    display: none;
-  }
-  .mobile-widget-toggle[open] summary {
-    display: none;
-  }
-  .mobile-widget-toggle .widget-content {
-    display: block !important;
-    border-top: none;
-    padding-top: 0;
-  }
-}
-
-/* =========================================================
-   [B] 9. 메인 페이지(splash) 스타일 
-   .layout--splash 로 스코프를 잡아 개별 글에는 영향 없음
-   ========================================================= */
-
-/* ---------- 히어로 우측 터미널 카드 ---------- */
-.layout--splash .page__hero--overlay {
-  position: relative;   /* 기존 히어로 블록에 이 한 줄 추가 */
-}
-
-.hero-terminal {
-  display: block; 
-  position: absolute;
-  right: 7%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 340px;
-  background: #16161e;
-  border: 1px solid #3b4261;
-  border-radius: 10px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-  overflow: hidden;
-}
-
-.hero-terminal__bar {
-  display: block;
-  background: #24283b;
-  padding: 9px 12px;
-}
-.hero-terminal__bar span {
-  display: inline-block;
-  width: 11px; height: 11px;
-  border-radius: 50%;
-  margin-right: 6px;
-}
-.hero-terminal__bar span:nth-child(1) { background: #f7768e; }
-.hero-terminal__bar span:nth-child(2) { background: #e0af68; }
-.hero-terminal__bar span:nth-child(3) { background: #9ece6a; }
-
-.hero-terminal__body {
-  display: block;
-  margin: 0;
-  padding: 12px 16px;
-  font-family: 'D2Coding', monospace;
-  font-size: 0.85em;
-  line-height: 1.75;
-  background: transparent;
-  color: #c0caf5;
-  text-align: left;
-}
-.hero-terminal__body .prompt { color: #9ece6a; font-weight: 700; }
-.hero-terminal__body .out    { color: #a9b1d6; }
-
-/* 좁은 화면에서는 겹치므로 숨김 */
-@media (max-width: 1100px) {
-  .hero-terminal { display: none; }
-}
-
-/* ---------- 히어로: 민무늬 → 그라데이션 + 타이포 강화 ---------- */
-.layout--splash .page__hero--overlay {
-  background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
-  padding: 2.2em 0 2em;      /* 5em 0 4.5em → 절반 이하로 */
-  min-height: 0;             /* 테마의 기본 최소 높이 해제 */
-}
-
-.layout--splash .page__hero--overlay .page__title {
-  font-size: 2.6em;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-/* 제목의 포인트 컬러 밑줄 */
-.layout--splash .page__hero--overlay .page__title::after {
-  content: "";
-  display: block;
-  width: 64px;
-  height: 5px;
-  margin-top: 0.4em;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #7dcfff, #bb9af7);
-}
-
-.layout--splash .page__hero--overlay .page__lead {
-  font-size: 1.1em;
-  color: #a9b1d6;
-  max-width: 640px;
-}
-
-/* ---------- 시리즈 카드: 떠 있는 텍스트 → 진짜 카드 ---------- */
-.layout--splash .feature__item {
-  background: #24283b;
-  border: 1px solid #3b4261;
-  border-radius: 12px;
-  padding: 0;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.layout--splash .feature__item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-  border-color: #565f89;
-}
-
-.layout--splash .feature__item .archive__item-body {
-  padding: 1.4em 1.5em 1.6em;
-}
-
-/* 카드 상단 컬러 띠 — 시리즈별 색 구분 */
-.layout--splash .feature__item .archive__item {
-  border-top: 4px solid #7dcfff;           /* 1번 카드: Python */
-}
-.layout--splash .feature__item:nth-child(2) .archive__item {
-  border-top-color: #e0af68;               /* 2번 카드: Java */
-}
-.layout--splash .feature__item:nth-child(3) .archive__item {
-  border-top-color: #bb9af7;               /* 3번 카드: 전체보기 */
-}
-
-.layout--splash .feature__item .archive__item-title {
-  font-size: 1.15em;
-  font-weight: 700;
-  color: #f4f7ff;
-  margin-top: 0.2em;
-}
-
-.layout--splash .feature__item .archive__item-excerpt {
-  color: #a9b1d6;
-  font-size: 0.92em;
-  line-height: 1.75;
-}
-
-/* 카드 버튼 — 청록 기본 버튼 → 팔레트 톤의 고스트 버튼 */
-.layout--splash .feature__item .btn--primary {
-  background: transparent;
-  border: 1.5px solid #7dcfff;
-  color: #7dcfff;
-  border-radius: 8px;
-  font-weight: 700;
-  padding: 0.55em 1.2em;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-.layout--splash .feature__item .btn--primary:hover {
-  background: #7dcfff;
-  color: #1a1b26;
-}
-.layout--splash .feature__item:nth-child(2) .btn--primary {
-  border-color: #e0af68;
-  color: #e0af68;
-}
-.layout--splash .feature__item:nth-child(2) .btn--primary:hover {
-  background: #e0af68;
-  color: #1a1b26;
-}
-.layout--splash .feature__item:nth-child(3) .btn--primary {
-  border-color: #bb9af7;
-  color: #bb9af7;
-}
-.layout--splash .feature__item:nth-child(3) .btn--primary:hover {
-  background: #bb9af7;
-  color: #1a1b26;
-}
-
-/* ---------- "다른 주제들": 밑줄 링크 나열 → 알약 칩 ---------- */
-.layout--splash .topic-chips a {
-  display: inline-block;
-  background: #24283b;
-  border: 1px solid #3b4261;
-  color: #c0caf5;
-  padding: 0.4em 1em;
-  margin: 0.25em 0.3em 0.25em 0;
-  border-radius: 999px;
-  font-size: 0.9em;
-  font-weight: 600;
-  text-decoration: none;
-  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
-}
-
-.layout--splash .topic-chips a:hover {
-  border-color: #7dcfff;
-  color: #7dcfff;
-  background: rgba(125, 207, 255, 0.08);
-}
-
-/* ---------- 섹션 제목 정리 ---------- */
-.layout--splash .page__content h2 {
-  border-left: none;          /* 본문용 왼쪽 바는 메인에선 제거 */
-  padding-left: 0;
-  border-bottom: 1px solid #3b4261;
-  padding-bottom: 0.4em;
-  font-size: 1.3em;
-}
-
 /* =================================================
-   10. About 페이지 — 이력 터미널 스타일
-   main.scss 맨 아래에 추가
+   [교체 2] 기존 3번 섹션 맨 위의 전역 `code` 블록을
+   아래 블록으로 교체
+   -------------------------------------------------
+   기존: 라이트 배경(#f1f3f5) + 주황(#d19a66)
+   → 대비 약 2.4:1로 WCAG 미달 + 다크 사이트에서 이질적.
+   본문 밖(사이드바 등)에 code가 나와도 어울리게 다크로.
    ================================================= */
-
-.about-terminal {
-  max-width: 760px;
-  margin: 0.5em 0 2.2em;
-  background: #16161e;
-  border: 1px solid #3b4261;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
-}
-
-/* 섹션 구분 주석 (# ── 소개 ──) */
-.about-terminal__body .cmt {
-  color: #565f89;
-  font-size: 0.9em;
-}
-
-/* 명령어 텍스트 강조 */
-.about-terminal__body .cmd {
-  color: #f4f7ff;
-  font-weight: 700;
-}
-
-/* 상단 바: 신호등 + 창 제목 */
-.about-terminal__bar {
-  display: flex;
-  align-items: center;
-  background: #24283b;
-  padding: 10px 14px;
-}
-
-.about-terminal__bar .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 7px;
-}
-.about-terminal__bar .dot:nth-child(1) { background: #f7768e; }
-.about-terminal__bar .dot:nth-child(2) { background: #e0af68; }
-.about-terminal__bar .dot:nth-child(3) { background: #9ece6a; }
-
-.about-terminal__title {
-  margin-left: 10px;
-  color: #828bb8;
-  font-family: 'D2Coding', monospace;
-  font-size: 0.85em;
-}
-
-/* 본문 */
-.about-terminal__body {
-  margin: 0 !important;
-  padding: 22px 26px !important;
-  background: transparent !important;
-  border: none !important;
-  font-family: 'D2Coding', monospace;
+code {
+  background-color: #2C313A;
+  color: #D19A66;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: 'D2Coding', 'Consolas', monospace;
   font-size: 0.95em;
-  line-height: 1.95;
-  color: #e8edf9;
-  white-space: pre-wrap;      /* 좁은 화면에서 줄바꿈 허용 */
-  word-break: keep-all;
-}
-
-.about-terminal__body .prompt {
-  color: #9ece6a;
-  font-weight: 700;
-}
-
-.about-terminal__body .out {
-  color: #a9b1d6;
-}
-
-/* 출력 안의 링크 */
-.about-terminal__body a {
-  color: #7dcfff;
-  text-decoration: none;
-  border-bottom: 1px dashed #3b4261;
-}
-.about-terminal__body a:hover {
-  color: #bb9af7;
-  border-bottom-color: #bb9af7;
-}
-
-/* 깜빡이는 커서 */
-.about-terminal__body .cursor {
-  color: #9ece6a;
-  animation: about-blink 1.1s steps(1) infinite;
-}
-@keyframes about-blink {
-  50% { opacity: 0; }
-}
-
-/* 모바일 */
-@media (max-width: 600px) {
-  .about-terminal__body {
-    padding: 16px 16px !important;
-    font-size: 0.82em;
-    line-height: 1.85;
-  }
-}
-
-/* =================================================
-   11. 전체보기 — 포스트 타임라인 스타일
-   main.scss 맨 아래에 추가
-   ================================================= */
-
-.post-timeline {
-  list-style: none;      /* 글머리 점 제거 */
-  margin: 0 0 2em;
-  padding: 0;
-}
-
-.post-timeline li {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  padding: 12px 8px;
-  border-bottom: 1px solid #2b3045;
-  transition: background 0.15s ease;
-}
-
-.post-timeline li:hover {
-  background: rgba(125, 207, 255, 0.05);
-}
-
-.post-timeline li:last-child {
-  border-bottom: none;
-}
-
-/* 날짜: 고정폭 폰트로 세로 정렬 맞춤 */
-.post-timeline__date {
-  flex-shrink: 0;
-  font-family: 'D2Coding', monospace;
-  font-size: 0.85em;
-  color: #828bb8;
-}
-
-/* 글 제목 링크 */
-.post-timeline a {
-  flex: 1;
-  min-width: 0;
-  color: #e8edf9;
-  font-weight: 600;
-  text-decoration: none;      /* 밑줄 제거 */
-  transition: color 0.15s ease;
-}
-
-.post-timeline li:hover a {
-  color: #7dcfff;
-}
-
-/* 카테고리 칩 */
-.post-timeline__cat {
-  flex-shrink: 0;
-  font-size: 0.75em;
-  font-weight: 700;
-  color: #bb9af7;
-  background: rgba(187, 154, 247, 0.12);
-  border: 1px solid rgba(187, 154, 247, 0.35);
-  padding: 2px 10px;
-  border-radius: 999px;
-}
-
-/* 모바일: 칩은 숨기고 날짜+제목만 */
-@media (max-width: 600px) {
-  .post-timeline li {
-    gap: 10px;
-    padding: 11px 4px;
-  }
-  .post-timeline__cat {
-    display: none;
-  }
-}
-
-/* =================================================
-   12. 카테고리/목록 페이지 — 글 목록 카드화
-   (/java/, /python/ 등 모든 카테고리 + 메인 최근 글 공통 적용)
-   ================================================= */
-
-.archive .list__item {
-  margin-bottom: 6px;
-}
-
-.archive__item {
-  padding: 16px 18px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  border-bottom: 1px solid #2b3045;
-  transition: background 0.15s ease, border-color 0.15s ease,
-              transform 0.15s ease;
-}
-
-.archive__item:hover {
-  background: #24283b;
-  border-color: #3b4261;
-  transform: translateX(4px);
-}
-
-/* 제목: 밑줄 제거 + 흰색에 가깝게 */
-.archive__item-title {
-  color: #c0caf5; 
-  margin: 0;
-  font-size: 1.12em;
-  font-weight: 700;
-}
-
-.archive__item-title a {
-  color: #e8edf9;
-  text-decoration: none;
-  border-bottom: none;
-  transition: color 0.15s ease;
-}
-
-.archive__item:hover .archive__item-title a {
-  color: #7dcfff;
-}
-
-/* 부제(excerpt): 한 톤 낮춰 보조 정보로 */
-.archive__item-excerpt {
-  margin: 6px 0 0;
-  font-size: 0.88em;
-  color: #828bb8;
-  line-height: 1.6;
-}
-
-/* 제목 아래 그라데이션 언더라인 — 호버 시 늘어남 */
-.archive__item-title::after {
-  content: "";
-  display: block;
-  width: 36px;
-  height: 3px;
-  margin-top: 8px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #7dcfff, #bb9af7);
-  opacity: 0.55;
-  transition: width 0.25s ease, opacity 0.25s ease;
-}
-
-.archive__item:hover .archive__item-title::after {
-  width: 84px;
-  opacity: 1;
 }
