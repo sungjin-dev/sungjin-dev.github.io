@@ -100,13 +100,14 @@ code {
 }
 
 .page__content p code, .page__content li code {
-  background-color: rgba(255, 255, 255, 0.08); /* 반투명 화이트로 본문 위에 은은한 레이어 생성 */
-  color: #E2E8F0;                               /* 부드러운 화이트 그레이 */
-  border: none;                                 /* 테두리를 과감히 생략 */
+  background-color: #24283b;                     /* 원 다크 스킨의 어두운 그레이 */
+  color: #E2E8F0;
+  border: none;
+  border-bottom: 2px solid #565f89;              /* 핵심: 하단에만 명확한 언더라인 배치 */
   font-size: 1.02em;
-  padding: 3px 6px;
+  padding: 2px 6px 4px 6px;                      /* 밑줄 공간을 위해 아래쪽 패딩을 살짝 더 줌 */
   margin: 0 2px;
-  border-radius: 4px;
+  border-radius: 3px 3px 0 0;                    /* 아래쪽은 각지게, 위쪽만 라운딩 */
   font-weight: 700;
   vertical-align: middle;
 }
