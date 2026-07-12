@@ -629,7 +629,7 @@ table a:hover {
   font-size: 2.6em;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #fff;                       /* 다크 밴드 위 고정 흰색 */
+  color: #fff !important;
 }
 
 .layout--splash .page__hero--overlay .page__title::after {
@@ -668,14 +668,24 @@ table a:hover {
   padding: 1.4em 1.5em 1.6em;
 }
 
+/* 카드 상단 컬러 띠 + 위에서 아래로 스며드는 색 워시 */
 .layout--splash .feature__item .archive__item {
   border-top: 4px solid var(--tn-blue);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--tn-blue) 8%, transparent),
+    transparent 45%);
 }
 .layout--splash .feature__item:nth-child(2) .archive__item {
   border-top-color: var(--tn-yellow);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--tn-yellow) 8%, transparent),
+    transparent 45%);
 }
 .layout--splash .feature__item:nth-child(3) .archive__item {
   border-top-color: var(--tn-purple);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--tn-purple) 8%, transparent),
+    transparent 45%);
 }
 
 .layout--splash .feature__item .archive__item-title {
@@ -1128,7 +1138,7 @@ body {
 
 /* 포스트 제목 (카드 밖) — 단, 히어로 위 제목은 9번에서 흰색 고정 */
 .page__title {
-  color: var(--text-strong);
+  color: var(--text-strong) !important;
 }
 
 /* 좌측 프로필 사이드바 */
