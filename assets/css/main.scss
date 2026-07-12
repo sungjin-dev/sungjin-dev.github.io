@@ -854,3 +854,9 @@ table a:hover {
   width: 84px;
   opacity: 1;
 }
+
+/* 오른쪽 TOC 위젯을 더 오른쪽으로 밀어내기 */
+.toc__menu {
+  margin-right: -60px !important; /* 숫자가 커질수록 오른쪽으로 */
+  max-width: 260px;               
+}
