@@ -1208,20 +1208,17 @@ body {
 }
 
 /* 포스트/페이지 제목 — ID까지 동원해 확실히 덮기 */
-#page-title,
-h1.page__title,
-.page__inner-wrap .page__title {
-  color: var(--text-strong) !important;
+html[data-theme="light"] #main .page__title {
+  color: #1F2329 !important;
+  text-shadow: none !important;
+}
+html[data-theme="dark"] #main .page__title {
+  color: #F0EFEB !important;
+  text-shadow: none !important;
 }
 
-/* 스플래시 히어로(다크 밴드) 위 제목만 흰색 — ID로 명세도 동률 확보 */
-.layout--splash .page__hero--overlay #page-title,
-.layout--splash .page__hero--overlay .page__title {
-  color: #fff !important;
-}
-
-/* 제목 아래 날짜/메타 정보도 같이 정리 */
-.page__meta,
-.page__meta a {
+/* 제목 아래 날짜/메타 */
+#main .page__meta,
+#main .page__meta a {
   color: var(--text-muted) !important;
 }
