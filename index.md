@@ -16,7 +16,7 @@ feature_row:
     url: "/java/"
     btn_label: "연재 보기"
     btn_class: "btn--primary"
-  - title:"SQL 시험대비 단권화"
+  - title: "SQL 시험대비 단권화"
     excerpt: "데이터 모델링 기초에서 DML·TCL·DDL·DCL까지."
     url: "/sql/"
     btn_label: "시리즈 보기"
