@@ -38,19 +38,28 @@ $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFon
 }
 
 /* ================================================= */
-/* 1. 포스트 본문 전체 (다크모드) 스타일 */
+/* One Dark 팔레트 참고표
+   배경(본문) #1E1E1E   배경(코드) #282C34   배경(표) #21252B
+   본문 텍스트 #D4D4D4  코드 기본  #ABB2BF
+   앰버 #E5C07B  그린 #98C379  블루 #61AFEF
+   퍼플 #C678DD  코랄 #E06C75  시안 #56B6C2  주황 #D19A66
+   경계선 #3E4451  주석/보조 #7F848E
+   ================================================= */
+
+/* ================================================= */
+/* 1. 포스트 본문 전체 (다크모드) 스타일 — One Dark   */
 /* ================================================= */
 .page__content {
-  background-color: #2d3748;
-  border-left: 5px solid #fc8181;
+  background-color: #1E1E1E;
+  border-left: 5px solid #E5C07B;
   padding: 30px;
   margin-bottom: 20px;
   border-radius: 5px;
-  color: #f7fafc;
+  color: #D4D4D4;
 }
 
 .my-box {
-  background-color: #2d3748;
+  background-color: #1E1E1E;
   padding: 24px;
 }
 
@@ -62,26 +71,26 @@ $sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFon
 }
 
 /* ================================================= */
-/* 2. 제목 (h2, h3) 스타일 */
+/* 2. 제목 (h2, h3) 스타일 — 대제목 앰버, 소제목 그린 */
 /* ================================================= */
 .page__content h2 {
-  color: #c0caf5;
+  color: #E5C07B;
   padding-left: 12px;
-  border-left: 5px solid #bb9af7; 
+  border-left: 5px solid #E5C07B;
   margin-top: 2em;
   margin-bottom: 1em;
   font-weight: 700;
 }
 
 .page__content h3 {
-  color: #7dcfff; 
+  color: #98C379;
   margin-top: 1.5em;
   margin-bottom: 0.8em;
   font-weight: 700;
 }
 
 /* ================================================= */
-/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 */
+/* 3. 인라인 코드 (짧은 코드 글씨) 스타일 — 코랄      */
 /* ================================================= */
 code {
   background-color: #f1f3f5;
@@ -93,29 +102,29 @@ code {
 }
 
 .page__content p code, .page__content li code {
-  background-color: rgba(251, 211, 141, 0.15); 
-  color: #fbd38d;
-  font-size: 0.92em;  
-  padding: 2px 6px;  
+  background-color: rgba(224, 108, 117, 0.12);
+  color: #E06C75;
+  font-size: 0.92em;
+  padding: 2px 6px;
   border-radius: 4px;
 }
 
 /* ================================================= */
-/* 4. 코드 블록(Syntax Highlighting) 박스 스타일 */
+/* 4. 코드 블록(Syntax Highlighting) 박스 스타일      */
 /* ================================================= */
 div.highlighter-rouge {
   margin-bottom: 1.5em;
 }
 
-.page__content .highlight, 
+.page__content .highlight,
 .page__content .highlight pre {
   padding: 20px 25px !important;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   line-height: 1.75;
-  background-color: #1a1b26 !important;
-  color: #e8edf9 !important; /* ★ 수정: #c0caf5 → 흰색에 가깝게 */
+  background-color: #282C34 !important;
+  color: #ABB2BF !important;
   border-radius: 8px;
 }
 
@@ -128,11 +137,11 @@ div.highlighter-rouge {
   font-family: 'D2Coding', 'Consolas', 'Menlo', 'Monaco', monospace;
   font-size: 0.98em;
   font-weight: normal;
-  color: #e8edf9 !important; /* ★ 수정: #c0caf5 → 흰색에 가깝게 */
+  color: #ABB2BF !important;
 }
 
 /* ================================================= */
-/* 5. 도쿄 나이트(Tokyo Night) 테마 구문 강조 */
+/* 5. One Dark 테마 구문 강조                          */
 /* ================================================= */
 
 /* 키워드: if, for, while, return */
@@ -141,43 +150,43 @@ div.highlighter-rouge {
 .page__content .highlight .kv,
 .page__content .highlight .kr,
 .page__content .highlight .kp {
-  color: #bb9af7 !important;
+  color: #C678DD !important;
 }
 
 /* 클래스명, 타입 */
 .page__content .highlight .nc,
 .page__content .highlight .kt {
-  color: #7dcfff !important;
+  color: #E5C07B !important;
 }
 
 /* HTML 태그: form, div, button */
 .page__content .highlight .nt {
-  color: #7aa2f7 !important;
+  color: #E06C75 !important;
 }
 
 /* 내장 함수: len(), range(), print() */
 .page__content .highlight .nb,
 .page__content .highlight .nn {
-  color: #e0af68 !important;
+  color: #56B6C2 !important;
 }
 
 /* 사용자 정의 함수 */
 .page__content .highlight .nf,
 .page__content .highlight .fm {
-  color: #7aa2f7 !important;
+  color: #61AFEF !important;
   font-weight: 700;
 }
 
 /* HTML 속성: name, type, method */
 .page__content .highlight .na,
 .page__content .highlight .py {
-  color: #7dcfff !important;
+  color: #D19A66 !important;
 }
 
 /* 일반 변수 */
 .page__content .highlight .nx,
 .page__content .highlight .nv {
-  color: #e8edf9 !important; /* ★ 수정: #c0caf5 → 흰색에 가깝게 */
+  color: #ABB2BF !important;
 }
 
 /* 문자열 */
@@ -185,49 +194,49 @@ div.highlighter-rouge {
 .page__content .highlight .s1,
 .page__content .highlight .s2,
 .page__content .highlight .sr {
-  color: #9ece6a !important;
+  color: #98C379 !important;
 }
 
 /* 숫자 */
 .page__content .highlight .m,
 .page__content .highlight .mi,
 .page__content .highlight .mf {
-  color: #ff9e64 !important;
+  color: #D19A66 !important;
 }
 
 /* 주석 */
 .page__content .highlight .c,
 .page__content .highlight .c1,
 .page__content .highlight .cm {
-  color: #9aa5ce !important; /* ★ 수정: #828bb8 → 반 단계 더 밝게 */
+  color: #7F848E !important;
   font-style: normal;
 }
 
 /* 괄호, 연산자 */
 .page__content .highlight .p,
 .page__content .highlight .o {
-  color: #89ddff !important;
+  color: #ABB2BF !important;
 }
 
 /* Rouge 오류 토큰 */
 .page__content .highlight .err {
-  color: #e8edf9 !important; /* ★ 수정: #c0caf5 → 흰색에 가깝게 */
+  color: #ABB2BF !important;
   background-color: transparent !important;
 }
 
 /* ================================================= */
-/* 6. 표 디자인 */
+/* 6. 표 디자인 — One Dark                            */
 /* ================================================= */
 
 /* 열 구분 세로선 — 마지막 열 제외 */
 table th:not(:last-child),
 table td:not(:last-child) {
-  border-right: 1px solid #3b4261;
+  border-right: 1px solid #3E4451;
 }
 
 /* 헤더의 세로선은 살짝 밝게 (배경이 더 밝아서 같은 색이면 안 보임) */
 table th:not(:last-child) {
-  border-right-color: #454c6b;
+  border-right-color: #4B5263;
 }
 
 table {
@@ -239,14 +248,14 @@ table {
   border-radius: 8px !important;
   overflow: hidden;
   display: table !important;
-  background-color: #1a1b26;
+  background-color: #21252B;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 table th,
 table td {
   padding: 14px 20px;
-  border-bottom: 1px solid #3b4261;
+  border-bottom: 1px solid #3E4451;
   text-align: left;
   line-height: 1.7;
   word-break: keep-all;
@@ -260,26 +269,26 @@ table td:first-child {
 
 /* 헤더 */
 table th {
-  background-color: #24283b;
-  color: #f4f7ff !important; /* ★ 수정: #c0caf5 → 거의 흰색 */
+  background-color: #2C313A;
+  color: #F0EFEB !important;
   font-weight: 700;
   font-size: 1.02em;
   letter-spacing: 0.02em;
-  border-bottom: 2px solid #bb9af7;
+  border-bottom: 2px solid #E5C07B;
 }
 
 /* 본문 */
 table td {
-  background-color: #1a1b26;
-  color: #e8edf9 !important; /* ★ 수정: #c0caf5 → 흰색에 가깝게 */
+  background-color: #21252B;
+  color: #D4D4D4 !important;
 }
 
 table tr:nth-child(even) td {
-  background-color: #222436;
+  background-color: #262A31;
 }
 
 table tr:hover td {
-  background-color: #2a2f45;
+  background-color: #2C313A;
 }
 
 table tr:last-child td {
@@ -287,8 +296,8 @@ table tr:last-child td {
 }
 
 table code {
-  background-color: rgba(255, 158, 100, 0.13) !important;
-  color: #ff9e64 !important;                            
+  background-color: rgba(209, 154, 102, 0.13) !important;
+  color: #D19A66 !important;
   padding: 3px 8px !important;
   border-radius: 4px !important;
   border: none !important;
@@ -297,11 +306,11 @@ table code {
 }
 
 table a {
-  color: #7dcfff !important;
+  color: #61AFEF !important;
 }
 
 table a:hover {
-  color: #bb9af7 !important;
+  color: #E5C07B !important;
 }
 
 @media (max-width: 768px) {
@@ -327,7 +336,7 @@ table a:hover {
 
 @media (max-width: 767px) {
   .page__inner-wrap, .archive {
-    width: 92%; 
+    width: 92%;
     margin: 0 auto;
     padding-left: 0;
     padding-right: 0;
@@ -336,7 +345,7 @@ table a:hover {
 
 @media (min-width: 768px) {
   .page__inner-wrap, .archive {
-    padding-left: 32px; 
+    padding-left: 32px;
     padding-right: 32px;
   }
 }
@@ -348,21 +357,21 @@ table a:hover {
 }
 
 /* ================================================= */
-/* 8. 사이드바 시계/날씨 위젯 접기(Toggle) 스타일 */
+/* 8. 사이드바 시계/날씨 위젯 접기(Toggle) 스타일      */
 /* ================================================= */
 .mobile-widget-toggle {
-  background-color: #2d3748; 
+  background-color: #21252B;
   border-radius: 8px;
   margin-bottom: 20px;
 }
 
 .mobile-widget-toggle summary {
   padding: 12px 15px;
-  color: #c0caf5;
+  color: #D4D4D4;
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  list-style: none; 
+  list-style: none;
 }
 
 .mobile-widget-toggle summary::-webkit-details-marker {
@@ -372,7 +381,7 @@ table a:hover {
 .mobile-widget-toggle summary::after {
   content: " ▼";
   font-size: 0.8em;
-  color: #7dcfff;
+  color: #E5C07B;
 }
 
 .mobile-widget-toggle[open] summary::after {
@@ -381,12 +390,12 @@ table a:hover {
 
 .widget-content {
   padding-top: 10px;
-  border-top: 1px solid #4a5568; 
+  border-top: 1px solid #3E4451;
 }
 
 @media (min-width: 768px) {
   .mobile-widget-toggle summary {
-    display: none; 
+    display: none;
   }
   .mobile-widget-toggle[open] summary {
     display: none;
@@ -584,7 +593,7 @@ table a:hover {
 
 /* ---------- 섹션 제목 정리 ---------- */
 .layout--splash .page__content h2 {
-  border-left: none;          /* 본문용 보라 왼쪽 바는 메인에선 제거 */
+  border-left: none;          /* 본문용 왼쪽 바는 메인에선 제거 */
   padding-left: 0;
   border-bottom: 1px solid #3b4261;
   padding-bottom: 0.4em;
