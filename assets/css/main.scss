@@ -1219,7 +1219,7 @@ code, pre {
   font-family: 'D2Coding', Consolas, Monaco, monospace !important;
 }
 
-/* 코드 블록 내부의 기본 글자 색상을 어두운 색으로 강제 지정 */
-code, pre, code * {
-  color: #24292e !important; /* 가독성 좋은 진한 회색/검은색 계열 */
-}
+/* 하이라이트 테마 중 너무 밝아서 안 보이는 특정 요소들만 강제로 색상 부여 */
+.hljs-keyword, .token.keyword { color: #d73a49 !important; /* 예약어: 빨간색 계열 */ }
+.hljs-string, .token.string { color: #032f62 !important; /* 문자열: 진한 파란색 */ }
+.hljs-title, .hljs-section, .token.function { color: #6f42c1 !important; /* 함수명: 보라색 */ }
