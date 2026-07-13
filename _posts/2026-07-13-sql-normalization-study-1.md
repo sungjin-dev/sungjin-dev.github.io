@@ -1,4 +1,14 @@
-# [SQLD 단권화 #3] 정규화와 반정규화 — 쪼개기와 다시 합치기
+---
+title: " [SQLD 단권화 #1] 정규화와 반정규화"
+excerpt: "반정규화란 정규화된 것을 일부러 다시 무너뜨리는 것"
+categories: [SQL]
+tags:
+  - SQP
+toc: true
+toc_sticky: true
+---
+
+# [SQLD 단권화 #3] 정규화와 반정규화
 
 > SQLD 1과목 2장 — 정규화 단계(1NF~5NF), 이상 현상, 반정규화 기법
 
