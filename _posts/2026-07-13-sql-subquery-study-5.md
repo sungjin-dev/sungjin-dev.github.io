@@ -2,6 +2,7 @@
 title: " [SQLD 단권화 #7] SQL 활용"
 excerpt: "서브쿼리, 집합 연산자, 그룹·윈도우 함수, Top N, PIVOT"
 categories: [SQL]
+order: 7
 tags:
   - SQP
 toc: true
