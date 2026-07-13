@@ -1,5 +1,5 @@
 ---
-title: " [SQLD 단권화 #1] SELECT 기본기"
+title: " [SQLD 단권화 #5] SELECT 기본기"
 excerpt: " 실행 순서와 사용법"
 categories: [SQL]
 tags:
