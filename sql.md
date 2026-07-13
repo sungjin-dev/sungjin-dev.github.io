@@ -6,6 +6,7 @@ sidebar:
   nav: "sidebar_category"
 ---
 
-{% for post in site.categories.SQL %}
-  {% include archive-single.html %}
+{% assign posts = site.categories.sql | sort: "order" %}
+{% for post in posts %}
+  <li><a href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
