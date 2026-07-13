@@ -296,29 +296,43 @@ div.highlighter-rouge {
 /* 5. 구문 강조 — 다크: One Dark / 라이트: One Light  */
 /* ================================================= */
 
-/* 키워드: if, for, while, return */
+/* [기반] 캐치올 — 아래에서 지정 안 된 모든 토큰.
+   스킨이 빌드 시 칠한 다크용 색이 라이트 배경에서
+   안 보이던 문제를 원천 차단 */
+.page__content .highlight span {
+  color: var(--syn-plain) !important;
+}
+
+/* 키워드: if, for, return, import/from, and/or/not, #include */
 .page__content .highlight .k,
 .page__content .highlight .kd,
+.page__content .highlight .kn,
 .page__content .highlight .kv,
 .page__content .highlight .kr,
-.page__content .highlight .kp {
+.page__content .highlight .kp,
+.page__content .highlight .ow,
+.page__content .highlight .cp {
   color: var(--syn-kw) !important;
 }
 
-/* 클래스명, 타입 */
+/* 클래스명, 타입, 예외, 상수명 */
 .page__content .highlight .nc,
-.page__content .highlight .kt {
+.page__content .highlight .kt,
+.page__content .highlight .ne,
+.page__content .highlight .no {
   color: var(--syn-type) !important;
 }
 
-/* HTML 태그: form, div, button */
-.page__content .highlight .nt {
+/* HTML 태그 + self/this */
+.page__content .highlight .nt,
+.page__content .highlight .bp {
   color: var(--syn-tag) !important;
 }
 
-/* 내장 함수: len(), range(), print() */
+/* 내장 함수, 모듈, 데코레이터(@app.route) */
 .page__content .highlight .nb,
-.page__content .highlight .nn {
+.page__content .highlight .nn,
+.page__content .highlight .nd {
   color: var(--syn-func) !important;
 }
 
@@ -329,37 +343,46 @@ div.highlighter-rouge {
   font-weight: 700;
 }
 
-/* HTML 속성: name, type, method */
+/* HTML 속성 + True/False/None */
 .page__content .highlight .na,
-.page__content .highlight .py {
+.page__content .highlight .py,
+.page__content .highlight .kc {
   color: var(--syn-attr) !important;
 }
 
-/* 일반 변수 */
-.page__content .highlight .nx,
-.page__content .highlight .nv {
-  color: var(--syn-plain) !important;
-}
-
-/* 문자열 */
+/* 문자열 전 계열 (독스트링·이스케이프·f-string 포함) */
 .page__content .highlight .s,
 .page__content .highlight .s1,
 .page__content .highlight .s2,
-.page__content .highlight .sr {
+.page__content .highlight .sr,
+.page__content .highlight .sb,
+.page__content .highlight .sc,
+.page__content .highlight .sd,
+.page__content .highlight .se,
+.page__content .highlight .sh,
+.page__content .highlight .si,
+.page__content .highlight .sx,
+.page__content .highlight .ss {
   color: var(--syn-str) !important;
 }
 
-/* 숫자 */
+/* 숫자 전 계열 */
 .page__content .highlight .m,
 .page__content .highlight .mi,
-.page__content .highlight .mf {
+.page__content .highlight .mf,
+.page__content .highlight .mh,
+.page__content .highlight .mo,
+.page__content .highlight .il {
   color: var(--syn-attr) !important;
 }
 
-/* 주석 */
+/* 주석 전 계열 */
 .page__content .highlight .c,
 .page__content .highlight .c1,
-.page__content .highlight .cm {
+.page__content .highlight .cm,
+.page__content .highlight .cs,
+.page__content .highlight .ch,
+.page__content .highlight .cpf {
   color: var(--syn-comment) !important;
   font-style: normal;
 }
@@ -375,7 +398,6 @@ div.highlighter-rouge {
   color: var(--syn-plain) !important;
   background-color: transparent !important;
 }
-
 /* ================================================= */
 /* 6. 표 디자인                                       */
 /* ================================================= */
@@ -1216,37 +1238,3 @@ html[data-theme="dark"] #main .page__title {
 }
 
 
-/* ==========================================
-   1. 기본 상태 (라이트 모드 또는 공통)
-   ========================================== */
-/* 코드 블록 바탕이 밝은 편인데 글자가 안 보인다면, 기본 글자색을 진하게 잡습니다 */
-code, pre {
-  font-family: 'D2Coding', Consolas, Monaco, monospace !important;
-}
-
-/* 라이트 모드에서 글자들을 잘 보이게 처리 */
-code * {
-  color: #24292e !important; 
-}
-
-/* ==========================================
-   2. 다크 모드 대응 (내 블로그 테마에 맞게 선택)
-   ========================================== */
-
-/* 케이스 A: 내 테마가 <html>이나 <body>에 class="dark"를 붙이는 경우 */
-.dark code *, 
-[class*="dark"] code * {
-  color: #e1e4e8 !important; /* 다크모드용 밝은 회색/하얀색 계열 */
-}
-
-/* 케이스 B: 내 테마가 <html data-theme="dark"> 형태를 쓰는 경우 */
-[data-theme="dark"] code * {
-  color: #e1e4e8 !important;
-}
-
-/* 케이스 C: 시스템/브라우저 다크 모드 설정을 그대로 따르는 경우 */
-@media (prefers-color-scheme: dark) {
-  code * {
-    color: #e1e4e8 !important;
-  }
-}
