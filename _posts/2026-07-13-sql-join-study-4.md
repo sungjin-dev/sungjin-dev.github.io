@@ -2,6 +2,7 @@
 title: " [SQLD 단권화 #6] JOIN 완전정복 "
 excerpt: "문장 구조를 4조각으로"
 categories: [SQL]
+order: 6
 tags:
   - SQP
 toc: true
