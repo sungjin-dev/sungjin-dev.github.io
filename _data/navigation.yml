@@ -6,11 +6,13 @@ sidebar_category:
   - title: "개발 공부 기록"
     children:
       - title: "C"
-        url: /C/
+        url: /c/
       - title: "C++"
-        url: /C++/
+        url: /c++/
       - title: "Python"
         url: /python/
+      - title: "Java"
+        url: /java/
       - title: "JavaScript"
         url: /javascript/
       - title: "CSS"
@@ -18,7 +20,7 @@ sidebar_category:
       - title: "Flask"
         url: /flask/
       - title: "SQL"
-        url: /SQL/
+        url: /sql/
 
   - title: "필기노트"
     children:
