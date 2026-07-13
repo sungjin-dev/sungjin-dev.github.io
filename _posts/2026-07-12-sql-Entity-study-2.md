@@ -1,7 +1,7 @@
 ---
 title: " [SQLD 단권화 #2] 엔터티·속성·관계·식별자"
 excerpt: "모델의 4대 부품"
-categories: [SQL]
+categories: [sql]
 order: 2
 tags:
   - SQP
