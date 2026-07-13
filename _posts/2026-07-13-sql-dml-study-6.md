@@ -2,6 +2,7 @@
 title: " [SQLD 단권화 #8] SQL 명령어 총정리"
 excerpt: "DML·TCL·DDL·DCL"
 categories: [SQL]
+order: 8
 tags:
   - SQP
 toc: true
