@@ -2,6 +2,7 @@
 title: " [SQLD 단권화 #1] 데이터 모델링"
 excerpt: "모델링의 개념, 3단계 모델링, 3단계 스키마, ERD"
 categories: [SQL]
+order: 1
 tags:
   - SQP
 toc: true
