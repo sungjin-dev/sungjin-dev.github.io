@@ -1162,6 +1162,12 @@ body {
   color: var(--text-strong) !important;
 }
 
+/* 제목 안의 링크 — h1의 색을 그대로 상속 (라이트/다크 자동 대응) */
+.page__title a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
 /* 좌측 프로필 사이드바 */
 .sidebar .author__name {
   color: var(--text-strong);
