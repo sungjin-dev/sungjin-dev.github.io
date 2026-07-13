@@ -1,6 +1,6 @@
 ---
 title: "SQL 공부 기록"
-layout: single
+layout: archive
 permalink: /sql/
 sidebar:
   nav: "sidebar_category"
