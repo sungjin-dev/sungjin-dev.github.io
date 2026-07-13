@@ -258,4 +258,4 @@ DROP ROLE hr_role;                                -- ROLE 삭제
 - **ROWNUM은 정렬 후에**, RANK vs DENSE_RANK (7편)
 - **DELETE/TRUNCATE/DROP 비교표** (8편)
 
-시험 직전에는 각 편 맨 아래 "정리 한 장"만 쭉 훑어도 복습이 된다. 합격을 빈다. 🎉
+시험 직전에는 각 편 맨 아래 "정리 한 장"만 쭉 훑어도 복습이 된다. 합격을 빈다.
