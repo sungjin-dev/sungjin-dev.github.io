@@ -1,7 +1,7 @@
 ---
 title: " [SQLD 단권화 #4] 트랜잭션·NULL·식별자·계층형 모델"
 excerpt: "트랜잭션 ACID 등"
-categories: [SQL]
+categories: [sql]
 order: 4
 tags:
   - SQP
