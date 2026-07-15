@@ -333,9 +333,16 @@ div.highlighter-rouge {
   font-weight: normal !important;
 }
 
-.page__content .highlight .nt,
-.page__content .highlight .bp {
+.page__content .highlight .nt {
   color: var(--syn-tag) !important;
+  font-weight: normal !important;
+}
+
+.page__content .highlight .na,
+.page__content .highlight .py,
+.page__content .highlight .kc,
+.page__content .highlight .bp {
+  color: var(--syn-attr) !important;
   font-weight: normal !important;
 }
 
