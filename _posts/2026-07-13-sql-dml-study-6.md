@@ -1,6 +1,6 @@
 ---
 title: " [SQLD 단권화 #8] SQL 명령어 총정리"
-excerpt: "DML,TCL,DDL,DCL"
+excerpt: "DML, TCL, DDL, DCL"
 categories: [sql]
 order: 8
 tags:
