@@ -1,6 +1,6 @@
 ---
 title: "Python Methods, Functions"
-categories: [Python]
+categories: [python]
 tags:
   - Python
   - 오답노트
