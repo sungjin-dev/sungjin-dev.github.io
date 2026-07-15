@@ -28,4 +28,4 @@ toc_sticky: true
 ### 데이터 탐색 및 개수 확인
 * **`enumerate(list)`**: `(인덱스, 값)` 형태의 튜플 순서로 데이터를 반환
 * **`list.index(value, start, end)`**: 특정 범위 내에서 찾고자 하는 값의 인덱스 번호를 반환
-* **`list.count(value)`**: 데이터 꾸러미(리스트, 튜플, 문자
+* **`list.count(value)`**: 데이터 꾸러미(리스트, 튜플, 문자)
