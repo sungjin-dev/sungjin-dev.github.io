@@ -3,7 +3,6 @@ title: "Python Methods, Functions"
 categories: [Python]
 tags:
   - Python
-  - 오답노트
 toc: true
 toc_sticky: true
 ---
