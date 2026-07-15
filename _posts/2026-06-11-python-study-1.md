@@ -5,15 +5,6 @@ tags:
   - Python
 toc: true
 toc_sticky: true
-published: false
----
----
-title: "Python Methods, Functions"
-categories: [Python]
-tags:
-  - Python
-toc: true
-toc_sticky: true
 ---
 
 ## 1. 리스트(List) 데이터 추가 및 삭제
