@@ -5,7 +5,7 @@ permalink: /java/
 sidebar:
   nav: "sidebar_category"
 ---
-{% assign posts = site.categories.java | sort: "order" %}
+{% assign posts = site.categories.Java | sort: "order" %}
 <div class="entries-list">
 {% for post in posts %}
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
