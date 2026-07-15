@@ -292,18 +292,27 @@ div.highlighter-rouge {
   color: var(--code-text) !important;
 }
 
-/* ================================================= */
+* ================================================= */
 /* 5. 구문 강조 — 다크: One Dark / 라이트: One Light  */
+/* ※ Minimal Mistakes 기본 스킨 완전 오버라이드      */
 /* ================================================= */
 
-/* [기반] 캐치올 — 아래에서 지정 안 된 모든 토큰.
-   스킨이 빌드 시 칠한 다크용 색이 라이트 배경에서
-   안 보이던 문제를 원천 차단 */
-.page__content .highlight span {
-  color: var(--syn-plain) !important;
+/* [1단계] 캐치올 — 모든 span의 기본값 초기화 */
+.page__content .highlight pre,
+.page__content .highlight,
+.page__content div.highlighter-rouge .highlight {
+  background-color: var(--bg-code) !important;
+  color: var(--code-text) !important;
 }
 
-/* 키워드: if, for, return, import/from, and/or/not, #include */
+.page__content .highlight span,
+.page__content .highlight code span {
+  color: var(--syn-plain) !important;
+  background: transparent !important;
+  font-weight: normal !important;
+}
+
+/* [2단계] 각 토큰별 색상 (높은 우선순위) */
 .page__content .highlight .k,
 .page__content .highlight .kd,
 .page__content .highlight .kn,
@@ -313,44 +322,44 @@ div.highlighter-rouge {
 .page__content .highlight .ow,
 .page__content .highlight .cp {
   color: var(--syn-kw) !important;
+  font-weight: normal !important;
 }
 
-/* 클래스명, 타입, 예외, 상수명 */
 .page__content .highlight .nc,
 .page__content .highlight .kt,
 .page__content .highlight .ne,
 .page__content .highlight .no {
   color: var(--syn-type) !important;
+  font-weight: normal !important;
 }
 
-/* HTML 태그 + self/this */
 .page__content .highlight .nt,
 .page__content .highlight .bp {
   color: var(--syn-tag) !important;
+  font-weight: normal !important;
 }
 
-/* 내장 함수, 모듈, 데코레이터(@app.route) */
 .page__content .highlight .nb,
 .page__content .highlight .nn,
 .page__content .highlight .nd {
   color: var(--syn-func) !important;
+  font-weight: normal !important;
 }
 
-/* 사용자 정의 함수 */
 .page__content .highlight .nf,
 .page__content .highlight .fm {
   color: var(--syn-func) !important;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
-/* HTML 속성 + True/False/None */
 .page__content .highlight .na,
 .page__content .highlight .py,
 .page__content .highlight .kc {
   color: var(--syn-attr) !important;
+  font-weight: normal !important;
 }
 
-/* 문자열 전 계열 (독스트링·이스케이프·f-string 포함) */
+/* 문자열 계열 */
 .page__content .highlight .s,
 .page__content .highlight .s1,
 .page__content .highlight .s2,
@@ -364,9 +373,10 @@ div.highlighter-rouge {
 .page__content .highlight .sx,
 .page__content .highlight .ss {
   color: var(--syn-str) !important;
+  font-weight: normal !important;
 }
 
-/* 숫자 전 계열 */
+/* 숫자 계열 */
 .page__content .highlight .m,
 .page__content .highlight .mi,
 .page__content .highlight .mf,
@@ -374,9 +384,10 @@ div.highlighter-rouge {
 .page__content .highlight .mo,
 .page__content .highlight .il {
   color: var(--syn-attr) !important;
+  font-weight: normal !important;
 }
 
-/* 주석 전 계열 */
+/* 주석 계열 */
 .page__content .highlight .c,
 .page__content .highlight .c1,
 .page__content .highlight .cm,
@@ -384,16 +395,16 @@ div.highlighter-rouge {
 .page__content .highlight .ch,
 .page__content .highlight .cpf {
   color: var(--syn-comment) !important;
-  font-style: normal;
+  font-style: normal !important;
 }
 
 /* 괄호, 연산자 */
 .page__content .highlight .p,
 .page__content .highlight .o {
   color: var(--syn-plain) !important;
+  font-weight: normal !important;
 }
 
-/* Rouge 오류 토큰 */
 .page__content .highlight .err {
   color: var(--syn-plain) !important;
   background-color: transparent !important;
