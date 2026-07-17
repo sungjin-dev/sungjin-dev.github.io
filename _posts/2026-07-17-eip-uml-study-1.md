@@ -137,7 +137,7 @@ flowchart LR
     G(["글등록"])
 
     C --- P
-    P -. "«extend»" .-> G
+    P <-. "«extend»" .- G
 ```
 
 
