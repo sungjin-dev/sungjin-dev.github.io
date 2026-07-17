@@ -1265,7 +1265,6 @@ html[data-theme="dark"] #main .page__title {
   color: var(--text-muted) !important;
 }
 
-// src 끝이 #blog-star-emoji 인 img를 선택
 img[src$="#blog-star-emoji"] {
   display: inline-block;
   width: 18px;
