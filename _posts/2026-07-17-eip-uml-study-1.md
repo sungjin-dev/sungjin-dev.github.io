@@ -114,8 +114,15 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  C("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>고객</span>"):::trans --- O(["주문"])
-  O -. "«include»" .-> V(["사용자확인"])
+    classDef trans background:none,border:none,border-width:0px,fill-opacity:0,stroke-opacity:0,stroke-width:0px,shadow:none;
+    
+    C("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>고객</span>"):::trans
+    
+    O(["주문"])
+    V(["사용자확인"])
+
+    C --- O
+    O -. "«include»" .-> V
 ```
 
 **확장(Extend)** — 파일첨부는 조건에 따라 실행될 수도, 안 될 수도 있다. 화살표는 **기본 유스케이스 쪽으로** 향한다(포함과 반대 방향).
