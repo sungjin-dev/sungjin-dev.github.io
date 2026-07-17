@@ -183,7 +183,25 @@ sequenceDiagram
   서버-->>-로그인화면: 인증 결과
   로그인화면-->>-회원: 로그인 완료
 ```
+비교
 
+```mermaid
+sequenceDiagram
+    %% 회원만 actor(졸라맨)로 지정하고 로그인화면과 서버는 일반 participant(상자)로 지정합니다.
+    actor U as 회원
+    participant Screen as 로그인화면
+    participant Server as 서버
+
+    U->>Screen: 로그인 시도
+    activate Screen
+    Screen->>Server: 인증 요청
+    activate Server
+    Server->>Server: 유효성 검사 (회귀 메시지)
+    Server-->>Screen: 인증 결과
+    deactivate Server
+    Screen-->>U: 로그인 완료
+    deactivate Screen
+```
 ### 상태 다이어그램 <small>(23년 2회, 25년 1회)</small>
 
 하나의 객체가 자신이 속한 클래스의 상태 변화 혹은 다른 객체와의 상호 작용에 따라 **상태가 어떻게 변화하는지** 표현하는 다이어그램이다.
