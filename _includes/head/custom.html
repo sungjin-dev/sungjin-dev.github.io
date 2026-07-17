@@ -2,7 +2,7 @@
      페이지가 그려지기 전에 저장된 테마를 적용 (다크↔라이트 깜빡임 방지)
      반드시 인라인이어야 함 — 외부 파일로 빼면 로드 전에 첫 화면이 그려짐 -->
 <!-- Pretendard: 한국어 웹의 표준급 UI 폰트. 사이트 전체 글꼴 개선 -->
-<link rel="stylesheet" as="style" crossorigin
+<link rel="stylesheet" crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <script>
   (function () {
@@ -12,5 +12,42 @@
   })();
 </script>
 
-<!-- _includes/head/custom.html -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 
+  // 현재 테마(다크/라이트)에 맞는 mermaid 테마 선택
+  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: isLight ? "neutral" : "dark",
+    fontFamily: "'Pretendard Variable', Pretendard, sans-serif"
+  });
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    // Jekyll(rouge)이 ```mermaid 를 <div class="language-mermaid ..."> 로 렌더링하므로
+    // 이를 mermaid가 인식하는 <div class="mermaid"> 로 교체한다
+    document.querySelectorAll("div.language-mermaid").forEach((block) => {
+      const code = block.querySelector("code");
+      if (!code) return;
+      const div = document.createElement("div");
+      div.className = "mermaid";
+      div.textContent = code.textContent;
+      block.replaceWith(div);
+    });
+    await mermaid.run({ querySelector: ".mermaid" });
+  });
+</script>
+
+<style>
+  /* mermaid 다이어그램 여백/정렬 — 코드블록 스타일이 아닌 그림처럼 보이게 */
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+    background: transparent;
+  }
+  .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
