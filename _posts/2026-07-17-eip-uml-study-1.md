@@ -114,7 +114,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  C(("고객")) --- O(["주문"])
+  C("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>고객</div>"):::trans --- O(["주문"])
   O -. "«include»" .-> V(["사용자확인"])
 ```
 
@@ -129,8 +129,8 @@ flowchart LR
 
 ```mermaid
 flowchart BT
-  M(("회원")) --> C2(("고객"))
-  N(("비회원")) --> C2
+  M("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>회원</div>"):::trans --> CV2("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>고객</div>"):::trans
+  N("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>비회원</div>"):::trans --> C2
 ```
 
 > ![star] **포함 vs 확장 구분법**: 포함은 "반드시 실행"(필수), 확장은 "실행할 수도 있음"(선택). **화살표 방향이 서로 반대**인 것도 자주 출제된다.
