@@ -446,9 +446,16 @@ table th,
 table td {
   padding: 14px 20px;
   border-bottom: 1px solid var(--border-table);
-  text-align: left;
   line-height: 1.7;
   word-break: keep-all;
+}
+
+table th {
+  text-align: center;
+}
+
+table td {
+  text-align: left;
 }
 
 table th:first-child,
