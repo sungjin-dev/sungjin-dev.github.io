@@ -7,6 +7,7 @@ sidebar:
 ---
 
 
-{% for post in site.categories.정처기 %}
+{% assign posts = site.categories["정처기"] %}
+{% for post in posts %}
   {% include archive-single.html %}
 {% endfor %}
