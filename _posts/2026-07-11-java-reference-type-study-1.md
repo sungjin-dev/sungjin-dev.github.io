@@ -51,7 +51,6 @@ flowchart TB
  **Modern JVM Memory Layout (Java 8 ~ 21+)**
 
 ```mermaid
-```mermaid
 graph TD
     %% ──────────────────────────────────────────────────────────
     %% JVM Runtime Data Area (상단 거대 그룹)
