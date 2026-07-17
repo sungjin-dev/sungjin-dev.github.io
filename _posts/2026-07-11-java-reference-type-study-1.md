@@ -52,6 +52,101 @@ flowchart TB
 
 <img width="1812" height="1539" alt="image" src="https://github.com/user-attachments/assets/91807973-1728-4e02-890d-f3164e2729a3" />
 
+```mermaid
+graph TD
+    %% ──────────────────────────────────────────────────────────
+    %% JVM Runtime Data Area (상단 거대 그룹)
+    %% ──────────────────────────────────────────────────────────
+    subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
+        
+        %% [1] JVM 스택 영역
+        subgraph STACK_AREA ["1. JVM 스택 영역 (Stack) - 스레드마다 하나씩 · 비공유(Private)"]
+            subgraph THREAD1 ["스레드-1 (일꾼 / 실행 주체)"]
+                subgraph JVM_ST ["JVM 스택 (이 일꾼 전용 작업대)"]
+                    F_N["프레임-n (가장 최근 호출된 메서드)<br>= 지역변수 배열 + 피연산자 스택"]
+                    F_1["프레임-1 (시작 메서드: main 등)<br>= 지역변수 배열 + 피연산자 스택"]
+                    
+                    %% push/pop 흐름 시각화
+                    F_1 -->|push ⬇️| F_N
+                    F_N -->|pop ⬆️| F_1
+                end
+            end
+            STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
+        end
+
+        %% [2] 힙 영역
+        subgraph HEAP_AREA ["2. 힙 영역 (Heap) - 모든 스레드가 공유 · GC의 관할 구역"]
+            subgraph OBJECTS ["new 로 생성된 인스턴스 · 배열"]
+                OBJ1["객체-1"]
+                ARR2["배열-2"]
+                OBJN["객체-n ..."]
+            end
+            
+            SF["[이사 옴] static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
+            SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
+            
+            HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
+        end
+
+    end
+
+    %% ──────────────────────────────────────────────────────────
+    %% Native Memory (하단 거대 그룹)
+    %% ──────────────────────────────────────────────────────────
+    subgraph NATIVE_MEM ["Native Memory (운영체제(OS)가 관리)"]
+        subgraph METASPACE ["3. 메타스페이스 (Metaspace) - 구 '메서드 영역'의 현재 구현 (PermGen 철거 후 이전)"]
+            MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
+            
+            subgraph CL1 ["클래스-1 구조 정보"]
+                C1["바이트코드 (메서드·생성자 코드) · 런타임 상수풀 (클래스별)"]
+            end
+            
+            subgraph CLN ["클래스-n 구조 정보"]
+                CN["바이트코드 (메서드·생성자 코드) · 런타임 상수풀 (클래스별)"]
+            end
+        end
+    end
+
+    %% 영역 간 관계 화살표
+    RDA -->|클래스 설계도 참조| NATIVE_MEM
+
+    %% ──────────────────────────────────────────────────────────
+    %% 스타일 레이어 (원본 이미지 색상 완벽 복사)
+    %% ──────────────────────────────────────────────────────────
+    classDef rda_style fill:#ffffff,stroke:#4a5568,stroke-width:3px,font-weight:bold;
+    classDef native_style fill:#ffffff,stroke:#dd6b20,stroke-width:3px,font-weight:bold;
+    
+    classDef stack_box fill:#ffffff,stroke:#3182ce,stroke-width:2px,color:#2b6cb0;
+    classDef thread_box fill:#ffffff,stroke:#805ad5,stroke-width:2px;
+    classDef frame_box fill:#f7fafc,stroke:#a0aec0,stroke-width:1px;
+    
+    classDef heap_box fill:#ffffff,stroke:#38a169,stroke-width:2px,color:#276749;
+    classDef move_box fill:#ffffff,stroke:#d69e2e,stroke-width:2px,color:#b7791f;
+    classDef obj_box fill:#edf2f7,stroke:#cbd5e0,stroke-width:1px;
+    
+    classDef meta_box fill:#ffffff,stroke:#805ad5,stroke-width:2px,color:#553c9a;
+
+    class RDA rda_style;
+    class NATIVE_MEM native_style;
+    
+    class STACK_AREA stack_box;
+    class THREAD1 thread_box;
+    class F_N,F_1 frame_box;
+    
+    class HEAP_AREA heap_box;
+    class SF,SP move_box;
+    class OBJ1,ARR2,OBJN obj_box;
+    
+    class METASPACE meta_box;
+    class CL1,CLN obj_box;
+
+    %% 텍스트 라벨 투명화 및 정돈
+    style STACK_TEXT fill:none,stroke:none,text-align:left;
+    style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
+    style MS_TEXT fill:none,stroke:none,text-align:left;
+```
+
+
 
 ### 1. JVM 스택 (Stack): "지역 변수 담당"
 
