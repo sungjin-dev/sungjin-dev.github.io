@@ -1,3 +1,14 @@
+---
+title: " [정처기 공부 #1] 요약 노트"
+excerpt: "주요 용어 정리"
+categories: [EIP]
+order: 7
+tags:
+  - EIP
+toc: true
+toc_sticky: true
+published: false
+---
 
 # 정보처리기사 필기 핵심 요약 (초치기)
 
