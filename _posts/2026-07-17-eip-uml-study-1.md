@@ -129,11 +129,11 @@ flowchart LR
 
 ```mermaid
 flowchart BT
-    classDef trans background:none,border:none,border-width:0px,fill-opacity:0,stroke-opacity:0,stroke-width:0px,color:transparent,shadow:none;
+    classDef trans background:none,border:none,border-width:0px,fill-opacity:0,stroke-opacity:0,stroke-width:0px,shadow:none;
     
-    M("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333;display:block;margin-top:5px;'>회원</span>"):::trans
-    N("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333;display:block;margin-top:5px;'>비회원</span>"):::trans
-    C2("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333;display:block;margin-top:5px;'>고객</span>"):::trans
+    M("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>회원</span>"):::trans
+    N("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>비회원</span>"):::trans
+    C2("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>고객</span>"):::trans
 
     M --> C2
     N --> C2
