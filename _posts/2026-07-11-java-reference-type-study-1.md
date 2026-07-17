@@ -58,11 +58,14 @@ graph TD
     %% JVM Runtime Data Area (상단 거대 그룹)
     %% ──────────────────────────────────────────────────────────
     subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
-        
-        %% [1] JVM 스택 영역
+        direction LR  %% 이 그룹 내부만 왼쪽에서 오른쪽(Left to Right)으로 흐르도록 배치 강제
+
+        %% [1] JVM 스택 영역 (좌측 배치)
         subgraph STACK_AREA ["1. JVM 스택 영역 (Stack) - 스레드마다 하나씩 · 비공유(Private)"]
+            direction TD
             subgraph THREAD1 ["스레드-1 (일꾼 / 실행 주체)"]
                 subgraph JVM_ST ["JVM 스택 (이 일꾼 전용 작업대)"]
+                    direction TD
                     F_N["프레임-n (가장 최근 호출된 메서드)<br>= 지역변수 배열 + 피연산자 스택"]
                     F_1["프레임-1 (시작 메서드: main 등)<br>= 지역변수 배열 + 피연산자 스택"]
                     
@@ -74,8 +77,12 @@ graph TD
             STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
         end
 
-        %% [2] 힙 영역
+        %% 두 영역이 수평으로 묶이도록 보이지 않는 투명 연결선 추가 (트릭)
+        STACK_AREA ~~~ HEAP_AREA
+
+        %% [2] 힙 영역 (우측 배치)
         subgraph HEAP_AREA ["2. 힙 영역 (Heap) - 모든 스레드가 공유 · GC의 관할 구역"]
+            direction TD
             subgraph OBJECTS ["new 로 생성된 인스턴스 · 배열"]
                 OBJ1["객체-1"]
                 ARR2["배열-2"]
