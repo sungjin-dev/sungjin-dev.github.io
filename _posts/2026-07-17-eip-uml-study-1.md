@@ -199,8 +199,8 @@ sequenceDiagram
 | **시작 상태 (Initial State)** | 객체의 시작 상태 | 속이 채워진 원 ● |
 | **종료 상태 (Final State)** | 객체의 종료 상태 | 원 안에 채워진 원 ◉ |
 | **전이 (Transition)** | 객체의 상태가 다른 상태로 변경 | 실선 화살표 ➔ |
-| **이벤트 (Event)** | 상태의 변화를 주는 현상 (전이 위에 이벤트 이름 표시)<br>예: 시간의 흐름, 조건, 외부 신호 | <p style="margin:0; text-align:center;">이벤트<br>───────➔</p> |
-| **전이 조건 (Transition Condition)** | 특정 조건 만족 시 전이가 발생하도록 하는 속성값의 불린 식 | <p style="margin:0; text-align:center;">[전이 조건]<br>───────➔</p> |
+| **이벤트 (Event)** | 상태의 변화를 주는 현상 (전이 위에 이벤트 이름 표시)<br>예: 시간의 흐름, 조건, 외부 신호 | 이벤트  <br> ───────➔ |
+| **전이 조건 (Transition Condition)** | 특정 조건 만족 시 전이가 발생하도록 하는 속성값의 불린 식 | [전이 조건]  <br> ───────➔ |
 
 ```mermaid
 stateDiagram-v2
