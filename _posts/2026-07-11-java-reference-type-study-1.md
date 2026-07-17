@@ -96,7 +96,7 @@ graph TD
             OBJECTS -->| | SF
             OBJECTS -->| | SP
 
-            %% 2층: 이사 온 필드 및 상수풀 영역 (원본처럼 세로로 나란히 배치하기 위해 TD 설정)
+            %% 2층: 이사 온 필드 및 상수풀 영역
             SF["[이사 옴] static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
             SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
             
@@ -115,7 +115,7 @@ graph TD
             direction TD
             MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
             
-            %% 💡 요청하신 핵심 수정 포인트: 하단 정보 상자들을 완벽히 좌우(LR) 정렬
+            %% 💡 클래스 박스 간 완벽한 좌우 정렬을 위한 락 구조
             subgraph CLASS_INFOS [" "]
                 direction LR
                 subgraph CL1 ["클래스-1 구조 정보"]
@@ -125,6 +125,9 @@ graph TD
                 subgraph CLN ["클래스-n 구조 정보"]
                     CN["바이트코드 (메서드·생성자 코드)<br>런타임 상수풀 (클래스별)"]
                 end
+                
+                %% 두 서브그래프를 강제로 가로 연결하여 좌우 배치 고정 (트릭)
+                CL1 ~~~ CLN
             end
             
             %% 상단 텍스트와 하단 좌우 상자 밀착
@@ -172,8 +175,8 @@ graph TD
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
     style MS_TEXT fill:none,stroke:none,text-align:left;
     
-    %% 밀착용 투명 연결선 숨기기 프로퍼티 전면 적용
-    linkStyle 2,3,4,5,6 stroke:none,stroke-width:0px;
+    %% 밀착용 및 정렬용 투명 연결선 숨기기 프로퍼티 (6번 인덱스 추가)
+    linkStyle 2,3,4,5,6,7 stroke:none,stroke-width:0px;
 ```
 
 
