@@ -114,7 +114,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  C("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>고객</div>"):::trans --- O(["주문"])
+  C("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>고객</span>"):::trans --- O(["주문"])
   O -. "«include»" .-> V(["사용자확인"])
 ```
 
