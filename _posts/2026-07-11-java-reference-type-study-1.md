@@ -52,7 +52,9 @@ flowchart TB
 
 ```mermaid
 graph TD
-
+    %% ──────────────────────────────────────────────────────────
+    %% JVM Runtime Data Area (상단 거대 그룹)
+    %% ──────────────────────────────────────────────────────────
     subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
         direction LR
 
@@ -103,7 +105,7 @@ graph TD
                 SP["문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
             end
             
-            %% 힙 설명 독립 상자 (쏠림 방지 가둠 처리)
+            %% 힙 설명 독립 상자
             subgraph HEAP_TEXT_BOX [" "]
                 direction LR
                 HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
@@ -113,6 +115,9 @@ graph TD
 
     end
 
+    %% ──────────────────────────────────────────────────────────
+    %% Native Memory (하단 거대 그룹)
+    %% ──────────────────────────────────────────────────────────
     subgraph NATIVE_MEM ["Native Memory (운영체제(OS)가 관리)"]
         subgraph METASPACE ["3. 메타스페이스 (Metaspace) - 구 '메서드 영역'의 현재 구현 (PermGen 철거 후 이전)"]
             direction TD
@@ -142,6 +147,9 @@ graph TD
 
     RDA -->|클래스 설계도 참조| NATIVE_MEM
 
+    %% ──────────────────────────────────────────────────────────
+    %% 스타일 레이어 (색상 및 외관 설정)
+    %% ──────────────────────────────────────────────────────────
     classDef rda_style fill:#ffffff,stroke:#4a5568,stroke-width:3px,font-weight:bold;
     classDef native_style fill:#ffffff,stroke:#dd6b20,stroke-width:3px,font-weight:bold;
     
@@ -174,12 +182,12 @@ graph TD
     class CLASS_INFOS,MS_TEXT_BOX transparent_group;
     class CL1,CLN obj_box;
 
- 
     style STACK_TEXT fill:none,stroke:none,text-align:left,color:#4a5568;
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
     style MS_TEXT fill:none,stroke:none,text-align:left;
     
-    linkStyle 2,3,4,5,6,7,8,9 stroke:none,stroke-width:0px;
+    %% 💡 버그 수정 완료: 정확히 공간 압축용 화살표(2,4,5,7번)만 투명 처리
+    linkStyle 2,4,5,7 stroke:none,stroke-width:0px;
 ```
 
 
