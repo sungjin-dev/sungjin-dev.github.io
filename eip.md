@@ -1,7 +1,7 @@
 ---
 title: "정보처리기사 공부 기록"
 layout: archive
-permalink: /eip/
+permalink: /정처기/
 sidebar:
   nav: "sidebar_category"
 ---
