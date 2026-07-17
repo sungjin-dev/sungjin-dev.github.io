@@ -1279,3 +1279,11 @@ img[src$="#blog-star-emoji"] {
   margin: 0 3px 3px 3px;
   object-fit: contain;
 }
+
+.blog-mermaid-transparent {
+  background: none !important;
+  border: none !important;
+  fill-opacity: 0 !important;
+  stroke-opacity: 0 !important;
+  shadow: none !important;
+}
