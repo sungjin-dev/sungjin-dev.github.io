@@ -72,12 +72,43 @@
   }
 </style>
 
-<!-- Mermaid JS 라이브러리 로드 -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-  mermaid.contentLoaderOptions = {
-    startOnLoad: true,
-    theme: 'default'
-  };
-  mermaid.initialize({ theme: 'default', startOnLoad: true });
+<!-- Mermaid 최신 엔진 로드 및 마크다운 렌더러 호환 셋업 -->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.esm.min.mjs';
+  
+  // 블로그 테마와 가장 잘 어울리는 기본 설정 초기화
+  mermaid.initialize({
+    startOnLoad: false, // 마크다운 변환 타이밍을 맞추기 위해 수동 실행으로 변경
+    theme: 'default',   // 다크모드 테마를 쓰신다면 'dark'로 변경 가능
+    securityLevel: 'loose',
+    fontFamily: 'inherit'
+  });
+
+  // Jekyll 마크다운 코드블록 내의 mermaid 문법을 완전히 차트로 렌더링
+  document.addEventListener("DOMContentLoaded", function() {
+    // 테마에 따라 .mermaid 또는 pre code.language-mermaid 구조를 모두 잡아냅니다.
+    const targets = document.querySelectorAll('.mermaid, pre code.language-mermaid, pre.mermaid');
+    
+    targets.forEach((el, idx) => {
+      // code 태그 내부에 감싸져 있을 경우 상위 pre 태그로 래핑 전환
+      let container = el;
+      if (el.tagName === 'CODE') {
+        container = el.parentElement;
+      }
+      
+      const codeText = el.textContent || el.innerText;
+      const graphId = `mermaid-graph-${idx}`;
+      
+      // 새 렌더링 전용 div 생성
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.id = graphId;
+      div.innerHTML = codeText;
+      
+      container.parentNode.replaceChild(div, container);
+    });
+
+    // 최종 수집된 마크다운 차트 일괄 실행
+    mermaid.run();
+  });
 </script>
