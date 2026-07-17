@@ -51,6 +51,7 @@ flowchart TB
  **Modern JVM Memory Layout (Java 8 ~ 21+)**
 
 ```mermaid
+```mermaid
 graph TD
     %% ──────────────────────────────────────────────────────────
     %% JVM Runtime Data Area (상단 거대 그룹)
@@ -58,7 +59,7 @@ graph TD
     subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
         direction LR
 
-        %% [1] JVM 스택 영역 (좌측 배치)
+        %% [1] JVM 스택 영역
         subgraph STACK_AREA ["1. JVM 스택 영역 (Stack) - 스레드마다 하나씩 · 비공유(Private)"]
             direction TD
             subgraph THREAD1 ["스레드-1 (일꾼 / 실행 주체)"]
@@ -76,11 +77,10 @@ graph TD
         %% 좌우 영역 밸런스용 투명 링크
         STACK_AREA ~~~ HEAP_AREA
 
-        %% [2] 힙 영역 (우측 배치)
+        %% [2] 힙 영역
         subgraph HEAP_AREA ["2. 힙 영역 (Heap) - 모든 스레드가 공유 · GC의 관할 구역"]
             direction TD
             
-            %% 1층: 객체 인스턴스 배열 그룹
             subgraph OBJECTS ["new 로 생성된 인스턴스 · 배열"]
                 direction LR
                 OBJ1["객체-1"]
@@ -88,17 +88,14 @@ graph TD
                 OBJN["객체-n ..."]
             end
             
-            %% 밀착 링크
             OBJECTS -->| | MOVED_ITEMS
 
-            %% 2층: [이사 옴] 상위 공통 타이틀 영역
             subgraph MOVED_ITEMS ["[이사 옴] 힙으로 이동한 영역 (Java 7 / 8 ~)"]
                 direction LR
                 SF["static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
                 SP["문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
             end
         end
-
     end
 
     %% ──────────────────────────────────────────────────────────
@@ -126,7 +123,7 @@ graph TD
     RDA -->|클래스 설계도 참조| NATIVE_MEM
 
     %% ──────────────────────────────────────────────────────────
-    %% 스타일 레이어 (색상 및 외관 설정)
+    %% 스타일 레이어
     %% ──────────────────────────────────────────────────────────
     classDef rda_style fill:#ffffff,stroke:#4a5568,stroke-width:3px,font-weight:bold;
     classDef native_style fill:#ffffff,stroke:#dd6b20,stroke-width:3px,font-weight:bold;
@@ -163,6 +160,26 @@ graph TD
 ```
 
 
+### JVM 메모리 구조 핵심 포인트
+1️⃣ JVM 스택 영역 (Stack)
+독립적 소유: 스레드-2 ~ n 역시 각자 자기 스택을 하나씩 소유하며, 스레드 간에는 스택 영역이 공유되지 않는다.
+
+포함 관계: 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수
+
+2️⃣ 힙 영역 (Heap)
+GC의 주요 대상: 덩치 큰 장기 거주자들을 힙으로 옮겨 가비지 컬렉터(GC)가 주기적으로 메모리를 청소한다.
+
+이사 온 영역: 과거 메서드 영역에 있던 '문자열 풀(String Pool)'과 'static 필드'는 Java 버전을 거치며 힙 영역으로 이사.
+
+주의: 문자열 풀은 힙으로 왔지만, 클래스별 런타임 상수풀은 여전히 아래 메타스페이스.
+
+3️⃣ 메타스페이스 (Metaspace)
+순수 메타데이터 전용: 값이나 변수는 살지 않으며, 클래스 설계도에 해당하는 메타데이터만 보관된다.
+
+OS가 직접 관리: JVM 힙 영역이 아닌 Native Memory에 위치하므로, RAM 용량이 허용하는 한 자동으로 크기가 확장.
+
+
+---
 
 ### 1. JVM 스택 (Stack): "지역 변수 담당"
 
