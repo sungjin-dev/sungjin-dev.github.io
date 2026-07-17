@@ -21,7 +21,7 @@ mermaid: true
 ④ State Diagram은 객체들 사이의 메시지 교환을 나타내며, Sequence Diagram은 하나의 객체가 가진 상태와 그 상태의 변화에 의한 동작 순서를 나타낸다.  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **④**
@@ -42,7 +42,7 @@ mermaid: true
 ④ AVL Diagram  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **④**
@@ -65,7 +65,7 @@ mermaid: true
 ④ 모듈 중심 개발  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **④**
@@ -85,7 +85,7 @@ mermaid: true
 ④ Diagram  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **②**
@@ -108,7 +108,7 @@ mermaid: true
 ④ **  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **①**
@@ -131,7 +131,7 @@ mermaid: true
 ④ Continuous Integration  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **①**
@@ -152,7 +152,7 @@ mermaid: true
 ④ 액터가 인식할 수 없는 시스템 내부의 기능을 하나의 유스케이스로 파악해서는 안 된다.  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **①**
@@ -172,7 +172,7 @@ mermaid: true
 ④ 같은 클래스에 속하는 개개의 객체이자 하나의 클래스에서 생성된 객체를 인스턴스(Instance)라고 한다.  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **②**
@@ -192,7 +192,7 @@ mermaid: true
 ④ 기능적(Functional) 요구에서 시스템 구축에 대한 성능, 보안, 품질, 안정 등에 대한 요구사항을 도출한다.  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **④**
@@ -213,7 +213,7 @@ mermaid: true
 ④ Internet Of Things  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **④**
@@ -238,7 +238,7 @@ mermaid: true
 ④ Crystal Chart  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **②**
@@ -258,7 +258,7 @@ mermaid: true
 ④ Timing Diagram  
 
 <details>
-<summary><b>💡 정답 및 해설 보기 (클릭)</b></summary>
+<summary><b> 정답 및 해설 보기 (클릭)</b></summary>
 <div markdown="1">
 
 - **정답:** **②**
