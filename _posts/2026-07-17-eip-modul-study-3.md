@@ -161,7 +161,6 @@ xychart-beta
 
 > ※ 암기 팁: **우논시절통순기** — 뒤로 갈수록 응집도가 **높아짐** (기능적이 최고!)
 
-```html
 <div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
   <table style="width: 100%; min-width: 600px; border-collapse: collapse; text-align: center;">
     <thead>
@@ -192,7 +191,7 @@ xychart-beta
     </tbody>
   </table>
 </div>
-```
+
 
 
 
@@ -220,7 +219,7 @@ xychart-beta
 > ※ 암기 팁: **내공외제스자** — 뒤로 갈수록 결합도가 **낮아짐** (자료가 최고!)
 > (내) 방이 (공)통으로 (외)부에 (제)어당하면 (스)탬프 찍듯 (자)료가 남는다.
 
-```html
+
 <div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
   <table style="width: 100%; min-width: 700px; border-collapse: collapse; text-align: center;">
     <thead>
@@ -253,7 +252,7 @@ xychart-beta
     </tbody>
   </table>
 </div>
-```
+
 
 
 
