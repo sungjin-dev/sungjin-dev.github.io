@@ -50,15 +50,13 @@ flowchart TB
 
  **Modern JVM Memory Layout (Java 8 ~ 21+)**
 
-<img width="1812" height="1539" alt="image" src="https://github.com/user-attachments/assets/91807973-1728-4e02-890d-f3164e2729a3" />
-
 ```mermaid
 graph TD
     %% ──────────────────────────────────────────────────────────
     %% JVM Runtime Data Area (상단 거대 그룹)
     %% ──────────────────────────────────────────────────────────
     subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
-        direction LR  %% 이 그룹 내부만 왼쪽에서 오른쪽(Left to Right)으로 흐르도록 배치 강제
+        direction LR  %% 스택과 힙 전체는 좌우로 배치
 
         %% [1] JVM 스택 영역 (좌측 배치)
         subgraph STACK_AREA ["1. JVM 스택 영역 (Stack) - 스레드마다 하나씩 · 비공유(Private)"]
@@ -77,20 +75,31 @@ graph TD
             STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
         end
 
-        %% 두 영역이 수평으로 묶이도록 보이지 않는 투명 연결선 추가 (트릭)
+        %% 두 거대 영역 사이 공간 확보를 위한 투명 연결선
         STACK_AREA ~~~ HEAP_AREA
 
         %% [2] 힙 영역 (우측 배치)
         subgraph HEAP_AREA ["2. 힙 영역 (Heap) - 모든 스레드가 공유 · GC의 관할 구역"]
-            direction TD
+            direction TD %% 힙 영역 내부 요소를 위에서 아래(2층)로 흐르게 변경
+            
+            %% 1층: 객체 인스턴스 배열 그룹
             subgraph OBJECTS ["new 로 생성된 인스턴스 · 배열"]
+                direction LR
                 OBJ1["객체-1"]
                 ARR2["배열-2"]
                 OBJN["객체-n ..."]
             end
             
-            SF["[이사 옴] static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
-            SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
+            %% 1층과 2층 사이에 보이지 않는 수직 흐름 가이드 배치
+            OBJECTS ~~~ SF
+            OBJECTS ~~~ SP
+
+            %% 2층: 이사 온 필드 및 상수풀 영역 (가로 배치 그룹)
+            subgraph MOVED_ITEMS ["Java 8 / Java 7 변동 사항"]
+                direction LR
+                SF["[이사 옴] static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
+                SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
+            end
             
             HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
         end
@@ -102,14 +111,18 @@ graph TD
     %% ──────────────────────────────────────────────────────────
     subgraph NATIVE_MEM ["Native Memory (운영체제(OS)가 관리)"]
         subgraph METASPACE ["3. 메타스페이스 (Metaspace) - 구 '메서드 영역'의 현재 구현 (PermGen 철거 후 이전)"]
+            direction TD
             MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
             
-            subgraph CL1 ["클래스-1 구조 정보"]
-                C1["바이트코드 (메서드·생성자 코드) · 런타임 상수풀 (클래스별)"]
-            end
-            
-            subgraph CLN ["클래스-n 구조 정보"]
-                CN["바이트코드 (메서드·생성자 코드) · 런타임 상수풀 (클래스별)"]
+            subgraph CLASS_INFOS ["클래스 메타데이터 정보 목록"]
+                direction LR
+                subgraph CL1 ["클래스-1 구조 정보"]
+                    C1["바이트코드 (메서드·생성자 코드)<br>런타임 상수풀 (클래스별)"]
+                end
+                
+                subgraph CLN ["클래스-n 구조 정보"]
+                    CN["바이트코드 (메서드·생성자 코드)<br>런타임 상수풀 (클래스별)"]
+                end
             end
         end
     end
@@ -118,7 +131,7 @@ graph TD
     RDA -->|클래스 설계도 참조| NATIVE_MEM
 
     %% ──────────────────────────────────────────────────────────
-    %% 스타일 레이어 (원본 이미지 색상 완벽 복사)
+    %% 스타일 레이어 (색상 및 외관 설정)
     %% ──────────────────────────────────────────────────────────
     classDef rda_style fill:#ffffff,stroke:#4a5568,stroke-width:3px,font-weight:bold;
     classDef native_style fill:#ffffff,stroke:#dd6b20,stroke-width:3px,font-weight:bold;
@@ -128,6 +141,7 @@ graph TD
     classDef frame_box fill:#f7fafc,stroke:#a0aec0,stroke-width:1px;
     
     classDef heap_box fill:#ffffff,stroke:#38a169,stroke-width:2px,color:#276749;
+    classDef moved_group fill:none,stroke:none;
     classDef move_box fill:#ffffff,stroke:#d69e2e,stroke-width:2px,color:#b7791f;
     classDef obj_box fill:#edf2f7,stroke:#cbd5e0,stroke-width:1px;
     
@@ -141,10 +155,12 @@ graph TD
     class F_N,F_1 frame_box;
     
     class HEAP_AREA heap_box;
+    class MOVED_ITEMS moved_group;
     class SF,SP move_box;
     class OBJ1,ARR2,OBJN obj_box;
     
     class METASPACE meta_box;
+    class CLASS_INFOS moved_group;
     class CL1,CLN obj_box;
 
     %% 텍스트 라벨 투명화 및 정돈
