@@ -72,7 +72,7 @@ graph TD
                 end
             end
             
-            %% 💡 완전한 정중앙 정렬을 위해 텍스트 전용 가상의 상자로 독립 선언
+            %% 스택 설명 독립 상자
             subgraph STACK_TEXT_BOX [" "]
                 direction LR
                 STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
@@ -98,16 +98,19 @@ graph TD
             %% 밀착 링크
             OBJECTS -->| | MOVED_ITEMS
 
-            %% 💡 2층: [이사 옴] 단어를 상위 공통 타이틀로 통일하고 내부 텍스트 슬림화
+            %% 2층: [이사 옴] 상위 공통 타이틀 영역
             subgraph MOVED_ITEMS ["[이사 옴] 힙으로 이동한 영역 (Java 7 / 8 ~)"]
                 direction LR
                 SF["static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
                 SP["문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
             end
             
-            %% 밀착 링크
-            MOVED_ITEMS -->| | HEAP_TEXT
-            HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
+            %% 힙 설명 독립 상자 (쏠림 방지 가둠 처리)
+            subgraph HEAP_TEXT_BOX [" "]
+                direction LR
+                HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
+            end
+            MOVED_ITEMS -->| | HEAP_TEXT_BOX
         end
 
     end
@@ -119,7 +122,7 @@ graph TD
         subgraph METASPACE ["3. 메타스페이스 (Metaspace) - 구 '메서드 영역'의 현재 구현 (PermGen 철거 후 이전)"]
             direction TD
             
-            %% 💡 메타스페이스 상단 텍스트도 완전 정중앙 독립 박스로 격리
+            %% 메타스페이스 상단 텍스트 독립 상자
             subgraph MS_TEXT_BOX [" "]
                 direction LR
                 MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
@@ -138,12 +141,10 @@ graph TD
                 CL1 ~~~ CLN
             end
             
-            %% 상단 텍스트와 하단 좌우 상자 밀착
             MS_TEXT_BOX -->| | CLASS_INFOS
         end
     end
 
-    %% 영역 간 관계 화살표
     RDA -->|클래스 설계도 참조| NATIVE_MEM
 
     %% ──────────────────────────────────────────────────────────
@@ -168,7 +169,7 @@ graph TD
     class NATIVE_MEM native_style;
     
     class STACK_AREA stack_box;
-    class STACK_TEXT_BOX transparent_group;
+    class STACK_TEXT_BOX,HEAP_TEXT_BOX transparent_group;
     class THREAD1 thread_box;
     class F_N,F_1 frame_box;
     
@@ -181,13 +182,13 @@ graph TD
     class CLASS_INFOS,MS_TEXT_BOX transparent_group;
     class CL1,CLN obj_box;
 
-    %% 텍스트 라벨 투명화 및 정돈
-    style STACK_TEXT fill:none,stroke:none,text-align:center,color:#4a5568;
+    %% 💡 핵심 수정: 우측 탈출을 막기 위해 3가지 글귀를 모두 left로 고정
+    style STACK_TEXT fill:none,stroke:none,text-align:left,color:#4a5568;
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
-    style MS_TEXT fill:none,stroke:none,text-align:center;
+    style MS_TEXT fill:none,stroke:none,text-align:left;
     
     %% 밀착용 및 정렬용 투명 연결선 숨기기 프로퍼티
-    linkStyle 2,3,4,5,6,7,8 stroke:none,stroke-width:0px;
+    linkStyle 2,3,4,5,6,7,8,9 stroke:none,stroke-width:0px;
 ```
 
 
