@@ -1,8 +1,7 @@
 ---
 title: "[정보처리기사 실기] UML과 애자일 방법론 총정리"
 excerpt: "UML 구성요소·다이어그램·관계, 스테레오 타입부터 애자일 선언문, XP·스크럼·린까지 기출 연도 기준으로 정리한다."
-categories:
-  - 정처기
+categories: [정처기]
 tags:
   - UML
   - 애자일
@@ -11,8 +10,6 @@ tags:
   - 요구사항분석
 toc: true
 toc_sticky: true
-date: 2026-07-17
-last_modified_at: 2026-07-17
 mermaid: true
 ---
 
