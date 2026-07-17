@@ -161,38 +161,7 @@ xychart-beta
 
 > ※ 암기 팁: **우논시절통순기** — 뒤로 갈수록 응집도가 **높아짐** (기능적이 최고!)
 
-<div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
-  <table style="width: 100%; min-width: 600px; border-collapse: collapse; text-align: center;">
-    <thead>
-      <tr style="background-color: #f8f9fa;">
-        <th style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">품질</th>
-        <th style="padding: 10px; border: 1px solid #dee2e6;" colspan="6">🔴 나쁨 (높음) ───►───►───►───►───► 🟢 좋음 (낮음)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #fff9db; font-weight: bold; color: #b25329;">내용</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">공통</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">외부</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">제어</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">스탬프</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #e6fcf5; font-weight: bold; color: #0ca678;">자료</td>
-      </tr>
-      <tr style="color: #666; font-size: 0.9em;">
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">순서</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">1단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">2단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">3단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">4단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">5단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; color: #0ca678;">6단계 (최고)</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
+**[ 응집도 ]** 🔴 나쁨 ➔ `우연적` ➔ `논리적` ➔ `시간적` ➔ `절차적` ➔ `통신적` ➔ `순차적` ➔ 🟢 **`기능적` (좋음)**
 
 
 | 지표 | 설명 |
@@ -219,41 +188,7 @@ xychart-beta
 > ※ 암기 팁: **내공외제스자** — 뒤로 갈수록 결합도가 **낮아짐** (자료가 최고!)
 > (내) 방이 (공)통으로 (외)부에 (제)어당하면 (스)탬프 찍듯 (자)료가 남는다.
 
-
-<div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
-  <table style="width: 100%; min-width: 700px; border-collapse: collapse; text-align: center;">
-    <thead>
-      <tr style="background-color: #f8f9fa;">
-        <th style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">품질</th>
-        <th style="padding: 10px; border: 1px solid #dee2e6;" colspan="7">🔴 나쁨 (낮음) ───►───►───►───►───► 🟢 좋음 (높음)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #fff9db; font-weight: bold; color: #b25329;">우연적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">논리적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">시간적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">절차적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">통신적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">순차적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #e6fcf5; font-weight: bold; color: #0ca678;">기능적</td>
-      </tr>
-      <tr style="color: #666; font-size: 0.9em;">
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">순서</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">1단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">2단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">3단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">4단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">5단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">6단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; color: #0ca678;">7단계 (최고)</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
+**[ 결합도 ]** 🔴 나쁨 ➔ `내용` ➔ `공통` ➔ `외부` ➔ `제어` ➔ `스탬프` ➔ 🟢 **`자료` (좋음)**
 
 
 | 유형 | 설명 |
