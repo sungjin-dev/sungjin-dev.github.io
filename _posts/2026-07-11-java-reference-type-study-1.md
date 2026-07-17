@@ -56,7 +56,7 @@ graph TD
     %% JVM Runtime Data Area (상단 거대 그룹)
     %% ──────────────────────────────────────────────────────────
     subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
-        direction LR  %% 스택과 힙 전체는 좌우로 배치
+        direction LR
 
         %% [1] JVM 스택 영역 (좌측 배치)
         subgraph STACK_AREA ["1. JVM 스택 영역 (Stack) - 스레드마다 하나씩 · 비공유(Private)"]
@@ -67,23 +67,22 @@ graph TD
                     F_N["프레임-n (가장 최근 호출된 메서드)<br>= 지역변수 배열 + 피연산자 스택"]
                     F_1["프레임-1 (시작 메서드: main 등)<br>= 지역변수 배열 + 피연산자 스택"]
                     
-                    %% push/pop 흐름 시각화
                     F_1 -->|push ⬇️| F_N
                     F_N -->|pop ⬆️| F_1
                 end
             end
             
-            %% 스택 설명 텍스트를 하단으로 내리기 위한 흐름 강제
-            THREAD1 ~~~ STACK_TEXT
+            %% 💡 붕 떴던 공간 밀착 링크 (투명선 대신 최소 간격 화살표 사용)
+            THREAD1 -->| | STACK_TEXT
             STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
         end
 
-        %% 두 거대 영역 사이 공간 확보를 위한 투명 연결선
+        %% 좌우 영역 밸런스용 투명 링크
         STACK_AREA ~~~ HEAP_AREA
 
         %% [2] 힙 영역 (우측 배치)
         subgraph HEAP_AREA ["2. 힙 영역 (Heap) - 모든 스레드가 공유 · GC의 관할 구역"]
-            direction TD %% 힙 영역 내부 요소를 위에서 아래로 흐르게 설정
+            direction TD
             
             %% 1층: 객체 인스턴스 배열 그룹
             subgraph OBJECTS ["new 로 생성된 인스턴스 · 배열"]
@@ -93,8 +92,8 @@ graph TD
                 OBJN["객체-n ..."]
             end
             
-            %% 1층과 2층 사이에 보이지 않는 수직 흐름 가이드 배치
-            OBJECTS ~~~ MOVED_ITEMS
+            %% 💡 1층과 2층 사이 붕 떴던 공간 밀착 링크
+            OBJECTS -->| | MOVED_ITEMS
 
             %% 2층: 이사 온 필드 및 상수풀 영역 (가로 배치 그룹)
             subgraph MOVED_ITEMS ["Java 8 / Java 7 변동 사항"]
@@ -103,8 +102,8 @@ graph TD
                 SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
             end
             
-            %% 힙 설명 빨간 텍스트를 최하단으로 내리기 위한 흐름 강제
-            MOVED_ITEMS ~~~ HEAP_TEXT
+            %% 💡 2층과 하단 빨간 글씨 사이 붕 떴던 공간 밀착 링크
+            MOVED_ITEMS -->| | HEAP_TEXT
             HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
         end
 
@@ -171,6 +170,9 @@ graph TD
     style STACK_TEXT fill:none,stroke:none,text-align:left,color:#4a5568;
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
     style MS_TEXT fill:none,stroke:none,text-align:left;
+    
+    %% 💡 새로 추가된 밀착용 투명 연결선 숨기기 프로퍼티
+    linkStyle 2,3,4 stroke:none,stroke-width:0px;
 ```
 
 
