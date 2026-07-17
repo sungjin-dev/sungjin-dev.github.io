@@ -110,7 +110,7 @@ flowchart LR
 | 확장 (Extend) | **특정 조건에 따라** 확장 기능 유스케이스를 수행 | 점선 화살표 + `<<extend>>` |
 | 일반화 (Generalization) | 유사한 유스케이스·액터를 모아 추상화한 것과 연결해 그룹을 만들어 이해도를 높임 | 속이 빈 삼각형 화살표 |
 
-**포함(Include)** — 주문은 반드시 사용자확인을 실행한다. 화살표는 **필수 실행되는 쪽으로** 향한다.
+**포함(Include)** — 글등록은 반드시 로그인을 필요로 한다. 화살표는 **필수 실행되는 쪽으로** 향한다.
 
 ```mermaid
 flowchart LR
@@ -118,8 +118,8 @@ flowchart LR
     
     C("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>고객</span>"):::trans
     
-    O(["주문"])
-    V(["사용자확인"])
+    O(["글등록"])
+    V(["로그인"])
 
     C --- O
     O -. "«include»" .-> V
