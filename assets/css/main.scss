@@ -1287,3 +1287,9 @@ img[src$="#blog-star-emoji"] {
   stroke-opacity: 0 !important;
   shadow: none !important;
 }
+
+.mermaid svg,
+.mermaid foreignObject,
+.mermaid foreignObject > div {
+  overflow: visible !important;
+}
