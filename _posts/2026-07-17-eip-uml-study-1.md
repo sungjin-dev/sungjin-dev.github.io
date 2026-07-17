@@ -400,6 +400,6 @@ flowchart LR
 
 이 단원의 오답은 별도 포스트에서 관리한다.
 
-👉 **[오답노트 — 1과목 소프트웨어 설계](/정보처리기사/wrong-note-part1/)**
+👉 **[오답노트 — 1과목 소프트웨어 설계](/정처기/wrong-note-part1/)**
 
 [star]: /assets/images/star.png#blog-star-emoji "star"
