@@ -111,7 +111,6 @@ toc_sticky: true
 #### 📈 모듈 개수 및 비용 간 상관관계
 
 ```mermaid
-
 xychart-beta
     title "모듈 개수 및 비용 간 상관관계"
     x-axis "모듈 개수" [0, 2, 4, "최소 비용 영역", 6, 8, 10]
