@@ -24,7 +24,7 @@ feature_row:
     btn_class: "btn--primary"
   - title: "정처기 필기 대비 1"
     excerpt: "소프트웨어 설계와 개발 "
-    url: "/eip/"
+    url: "/정처기/"
     btn_label: "시리즈 보기"
     btn_class: "btn--primary"
   - title: "필기노트 전체보기"
