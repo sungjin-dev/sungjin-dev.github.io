@@ -129,8 +129,14 @@ flowchart LR
 
 ```mermaid
 flowchart BT
-  M("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>회원</div>"):::trans --> C2("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>고객</div>"):::trans
-  N("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>비회원</div>"):::trans --> C2("<div style='width:60px;text-align:center;'><img src='/assets/images/human.png' width='40' height='60'/><br/>고객</div>"):::trans
+    classDef trans background:none,border:none,border-width:0px,fill-opacity:0,stroke-opacity:0,stroke-width:0px,color:transparent,shadow:none;
+    
+    M("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333;display:block;margin-top:5px;'>회원</span>"):::trans
+    N("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333;display:block;margin-top:5px;'>비회원</span>"):::trans
+    C2("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333;display:block;margin-top:5px;'>고객</span>"):::trans
+
+    M --> C2
+    N --> C2
 ```
 
 > ![star] **포함 vs 확장 구분법**: 포함은 "반드시 실행"(필수), 확장은 "실행할 수도 있음"(선택). **화살표 방향이 서로 반대**인 것도 자주 출제된다.
