@@ -115,7 +115,7 @@ graph TD
             direction TD
             MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
             
-            %% 💡 클래스 박스 간 완벽한 좌우 정렬을 위한 락 구조
+            %% 클래스 박스 간 완벽한 좌우 정렬을 위한 락 구조
             subgraph CLASS_INFOS [" "]
                 direction LR
                 subgraph CL1 ["클래스-1 구조 정보"]
@@ -170,12 +170,12 @@ graph TD
     class CLASS_INFOS moved_group;
     class CL1,CLN obj_box;
 
-    %% 텍스트 라벨 투명화 및 정돈
-    style STACK_TEXT fill:none,stroke:none,text-align:left,color:#4a5568;
+    %% 💡 텍스트 라벨 투명화 및 정돈 (center 정렬로 완벽 패치)
+    style STACK_TEXT fill:none,stroke:none,text-align:center,color:#4a5568;
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
-    style MS_TEXT fill:none,stroke:none,text-align:left;
+    style MS_TEXT fill:none,stroke:none,text-align:center;
     
-    %% 밀착용 및 정렬용 투명 연결선 숨기기 프로퍼티 (6번 인덱스 추가)
+    %% 밀착용 및 정렬용 투명 연결선 숨기기 프로퍼티
     linkStyle 2,3,4,5,6,7 stroke:none,stroke-width:0px;
 ```
 
