@@ -52,9 +52,7 @@ flowchart TB
 
 ```mermaid
 graph TD
-    %% ──────────────────────────────────────────────────────────
-    %% JVM Runtime Data Area (상단 거대 그룹)
-    %% ──────────────────────────────────────────────────────────
+
     subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
         direction LR
 
@@ -115,9 +113,6 @@ graph TD
 
     end
 
-    %% ──────────────────────────────────────────────────────────
-    %% Native Memory (하단 거대 그룹)
-    %% ──────────────────────────────────────────────────────────
     subgraph NATIVE_MEM ["Native Memory (운영체제(OS)가 관리)"]
         subgraph METASPACE ["3. 메타스페이스 (Metaspace) - 구 '메서드 영역'의 현재 구현 (PermGen 철거 후 이전)"]
             direction TD
@@ -147,9 +142,6 @@ graph TD
 
     RDA -->|클래스 설계도 참조| NATIVE_MEM
 
-    %% ──────────────────────────────────────────────────────────
-    %% 스타일 레이어 (색상 및 외관 설정)
-    %% ──────────────────────────────────────────────────────────
     classDef rda_style fill:#ffffff,stroke:#4a5568,stroke-width:3px,font-weight:bold;
     classDef native_style fill:#ffffff,stroke:#dd6b20,stroke-width:3px,font-weight:bold;
     
@@ -182,12 +174,11 @@ graph TD
     class CLASS_INFOS,MS_TEXT_BOX transparent_group;
     class CL1,CLN obj_box;
 
-    %% 💡 핵심 수정: 우측 탈출을 막기 위해 3가지 글귀를 모두 left로 고정
+ 
     style STACK_TEXT fill:none,stroke:none,text-align:left,color:#4a5568;
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
     style MS_TEXT fill:none,stroke:none,text-align:left;
     
-    %% 밀착용 및 정렬용 투명 연결선 숨기기 프로퍼티
     linkStyle 2,3,4,5,6,7,8,9 stroke:none,stroke-width:0px;
 ```
 
