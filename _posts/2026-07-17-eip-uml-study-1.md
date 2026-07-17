@@ -174,19 +174,6 @@ flowchart BT
 
 ```mermaid
 sequenceDiagram
-  participant 회원
-  participant 로그인화면
-  participant 서버
-  회원->>+로그인화면: 로그인 시도
-  로그인화면->>+서버: 인증 요청
-  서버->>서버: 유효성 검사 (회귀 메시지)
-  서버-->>-로그인화면: 인증 결과
-  로그인화면-->>-회원: 로그인 완료
-```
-비교
-
-```mermaid
-sequenceDiagram
     %% 회원만 actor(졸라맨)로 지정하고 로그인화면과 서버는 일반 participant(상자)로 지정합니다.
     actor U as 회원
     participant Screen as 로그인화면
