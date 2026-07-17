@@ -161,7 +161,7 @@ xychart-beta
 
 > ※ 암기 팁: **우논시절통순기** — 뒤로 갈수록 응집도가 **높아짐** (기능적이 최고!)
 
-<div style="overflow-x: auto; white-space: nowrap;">
+<div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
 
 | 품질 | 🔴 나쁨 (낮음) | | | | | | 🟢 좋음 (높음) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -196,11 +196,11 @@ xychart-beta
 > ※ 암기 팁: **내공외제스자** — 뒤로 갈수록 결합도가 **낮아짐** (자료가 최고!)
 > (내) 방이 (공)통으로 (외)부에 (제)어당하면 (스)탬프 찍듯 (자)료가 남는다.
 
-<div style="overflow-x: auto; white-space: nowrap;">
+<div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
 
 | 품질 | 🔴 나쁨 (높음) | | | | | 🟢 좋음 (낮음) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **단계** | `내용` | ➔ `공통` | ➔ `외부` | ➔ `제어` | ➔ `스탬프` | ➔ `자료` |
+| **단계** | `내용` | ➔ `공통` | ➔ `외부` | ➔ `제어` | ➔ `스탬프` | ➔ **`자료`** |
 | **순서** | 1단계 | 2단계 | 3단계 | 4단계 | 5단계 | **6단계 (최고)** |
 
 </div>
