@@ -21,7 +21,7 @@ sidebar_category:
         url: /flask/
       - title: "SQL"
         url: /sql/
-     - title: "📚 정보처리기사"
+     - title: "정보처리기사"
         url: /정처기/
     - title: "오답노트 1과목"
         url: /정처기/wrong-note-part1/
