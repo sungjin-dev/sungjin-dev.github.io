@@ -7,6 +7,6 @@ sidebar:
 ---
 
 
-{% for post in site.categories.EIP %}
+{% for post in site.categories.정처기 %}
   {% include archive-single.html %}
 {% endfor %}
