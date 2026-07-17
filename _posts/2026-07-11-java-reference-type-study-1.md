@@ -71,13 +71,6 @@ graph TD
                     F_N -->|pop ⬆️| F_1
                 end
             end
-            
-            %% 스택 설명 독립 상자
-            subgraph STACK_TEXT_BOX [" "]
-                direction LR
-                STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
-            end
-            THREAD1 -->| | STACK_TEXT_BOX
         end
 
         %% 좌우 영역 밸런스용 투명 링크
@@ -104,13 +97,6 @@ graph TD
                 SF["static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
                 SP["문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
             end
-            
-            %% 힙 설명 독립 상자
-            subgraph HEAP_TEXT_BOX [" "]
-                direction LR
-                HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
-            end
-            MOVED_ITEMS -->| | HEAP_TEXT_BOX
         end
 
     end
@@ -121,12 +107,6 @@ graph TD
     subgraph NATIVE_MEM ["Native Memory (운영체제(OS)가 관리)"]
         subgraph METASPACE ["3. 메타스페이스 (Metaspace) - 구 '메서드 영역'의 현재 구현 (PermGen 철거 후 이전)"]
             direction TD
-            
-            %% 메타스페이스 상단 텍스트 독립 상자
-            subgraph MS_TEXT_BOX [" "]
-                direction LR
-                MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
-            end
             
             subgraph CLASS_INFOS [" "]
                 direction LR
@@ -140,8 +120,6 @@ graph TD
                 
                 CL1 ~~~ CLN
             end
-            
-            MS_TEXT_BOX -->| | CLASS_INFOS
         end
     end
 
@@ -169,7 +147,6 @@ graph TD
     class NATIVE_MEM native_style;
     
     class STACK_AREA stack_box;
-    class STACK_TEXT_BOX,HEAP_TEXT_BOX transparent_group;
     class THREAD1 thread_box;
     class F_N,F_1 frame_box;
     
@@ -179,15 +156,10 @@ graph TD
     class OBJ1,ARR2,OBJN obj_box;
     
     class METASPACE meta_box;
-    class CLASS_INFOS,MS_TEXT_BOX transparent_group;
+    class CLASS_INFOS transparent_group;
     class CL1,CLN obj_box;
-
-    style STACK_TEXT fill:none,stroke:none,text-align:left,color:#4a5568;
-    style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
-    style MS_TEXT fill:none,stroke:none,text-align:left;
     
-    %% 💡 버그 수정 완료: 정확히 공간 압축용 화살표(2,4,5,7번)만 투명 처리
-    linkStyle 2,4,5,7 stroke:none,stroke-width:0px;
+    linkStyle 2 stroke:none,stroke-width:0px;
 ```
 
 
