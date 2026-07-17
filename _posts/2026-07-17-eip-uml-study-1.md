@@ -129,8 +129,18 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-  P(["파일첨부"]) -. "«extend»" .-> G(["글등록"])
+    classDef trans background:none,border:none,border-width:0px,fill-opacity:0,stroke-opacity:0,stroke-width:0px,shadow:none;
+    
+    C("<img src='/assets/images/human.png' style='width:40px;height:60px;display:block;margin:0 auto;'/><span style='color:#333 !important;display:block;margin-top:5px;font-weight:bold;'>고객</span>"):::trans
+    
+    P(["파일첨부"])
+    G(["글등록"])
+
+    C --- P
+    P -. "«extend»" .-> G
 ```
+
+
 
 **일반화(Generalization)** — 회원·비회원 액터를 '고객'으로 추상화.
 
