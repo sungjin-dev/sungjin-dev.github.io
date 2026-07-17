@@ -161,11 +161,16 @@ xychart-beta
 
 > ※ 암기 팁: **우논시절통순기** — 뒤로 갈수록 응집도가 **높아짐** (기능적이 최고!)
 
-```
-  낮음  ◀─────────────────────────────────────────▶  높음
-  우연적 < 논리적 < 시간적 < 절차적 < 통신적 < 순차적 < 기능적
- (나쁨)                                           (좋음)
-```
+| 품질 | 응집도 단계 (Cohesion) | 성능 |
+|:---:|:---|:---:|
+| **나쁨 🔴** | `우연적 (Coincidental)` | **낮음** |
+| ⇣ | &nbsp;&nbsp;↳ `논리적 (Logical)` | ⇣ |
+| ⇣ | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ `시간적 (Temporal)` | ⇣ |
+| ⇣ | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ `절차적 (Procedural)` | ⇣ |
+| ⇣ | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ `통신적 (Communication)` | ⇣ |
+| ⇣ | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ `순차적 (Sequential)` | ⇣ |
+| **좋음 🟢** | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↳ **`기능적 (Functional)`** | **높음** |                               (좋음)
+
 
 | 지표 | 설명 |
 |------|------|
