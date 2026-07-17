@@ -1265,4 +1265,12 @@ html[data-theme="dark"] #main .page__title {
   color: var(--text-muted) !important;
 }
 
-
+// 마크다운 본문 내 강조 별 이모티콘 스타일
+.blog-star-emoji {
+  display: inline-block;
+  width: 18px;               // 본문 글자 크기에 맞춘 이모티콘 너비 (조절 가능)
+  height: 18px;              // 높이 동기화
+  vertical-align: middle;    // 글씨와 이모티콘의 높이를 가운데로 맞춤
+  margin: 0 3px 3px 3px;     // 주변 글자와의 여백 (위 오른쪽 아래 왼쪽)
+  object-fit: contain;       // 이미지 비율 유지
+}
