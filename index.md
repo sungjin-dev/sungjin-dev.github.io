@@ -22,7 +22,7 @@ feature_row:
     url: "/sql/"
     btn_label: "시리즈 보기"
     btn_class: "btn--primary"
- - title: "정처기 필기 대비 1"
+  - title: "정처기 필기 대비 1"
     excerpt: "소프트웨어 설계와 개발 "
     url: "/eip/"
     btn_label: "시리즈 보기"
