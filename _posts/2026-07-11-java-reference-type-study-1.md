@@ -72,7 +72,7 @@ graph TD
                 end
             end
             
-            %% 💡 붕 떴던 공간 밀착 링크 (투명선 대신 최소 간격 화살표 사용)
+            %% 밀착 링크
             THREAD1 -->| | STACK_TEXT
             STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
         end
@@ -92,18 +92,16 @@ graph TD
                 OBJN["객체-n ..."]
             end
             
-            %% 💡 1층과 2층 사이 붕 떴던 공간 밀착 링크
-            OBJECTS -->| | MOVED_ITEMS
+            %% 밀착 링크
+            OBJECTS -->| | SF
+            OBJECTS -->| | SP
 
-            %% 2층: 이사 온 필드 및 상수풀 영역 (가로 배치 그룹)
-            subgraph MOVED_ITEMS ["Java 8 / Java 7 변동 사항"]
-                direction LR
-                SF["[이사 옴] static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
-                SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
-            end
+            %% 2층: 이사 온 필드 및 상수풀 영역 (원본처럼 세로로 나란히 배치하기 위해 TD 설정)
+            SF["[이사 옴] static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
+            SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
             
-            %% 💡 2층과 하단 빨간 글씨 사이 붕 떴던 공간 밀착 링크
-            MOVED_ITEMS -->| | HEAP_TEXT
+            %% 밀착 링크
+            SP -->| | HEAP_TEXT
             HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
         end
 
@@ -117,7 +115,8 @@ graph TD
             direction TD
             MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
             
-            subgraph CLASS_INFOS ["클래스 메타데이터 정보 목록"]
+            %% 💡 요청하신 핵심 수정 포인트: 하단 정보 상자들을 완벽히 좌우(LR) 정렬
+            subgraph CLASS_INFOS [" "]
                 direction LR
                 subgraph CL1 ["클래스-1 구조 정보"]
                     C1["바이트코드 (메서드·생성자 코드)<br>런타임 상수풀 (클래스별)"]
@@ -127,6 +126,9 @@ graph TD
                     CN["바이트코드 (메서드·생성자 코드)<br>런타임 상수풀 (클래스별)"]
                 end
             end
+            
+            %% 상단 텍스트와 하단 좌우 상자 밀착
+            MS_TEXT -->| | CLASS_INFOS
         end
     end
 
@@ -158,7 +160,6 @@ graph TD
     class F_N,F_1 frame_box;
     
     class HEAP_AREA heap_box;
-    class MOVED_ITEMS moved_group;
     class SF,SP move_box;
     class OBJ1,ARR2,OBJN obj_box;
     
@@ -171,8 +172,8 @@ graph TD
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
     style MS_TEXT fill:none,stroke:none,text-align:left;
     
-    %% 💡 새로 추가된 밀착용 투명 연결선 숨기기 프로퍼티
-    linkStyle 2,3,4 stroke:none,stroke-width:0px;
+    %% 밀착용 투명 연결선 숨기기 프로퍼티 전면 적용
+    linkStyle 2,3,4,5,6 stroke:none,stroke-width:0px;
 ```
 
 
