@@ -503,21 +503,18 @@ flowchart TD
 
 ### 비용 평가 모델 관계도
 
-```
-                  ┌────────┐
-                  │  SAAM  │
-                  └───┬────┘
-                      │  ATAM은 SAAM을 계승하여 발전시킴
-                      ▼
-   ┌────────┐    ┌────────┐    ┌────────┐
-   │  CBAM  │◀──▶│  ATAM  │    │  ADR   │
-   └────────┘    └───┬────┘    └───┬────┘
-   CBAM은 ATAM에서   │             │
-   부족한 경제성      └──────┬──────┘
-   평가를 보강              ▼
-                       ┌────────┐
-                       │  ARID  │  ← ARID는 ATAM과 ADR을 혼합
-                       └────────┘
+```mermaid
+graph TD
+    SAAM(SAAM) -->|ATAM은 SAAM을 계승 발전| ATAM(ATAM)
+    ATAM <-->|CBAM은 경제성 평가 보강| CBAM(CBAM)
+    ATAM --> ARID(ARID)
+    ADR(ADR) -->|ARID는 ATAM과 ADR 혼합| ARID
+
+    style SAAM fill:#f8f9fa,stroke:#333
+    style ATAM fill:#fff9db,stroke:#f59f00,stroke-width:2px
+    style CBAM fill:#e6fcf5,stroke:#0ca678
+    style ADR fill:#f8f9fa,stroke:#333
+    style ARID fill:#e3fafc,stroke:#1098ad
 ```
 
 ### 비용 평가 모델 종류
@@ -543,19 +540,14 @@ flowchart TD
 
 #### ① 계층화 패턴 (Layered Pattern)
 
-```
-┌──────────────┐
-│   Layer n    │
-└──────┬───────┘
-       ▼
-┌──────────────┐
-│  Layer n-1   │
-└──────┬───────┘
-       ▼
-      ...
-┌──────────────┐
-│   Layer 1    │
-└──────────────┘
+```mermaid
+graph TD
+    LN("Layer n (최상위 레이어)") --> LN1("Layer n-1")
+    LN1 --> DOTS(...)
+    DOTS --> L1("Layer 1 (하위 레벨)")
+
+    style LN fill:#f8f9fa,stroke:#333
+    style L1 fill:#f8f9fa,stroke:#333
 ```
 
 - 시스템을 **계층(Layer)으로 구분**하여 구성하는 패턴
@@ -565,10 +557,13 @@ flowchart TD
 
 #### ② 클라이언트-서버 패턴 (Client-Server Pattern)
 
-```
-┌────────┐  ── 요청 ──▶  ┌────────┐
-│ Client │               │ Server │
-└────────┘  ◀── 응답 ──  └────────┘
+```mermaid
+graph LR
+    Client(Client) -->|요청 Request| Server(Server)
+    Server -->|응답 Response| Client
+
+    style Client fill:#f8f9fa,stroke:#333
+    style Server fill:#e6fcf5,stroke:#0ca678,stroke-width:2px
 ```
 
 - **하나의 서버와 다수의 클라이언트**로 구성된 패턴
@@ -577,19 +572,14 @@ flowchart TD
 
 #### ③ 파이프-필터 패턴 (Pipe-Filter Pattern)
 
-```
-┌────────┐
-│ Source │
-└───┬────┘
-    │ Pipe 1
-┌───▼────┐
-│ Filter │
-│   1    │
-└───┬────┘
-    │ Pipe 2
-┌───▼────┐
-│  Sink  │
-└────────┘
+```mermaid
+graph TD
+    Source(Source) -->|Pipe 1| Filter1(Filter 1)
+    Filter1 -->|Pipe 2| Sink(Sink)
+
+    style Source fill:#f8f9fa,stroke:#333
+    style Filter1 fill:#fff9db,stroke:#f59f00
+    style Sink fill:#f8f9fa,stroke:#333
 ```
 
 - **데이터 스트림**을 생성하고 처리하는 시스템에서 사용 가능한 **단방향 패턴**
@@ -598,19 +588,15 @@ flowchart TD
 
 #### ④ 브로커 패턴 (Broker Pattern)
 
-```
-            ┌────────┐
-            │ Client │
-            └───┬────┘
-                ▼
-            ┌────────┐
-            │ Broker │
-            └───┬────┘
-    ┌───────────┼───────────┐
-    ▼           ▼           ▼
-┌────────┐ ┌────────┐ ┌────────┐
-│Server 1│ │Server 2│ │Server 3│
-└────────┘ └────────┘ └────────┘
+```mermaid
+graph TD
+    Client(Client) --> Broker(Broker)
+    Broker --> Server1(Server 1)
+    Broker --> Server2(Server 2)
+    Broker --> Server3(Server 3)
+
+    style Broker fill:#fff3bf,stroke:#f59f00,stroke-width:2px
+    style Client fill:#f8f9fa,stroke:#333
 ```
 
 - 분리된 컴포넌트들로 이루어진 **분산 시스템**에서 사용되고, 이 컴포넌트들은 **원격 서비스 실행**을 통해 상호 작용이 가능한 패턴
@@ -619,20 +605,17 @@ flowchart TD
 
 #### ⑤ 모델-뷰-컨트롤러 패턴 (MVC; Model View Controller Pattern)
 
-```
-┌───────────────── Client ─────────────────┐
-│                                          │
-│  Request           Response(결과화면)    │
-└────┬─────────────────────▲───────────────┘
-     ▼                     │
-┌────────────┐  화면 생성  ┌──────┐
-│ Controller │──── 요청 ──▶│ View │
-└──┬─────▲───┘             └──────┘
-   │Call │Result
-   ▼     │
-┌────────┴──┐
-│   Model   │
-└───────────┘
+```mermaid
+graph TD
+    Client([Client]) -->|1. Request| Controller(Controller)
+    Controller -->|2. Call| Model(Model)
+    Model -->|3. Result| Controller
+    Controller -->|4. 요청| View(View)
+    View -->|5. Response 결과화면| Client
+
+    style Controller fill:#fff5f5,stroke:#ff8787,stroke-width:2px
+    style Model fill:#e6fcf5,stroke:#0ca678
+    style View fill:#e3fafc,stroke:#1098ad
 ```
 
 - 대화형 애플리케이션을 **모델, 뷰, 컨트롤러 3개의 서브 시스템**으로 구조화하는 패턴
@@ -648,15 +631,16 @@ flowchart TD
 
 #### ⑥ 마스터-슬레이브 패턴 (Master-Slave Pattern)
 
-```
-              ┌────────┐
-              │ Master │
-              └───┬────┘
-    ┌─────────────┼─────────────┐
-    ▼             ▼             ▼
-┌────────┐   ┌────────┐   ┌────────┐
-│Slave 1 │   │Slave 2 │   │Slave 3 │
-└────────┘   └────────┘   └────────┘
+```mermaid
+graph TD
+    Master(Master) --> Slave1(Slave 1)
+    Master --> Slave2(Slave 2)
+    Master --> Slave3(Slave 3)
+
+    style Master fill:#e6fcf5,stroke:#0ca678,stroke-width:2px
+    style Slave1 fill:#f8f9fa,stroke:#333
+    style Slave2 fill:#f8f9fa,stroke:#333
+    style Slave3 fill:#f8f9fa,stroke:#333
 ```
 
 - **연산, 통신, 조정을 책임지는 마스터**와 제어되고 동기화되는 대상인 **슬레이브**로 구성되는 패턴
