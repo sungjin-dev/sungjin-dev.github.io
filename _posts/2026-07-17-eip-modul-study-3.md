@@ -216,8 +216,8 @@ xychart-beta
 
 #### 결합도의 유형 기출: 20~25년 매년 다수 출제 ![star]![star]![star]
 
-> ※ 암기 팁: **내공외제스자** — 뒤로 갈수록 결합도가 **낮아짐** (자료가 최고!)
-> (내) 방이 (공)통으로 (외)부에 (제)어당하면 (스)탬프 찍듯 (자)료가 남는다.
+> ※ 암기 팁: **내공외제스자** — 뒤로 갈수록 결합도가 **낮아짐** (자료가 최고!)<br>
+ (내) 방이 (공)통으로 (외)부에 (제)어당하면 (스)탬프 찍듯 (자)료가 남는다.
 
 <div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
   <table style="width: 100%; min-width: 600px; border-collapse: collapse; text-align: center;">
@@ -450,20 +450,40 @@ xychart-beta
 
 > **4+1**에서 **1은 유스케이스 뷰**, **4는 논리 뷰, 구현 뷰, 프로세스 뷰, 배포 뷰**이다.
 
-```
-┌─────────────────────┬─────────────────────┐
-│                     │                     │
-│      논리 뷰        │      구현 뷰        │
-│  (Logical View)     │(Implementation View)│
-│         ┌───────────┴───────────┐         │
-│         │                       │         │
-├─────────┤    유스케이스 뷰      ├─────────┤
-│         │   (Usecase View)      │         │
-│         └───────────┬───────────┘         │
-│                     │                     │
-│    프로세스 뷰      │       배포 뷰       │
-│  (Process View)     │ (Deployment View)   │
-└─────────────────────┴─────────────────────┘
+```mermaid
+flowchart TD
+    %% 중앙 유스케이스 뷰
+    UC[["유스케이스 뷰<br>(Usecase View)"]]
+
+    %% 4개의 외곽 뷰 정의
+    subgraph LV ["설계자 관점"]
+        L("논리 뷰<br>(Logical View)")
+    end
+
+    subgraph IV ["개발자 관점"]
+        I("구현 뷰<br>(Implementation View)")
+    end
+
+    subgraph PV ["시스템 통합자 관점"]
+        P("프로세스 뷰<br>(Process View)")
+    end
+
+    subgraph DV ["시스템 엔지니어 관점"]
+        D("배포 뷰<br>(Deployment View)")
+    end
+
+    %% 연결 관계 (중앙 집중형 구조 시각화)
+    LV <--> UC
+    IV <--> UC
+    PV <--> UC
+    DV <--> UC
+
+    %% 스타일 적용 (중앙 유스케이스 뷰 강조)
+    style UC fill:#e6fcf5,stroke:#0ca678,stroke-width:2px,font-weight:bold;
+    style L fill:#f8f9fa,stroke:#333;
+    style I fill:#f8f9fa,stroke:#333;
+    style P fill:#f8f9fa,stroke:#333;
+    style D fill:#f8f9fa,stroke:#333;
 ```
 
 | 뷰 | 설명 |
