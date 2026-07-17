@@ -72,9 +72,12 @@ graph TD
                 end
             end
             
-            %% 밀착 링크
-            THREAD1 -->| | STACK_TEXT
-            STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
+            %% 💡 완전한 정중앙 정렬을 위해 텍스트 전용 가상의 상자로 독립 선언
+            subgraph STACK_TEXT_BOX [" "]
+                direction LR
+                STACK_TEXT["스레드-2 ~ n: 각자 자기 스택을 하나씩 소유 (같은 구조)<br><b>포함 관계 : 스레드 ⊃ 스택 ⊃ 프레임 ⊃ 지역변수</b>"]
+            end
+            THREAD1 -->| | STACK_TEXT_BOX
         end
 
         %% 좌우 영역 밸런스용 투명 링크
@@ -93,15 +96,17 @@ graph TD
             end
             
             %% 밀착 링크
-            OBJECTS -->| | SF
-            OBJECTS -->| | SP
+            OBJECTS -->| | MOVED_ITEMS
 
-            %% 2층: 이사 온 필드 및 상수풀 영역
-            SF["[이사 옴] static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
-            SP["[이사 옴] 문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
+            %% 💡 2층: [이사 옴] 단어를 상위 공통 타이틀로 통일하고 내부 텍스트 슬림화
+            subgraph MOVED_ITEMS ["[이사 옴] 힙으로 이동한 영역 (Java 7 / 8 ~)"]
+                direction LR
+                SF["static 필드 (Java 8 ~)<br>java.lang.Class 객체 안에 보관된다"]
+                SP["문자열 상수풀 (String Pool) (Java 7 ~)<br>같은 리터럴 문자열은 하나의 객체를 공유"]
+            end
             
             %% 밀착 링크
-            SP -->| | HEAP_TEXT
+            MOVED_ITEMS -->| | HEAP_TEXT
             HEAP_TEXT["* 힙으로 이사 온 것은 '문자열 풀'까지다.<br><b>클래스별 런타임 상수풀은 아래 메타스페이스에 남는다.</b><br>덩치 큰 장기 거주자들을 힙으로 옮겨 GC가 청소할 수 있게 한 것"]
         end
 
@@ -113,9 +118,13 @@ graph TD
     subgraph NATIVE_MEM ["Native Memory (운영체제(OS)가 관리)"]
         subgraph METASPACE ["3. 메타스페이스 (Metaspace) - 구 '메서드 영역'의 현재 구현 (PermGen 철거 후 이전)"]
             direction TD
-            MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
             
-            %% 클래스 박스 간 완벽한 좌우 정렬을 위한 락 구조
+            %% 💡 메타스페이스 상단 텍스트도 완전 정중앙 독립 박스로 격리
+            subgraph MS_TEXT_BOX [" "]
+                direction LR
+                MS_TEXT["값이나 변수는 살지 않는다 · 순수 설계도(메타데이터) 전용 · RAM이 허용하는 한 자동 확장"]
+            end
+            
             subgraph CLASS_INFOS [" "]
                 direction LR
                 subgraph CL1 ["클래스-1 구조 정보"]
@@ -126,12 +135,11 @@ graph TD
                     CN["바이트코드 (메서드·생성자 코드)<br>런타임 상수풀 (클래스별)"]
                 end
                 
-                %% 두 서브그래프를 강제로 가로 연결하여 좌우 배치 고정 (트릭)
                 CL1 ~~~ CLN
             end
             
             %% 상단 텍스트와 하단 좌우 상자 밀착
-            MS_TEXT -->| | CLASS_INFOS
+            MS_TEXT_BOX -->| | CLASS_INFOS
         end
     end
 
@@ -149,34 +157,37 @@ graph TD
     classDef frame_box fill:#f7fafc,stroke:#a0aec0,stroke-width:1px;
     
     classDef heap_box fill:#ffffff,stroke:#38a169,stroke-width:2px,color:#276749;
-    classDef moved_group fill:none,stroke:none;
-    classDef move_box fill:#ffffff,stroke:#d69e2e,stroke-width:2px,color:#b7791f;
+    classDef moved_group fill:#ffffff,stroke:#d69e2e,stroke-width:2px,color:#b7791f;
+    classDef move_box fill:#faf089,stroke:#ecc94b,stroke-width:1px,color:#744210;
     classDef obj_box fill:#edf2f7,stroke:#cbd5e0,stroke-width:1px;
     
     classDef meta_box fill:#ffffff,stroke:#805ad5,stroke-width:2px,color:#553c9a;
+    classDef transparent_group fill:none,stroke:none;
 
     class RDA rda_style;
     class NATIVE_MEM native_style;
     
     class STACK_AREA stack_box;
+    class STACK_TEXT_BOX transparent_group;
     class THREAD1 thread_box;
     class F_N,F_1 frame_box;
     
     class HEAP_AREA heap_box;
+    class MOVED_ITEMS moved_group;
     class SF,SP move_box;
     class OBJ1,ARR2,OBJN obj_box;
     
     class METASPACE meta_box;
-    class CLASS_INFOS moved_group;
+    class CLASS_INFOS,MS_TEXT_BOX transparent_group;
     class CL1,CLN obj_box;
 
-    %% 💡 텍스트 라벨 투명화 및 정돈 (center 정렬로 완벽 패치)
+    %% 텍스트 라벨 투명화 및 정돈
     style STACK_TEXT fill:none,stroke:none,text-align:center,color:#4a5568;
     style HEAP_TEXT fill:none,stroke:none,text-align:left,color:#e53e3e;
     style MS_TEXT fill:none,stroke:none,text-align:center;
     
     %% 밀착용 및 정렬용 투명 연결선 숨기기 프로퍼티
-    linkStyle 2,3,4,5,6,7 stroke:none,stroke-width:0px;
+    linkStyle 2,3,4,5,6,7,8 stroke:none,stroke-width:0px;
 ```
 
 
