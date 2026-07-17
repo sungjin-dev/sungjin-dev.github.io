@@ -112,28 +112,31 @@ toc_sticky: true
 
 **❙ 모듈 개수 및 비용 간 상관관계**
 
-노력 비용 
-  ▲
-  │  ＼                                      ／ [모듈 통합 비용]
-  │    ＼                                  ／
-  │      ＼                              ／
-  │        ＼                          ／
-비용       ─── ＼ ────────────────── ／ ─── [최소 비용 영역]
-  │              ＼              ／
-  │                ＼          ／
-  │                  ＼      ／
-  │                    ＼  ／
-  │                      ▼
-  │                    ／  ＼
-  │                  ／      ＼
-  │                ／          ＼
-  │              ／              ＼
-  │            ／                  ＼
-  │          ／                      ＼
-  │        ／                          ＼
-  │      ／                              ＼ [모듈 별 개발 비용]
-  └──────────────────────────────────────────────► 모듈 개수
-                                [최소 비용 영역]
+```html
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 축 -->
+  <line x1="50" y1="350" x2="550" y2="350" stroke="black" stroke-width="2"/>
+  <line x1="50" y1="350" x2="50" y2="50" stroke="black" stroke-width="2"/>
+  
+  <!-- 레이블 -->
+  <text x="300" y="390" text-anchor="middle" font-size="14">모듈 개수</text>
+  <text x="20" y="200" text-anchor="middle" font-size="14" transform="rotate(-90 20 200)">노력 비용</text>
+  
+  <!-- 통합 비용 선 (증가 곡선) -->
+  <polyline points="100,300 150,270 200,240 250,200 300,160 350,130 400,110" 
+            fill="none" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="420" y="100" font-size="12" fill="#FF6B6B">모듈 통합 비용 ↗</text>
+  
+  <!-- 개발 비용 선 (감소 곡선) -->
+  <polyline points="100,100 150,130 200,160 250,200 300,240 350,270 400,300" 
+            fill="none" stroke="#4ECDC4" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="420" y="320" font-size="12" fill="#4ECDC4">모듈 개발 비용 ↘</text>
+  
+  <!-- 최소 비용 영역 -->
+  <circle cx="250" cy="200" r="40" fill="none" stroke="#228B22" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="250" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#228B22">최소 비용</text>
+</svg>
+```
 
 > 두 곡선이 교차하는 지점이 **최소 비용 영역** — 적절한 모듈 크기 유지가 핵심!
 
