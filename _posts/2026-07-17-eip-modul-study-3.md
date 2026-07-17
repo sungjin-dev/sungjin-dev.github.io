@@ -282,7 +282,7 @@ xychart-beta
 
 ```mermaid
       graph TD
-    %% 노드 정의 및 스타일 (가독성을 높이기 위해 둥근 사각형 처리)
+    
     A(A) --> B(B)
     A --> C(C)
     A --> D(D)
@@ -297,12 +297,11 @@ xychart-beta
     F --> H
     G --> I(I)
 
-    %% 강조 스타일링
     classDef main fill:#f8f9fa,stroke:#333,stroke-width:2px;
     classDef point fill:#e6fcf5,stroke:#0ca678,stroke-width:2px;
     
     class A,B,C,D,E,G,I,J main;
-    class F,H point; %% 팬인(Fan-In)이 2 이상인 중복 호출 노드 강조
+    class F,H point; 
 ```
 
 | 구분 | 계산 결과 |
