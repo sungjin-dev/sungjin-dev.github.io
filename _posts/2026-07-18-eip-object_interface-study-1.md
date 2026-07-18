@@ -216,7 +216,7 @@ flowchart LR
 
 ```mermaid
 mindmap
-  root((디자인 패턴))
+  root((GoF 디자인 패턴))
     생성 패턴
       Builder
       Prototype
