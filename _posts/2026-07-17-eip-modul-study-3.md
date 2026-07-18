@@ -681,4 +681,6 @@ graph TD
 
 ---
 
+👉 **[오답노트 — 1과목 소프트웨어 설계](/정처기/wrong-note-part2/)**
+
 [star]: /assets/images/star.png#blog-star-emoji "star"
