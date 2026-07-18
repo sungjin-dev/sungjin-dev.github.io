@@ -216,33 +216,33 @@ flowchart LR
 
 ```mermaid
 mindmap
-  root((GoF 디자인 패턴))
+  root((디자인 패턴))
     생성 패턴
-      [Builder]
-      [Prototype]
-      [Factory Method]
-      [Abstract Factory]
-      [Singleton]
+      Builder
+      Prototype
+      Factory Method
+      Abstract Factory
+      Singleton
     구조 패턴
-      [Bridge]
-      [Decorator]
-      [Facade]
-      [Flyweight]
-      [Proxy]
-      [Composite]
-      [Adapter]
+      Bridge
+      Decorator
+      Facade
+      Flyweight
+      Proxy
+      Composite
+      Adapter
     행위 패턴
-      [Mediator]
-      [Interpreter]
-      [Iterator]
-      [Template Method]
-      [Observer]
-      [State]
-      [Visitor]
-      [Command]
-      [Strategy]
-      [Memento]
-      [Chain of Responsibility]
+      Mediator
+      Interpreter
+      Iterator
+      Template Method
+      Observer
+      State
+      Visitor
+      Command
+      Strategy
+      Memento
+      Chain of Responsibility
 ```
 
 ### 2-4. 디자인 패턴 종류 ![star]![star]![star] 최다 출제
