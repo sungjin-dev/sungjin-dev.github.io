@@ -217,7 +217,7 @@ xychart-beta
 #### 결합도의 유형 기출: 20~25년 매년 다수 출제 ![star]![star]![star]
 
 > ※ 암기 팁: **내공외제스자** — 뒤로 갈수록 결합도가 **낮아짐** (자료가 최고!)<br>
- (내) 방이 (공)통으로 (외)부에 (제)어당하면 (스)탬프 찍듯 (자)료가 남는다.
+
 
 <div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
   <table style="width: 100%; min-width: 600px; border-collapse: collapse; text-align: center;">
