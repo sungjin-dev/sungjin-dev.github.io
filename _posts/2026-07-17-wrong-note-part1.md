@@ -1,5 +1,5 @@
 ---
-title: "[정보처리기사 필기] 오답노트 — 1과목 소프트웨어 설계"
+title: "[정보처리기사 필기] 오답노트 — 요구사항 확인 및 화면설계"
 permalink: /정처기/wrong-note-part1/
 categories: [정처기]
 tags:
