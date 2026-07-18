@@ -607,11 +607,11 @@ graph TD
 
 ```mermaid
 graph TD
-    Client([Client]) -->|1. Request| Controller(Controller)
-    Controller -->|2. Call| Model(Model)
-    Model -->|3. Result| Controller
-    Controller -->|4. 요청| View(View)
-    View -->|5. Response 결과화면| Client
+    Client([Client]) -->|"1. Request"| Controller(Controller)
+    Controller -->|"2. Call"| Model(Model)
+    Model -->|"3. Result"| Controller
+    Controller -->|"4. 요청"| View(View)
+    View -->|"5. Response 결과화면"| Client
 
     style Controller fill:#fff5f5,stroke:#ff8787,stroke-width:2px
     style Model fill:#e6fcf5,stroke:#0ca678
