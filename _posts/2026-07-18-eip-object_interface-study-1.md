@@ -245,6 +245,12 @@ mindmap
       Chain of Responsibility
 ```
 
+참고 : `GoF`는 Gang of Four(4인방)의 약자이다.
+<br>
+소프트웨어 개발 역사상 가장 영향력 있는 책 중 하나인 **《디자인 패턴 (Design Patterns)》** 의 4명의 저자를 부르는 별칭
+<br>
+에리히 감마 (Erich Gamma), 리처드 헬름 (Richard Helm), 랄프 존슨 (Ralph Johnson), 존 블리시데스 (John Vlissides)
+
 ### 2-4. 디자인 패턴 종류 ![star]![star]![star] 최다 출제
 
 #### ① 생성 패턴
