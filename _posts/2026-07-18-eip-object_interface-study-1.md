@@ -215,6 +215,7 @@ flowchart LR
 | **행위(Behavioral) 패턴** | 클래스나 객체들이 상호 작용하는 방법과 역할 분담을 다루는 패턴 |
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 mindmap
   root((GoF 디자인 패턴))
     생성 패턴
@@ -549,6 +550,7 @@ flowchart TB
 | **WAS (Web Application Server)** | 서버 계층에서 애플리케이션이 동작할 수 있는 환경을 제공하고 안정적인 트랜잭션 처리와 관리, 다른 이기종 시스템과의 애플리케이션 연동을 지원하는 미들웨어. HTTP 세션 처리를 위한 웹 서버 기능뿐만 아니라 민감한 기업 업무까지 자바, 컴포넌트 기반으로 구현 가능하다. |
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 mindmap
   root((미들웨어 솔루션 유형))
     DB 미들웨어
