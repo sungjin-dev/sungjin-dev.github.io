@@ -511,6 +511,7 @@ graph TD
 인터페이스 구현 검증 도구는 인터페이스 **동작 상태를 검증하고 모니터링**할 수 있는 도구다. 세부 기능을 기능 단위로 테스트하는 단위 테스트와 전체 흐름을 확인하는 시나리오 기반 통합 테스트가 필요하다.
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 mindmap
   root((구현 검증<br/>도구))
     xUnit
@@ -614,6 +615,7 @@ flowchart TD
 ## 마무리 요약
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 mindmap
   root((핵심 요약))
     알고리즘
