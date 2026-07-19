@@ -462,28 +462,48 @@ a is b    # False (같은 객체인가) — is는 None 비교에만: if x is Non
 ### 참고 : `range(len(list))`만 써야하는 그 1%
 
 range(len())이 필요한 경우들
+<br>
 1️⃣ 인덱스를 세밀하게 제어할 때
-python# 특정 인덱스부터 시작
+
+```python # 특정 인덱스부터 시작
 for i in range(1, len(list)):  # 0번째 제외
     process(list[i])
+```
 
 **스텝 제어 (2칸씩 점프)**
+
+```python
 for i in range(0, len(list), 2):
     process(list[i], list[i+1])
+```
 
 **역순 순회**
+
+```python
 for i in range(len(list)-1, -1, -1):
     process(list[i])
-→ enumerate()는 이런 세밀한 범위/스텝 조정이 어렵습니다.
-2️⃣ 여러 리스트를 인덱스로 동기화할 때
-pythonnames = ['Alice', 'Bob']
-scores = [90, 85]
+```
 
+→ enumerate()는 이런 세밀한 범위/스텝 조정이 어렵다.
+
+<br><br>
+2️⃣ 여러 리스트를 인덱스로 동기화할 때
+
+pythonnames = ['Alice', 'Bob']<br>
+scores = [90, 85]<br>
+<br><br>
 **인덱스 중심으로 제어**
+
+```python
 for i in range(len(names)):
     print(f"{names[i]}: {scores[i]}")
-→ zip()이 더 좋지만, 길이가 다르고 더 긴 쪽을 기준으로 해야 할 때는 range(len())이 필요합니다.
+```
+
+→ zip()이 더 좋지만, 길이가 다르고 더 긴 쪽을 기준으로 해야 할 때는 range(len())이 필요.
+<br><br>
 3️⃣ 인덱스로만 작업하고 요소는 필요 없을 때
-python# 예: 특정 조건의 인덱스만 수집
+
+```python # 예: 특정 조건의 인덱스만 수집
 indices = [i for i in range(len(list)) if some_condition(i)]
-→ 이 경우 요소 값이 필요 없으므로 enumerate()가 낭비입니다.
+```
+→ 이 경우 요소 값이 필요 없으므로 enumerate()가 낭비.
