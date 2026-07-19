@@ -233,6 +233,129 @@ graph TD
 | 중위 순회 (In-Order) | **Left → Root → Right** | L C R (루트 가운데) |
 | 후위 순회 (Post-Order) | **Left → Right → Root** | L R C (루트 마지막) |
 
+<div style="background-color: #ffffff; padding: 20px; border-radius: 8px; color: #333; overflow-x: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+  <table style="width: 100%; border-collapse: collapse; text-align: center; font-family: 'Helvetica Neue', Arial, sans-serif; min-width: 650px;">
+    <thead>
+      <tr style="background-color: #d1c1c0; border-top: 2px solid #a89492; border-bottom: 2px solid #a89492;">
+        <th style="padding: 15px; border-right: 1px solid #c2b0af; width: 22%;">방법</th>
+        <th style="padding: 15px; border-right: 1px solid #c2b0af; width: 38%;">개념도</th>
+        <th style="padding: 15px; width: 40%;">설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 전위 순회 -->
+      <tr style="border-bottom: 1px solid #ddd;">
+        <td style="padding: 15px; border-right: 1px solid #ddd;">
+          <strong style="font-size: 1.05em;">전위 순회</strong><br>
+          <span style="font-size: 0.85em; color: #666; display: inline-block; margin-top: 4px;">(Pre-Order<br>Traversal)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #ddd;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140" width="100%" style="max-width: 200px; display: block; margin: 0 auto;">
+            <defs>
+              <marker id="arrow-pre" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#444" />
+              </marker>
+            </defs>
+            <line x1="100" y1="25" x2="45" y2="95" stroke="#bbb" stroke-width="1.5" />
+            <line x1="100" y1="25" x2="155" y2="95" stroke="#bbb" stroke-width="1.5" />
+            
+            <circle cx="100" cy="25" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="100" y="29" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">C</text>
+            
+            <circle cx="45" cy="95" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="45" y="99" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">L</text>
+            
+            <circle cx="155" cy="95" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="155" y="99" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">R</text>
+
+            <!-- Arrows -->
+            <line x1="93" y1="45" x2="60" y2="80" stroke="#444" stroke-width="1.5" marker-end="url(#arrow-pre)" />
+            <line x1="70" y1="85" x2="130" y2="85" stroke="#444" stroke-width="1.5" marker-end="url(#arrow-pre)" />
+
+            <text x="100" y="130" font-size="12" text-anchor="middle" font-family="sans-serif" fill="#222">• 'C → L → R' 순으로 조회</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; text-align: left; font-size: 0.95em; line-height: 1.5;">
+          • 'Root → Left → Right'순으로 방문
+        </td>
+      </tr>
+
+      <!-- 중위 순회 -->
+      <tr style="border-bottom: 1px solid #ddd;">
+        <td style="padding: 15px; border-right: 1px solid #ddd;">
+          <strong style="font-size: 1.05em;">중위 순회</strong><br>
+          <span style="font-size: 0.85em; color: #666; display: inline-block; margin-top: 4px;">(In-Order<br>Traversal)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #ddd;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140" width="100%" style="max-width: 200px; display: block; margin: 0 auto;">
+            <defs>
+              <marker id="arrow-in" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#444" />
+              </marker>
+            </defs>
+            <line x1="100" y1="25" x2="45" y2="95" stroke="#bbb" stroke-width="1.5" />
+            <line x1="100" y1="25" x2="155" y2="95" stroke="#bbb" stroke-width="1.5" />
+            
+            <circle cx="100" cy="25" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="100" y="29" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">C</text>
+            
+            <circle cx="45" cy="95" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="45" y="99" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">L</text>
+            
+            <circle cx="155" cy="95" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="155" y="99" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">R</text>
+
+            <!-- Arrows -->
+            <line x1="60" y1="80" x2="93" y2="45" stroke="#444" stroke-width="1.5" marker-end="url(#arrow-in)" />
+            <line x1="107" y1="45" x2="140" y2="80" stroke="#444" stroke-width="1.5" marker-end="url(#arrow-in)" />
+
+            <text x="100" y="130" font-size="12" text-anchor="middle" font-family="sans-serif" fill="#222">• 'L → C → R' 순으로 조회</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; text-align: left; font-size: 0.95em; line-height: 1.5;">
+          • 'Left → Root → Right' 순으로 방문
+        </td>
+      </tr>
+
+      <!-- 후위 순회 -->
+      <tr>
+        <td style="padding: 15px; border-right: 1px solid #ddd;">
+          <strong style="font-size: 1.05em;">후위 순회</strong><br>
+          <span style="font-size: 0.85em; color: #666; display: inline-block; margin-top: 4px;">(Post-Order<br>Traversal)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #ddd;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 140" width="100%" style="max-width: 200px; display: block; margin: 0 auto;">
+            <defs>
+              <marker id="arrow-post" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#444" />
+              </marker>
+            </defs>
+            <line x1="100" y1="25" x2="45" y2="95" stroke="#bbb" stroke-width="1.5" />
+            <line x1="100" y1="25" x2="155" y2="95" stroke="#bbb" stroke-width="1.5" />
+            
+            <circle cx="100" cy="25" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="100" y="29" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">C</text>
+            
+            <circle cx="45" cy="95" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="45" y="99" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">L</text>
+            
+            <circle cx="155" cy="95" r="13" fill="#fff" stroke="#888" stroke-width="1.5" />
+            <text x="155" y="99" font-size="11" text-anchor="middle" font-family="sans-serif" fill="#333">R</text>
+
+            <!-- Arrows -->
+            <line x1="70" y1="85" x2="130" y2="85" stroke="#444" stroke-width="1.5" marker-end="url(#arrow-post)" />
+            <line x1="140" y1="80" x2="107" y2="45" stroke="#444" stroke-width="1.5" marker-end="url(#arrow-post)" />
+
+            <text x="100" y="130" font-size="12" text-anchor="middle" font-family="sans-serif" fill="#222">• 'L → R → C' 순으로 조회</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; text-align: left; font-size: 0.95em; line-height: 1.5;">
+          • 'Left → Right → Root' 순으로 방문
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ```mermaid
 graph TD
