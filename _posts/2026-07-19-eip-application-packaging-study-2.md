@@ -712,7 +712,7 @@ graph LR
 9. **빌드 자동화 도구 매칭**: CI서버=Jenkins·Hudson / SCM=SVN·Git / 빌드=Ant·Maven / 테스트=JUnit·Selenium / 커버리지=Emma / 인스펙션=CheckStyle·Cppcheck
 10. **Jenkins**=자바 기반·서블릿 컨테이너 / **Gradle**=그루비 유사 DSL·태스크 단위·안드로이드 공식
 
-👉 **[오답노트 — 1과목 소프트웨어 설계](/정처기/wrong-note-part1/)**
+👉 **[오답노트 — 2과목 소프트웨어 개발](/정처기/wrong-note-part3/)**
 
 [star]: /assets/images/star.png#blog-star-emoji "star"
 
