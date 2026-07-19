@@ -23,8 +23,15 @@ sidebar_category:
         url: /sql/
       - title: "정보처리기사"
         url: /정처기/
-      - title: "오답노트 1과목"
-        url: /정처기/wrong-note-part1/
+        children:
+          - title: "오답노트 1권"
+            url: /정처기/wrong-note-part1/
+          - title: "오답노트 2권"
+            url: /정처기/wrong-note-part2/
+          - title: "오답노트 3권"
+            url: /정처기/wrong-note-part3/
+          - title: "오답노트 4권"
+            url: /정처기/wrong-note-part4/
 
   - title: "필기노트"
     children:
