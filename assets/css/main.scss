@@ -1354,3 +1354,29 @@ img[src$="#blog-star-emoji"] {
   color: var(--accent);
   font-weight: 700;
 }
+
+/* 하위 카테고리 트리 — 세로 가이드 라인 */
+.sidebar .nav__items .nav__tree {
+  margin: 2px 0 4px 14px;
+  padding-left: 12px;
+  border-left: 1.5px solid var(--border-panel);
+}
+
+.sidebar .nav__items .nav__tree li a {
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 0.86em;
+  color: var(--text-muted);
+}
+
+.sidebar .nav__items .nav__tree li a:hover {
+  color: var(--link);
+  background: color-mix(in srgb, var(--link) 8%, transparent);
+  padding-left: 12px;
+}
+
+.sidebar .nav__items .nav__tree li a.active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  font-weight: 700;
+}
