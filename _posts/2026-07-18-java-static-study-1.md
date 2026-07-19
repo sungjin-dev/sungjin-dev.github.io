@@ -2,10 +2,10 @@
 title: "[Java]static 변수에 대한 고찰"
 excerpt: "C언어와 자바에서의 static 변수 차이점을 중심으로"
 categories:
-  - java
+  - Java
 tags:
   - static
-  - java
+  - Java
   - c
 toc: true
 toc_sticky: true
