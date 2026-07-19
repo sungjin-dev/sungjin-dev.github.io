@@ -36,6 +36,7 @@ toc_sticky: true
 ### 1-3. 알고리즘 설계 기법 ![star] 자주 출제
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 mindmap
   root((알고리즘<br/>설계 기법))
     분할과 정복
