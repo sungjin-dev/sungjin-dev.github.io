@@ -227,12 +227,6 @@ graph TD
 
 트리 순회는 크게 **전위, 중위, 후위**로 구분된다. Root(C)의 위치만 기억하면 끝이다.
 
-| 방법 | 방문 순서 | 암기 |
-|------|-----------|------|
-| 전위 순회 (Pre-Order) | **Root → Left → Right** | C L R (루트 먼저) |
-| 중위 순회 (In-Order) | **Left → Root → Right** | L C R (루트 가운데) |
-| 후위 순회 (Post-Order) | **Left → Right → Root** | L R C (루트 마지막) |
-
 <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; color: #333; overflow-x: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
   <table style="width: 100%; border-collapse: collapse; text-align: center; font-family: 'Helvetica Neue', Arial, sans-serif; min-width: 650px;">
     <thead>
@@ -535,23 +529,95 @@ graph TD
 | 방향 그래프 | 정점을 연결하는 선에 **방향이 있음** | **n(n-1)** |
 | 무방향 그래프 | 정점을 연결하는 선에 **방향이 없음** | **n(n-1)/2** |
 
-```mermaid
-graph LR
-    subgraph 무방향 그래프
-        A2[A] --- B2[B]
-        B2 --- C2[C]
-        A2 --- C2
-    end
-```
 
-```mermaid
-graph LR
-    subgraph 방향 그래프
-        A1[A] --> B1[B]
-        B1 --> C1[C]
-        C1 --> A1
-    end
-```
+<div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow-x: auto;">
+  <table style="width: 100%; border-collapse: collapse; text-align: center; min-width: 500px; font-family: 'Helvetica Neue', Arial, sans-serif;">
+    <tbody>
+      <!-- 방향 그래프 -->
+      <tr style="border-bottom: 1px solid #ddd; border-top: 1.5px solid #bbb;">
+        <td style="padding: 20px; border-right: 1px solid #ddd; width: 30%; background-color: #fcfcfc;">
+          <strong style="font-size: 1.1em; color: #444; line-height: 1.4;">방향<br>그래프</strong>
+        </td>
+        <td style="padding: 20px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" style="max-width: 350px; margin: 0 auto; display: block;">
+            <defs>
+              <marker id="arrow-dir" viewBox="0 -5 10 10" refX="25" refY="0" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0,-4 L8,0 L0,4 z" fill="#555" />
+              </marker>
+            </defs>
+            <!-- 연결선 및 화살표 -->
+            <g stroke="#555" stroke-width="1.5">
+              <line x1="180" y1="30" x2="100" y2="100" marker-end="url(#arrow-dir)" /> <!-- A -> B -->
+              <line x1="100" y1="100" x2="240" y2="90" marker-end="url(#arrow-dir)" /> <!-- B -> E -->
+              <line x1="100" y1="100" x2="110" y2="190" marker-end="url(#arrow-dir)" /> <!-- B -> C -->
+              <line x1="110" y1="190" x2="240" y2="90" marker-end="url(#arrow-dir)" /> <!-- C -> E -->
+              <line x1="110" y1="190" x2="260" y2="180" marker-end="url(#arrow-dir)" /> <!-- C -> D -->
+              <line x1="240" y1="90" x2="260" y2="180" marker-end="url(#arrow-dir)" /> <!-- E -> D -->
+              <line x1="240" y1="90" x2="340" y2="140" marker-end="url(#arrow-dir)" /> <!-- E -> F -->
+            </g>
+            <!-- 노드 원형 -->
+            <g fill="#f9fafa" stroke="#666" stroke-width="1.5">
+              <circle cx="180" cy="30" r="16" />
+              <circle cx="100" cy="100" r="16" />
+              <circle cx="110" cy="190" r="16" />
+              <circle cx="240" cy="90" r="16" />
+              <circle cx="260" cy="180" r="16" />
+              <circle cx="340" cy="140" r="16" />
+            </g>
+            <!-- 텍스트 -->
+            <g font-size="14" font-family="sans-serif" text-anchor="middle" fill="#333" dominant-baseline="central">
+              <text x="180" y="31">A</text>
+              <text x="100" y="101">B</text>
+              <text x="110" y="191">C</text>
+              <text x="240" y="91">E</text>
+              <text x="260" y="181">D</text>
+              <text x="340" y="141">F</text>
+            </g>
+          </svg>
+        </td>
+      </tr>
+      <!-- 무방향 그래프 -->
+      <tr style="border-bottom: 1.5px solid #bbb;">
+        <td style="padding: 20px; border-right: 1px solid #ddd; background-color: #fcfcfc;">
+          <strong style="font-size: 1.1em; color: #444; line-height: 1.4;">무방향<br>그래프</strong>
+        </td>
+        <td style="padding: 20px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="100%" style="max-width: 350px; margin: 0 auto; display: block;">
+            <!-- 연결선 (화살표 없음) -->
+            <g stroke="#555" stroke-width="1.5">
+              <line x1="180" y1="30" x2="100" y2="100" />
+              <line x1="100" y1="100" x2="240" y2="90" />
+              <line x1="100" y1="100" x2="110" y2="190" />
+              <line x1="110" y1="190" x2="240" y2="90" />
+              <line x1="110" y1="190" x2="260" y2="180" />
+              <line x1="240" y1="90" x2="260" y2="180" />
+              <line x1="240" y1="90" x2="340" y2="140" />
+            </g>
+            <!-- 노드 원형 -->
+            <g fill="#f9fafa" stroke="#666" stroke-width="1.5">
+              <circle cx="180" cy="30" r="16" />
+              <circle cx="100" cy="100" r="16" />
+              <circle cx="110" cy="190" r="16" />
+              <circle cx="240" cy="90" r="16" />
+              <circle cx="260" cy="180" r="16" />
+              <circle cx="340" cy="140" r="16" />
+            </g>
+            <!-- 텍스트 -->
+            <g font-size="14" font-family="sans-serif" text-anchor="middle" fill="#333" dominant-baseline="central">
+              <text x="180" y="31">A</text>
+              <text x="100" y="101">B</text>
+              <text x="110" y="191">C</text>
+              <text x="240" y="91">E</text>
+              <text x="260" y="181">D</text>
+              <text x="340" y="141">F</text>
+            </g>
+          </svg>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
 #### 그래프 용어
 
@@ -571,19 +637,51 @@ graph LR
 
 예제 그래프:
 
-```mermaid
-graph TD
-    A --- B
-    A --- C
-    A --- D
-    B --- C
-    C --- D
-    B --- E
-    C --- F
-    D --- F
-    E --- F
-    F --- G
-```
+<div style="background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); max-width: 500px; margin: 0 auto; border: 1px solid #eaeaea;">
+  
+  <!-- 제목 부분 -->
+  <h3 style="margin-top: 0; margin-bottom: 25px; font-size: 1.25em; color: #333; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+    <span style="display: inline-block; width: 6px; height: 18px; background-color: #d89690; border-radius: 2px;"></span>
+    그래프 탐색 방법
+  </h3>
+  
+  <!-- 그래프 SVG -->
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360" width="100%" style="display: block; margin: 0 auto;">
+    <!-- 연결선 -->
+    <g stroke="#777" stroke-width="1.5">
+      <line x1="150" y1="50" x2="70" y2="140" />  <!-- A - B -->
+      <line x1="150" y1="50" x2="150" y2="140" /> <!-- A - C -->
+      <line x1="150" y1="50" x2="230" y2="140" /> <!-- A - D -->
+      <line x1="70" y1="140" x2="150" y2="140" />  <!-- B - C -->
+      <line x1="150" y1="140" x2="230" y2="140" /> <!-- C - D -->
+      <line x1="70" y1="140" x2="110" y2="240" />  <!-- B - E -->
+      <line x1="150" y1="140" x2="200" y2="240" /> <!-- C - F -->
+      <line x1="230" y1="140" x2="200" y2="240" /> <!-- D - F -->
+      <line x1="110" y1="240" x2="200" y2="240" /> <!-- E - F -->
+      <line x1="200" y1="240" x2="170" y2="320" /> <!-- F - G -->
+    </g>
+    <!-- 노드 원형 -->
+    <g fill="#f2f4f5" stroke="#777" stroke-width="1.5">
+      <circle cx="150" cy="50" r="22" />
+      <circle cx="70" cy="140" r="22" />
+      <circle cx="150" cy="140" r="22" />
+      <circle cx="230" cy="140" r="22" />
+      <circle cx="110" cy="240" r="22" />
+      <circle cx="200" cy="240" r="22" />
+      <circle cx="170" cy="320" r="22" />
+    </g>
+    <!-- 텍스트 -->
+    <g font-size="16" font-family="sans-serif" text-anchor="middle" fill="#333" dominant-baseline="central">
+      <text x="150" y="52">A</text>
+      <text x="70" y="142">B</text>
+      <text x="150" y="142">C</text>
+      <text x="230" y="142">D</text>
+      <text x="110" y="242">E</text>
+      <text x="200" y="242">F</text>
+      <text x="170" y="322">G</text>
+    </g>
+  </svg>
+</div>
 
 **DFS 진행 과정** (동순위는 알파벳 빠른 순 선택)
 
