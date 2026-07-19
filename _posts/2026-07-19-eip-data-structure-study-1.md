@@ -192,13 +192,48 @@ graph LR
 
 ```mermaid
 graph TD
-    A["A (루트 노드, 레벨1)"] --> B["B (레벨2)"]
-    A --> C["C (레벨2)"]
-    B --> D["D (레벨3)"]
-    B --> E["E (레벨3)"]
-    D --> F["F (레벨4)"]
-    D --> G["G (레벨4)"]
-    D --> H["H (레벨4)"]
+    %% 레벨 1 영역 (루트 노드)
+    subgraph 레벨 1
+        A(("A<br/>(루트 노드)"))
+    end
+    
+    %% 레벨 2 영역 (부모, 형제 노드)
+    subgraph 레벨 2
+        B(("B<br/>(부모 노드)"))
+        C(("C"))
+    end
+    
+    %% 레벨 3 영역 (자식 노드)
+    subgraph 레벨 3
+        D(("D<br/>(자식 노드)"))
+        E(("E"))
+    end
+    
+    %% 레벨 4 영역 (단말 노드)
+    subgraph 레벨 4
+        F(("F"))
+        G(("G"))
+        H(("H<br/>(단말 노드)"))
+    end
+
+    %% 부모-자식 간 트리 가지 연결 (실선)
+    A --- B
+    A --- C
+    B --- D
+    B --- E
+    D --- F
+    D --- G
+    D --- H
+
+    %% 형제 노드 관계 (양방향 점선 화살표)
+    B <-. "형제 노드" .-> C
+    
+    %% 다이어그램 스타일링 (점선 테두리 및 노드 디자인)
+    style 레벨 1 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
+    style 레벨 2 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
+    style 레벨 3 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
+    style 레벨 4 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
+    classDef default fill:#ffffff,stroke:#333333,stroke-width:2px,color:#000000;
 ```
 
 ### 3-2. 트리 용어 ![star] 기출 최다
@@ -232,6 +267,63 @@ graph TD
 | 전위 순회 (Pre-Order) | **Root → Left → Right** | C L R (루트 먼저) |
 | 중위 순회 (In-Order) | **Left → Root → Right** | L C R (루트 가운데) |
 | 후위 순회 (Post-Order) | **Left → Right → Root** | L R C (루트 마지막) |
+
+```mermaid
+flowchart LR
+    subgraph Pre ["전위 순회 (Pre-Order)"]
+        direction TB
+        C1(("C (Root)")):::root1
+        L1(("L (Left)")):::child1
+        R1(("R (Right)")):::child1
+        
+        C1 -. "트리 구조" .-> L1
+        C1 -. "트리 구조" .-> R1
+        
+        C1 == "①" ==> L1 == "②" ==> R1
+    end
+
+    subgraph In ["중위 순회 (In-Order)"]
+        direction TB
+        C2(("C (Root)")):::root2
+        L2(("L (Left)")):::child2
+        R2(("R (Right)")):::child2
+        
+        C2 -. "트리 구조" .-> L2
+        C2 -. "트리 구조" .-> R2
+        
+        L2 == "①" ==> C2 == "②" ==> R2
+    end
+
+    subgraph Post ["후위 순회 (Post-Order)"]
+        direction TB
+        C3(("C (Root)")):::root3
+        L3(("L (Left)")):::child3
+        R3(("R (Right)")):::child3
+        
+        C3 -. "트리 구조" .-> L3
+        C3 -. "트리 구조" .-> R3
+        
+        L3 == "①" ==> R3 == "②" ==> C3
+    end
+
+    %% 기본 트리 구조(회색 점선) 스타일링
+    linkStyle 0,1,4,5,8,9 stroke:#cbd5e1,stroke-width:2px,stroke-dasharray: 5 5;
+    
+    %% 순회 경로(컬러 실선) 스타일링
+    linkStyle 2,3 stroke:#ef4444,stroke-width:4px,color:#ef4444;
+    linkStyle 6,7 stroke:#22c55e,stroke-width:4px,color:#22c55e;
+    linkStyle 10,11 stroke:#3b82f6,stroke-width:4px,color:#3b82f6;
+
+    %% 각 순회별 컬러 디자인
+    classDef root1 fill:#fee2e2,stroke:#ef4444,stroke-width:3px,color:#7f1d1d;
+    classDef child1 fill:#ffffff,stroke:#fca5a5,stroke-width:2px,color:#991b1b;
+    
+    classDef root2 fill:#dcfce7,stroke:#22c55e,stroke-width:3px,color:#14532d;
+    classDef child2 fill:#ffffff,stroke:#86efac,stroke-width:2px,color:#166534;
+    
+    classDef root3 fill:#dbeafe,stroke:#3b82f6,stroke-width:3px,color:#1e3a8a;
+    classDef child3 fill:#ffffff,stroke:#93c5fd,stroke-width:2px,color:#1e40af;
+```
 
 ```mermaid
 graph TD
@@ -292,6 +384,41 @@ graph TD
 ### 3-4. 수식 표기법 변환 (Infix → Prefix / Postfix)
 
 기호가 가운데 있는 일반 수식이 **Infix**다. 변환 3단계만 기억하면 된다.
+
+```mermaid
+graph TD
+    %%{init: {'flowchart': {'curve': 'stepAfter'}}}%%
+    
+    %% 피연산자 노드 (수식의 문자들)
+    A((" a "))
+    B((" b "))
+    C((" c "))
+    D((" d "))
+
+    %% 연산 순서 결과 노드
+    Step1["①<br/>( b + c )"]
+    Step2["②<br/>a * ①"]
+    Step3["③<br/>② * d"]
+
+    %% ①번 연산: b와 c를 묶음
+    B --- Step1
+    C --- Step1
+
+    %% ②번 연산: a와 ①번 결과를 묶음
+    A --- Step2
+    Step1 --- Step2
+
+    %% ③번 연산: ②번 결과와 d를 묶음
+    Step2 --- Step3
+    D --- Step3
+
+    %% 디자인 스타일링
+    classDef var fill:#ffffff,stroke:#333333,stroke-width:2px;
+    classDef step fill:#f8fafc,stroke:#64748b,stroke-width:2px,stroke-dasharray: 4 4;
+    class A,B,C,D var;
+    class Step1,Step2,Step3 step;
+```
+
 
 ```mermaid
 flowchart LR
