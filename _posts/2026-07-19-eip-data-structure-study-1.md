@@ -142,7 +142,7 @@ flowchart TD
 큐는 **한쪽 끝에서 삽입, 반대쪽 끝에서 삭제**가 이루어지는 선입선출, 즉 **FIFO(First-In First-Out)** 형식의 자료 구조다.
 
 ```mermaid
-graph LR
+graph RL
     IN[Data] -- ENQUEUE --> R[Rear]
     subgraph QUEUE
         R --- M[Data] --- F[Front]
