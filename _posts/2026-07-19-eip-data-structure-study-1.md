@@ -133,7 +133,7 @@ flowchart TD
 
 ### 2-3. 큐(Queue)
 
-큐는 **한쪽 끝에서 삽입, 반대쪽 끝에서 삭제**가 이루어지는 **FIFO(First-In First-Out)** 형식의 자료 구조다.
+큐는 **한쪽 끝에서 삽입, 반대쪽 끝에서 삭제**가 이루어지는 선입선출, 즉 **FIFO(First-In First-Out)** 형식의 자료 구조다.
 
 ```mermaid
 graph LR
