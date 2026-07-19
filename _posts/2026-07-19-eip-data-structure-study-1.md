@@ -262,7 +262,7 @@ graph TD
 
 ```mermaid
 flowchart LR
-    subgraph Pre ["전위 순회 (Pre-Order)"]
+    subgraph Pre ["🍒 전위 순회 (Pre-Order)"]
         direction TB
         C1(("C (Root)")):::root1
         L1(("L (Left)")):::child1
@@ -274,7 +274,7 @@ flowchart LR
         C1 == "①" ==> L1 == "②" ==> R1
     end
 
-    subgraph In ["중위 순회 (In-Order)"]
+    subgraph In ["🥝 중위 순회 (In-Order)"]
         direction TB
         C2(("C (Root)")):::root2
         L2(("L (Left)")):::child2
@@ -286,7 +286,7 @@ flowchart LR
         L2 == "①" ==> C2 == "②" ==> R2
     end
 
-    subgraph Post ["후위 순회 (Post-Order)"]
+    subgraph Post ["🫐 후위 순회 (Post-Order)"]
         direction TB
         C3(("C (Root)")):::root3
         L3(("L (Left)")):::child3
@@ -301,10 +301,10 @@ flowchart LR
     %% 기본 트리 구조(회색 점선) 스타일링
     linkStyle 0,1,4,5,8,9 stroke:#cbd5e1,stroke-width:2px,stroke-dasharray: 5 5;
     
-    %% 순회 경로(컬러 실선) 스타일링
-    linkStyle 2,3 stroke:#ef4444,stroke-width:4px,color:#ef4444;
-    linkStyle 6,7 stroke:#22c55e,stroke-width:4px,color:#22c55e;
-    linkStyle 10,11 stroke:#3b82f6,stroke-width:4px,color:#3b82f6;
+    %% 순회 경로(컬러 실선) 스타일링 (에러 원인이던 color 속성 제거 및 안전화)
+    linkStyle 2,3 stroke:#ef4444,stroke-width:4px;
+    linkStyle 6,7 stroke:#22c55e,stroke-width:4px;
+    linkStyle 10,11 stroke:#3b82f6,stroke-width:4px;
 
     %% 각 순회별 컬러 디자인
     classDef root1 fill:#fee2e2,stroke:#ef4444,stroke-width:3px,color:#7f1d1d;
