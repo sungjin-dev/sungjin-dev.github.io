@@ -233,62 +233,6 @@ graph TD
 | 중위 순회 (In-Order) | **Left → Root → Right** | L C R (루트 가운데) |
 | 후위 순회 (Post-Order) | **Left → Right → Root** | L R C (루트 마지막) |
 
-```mermaid
-flowchart LR
-    subgraph Pre ["🍒 전위 순회 (Pre-Order)"]
-        direction TB
-        C1(("C (Root)")):::root1
-        L1(("L (Left)")):::child1
-        R1(("R (Right)")):::child1
-        
-        C1 -. "트리 구조" .-> L1
-        C1 -. "트리 구조" .-> R1
-        
-        C1 == "①" ==> L1 == "②" ==> R1
-    end
-
-    subgraph In ["🥝 중위 순회 (In-Order)"]
-        direction TB
-        C2(("C (Root)")):::root2
-        L2(("L (Left)")):::child2
-        R2(("R (Right)")):::child2
-        
-        C2 -. "트리 구조" .-> L2
-        C2 -. "트리 구조" .-> R2
-        
-        L2 == "①" ==> C2 == "②" ==> R2
-    end
-
-    subgraph Post ["🫐 후위 순회 (Post-Order)"]
-        direction TB
-        C3(("C (Root)")):::root3
-        L3(("L (Left)")):::child3
-        R3(("R (Right)")):::child3
-        
-        C3 -. "트리 구조" .-> L3
-        C3 -. "트리 구조" .-> R3
-        
-        L3 == "①" ==> R3 == "②" ==> C3
-    end
-
-    %% 기본 트리 구조(회색 점선) 스타일링
-    linkStyle 0,1,4,5,8,9 stroke:#cbd5e1,stroke-width:2px,stroke-dasharray: 5 5;
-    
-    %% 순회 경로(컬러 실선) 스타일링 (에러 원인이던 color 속성 제거 및 안전화)
-    linkStyle 2,3 stroke:#ef4444,stroke-width:4px;
-    linkStyle 6,7 stroke:#22c55e,stroke-width:4px;
-    linkStyle 10,11 stroke:#3b82f6,stroke-width:4px;
-
-    %% 각 순회별 컬러 디자인
-    classDef root1 fill:#fee2e2,stroke:#ef4444,stroke-width:3px,color:#7f1d1d;
-    classDef child1 fill:#ffffff,stroke:#fca5a5,stroke-width:2px,color:#991b1b;
-    
-    classDef root2 fill:#dcfce7,stroke:#22c55e,stroke-width:3px,color:#14532d;
-    classDef child2 fill:#ffffff,stroke:#86efac,stroke-width:2px,color:#166534;
-    
-    classDef root3 fill:#dbeafe,stroke:#3b82f6,stroke-width:3px,color:#1e3a8a;
-    classDef child3 fill:#ffffff,stroke:#93c5fd,stroke-width:2px,color:#1e40af;
-```
 
 ```mermaid
 graph TD
