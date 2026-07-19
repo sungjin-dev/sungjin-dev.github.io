@@ -190,6 +190,89 @@ graph LR
 - 인덱스를 조작하는 방법으로 가장 많이 사용하는 구조다.
 - 배열과 달리 노드들이 포인터로 연결되어 **노드의 상한선이 없다**.
 
+<div style="background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow-x: auto; max-width: 650px; margin: 0 auto; border: 1px solid #eaeaea;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 400" width="100%" style="display: block; margin: 0 auto;">
+    <defs>
+      <!-- 양방향 화살표 정의 (형제 노드용) -->
+      <marker id="arrow-start" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 10 0 L 0 5 L 10 10 z" fill="#888" />
+      </marker>
+      <marker id="arrow-end" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#888" />
+      </marker>
+    </defs>
+
+    <!-- 1. 레벨 점선 가이드 및 레벨 텍스트 -->
+    <g stroke="#ccc" stroke-width="1.2" stroke-dasharray="4 4">
+      <line x1="110" y1="60" x2="520" y2="60" />
+      <line x1="110" y1="150" x2="520" y2="150" />
+      <line x1="110" y1="240" x2="520" y2="240" />
+      <line x1="110" y1="330" x2="520" y2="330" />
+    </g>
+
+    <g font-size="13" font-family="sans-serif" fill="#666" font-weight="bold">
+      <text x="535" y="64">레벨 1</text>
+      <text x="535" y="154">레벨 2</text>
+      <text x="535" y="244">레벨 3</text>
+      <text x="535" y="334">레벨 4</text>
+    </g>
+
+    <!-- 2. 부모-자식 관계를 나타내는 큰 점선 삼각형 -->
+    <polygon points="315,95 135,265 435,265" fill="none" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3" />
+
+    <!-- 3. 형제 노드 간 양방향 점선 화살표 -->
+    <line x1="345" y1="150" x2="455" y2="150" stroke="#888" stroke-width="1.2" stroke-dasharray="3 3" marker-start="url(#arrow-start)" marker-end="url(#arrow-end)" />
+
+    <!-- 4. 트리 간선 (Solid Lines) -->
+    <g stroke="#444" stroke-width="1.5">
+      <line x1="380" y1="60" x2="315" y2="150" /> <!-- A - B -->
+      <line x1="380" y1="60" x2="485" y2="150" /> <!-- A - C -->
+      <line x1="315" y1="150" x2="230" y2="240" /> <!-- B - D -->
+      <line x1="315" y1="150" x2="400" y2="240" /> <!-- B - E -->
+      <line x1="230" y1="240" x2="145" y2="330" /> <!-- D - F -->
+      <line x1="230" y1="240" x2="230" y2="330" /> <!-- D - G -->
+      <line x1="230" y1="240" x2="315" y2="330" /> <!-- D - H -->
+    </g>
+
+    <!-- 5. 노드 원형 (Circles) -->
+    <g fill="#f8f9fa" stroke="#555" stroke-width="1.5">
+      <!-- 레벨 1 -->
+      <circle cx="380" cy="60" r="18" />
+      <!-- 레벨 2 -->
+      <circle cx="315" cy="150" r="18" />
+      <circle cx="485" cy="150" r="18" />
+      <!-- 레벨 3 -->
+      <circle cx="230" cy="240" r="18" />
+      <circle cx="400" cy="240" r="18" />
+      <!-- 레벨 4 -->
+      <circle cx="145" cy="330" r="18" />
+      <circle cx="230" cy="330" r="18" />
+      <circle cx="315" cy="330" r="18" />
+    </g>
+
+    <!-- 6. 노드 텍스트 -->
+    <g font-size="14" font-family="sans-serif" text-anchor="middle" fill="#222" dominant-baseline="central" font-weight="500">
+      <text x="380" y="61">A</text>
+      <text x="315" y="151">B</text>
+      <text x="485" y="151">C</text>
+      <text x="230" y="241">D</text>
+      <text x="400" y="241">E</text>
+      <text x="145" y="331">F</text>
+      <text x="230" y="331">G</text>
+      <text x="315" y="331">H</text>
+    </g>
+
+    <!-- 7. 개념 설명 레이블 텍스트 (한국어 설명) -->
+    <g font-size="13" font-family="sans-serif" fill="#555">
+      <text x="380" y="30" text-anchor="middle" font-weight="bold" fill="#333">루트 노드</text>
+      <text x="400" y="135" text-anchor="middle">형제 노드</text>
+      <text x="210" y="130" text-anchor="end">부모 노드</text>
+      <text x="135" y="225" text-anchor="end">자식 노드</text>
+      <text x="345" y="334" text-anchor="start">단말 노드</text>
+    </g>
+  </svg>
+</div>
+
 ```mermaid
 graph TD
     A["A (루트 노드, 레벨1)"] --> B["B (레벨2)"]
