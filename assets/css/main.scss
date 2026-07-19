@@ -108,13 +108,13 @@ html[data-theme="dark"] {
 
 html[data-theme="light"] {
   /* --- 표면 --- */
-  --bg-page: #EEF0F5;
+  --bg-page: #F2F1EC;
   --bg-masthead: #FFFFFF;
   --border-masthead: #E3E6EE;
   --bg-card: #FFFFFF;
-  --bg-code: #F4F5F9;
+  --bg-code: #F7F6F2;
   --border-code: #E0E3EC;
-  --bg-chip: #EDEFF5;
+  --bg-chip: #F8F2E2;
   --bg-table: #FAFBFD;
   --bg-table-th: #F1F3F8;
   --bg-table-even: #F5F6FB;
@@ -125,17 +125,17 @@ html[data-theme="light"] {
   --text-strong: #1F2329;
   --text-muted: #8A8F98;
   --code-text: #1F2329;
-  --chip-text: #383A42;
+  --chip-text: #8A6410;
 
   /* --- 포인트 / 링크 (흰 배경 대비 확보를 위해 어둡게) --- */
-  --accent: #B0821F;
+  --accent: #A67615;
   --accent-green: #3F8F3F;
   --link: #3B6FDB;
 
   /* --- 경계선 --- */
   --border-table: #E4E7EF;
   --border-table-th: #D6DAE5;
-  --chip-underline: #C9CEDC;
+  --chip-underline: #E3CD96;
   --border-panel: #E3E6EE;
 
   /* --- TOC / 사이드 패널 --- */
@@ -146,7 +146,7 @@ html[data-theme="light"] {
   --toc-hover: #0F766E;
 
   /* --- 그림자 --- */
-  --shadow-card: 0 4px 20px rgba(35, 45, 75, 0.08);
+  --shadow-card: 0 2px 12px rgba(60, 50, 30, 0.07);
   --shadow-rest: 0 2px 10px rgba(35, 45, 75, 0.07);
 
   /* --- 구문 강조 (One Light) --- */
