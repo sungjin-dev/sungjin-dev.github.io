@@ -467,11 +467,11 @@ python# 특정 인덱스부터 시작
 for i in range(1, len(list)):  # 0번째 제외
     process(list[i])
 
-# 스텝 제어 (2칸씩 점프)
+**스텝 제어 (2칸씩 점프)**
 for i in range(0, len(list), 2):
     process(list[i], list[i+1])
 
-# 역순 순회
+**역순 순회**
 for i in range(len(list)-1, -1, -1):
     process(list[i])
 → enumerate()는 이런 세밀한 범위/스텝 조정이 어렵습니다.
@@ -479,7 +479,7 @@ for i in range(len(list)-1, -1, -1):
 pythonnames = ['Alice', 'Bob']
 scores = [90, 85]
 
-# 인덱스 중심으로 제어
+**인덱스 중심으로 제어**
 for i in range(len(names)):
     print(f"{names[i]}: {scores[i]}")
 → zip()이 더 좋지만, 길이가 다르고 더 긴 쪽을 기준으로 해야 할 때는 range(len())이 필요합니다.
