@@ -97,25 +97,128 @@ flowchart LR
 
 소프트웨어 개발 단계와 테스트 레벨을 연결하여 표현한 것을 **V-모델**이라고 한다.
 
-```mermaid
-flowchart TD
-    R["요구사항<br/>(Requirements)"] -.검증.- AT["인수 테스트<br/>(Acceptance Testing)"]
-    S["분석<br/>(Specification)"] -.검증.- ST["시스템 테스트<br/>(System Testing)"]
-    D["설계<br/>(Design)"] -.검증.- IT["통합 테스트<br/>(Integration Testing)"]
-    C["구현<br/>(Code)"] --- UT["단위 테스트<br/>(Unit Testing)"]
+<div style="background-color: #ffffff; padding: 30px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow-x: auto; max-width: 850px; margin: 0 auto; border: 1px solid #eaeaea;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" style="display: block; margin: 0 auto; min-width: 700px;">
+    <defs>
+      <!-- 배경 V자 화살표 머리 -->
+      <marker id="arrow-v" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,-5 L10,0 L0,5 z" fill="#495057" />
+      </marker>
+      
+      <!-- 박스 그림자 효과 -->
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.15" />
+      </filter>
 
-    R --> S --> D --> C
-    UT --> IT --> ST --> AT
+      <!-- 박스 그라데이션 -->
+      <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff" />
+        <stop offset="100%" stop-color="#f1f3f5" />
+      </linearGradient>
+    </defs>
 
-    style R fill:#f9e0e0
-    style S fill:#f9e0e0
-    style D fill:#f9e0e0
-    style C fill:#f9e0e0
-    style UT fill:#e0eef9
-    style IT fill:#e0eef9
-    style ST fill:#e0eef9
-    style AT fill:#e0eef9
-```
+    <!-- 외곽 연한 회색 테두리 (교재 느낌) -->
+    <rect x="25" y="45" width="750" height="410" fill="none" stroke="#dee2e6" stroke-width="1.5" />
+
+    <!-- 좌상단 타이틀 -->
+    <g transform="translate(30, 30)">
+      <!-- 붉은색 원형 아이콘 -->
+      <circle cx="10" cy="-5" r="9" fill="#a05252" />
+      <path d="M 6 -7 L 10 -3 L 14 -7" stroke="#ffffff" stroke-width="2" fill="none" />
+      <text x="30" y="0" font-size="18" font-weight="bold" font-family="sans-serif" fill="#333">소프트웨어 생명주기의 V 모델</text>
+    </g>
+
+    <!-- 중앙 세로 점선 -->
+    <line x1="400" y1="70" x2="400" y2="350" stroke="#868e96" stroke-width="2.5" stroke-dasharray="6,6" />
+
+    <!-- 굵은 V자 배경 화살표 -->
+    <line x1="200" y1="90" x2="380" y2="255" stroke="#495057" stroke-width="8" marker-end="url(#arrow-v)" />
+    <line x1="420" y1="255" x2="600" y2="90" stroke="#495057" stroke-width="8" marker-end="url(#arrow-v)" />
+
+    <!-- ==========================================
+         박스 생성 (왼쪽 하행선)
+         ========================================== -->
+    <g font-family="sans-serif" text-anchor="middle" font-size="14" fill="#212529">
+      
+      <!-- 1단계: 요구사항 -->
+      <rect x="110" y="80" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="175" y="102" font-weight="bold">요구사항</text>
+      <text x="175" y="122" font-size="12" fill="#495057">(Requirements)</text>
+
+      <!-- 2단계: 분석 -->
+      <rect x="170" y="150" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="235" y="172" font-weight="bold">분석</text>
+      <text x="235" y="192" font-size="12" fill="#495057">(Specification)</text>
+
+      <!-- 3단계(사이드): 검증 -->
+      <rect x="100" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="165" y="242" font-weight="bold">검증</text>
+      <text x="165" y="262" font-size="12" fill="#495057">(Verification)</text>
+
+      <!-- 3단계: 설계 -->
+      <rect x="240" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="305" y="242" font-weight="bold">설계</text>
+      <text x="305" y="262" font-size="12" fill="#495057">(Design)</text>
+
+      <!-- 4단계: 구현 -->
+      <rect x="240" y="300" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="305" y="322" font-weight="bold">구현</text>
+      <text x="305" y="342" font-size="12" fill="#495057">(Code)</text>
+
+    <!-- ==========================================
+         박스 생성 (오른쪽 상행선)
+         ========================================== -->
+      
+      <!-- 4단계: 단위 테스트 -->
+      <rect x="430" y="300" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="495" y="322" font-weight="bold">단위 테스트</text>
+      <text x="495" y="342" font-size="12" fill="#495057">(Unit Testing)</text>
+
+      <!-- 3단계: 통합 테스트 -->
+      <rect x="430" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="495" y="242" font-weight="bold">통합 테스트</text>
+      <text x="495" y="262" font-size="12" fill="#495057">(Integration<br>Testing)</text>
+      <!-- 멀티라인 텍스트 처리 -->
+      <rect x="430" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" />
+      <text x="495" y="238" font-weight="bold">통합 테스트</text>
+      <text x="495" y="254" font-size="12" fill="#495057">(Integration</text>
+      <text x="495" y="268" font-size="12" fill="#495057">Testing)</text>
+
+      <!-- 3단계(사이드): 확인 -->
+      <rect x="570" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="635" y="242" font-weight="bold">확인</text>
+      <text x="635" y="262" font-size="12" fill="#495057">(Validation)</text>
+
+      <!-- 2단계: 시스템 테스트 -->
+      <rect x="500" y="150" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="565" y="166" font-weight="bold">시스템 테스트</text>
+      <text x="565" y="182" font-size="12" fill="#495057">(System</text>
+      <text x="565" y="196" font-size="12" fill="#495057">Testing)</text>
+
+      <!-- 1단계: 인수 테스트 -->
+      <rect x="560" y="80" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
+      <text x="625" y="96" font-weight="bold">인수 테스트</text>
+      <text x="625" y="112" font-size="12" fill="#495057">(Acceptance</text>
+      <text x="625" y="126" font-size="12" fill="#495057">Testing)</text>
+    </g>
+
+    <!-- ==========================================
+         하단 텍스트 및 버튼
+         ========================================== -->
+    <g font-family="sans-serif" text-anchor="middle">
+      <!-- 왼쪽 (소프트웨어 아키텍트) -->
+      <text x="195" y="390" font-size="15" font-weight="bold" fill="#333">소프트웨어 아키텍트</text>
+      <rect x="105" y="405" width="180" height="34" rx="17" fill="#5a6268" />
+      <text x="195" y="428" font-size="14" font-weight="bold" fill="#ffffff">테스트 계획 및 설계</text>
+
+      <!-- 오른쪽 (테스트 매니저) -->
+      <text x="605" y="390" font-size="15" font-weight="bold" fill="#333">테스트 매니저</text>
+      <rect x="535" y="405" width="140" height="34" rx="17" fill="#5a6268" />
+      <text x="605" y="428" font-size="14" font-weight="bold" fill="#ffffff">테스트 수행</text>
+    </g>
+
+  </svg>
+</div>
 
 왼쪽(빨강)은 **테스트 계획 및 설계** 단계, 오른쪽(파랑)은 **테스트 수행** 단계다. 개발 단계마다 대응되는 테스트 레벨이 있다는 게 핵심.
 
@@ -234,34 +337,313 @@ flowchart TD
 
 #### 블랙박스 테스트 유형 총정리
 
-| 유형 | 핵심 |
-|---|---|
-| 동등 분할 (Equivalence Partitioning) | 입력 데이터 영역을 유사한 도메인별로 유효값/무효값 그룹핑, 대푯값으로 테스트 케이스 도출 |
-| 경곗값 분석 (Boundary Value Analysis) | 등가분할 후 **경곗값 부분에서 오류 확률이 높으므로** 경곗값 포함하여 설계. "최솟값 바로 위, 최대치 바로 아래" 등 극한 한계 테스트 |
-| 결정 테이블 (Decision Table) | 요구사항의 논리와 발생 조건을 테이블로 나열, 조건과 행위를 모두 조합하여 테스트 |
-| 상태전이 (State Transition) | 시스템/객체의 상태를 구분하고, 이벤트에 의해 상태가 전이되는 경우의 수를 테스트 |
-| 유스케이스 (Use Case) | 시스템이 유스케이스로 모델링되어 있을 때 프로세스 흐름 기반으로 케이스 명세화 |
-| 분류 트리 (Classification Tree Method) | SW 일부/전체를 트리 구조로 분석·표현하여 케이스 설계 |
-| 페어와이즈 (Pairwise) | 테스트 데이터 간 **최소한 한 번씩 조합**. 모든 조합 대비 상대적으로 적은 양의 테스트 세트 구성 |
-| 원인-결과 그래프 (Cause-Effect Graph) | 그래프로 입력 데이터 간 관계와 출력에 미치는 영향을 분석해 효용성 높은 케이스 선정 |
-| 비교 (Comparison) | 여러 버전의 프로그램에 같은 입력값을 넣어 동일한 결과가 나오는지 비교 |
-| 오류 추정 (Error Guessing) | 개발자가 범할 수 있는 실수를 추정해 케이스 설계. 테스터의 **경험과 직관** 기반, 다른 블랙박스 기법 보완용 |
+<div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); overflow-x: auto;">
+  <h3 style="margin-top: 0; color: #333; display: flex; align-items: center; gap: 8px; font-size: 1.2em;">
+    <span style="color: #c98282;">🔘</span> 블랙박스 테스트 유형
+  </h3>
+  
+  <table style="width: 100%; border-collapse: collapse; min-width: 850px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14px; text-align: left; color: #333;">
+    <thead>
+      <tr style="background-color: #e9ecef; border-top: 2px solid #868e96; border-bottom: 2px solid #868e96; text-align: center;">
+        <th style="padding: 12px; border-right: 1px solid #dee2e6; width: 18%;">유형</th>
+        <th style="padding: 12px; border-right: 1px solid #dee2e6; width: 42%;">사례</th>
+        <th style="padding: 12px; width: 40%;">설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <!-- 1. 동등 분할 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>동등 분할 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Equivalence<br>Partitioning Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <div style="background-color: #f8f9fa; padding: 10px; border: 1px solid #ddd; text-align: center; margin-bottom: 10px;">
+            시험 대상: 0 ≤ X ≤ 100
+          </div>
+          <svg viewBox="0 0 300 50" width="100%" style="max-width: 300px; display: block; margin: 0 auto;">
+            <line x1="20" y1="20" x2="280" y2="20" stroke="#444" stroke-width="1.5"/>
+            <line x1="100" y1="15" x2="100" y2="25" stroke="#444" stroke-width="1.5"/>
+            <line x1="200" y1="15" x2="200" y2="25" stroke="#444" stroke-width="1.5"/>
+            <text x="100" y="40" text-anchor="middle" font-size="12">0</text>
+            <text x="200" y="40" text-anchor="middle" font-size="12">100</text>
+            <text x="60" y="15" text-anchor="middle" font-size="14">①</text>
+            <text x="150" y="15" text-anchor="middle" font-size="14">②</text>
+            <text x="240" y="15" text-anchor="middle" font-size="14">③</text>
+          </svg>
+          <div style="margin-top: 10px; font-size: 0.95em; line-height: 1.5;">
+            <strong>각 그룹별 대푯값 선정</strong><br>
+            ① X = -10<br>② X = 50<br>③ X = 1000
+          </div>
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • 입력 데이터의 영역을 유사한 도메인별로 유횻값/무횻값으로 그룹핑하고 대푯값으로 테스트 케이스를 도출하여 테스트하는 기법
+        </td>
+      </tr>
 
-**동등 분할 vs 경곗값 분석 예시** — 시험 대상: `0 < X < 100`
+      <!-- 2. 경곗값 분석 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>경곗값 분석 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Boundary Value<br>Analysis Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <div style="background-color: #f8f9fa; padding: 10px; border: 1px solid #ddd; text-align: center; margin-bottom: 10px;">
+            시험 대상: 0 ≤ X ≤ 100
+          </div>
+          <table style="width: 100%; text-align: center; border-collapse: collapse; margin-bottom: 10px;">
+            <tr>
+              <td style="border-right: 1px solid #888; padding: 5px;">···, -1, 0</td>
+              <td style="border-right: 1px solid #888; padding: 5px;">1, 2, ···, 99, 100</td>
+              <td style="padding: 5px;">101, 102, ···</td>
+            </tr>
+            <tr style="font-size: 0.9em; color: #555;">
+              <td style="padding-top: 5px;">0</td>
+              <td></td>
+              <td style="padding-top: 5px;">100</td>
+            </tr>
+          </table>
+          <div style="font-size: 0.95em;">
+            <strong>X = 0, 1, 100, 101</strong>
+          </div>
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • 등가분할 후 경곗값 부분에서 오류 발생 확률이 높기에 경곗값을 포함하여 테스트 케이스를 설계하여 테스트하는 기법<br>
+          • "최솟값 바로 위, 최대치 바로 아래" 등 입력값의 극한 한계를 테스트하는 기법
+        </td>
+      </tr>
 
-- 동등 분할: 그룹별 대푯값 선정 → X = -10, 50, 1000
-- 경곗값 분석: 경계 근처 집중 → X = 0, 1, 100, 101
+      <!-- 3. 결정 테이블 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>결정 테이블 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Decision Table<br>Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85em; border: 1px solid #bbb; margin-bottom: 10px;">
+            <tr style="background-color: #e9ecef;">
+              <td colspan="2" style="border: 1px solid #bbb; padding: 4px;">테스트 케이스 번호</td>
+              <td style="border: 1px solid #bbb;">1</td><td style="border: 1px solid #bbb;">2</td><td style="border: 1px solid #bbb;">3</td><td style="border: 1px solid #bbb;">4</td><td style="border: 1px solid #bbb;">5</td>
+            </tr>
+            <tr>
+              <td rowspan="3" style="border: 1px solid #bbb; padding: 4px; background-color: #f8f9fa;">의사<br>결정</td>
+              <td style="border: 1px solid #bbb; padding: 4px;">현금 주문</td>
+              <td style="border: 1px solid #bbb;">Y</td><td style="border: 1px solid #bbb;">Y</td><td style="border: 1px solid #bbb;">N</td><td style="border: 1px solid #bbb;">N</td><td style="border: 1px solid #bbb;">N</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #bbb; padding: 4px;">신용 카드</td>
+              <td style="border: 1px solid #bbb;">-</td><td style="border: 1px solid #bbb;">-</td><td style="border: 1px solid #bbb;">Y</td><td style="border: 1px solid #bbb;">Y</td><td style="border: 1px solid #bbb;">N</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #bbb; padding: 4px;">우수 고객</td>
+              <td style="border: 1px solid #bbb;">Y</td><td style="border: 1px solid #bbb;">N</td><td style="border: 1px solid #bbb;">Y</td><td style="border: 1px solid #bbb;">N</td><td style="border: 1px solid #bbb;">-</td>
+            </tr>
+            <tr>
+              <td rowspan="4" style="border: 1px solid #bbb; padding: 4px; background-color: #f8f9fa;">액션</td>
+              <td style="border: 1px solid #bbb; padding: 4px;">주문 처리</td>
+              <td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;"></td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #bbb; padding: 4px;">주문 거부</td>
+              <td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;">V</td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #bbb; padding: 4px;">10% 할인</td>
+              <td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;"></td>
+            </tr>
+            <tr>
+              <td style="border: 1px solid #bbb; padding: 4px;">정상 가격</td>
+              <td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;"></td><td style="border: 1px solid #bbb;">V</td><td style="border: 1px solid #bbb;"></td>
+            </tr>
+          </table>
+          <div style="font-size: 0.85em; background-color: #f1f3f5; padding: 8px; border-radius: 4px; line-height: 1.4;">
+            <strong>테스트 케이스:</strong><br>
+            1) 명령은 현금지급 또는 신용 인증일 때만 수행<br>
+            2) 우수 고객 10% 할인이 가능하고 다른 모든 고객은 전액 모두 지급함
+          </div>
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • 요구사항의 논리와 발생 조건을 테이블 형태로 나열하여, 조건과 행위를 모두 조합하여 테스트하는 기법
+        </td>
+      </tr>
 
-**상태전이 테스트 예시**
+      <!-- 4. 상태전이 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>상태전이 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(State Transition<br>Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <svg viewBox="0 0 280 140" width="100%" style="max-width: 280px; display: block; margin: 0 auto;">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
+              </marker>
+            </defs>
+            <rect x="20" y="50" width="70" height="34" rx="6" fill="#e9ecef" stroke="#888" stroke-width="1.5"/>
+            <text x="55" y="72" text-anchor="middle" font-size="12">Idle</text>
+            
+            <rect x="180" y="10" width="70" height="34" rx="6" fill="#e9ecef" stroke="#888" stroke-width="1.5"/>
+            <text x="215" y="32" text-anchor="middle" font-size="12">Running</text>
+            
+            <rect x="180" y="90" width="70" height="34" rx="6" fill="#e9ecef" stroke="#888" stroke-width="1.5"/>
+            <text x="215" y="112" text-anchor="middle" font-size="12">Paused</text>
 
-```mermaid
-stateDiagram-v2
-    Idle --> Running : Start
-    Running --> Idle : Reset
-    Running --> Paused : Stop
-    Paused --> Running : Start
-    Paused --> Idle : Reset
-```
+            <path d="M 90 55 L 175 25" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="140" y="30" text-anchor="middle" font-size="10" fill="#444">Start</text>
+
+            <path d="M 210 44 L 210 85" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="230" y="70" text-anchor="middle" font-size="10" fill="#444">Stop</text>
+
+            <path d="M 220 90 L 220 49" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="195" y="70" text-anchor="middle" font-size="10" fill="#444">Start</text>
+
+            <path d="M 180 105 L 85 75" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="135" y="105" text-anchor="middle" font-size="10" fill="#444">Reset</text>
+
+            <path d="M 180 30 L 90 65" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrow)"/>
+            <text x="120" y="65" text-anchor="middle" font-size="10" fill="#444">Reset</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • 테스트 대상/시스템이나 객체의 상태를 구분하고, 이벤트에 의해 어느 한 상태에서 다른 상태로 전이되는 경우의 수를 테스트하는 기법
+        </td>
+      </tr>
+
+      <!-- 5. 유스케이스 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>유스케이스 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Use Case<br>Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <svg viewBox="0 0 280 130" width="100%" style="max-width: 280px; display: block; margin: 0 auto;">
+            <circle cx="50" cy="50" r="10" fill="none" stroke="#333" stroke-width="1.5"/>
+            <line x1="50" y1="60" x2="50" y2="90" stroke="#333" stroke-width="1.5"/>
+            <line x1="50" y1="70" x2="30" y2="60" stroke="#333" stroke-width="1.5"/>
+            <line x1="50" y1="70" x2="70" y2="60" stroke="#333" stroke-width="1.5"/>
+            <line x1="50" y1="90" x2="35" y2="115" stroke="#333" stroke-width="1.5"/>
+            <line x1="50" y1="90" x2="65" y2="115" stroke="#333" stroke-width="1.5"/>
+            
+            <line x1="80" y1="70" x2="115" y2="70" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+            
+            <ellipse cx="150" cy="70" rx="30" ry="15" fill="#f8f9fa" stroke="#555" stroke-width="1.5"/>
+            <text x="150" y="74" text-anchor="middle" font-size="11">인출</text>
+
+            <ellipse cx="240" cy="35" rx="35" ry="15" fill="#f8f9fa" stroke="#555" stroke-width="1.5"/>
+            <text x="240" y="39" text-anchor="middle" font-size="11">암호</text>
+
+            <ellipse cx="240" cy="105" rx="35" ry="15" fill="#f8f9fa" stroke="#555" stroke-width="1.5"/>
+            <text x="240" y="109" text-anchor="middle" font-size="11">잔액 체크</text>
+
+            <line x1="175" y1="60" x2="210" y2="45" stroke="#555" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
+            <text x="200" y="47" text-anchor="middle" font-size="9" fill="#666" transform="rotate(-20 200,47)">&lt;&lt;include&gt;&gt;</text>
+            
+            <line x1="175" y1="80" x2="210" y2="95" stroke="#555" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
+            <text x="195" y="105" text-anchor="middle" font-size="9" fill="#666" transform="rotate(20 195,105)">&lt;&lt;include&gt;&gt;</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • 시스템이 실제 사용되는 유스케이스로 모델링 되어 있을 때 프로세스 흐름을 기반으로 테스트 케이스를 명세화하여 수행하는 테스트 기법
+        </td>
+      </tr>
+
+      <!-- 6. 분류 트리 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>분류 트리 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Classification<br>Tree Method<br>Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <svg viewBox="0 0 280 100" width="100%" style="max-width: 280px; display: block; margin: 0 auto;">
+            <rect x="90" y="10" width="100" height="25" fill="#f8f9fa" stroke="#888" stroke-width="1"/>
+            <text x="140" y="27" text-anchor="middle" font-size="12">표 만들기</text>
+            
+            <line x1="140" y1="35" x2="140" y2="55" stroke="#555" stroke-width="1.5"/>
+            <line x1="70" y1="55" x2="210" y2="55" stroke="#555" stroke-width="1.5"/>
+            <line x1="70" y1="55" x2="70" y2="65" stroke="#555" stroke-width="1.5"/>
+            <line x1="210" y1="55" x2="210" y2="65" stroke="#555" stroke-width="1.5"/>
+
+            <rect x="25" y="65" width="90" height="25" fill="#f8f9fa" stroke="#888" stroke-width="1"/>
+            <text x="70" y="82" text-anchor="middle" font-size="12">줄 개수 변경</text>
+            
+            <rect x="165" y="65" width="90" height="25" fill="#f8f9fa" stroke="#888" stroke-width="1"/>
+            <text x="210" y="82" text-anchor="middle" font-size="12">칸 개수 변경</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • SW의 일부 또는 전체를 트리 구조로 분석 및 표현하여 테스트 케이스를 설계하여 테스트하는 기법
+        </td>
+      </tr>
+
+      <!-- 7. 페어와이즈 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>페어와이즈 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Pairwise Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85em; border: 1px solid #bbb; margin-bottom: 8px;">
+            <tr style="background-color: #e9ecef;">
+              <td style="border: 1px solid #bbb; padding: 4px;">재생</td>
+              <td style="border: 1px solid #bbb; padding: 4px;">볼륨</td>
+              <td style="border: 1px solid #bbb; padding: 4px;">이퀄라이저</td>
+            </tr>
+            <tr><td style="border: 1px solid #bbb;">play</td><td style="border: 1px solid #bbb;">크게</td><td style="border: 1px solid #bbb;">off</td></tr>
+            <tr><td style="border: 1px solid #bbb;">play</td><td style="border: 1px solid #bbb;">작게</td><td style="border: 1px solid #bbb;">on</td></tr>
+            <tr><td style="border: 1px solid #bbb;">stop</td><td style="border: 1px solid #bbb;">크게</td><td style="border: 1px solid #bbb;">on</td></tr>
+            <tr><td style="border: 1px solid #bbb;">stop</td><td style="border: 1px solid #bbb;">작게</td><td style="border: 1px solid #bbb;">off</td></tr>
+          </table>
+          <div style="text-align: center; color: #888; font-size: 0.9em; margin-top: 5px;">(모든 조합을 최소화하여 구성)</div>
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • 테스트 데이터 간에 최소한 한 번씩을 조합하는 방식이며, 이는 커버해야 할 기능적 범위를 모든 조합에 비해 상대적으로 적은 양의 테스트 세트를 구성하기 위한 테스트 기법
+        </td>
+      </tr>
+
+      <!-- 8. 원인-결과 그래프 테스트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>원인-결과<br>그래프 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Cause-Effect<br>Graph Testing)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center; color: #888; font-size: 0.9em;">
+          (다이어그램 생략)
+        </td>
+        <td style="padding: 15px; line-height: 1.5;">
+          • 그래프를 활용하여 입력 데이터 간의 관계 및 출력에 미치는 영향을 분석하여 효용성이 높은 테스트 케이스를 선정하여 테스트하는 기법
+        </td>
+      </tr>
+
+      <!-- 9. 비교 테스트 (새로 추가됨) -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>비교 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Comparison<br>Testing)</span>
+        </td>
+        <!-- 설명 칸을 2칸으로 병합하여 길게 표시 -->
+        <td colspan="2" style="padding: 15px; line-height: 1.5;">
+          • 여러 버전의 프로그램에 같은 입력값을 넣어서 동일한 결과 데이터가 나오는지 비교해 보는 테스트 기법
+        </td>
+      </tr>
+
+      <!-- 10. 오류 추정 테스트 (새로 추가됨) -->
+      <tr>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong>오류 추정 테스트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Error Guessing<br>Testing)</span>
+        </td>
+        <!-- 설명 칸을 2칸으로 병합하여 길게 표시 -->
+        <td colspan="2" style="padding: 15px; line-height: 1.5;">
+          • 개발자가 범할 수 있는 실수를 추정하고 이에 따른 결함이 검출되도록 테스트 케이스를 설계하여 테스트하는 기법<br>
+          • 특정 테스트 대상이 주어지면 테스터의 경험과 직관을 바탕으로 개발자가 범할 수 있는 실수들을 나열하고, 해당 실수에 따른 결함을 노출하는 테스트로 다른 블랙박스 테스트 기법을 보완할 때 사용하는 기법
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
 
 ### 5-3. 화이트박스 테스트(White-box Test)
 
@@ -270,6 +652,122 @@ stateDiagram-v2
 - **소스 코드의 모든 문장을 한 번 이상 수행**함으로써 진행된다.
 - 제어 구조에 따라 선택, 반복 등의 부분을 수행하며 논리적 경로를 점검한다.
 - **구조 기반 테스트, 코드 기반 테스트, 로직 기반 테스트, 글래스(Glass)박스 테스트**라고도 부른다.
+
+<div style="background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); overflow-x: auto; max-width: 750px; margin: 0 auto; border: 1px solid #eaeaea;">
+  
+  <h3 style="margin-top: 0; margin-bottom: 25px; color: #333; display: flex; align-items: center; gap: 8px; font-size: 1.2em;">
+    <span style="color: #a05252;">🔘</span> 화이트박스 테스트 예시
+  </h3>
+
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 620" width="100%" style="display: block; margin: 0 auto; min-width: 600px;">
+    <defs>
+      <!-- 화살표 머리 정의 -->
+      <marker id="arrow-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#343a40" />
+      </marker>
+    </defs>
+
+    <!-- 배경 연한 테두리 박스 -->
+    <rect x="20" y="10" width="640" height="590" fill="none" stroke="#dee2e6" stroke-width="1.5" />
+
+    <g font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" fill="#212529">
+      
+      <!-- ==================== 노드 (박스 및 마름모) ==================== -->
+      
+      <!-- ① Node 1 -->
+      <rect x="180" y="50" width="160" height="46" rx="6" fill="#f8f9fa" stroke="#495057" stroke-width="1.5" />
+      <text x="260" y="78" font-size="14">POINTER = FALSE</text>
+      <circle cx="360" cy="73" r="8" fill="#fff" stroke="#adb5bd" stroke-width="1.2"/>
+      <text x="360" y="77" font-size="11" fill="#495057">1</text>
+
+      <!-- ② Node 2 (조건문) -->
+      <polygon points="260,130 340,165 260,200 180,165" fill="#f8f9fa" stroke="#495057" stroke-width="1.5" />
+      <text x="260" y="170" font-size="14">X &gt; K ?</text>
+      <circle cx="355" cy="140" r="8" fill="#fff" stroke="#adb5bd" stroke-width="1.2"/>
+      <text x="355" y="144" font-size="11" fill="#495057">2</text>
+
+      <!-- ③ Node 3 -->
+      <rect x="420" y="142" width="160" height="46" rx="6" fill="#f8f9fa" stroke="#495057" stroke-width="1.5" />
+      <text x="500" y="170" font-size="14">POINTER = TRUE</text>
+      <circle cx="600" cy="165" r="8" fill="#fff" stroke="#adb5bd" stroke-width="1.2"/>
+      <text x="600" y="169" font-size="11" fill="#495057">3</text>
+
+      <!-- ④ Node 4 -->
+      <rect x="160" y="240" width="200" height="46" rx="6" fill="#f8f9fa" stroke="#495057" stroke-width="1.5" />
+      <text x="260" y="268" font-size="14">X = X + 2</text>
+      <circle cx="380" cy="263" r="8" fill="#fff" stroke="#adb5bd" stroke-width="1.2"/>
+      <text x="380" y="267" font-size="11" fill="#495057">4</text>
+
+      <!-- ⑤ Node 5 -->
+      <rect x="140" y="320" width="240" height="56" rx="6" fill="#f8f9fa" stroke="#495057" stroke-width="1.5" />
+      <text x="260" y="344" font-size="13">CALL SUB(X, POINTER,</text>
+      <text x="260" y="364" font-size="13">RESULT)</text>
+      <circle cx="400" cy="348" r="8" fill="#fff" stroke="#adb5bd" stroke-width="1.2"/>
+      <text x="400" y="352" font-size="11" fill="#495057">5</text>
+
+      <!-- ⑥ Node 6 (조건문) -->
+      <polygon points="260,410 340,445 260,480 180,445" fill="#f8f9fa" stroke="#495057" stroke-width="1.5" />
+      <text x="260" y="450" font-size="14">RESULT &gt; 1 ?</text>
+      <circle cx="355" cy="420" r="8" fill="#fff" stroke="#adb5bd" stroke-width="1.2"/>
+      <text x="355" y="424" font-size="11" fill="#495057">6</text>
+
+      <!-- ⑦ Node 7 -->
+      <rect x="420" y="422" width="160" height="46" rx="6" fill="#f8f9fa" stroke="#495057" stroke-width="1.5" />
+      <text x="500" y="450" font-size="14">PRINT RESULT</text>
+      <circle cx="600" cy="445" r="8" fill="#fff" stroke="#adb5bd" stroke-width="1.2"/>
+      <text x="600" y="449" font-size="11" fill="#495057">7</text>
+
+      <!-- 종료 텍스트 -->
+      <text x="260" y="555" font-size="15" font-weight="bold">종료</text>
+
+
+      <!-- ==================== 화살표 및 흐름선 ==================== -->
+      
+      <g stroke="#343a40" stroke-width="1.5" fill="none">
+        
+        <!-- 시작 -> 1 -->
+        <line x1="260" y1="20" x2="260" y2="50" marker-end="url(#arrow-head)" />
+        
+        <!-- 1 -> 2 -->
+        <line x1="260" y1="96" x2="260" y2="130" marker-end="url(#arrow-head)" />
+        
+        <!-- 2 -> 3 (YES) -->
+        <line x1="340" y1="165" x2="420" y2="165" marker-end="url(#arrow-head)" />
+        
+        <!-- 2 -> 4 (NO) -->
+        <line x1="260" y1="200" x2="260" y2="240" marker-end="url(#arrow-head)" />
+        
+        <!-- 3 -> 4 (합류선, 화살표 없음) -->
+        <path d="M 500 188 L 500 220 L 260 220" />
+        
+        <!-- 4 -> 5 -->
+        <line x1="260" y1="286" x2="260" y2="320" marker-end="url(#arrow-head)" />
+        
+        <!-- 5 -> 6 -->
+        <line x1="260" y1="376" x2="260" y2="410" marker-end="url(#arrow-head)" />
+        
+        <!-- 6 -> 종료 (YES) -->
+        <line x1="260" y1="480" x2="260" y2="535" marker-end="url(#arrow-head)" />
+        
+        <!-- 6 -> 7 (NO) -->
+        <line x1="340" y1="445" x2="420" y2="445" marker-end="url(#arrow-head)" />
+        
+        <!-- 7 -> 1 (왼쪽으로 크게 도는 반복문 Loop) -->
+        <path d="M 500 468 L 500 580 L 80 580 L 80 73 L 180 73" marker-end="url(#arrow-head)" />
+      </g>
+
+      <!-- ==================== YES / NO 레이블 ==================== -->
+      <g font-size="12" fill="#495057" stroke="none">
+        <text x="380" y="158">YES</text>
+        <text x="240" y="228">NO</text>
+        
+        <text x="240" y="515">YES</text>
+        <text x="380" y="438">NO</text>
+      </g>
+      
+    </g>
+  </svg>
+</div>
 
 #### 화이트박스 테스트 유형 (커버리지)
 
