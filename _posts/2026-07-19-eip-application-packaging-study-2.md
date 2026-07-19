@@ -490,20 +490,36 @@ graph LR
 소프트웨어 개발 속도가 하드웨어 개발 속도를 따라가지 못해 사용자 요구사항을 충족시키지 못하는 현상이다.
 
 ```mermaid
-graph LR
+flowchart LR
     subgraph 위기의 원인
         A1[특징에 대한 이해 부족]
         A2[관리 부재]
         A3[복잡도 및 크기 증가]
         A4[제품 수명주기 단축]
     end
+
+    %% 가운데 중앙 노드 생성 (동그란 모양)
+    SE(((소프트웨어<br>공학)))
+
     subgraph 극복 방안
         B1[공학적 접근]
         B2[표준화]
         B3[자동화 도구]
         B4[품질 보증]
     end
-    A1 & A2 & A3 & A4 -->|소프트웨어 공학| B1 & B2 & B3 & B4
+
+    %% 왼쪽에서 중앙으로 모이고, 중앙에서 오른쪽으로 퍼지는 구조
+    A1 & A2 & A3 & A4 --> SE
+    SE --> B1 & B2 & B3 & B4
+    
+    %% 스타일링 (선택 사항: 보기 좋게 색상 추가)
+    classDef cause fill:#fff5f5,stroke:#ffc9c9,stroke-width:2px;
+    classDef solution fill:#f1f8ff,stroke:#b6d4fe,stroke-width:2px;
+    classDef center fill:#e9ecef,stroke:#ced4da,stroke-width:3px,font-weight:bold;
+    
+    class A1,A2,A3,A4 cause;
+    class B1,B2,B3,B4 solution;
+    class SE center;
 ```
 
 ### 3-2. 소프트웨어 공학 (21년 1회, 22년 3회 기출)
