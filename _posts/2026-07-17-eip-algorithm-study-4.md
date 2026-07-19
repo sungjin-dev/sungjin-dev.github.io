@@ -9,6 +9,7 @@ tags:
   - 검색 알고리즘
   - 정렬 알고리즘
   - 클린 코드
+  - 맥케이브
 toc: true
 toc_sticky: true
 ---
@@ -315,15 +316,77 @@ flowchart LR
 
 ### 6-3. 계산 예제
 
-```mermaid
-flowchart TD
-    a((a)) --> b((b))
-    a --> c((c))
-    a --> d((d))
-    b --> c
-    c --> d
-    d --> a
-```
+<div style="background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); max-width: 650px; margin: 0 auto; border: 1px solid #eaeaea;">
+  
+  <!-- 상단 타이틀 영역 -->
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+    <span style="font-size: 1.5em;">📢</span>
+    <span style="background-color: #a07474; color: #ffffff; font-weight: bold; padding: 5px 14px; border-radius: 20px; font-size: 0.9em; box-shadow: 1px 1px 3px rgba(0,0,0,0.15);">개념 박살내기</span>
+    <strong style="font-size: 1.25em; color: #333;">맥케이브 회전수 계산</strong>
+  </div>
+
+  <!-- 메인 콘텐츠 박스 -->
+  <div style="display: flex; border: 1.5px solid #ced4da; background-color: #fcfcfc; flex-wrap: wrap;">
+    
+    <!-- 왼쪽 영역: 방향 그래프 (SVG) -->
+    <div style="flex: 1 1 280px; padding: 20px; display: flex; justify-content: center; align-items: center; border-right: 1.5px solid #ced4da; box-sizing: border-box;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" style="max-width: 250px;">
+        <defs>
+          <marker id="arrow-mac" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#333" />
+          </marker>
+        </defs>
+
+        <g stroke="#333" stroke-width="1.5" fill="none">
+          <!-- 직선 간선 (Edges) -->
+          <line x1="131" y1="79" x2="79" y2="131" marker-end="url(#arrow-mac)" /> <!-- a -> b -->
+          <line x1="150" y1="87" x2="150" y2="213" marker-end="url(#arrow-mac)" /> <!-- a -> c -->
+          <line x1="79" y1="169" x2="131" y2="221" marker-end="url(#arrow-mac)" /> <!-- b -> c -->
+          <line x1="169" y1="221" x2="221" y2="169" marker-end="url(#arrow-mac)" /> <!-- c -> d -->
+          <line x1="221" y1="131" x2="169" y2="79" marker-end="url(#arrow-mac)" /> <!-- d -> a -->
+          
+          <!-- 곡선 간선 (d -> c) -->
+          <path d="M 235 170 Q 255 255 170 235" marker-end="url(#arrow-mac)" />
+        </g>
+
+        <!-- 노드 (Nodes) -->
+        <g fill="#e9ecef" stroke="#333" stroke-width="1.5">
+          <circle cx="150" cy="60" r="26" />  <!-- a -->
+          <circle cx="60" cy="150" r="26" />  <!-- b -->
+          <circle cx="150" cy="240" r="26" /> <!-- c -->
+          <circle cx="240" cy="150" r="26" /> <!-- d -->
+        </g>
+
+        <!-- 노드 텍스트 -->
+        <g font-family="sans-serif" font-size="18" fill="#333" text-anchor="middle" dominant-baseline="central">
+          <text x="150" y="62">a</text>
+          <text x="60" y="152">b</text>
+          <text x="150" y="242">c</text>
+          <text x="240" y="152">d</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 오른쪽 영역: 수식 계산 텍스트 -->
+    <div style="flex: 1 1 250px; padding: 40px 30px; display: flex; flex-direction: column; justify-content: center; font-size: 16px; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.8; box-sizing: border-box;">
+      
+      <div style="margin-bottom: 20px;">
+        E = 화살표 수 = 6<br>
+        N = 노드 수 = 4
+      </div>
+      
+      <!-- 등호(=) 정렬을 위한 Flex 레이아웃 -->
+      <div style="display: flex;">
+        <div style="padding-right: 8px;">V(G)</div>
+        <div>
+          = E - N + 2<br>
+          = 6 - 4 + 2 = 4
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 - E(간선 수) = 6, N(노드 수) = 4
 - **V(G) = E − N + 2 = 6 − 4 + 2 = 4**
@@ -416,55 +479,171 @@ flowchart LR
 
 **EAI 구축 유형 4가지**
 
-**① 포인트 투 포인트 (Point-to-Point)** — 미들웨어 없이 애플리케이션 간 1:1 직접 연결
+<div style="background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); overflow-x: auto; max-width: 850px; margin: 0 auto; border: 1px solid #eaeaea;">
+  
+  <h3 style="margin-top: 0; margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 8px; font-size: 1.25em;">
+    <span style="color: #a05252;">🔘</span> EAI 구축 유형
+  </h3>
+  
+  <table style="width: 100%; border-collapse: collapse; min-width: 750px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 14.5px; text-align: left; color: #333;">
+    <thead>
+      <tr style="background-color: #d8cecd; border-top: 2px solid #bbaaa8; border-bottom: 2px solid #bbaaa8; text-align: center;">
+        <th style="padding: 15px; border-right: 1px solid #c9bbba; width: 22%;">유형</th>
+        <th style="padding: 15px; border-right: 1px solid #c9bbba; width: 35%;">구성도</th>
+        <th style="padding: 15px; width: 43%;">설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <!-- 1. 포인트 투 포인트 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong style="font-size: 1.05em;">포인트 투 포인트</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Point-to-Point)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <svg viewBox="0 0 200 120" width="100%" style="max-width: 180px; display: block; margin: 0 auto;">
+            <!-- 연결선 -->
+            <g stroke="#555" stroke-width="1.5">
+              <line x1="40" y1="30" x2="110" y2="20" />
+              <line x1="40" y1="30" x2="120" y2="100" />
+              <line x1="40" y1="30" x2="160" y2="50" />
+              <line x1="110" y1="20" x2="40" y2="90" />
+              <line x1="110" y1="20" x2="120" y2="100" />
+              <line x1="160" y1="50" x2="120" y2="100" />
+            </g>
+            <!-- 노드 -->
+            <g fill="#fff" stroke="#555" stroke-width="1.5">
+              <circle cx="40" cy="30" r="11" />
+              <circle cx="110" cy="20" r="11" />
+              <circle cx="160" cy="50" r="11" />
+              <circle cx="40" cy="90" r="11" />
+              <circle cx="120" cy="100" r="11" />
+            </g>
+          </svg>
+        </td>
+        <td style="padding: 15px; line-height: 1.6;">
+          • 중간에 미들웨어를 두지 않고 각각의 애플리케이션 간에 점대 점 형태로 연결
+        </td>
+      </tr>
 
-```mermaid
-graph LR
-    A((App)) --- B((App))
-    A --- C((App))
-    A --- D((App))
-    B --- C
-    B --- D
-    C --- D
-```
+      <!-- 2. 허브 앤 스포크 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong style="font-size: 1.05em;">허브 앤 스포크</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Hub &amp; Spoke)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <svg viewBox="0 0 200 120" width="100%" style="max-width: 180px; display: block; margin: 0 auto;">
+            <!-- 연결선 -->
+            <g stroke="#555" stroke-width="1.5">
+              <line x1="100" y1="35" x2="100" y2="50" />
+              <line x1="55" y1="92" x2="75" y2="75" />
+              <line x1="145" y1="92" x2="125" y2="75" />
+            </g>
+            <!-- 중앙 허브 -->
+            <rect x="65" y="50" width="70" height="25" fill="#f8f9fa" stroke="#555" stroke-width="1.5" />
+            <text x="100" y="67" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#333">Hub</text>
+            <!-- 스포크 노드 -->
+            <g fill="#fff" stroke="#555" stroke-width="1.5">
+              <circle cx="100" cy="22" r="11" />
+              <circle cx="50" cy="100" r="11" />
+              <circle cx="150" cy="100" r="11" />
+            </g>
+            <!-- 텍스트 -->
+            <text x="135" y="26" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#333">Spoke</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; line-height: 1.6;">
+          • 단일한 접점의 허브 시스템을 통하여 데이터를 전송하는 중앙 집중식 방식<br>
+          • 허브 장애 시 전체 장애 발생
+        </td>
+      </tr>
 
-**② 허브 앤 스포크 (Hub & Spoke)** — 단일 허브 시스템을 통한 중앙 집중식. 단, **허브 장애 시 전체 장애 발생**
+      <!-- 3. 메시지 버스 -->
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong style="font-size: 1.05em;">메시지 버스</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Message Bus)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <svg viewBox="0 0 200 120" width="100%" style="max-width: 180px; display: block; margin: 0 auto;">
+            <!-- 버스 라인 -->
+            <line x1="25" y1="60" x2="175" y2="60" stroke="#555" stroke-width="1.5" />
+            <text x="100" y="75" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#333">Bus</text>
+            <!-- 연결선 -->
+            <g stroke="#555" stroke-width="1.5">
+              <line x1="60" y1="35" x2="60" y2="60" />
+              <line x1="140" y1="35" x2="140" y2="60" />
+              <line x1="75" y1="88" x2="75" y2="60" />
+              <line x1="125" y1="88" x2="125" y2="60" />
+            </g>
+            <!-- 노드 -->
+            <g fill="#fff" stroke="#555" stroke-width="1.5">
+              <circle cx="60" cy="24" r="11" />
+              <circle cx="140" cy="24" r="11" />
+              <circle cx="75" cy="99" r="11" />
+              <circle cx="125" cy="99" r="11" />
+            </g>
+            <!-- 텍스트 -->
+            <text x="175" y="28" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#333">서비스</text>
+          </svg>
+        </td>
+        <td style="padding: 15px; line-height: 1.6;">
+          • 애플리케이션 사이 미들웨어(버스)를 두어 연계하는 미들웨어 통합 방식<br>
+          • 뛰어난 확장성과 대용량 데이터 처리 가능
+        </td>
+      </tr>
 
-```mermaid
-graph TD
-    S1((Spoke)) --- H[Hub]
-    H --- S2((Spoke))
-    H --- S3((Spoke))
-    H --- S4((Spoke))
-    style H fill:#f8d7da
-```
+      <!-- 4. 하이브리드 -->
+      <tr>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6; text-align: center;">
+          <strong style="font-size: 1.05em;">하이브리드</strong><br>
+          <span style="font-size: 0.85em; color: #666;">(Hybrid)</span>
+        </td>
+        <td style="padding: 15px; border-right: 1px solid #dee2e6;">
+          <svg viewBox="0 0 200 120" width="100%" style="max-width: 180px; display: block; margin: 0 auto;">
+            <!-- 버스 라인 -->
+            <line x1="30" y1="20" x2="170" y2="20" stroke="#555" stroke-width="1.5" />
+            <text x="100" y="15" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#333">Bus</text>
+            <!-- 버스 to 허브 연결선 -->
+            <g stroke="#555" stroke-width="1.5">
+              <line x1="60" y1="20" x2="60" y2="50" />
+              <line x1="140" y1="20" x2="140" y2="50" />
+            </g>
+            
+            <!-- 허브 1 (왼쪽) -->
+            <rect x="40" y="50" width="40" height="20" fill="#f8f9fa" stroke="#555" stroke-width="1.5" />
+            <text x="60" y="64" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#333">Hub</text>
+            <!-- 스포크 연결선 및 노드 1 -->
+            <line x1="38" y1="88" x2="50" y2="70" stroke="#555" stroke-width="1.5" />
+            <line x1="82" y1="88" x2="70" y2="70" stroke="#555" stroke-width="1.5" />
+            <circle cx="34" cy="94" r="7" fill="#fff" stroke="#555" stroke-width="1.5" />
+            <circle cx="86" cy="94" r="7" fill="#fff" stroke="#555" stroke-width="1.5" />
+            <line x1="60" y1="40" x2="60" y2="50" stroke="#555" stroke-width="1.5" />
+            <circle cx="60" cy="35" r="7" fill="#fff" stroke="#555" stroke-width="1.5" />
 
-**③ 메시지 버스 (Message Bus)** — 애플리케이션 사이에 미들웨어(버스)를 두어 연계. **뛰어난 확장성, 대용량 데이터 처리 가능**
+            <!-- 허브 2 (오른쪽) -->
+            <rect x="120" y="50" width="40" height="20" fill="#f8f9fa" stroke="#555" stroke-width="1.5" />
+            <text x="140" y="64" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#333">Hub</text>
+            <!-- 스포크 연결선 및 노드 2 -->
+            <line x1="118" y1="88" x2="130" y2="70" stroke="#555" stroke-width="1.5" />
+            <line x1="162" y1="88" x2="150" y2="70" stroke="#555" stroke-width="1.5" />
+            <circle cx="114" cy="94" r="7" fill="#fff" stroke="#555" stroke-width="1.5" />
+            <circle cx="166" cy="94" r="7" fill="#fff" stroke="#555" stroke-width="1.5" />
+            <line x1="140" y1="40" x2="140" y2="50" stroke="#555" stroke-width="1.5" />
+            <circle cx="140" cy="35" r="7" fill="#fff" stroke="#555" stroke-width="1.5" />
+          </svg>
+        </td>
+        <td style="padding: 15px; line-height: 1.6;">
+          • 그룹 내는 허브 앤 스포크 방식을 사용하고, 그룹 간에는 메시지 버스 방식을 사용하는 통합 방식
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
 
-```mermaid
-graph TD
-    A((서비스)) --- BUS
-    B((서비스)) --- BUS[/Bus/]
-    BUS --- C((서비스))
-    BUS --- D((서비스))
-    style BUS fill:#d1ecf1
-```
-
-**④ 하이브리드 (Hybrid)** — 그룹 내는 허브 앤 스포크, 그룹 간은 메시지 버스 방식을 사용하는 통합 방식
-
-```mermaid
-graph TD
-    BUS[/Bus/]
-    H1[Hub] --- BUS
-    H2[Hub] --- BUS
-    A((·)) --- H1
-    B((·)) --- H1
-    C((·)) --- H2
-    D((·)) --- H2
-    style BUS fill:#d1ecf1
-    style H1 fill:#ffe5d0
-    style H2 fill:#ffe5d0
-```
 
 ### 9-2. ESB (Enterprise Service Bus)
 
