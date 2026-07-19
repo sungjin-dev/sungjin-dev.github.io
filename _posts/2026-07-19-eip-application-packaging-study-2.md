@@ -1,4 +1,4 @@
-<img width="939" height="69" alt="image" src="https://github.com/user-attachments/assets/fd1ac623-07fa-4daa-8844-542027853a68" />---
+---
 title: "[정보처리기사 필기] 제품 소프트웨어 패키징 정리"
 excerpt: "애플리케이션 패키징, **DRM**, 제품 소프트웨어 매뉴얼 · 품질 표준 · 버전 관리 · 빌드 자동화까지"
 categories:
