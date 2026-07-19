@@ -458,6 +458,7 @@ a is b    # False (같은 객체인가) — is는 None 비교에만: if x is Non
 | 파일 열기 | `with open(...)` |
 | 하나라도/전부 | `any()` / `all()` |
 
+---
 
 ### 참고 : `range(len(list))`만 써야하는 그 1%
 
