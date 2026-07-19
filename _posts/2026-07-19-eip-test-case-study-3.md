@@ -585,6 +585,6 @@ flowchart LR
 
 
 
-👉 **[오답노트 — 1과목 소프트웨어 설계](/정처기/wrong-note-part1/)**
+👉 **[오답노트 — 2과목 소프트웨어 개발](/정처기/wrong-note-part4/)**
 
 [star]: /assets/images/star.png#blog-star-emoji "star"
