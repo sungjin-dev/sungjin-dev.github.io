@@ -192,31 +192,26 @@ graph LR
 
 ```mermaid
 graph TD
-    %% 레벨 1 영역 (루트 노드)
     subgraph 레벨 1
         A(("A<br/>(루트 노드)"))
     end
     
-    %% 레벨 2 영역 (부모, 형제 노드)
     subgraph 레벨 2
         B(("B<br/>(부모 노드)"))
         C(("C"))
     end
     
-    %% 레벨 3 영역 (자식 노드)
     subgraph 레벨 3
         D(("D<br/>(자식 노드)"))
         E(("E"))
     end
-    
-    %% 레벨 4 영역 (단말 노드)
+    )
     subgraph 레벨 4
         F(("F"))
         G(("G"))
         H(("H<br/>(단말 노드)"))
     end
 
-    %% 부모-자식 간 트리 가지 연결 (실선)
     A --- B
     A --- C
     B --- D
@@ -225,10 +220,7 @@ graph TD
     D --- G
     D --- H
 
-    %% 형제 노드 관계 (양방향 점선 화살표)
     B <-. "형제 노드" .-> C
-    
-    %% 다이어그램 스타일링 (점선 테두리 및 노드 디자인)
     style 레벨 1 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
     style 레벨 2 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
     style 레벨 3 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
