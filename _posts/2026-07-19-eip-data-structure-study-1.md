@@ -192,40 +192,13 @@ graph LR
 
 ```mermaid
 graph TD
-    subgraph 레벨 1
-        A(("A<br/>(루트 노드)"))
-    end
-    
-    subgraph 레벨 2
-        B(("B<br/>(부모 노드)"))
-        C(("C"))
-    end
-    
-    subgraph 레벨 3
-        D(("D<br/>(자식 노드)"))
-        E(("E"))
-    end
-    
-    subgraph 레벨 4
-        F(("F"))
-        G(("G"))
-        H(("H<br/>(단말 노드)"))
-    end
-
-    A --- B
-    A --- C
-    B --- D
-    B --- E
-    D --- F
-    D --- G
-    D --- H
-
-    B <-. "형제 노드" .-> C
-    style 레벨 1 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
-    style 레벨 2 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
-    style 레벨 3 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
-    style 레벨 4 fill:none,stroke:#999,stroke-dasharray: 5 5,stroke-width:1.5px
-    classDef default fill:#ffffff,stroke:#333333,stroke-width:2px,color:#000000;
+    A["A (루트 노드, 레벨1)"] --> B["B (레벨2)"]
+    A --> C["C (레벨2)"]
+    B --> D["D (레벨3)"]
+    B --> E["E (레벨3)"]
+    D --> F["F (레벨4)"]
+    D --> G["G (레벨4)"]
+    D --> H["H (레벨4)"]
 ```
 
 ### 3-2. 트리 용어 ![star] 기출 최다
