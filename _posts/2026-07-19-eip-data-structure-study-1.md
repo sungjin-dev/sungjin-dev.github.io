@@ -205,7 +205,7 @@ graph TD
         D(("D<br/>(자식 노드)"))
         E(("E"))
     end
-    )
+    
     subgraph 레벨 4
         F(("F"))
         G(("G"))
