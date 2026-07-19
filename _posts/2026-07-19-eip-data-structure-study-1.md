@@ -294,40 +294,52 @@ graph TD
 
 기호가 가운데 있는 일반 수식이 **Infix**다. 변환 3단계만 기억하면 된다.
 
-```mermaid
-graph TD
-    %%{init: {'flowchart': {'curve': 'stepAfter'}}}%%
-    
-    %% 피연산자 노드 (수식의 문자들)
-    A((" a "))
-    B((" b "))
-    C((" c "))
-    D((" d "))
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 260" width="100%" style="max-width: 600px; display: block; margin: 0 auto; background-color: #fcfcfc;">
+    <!-- 외부 테두리 -->
+    <rect x="5" y="5" width="490" height="250" fill="none" stroke="#bbb" stroke-width="1.5" />
 
-    %% 연산 순서 결과 노드
-    Step1["①<br/>( b + c )"]
-    Step2["②<br/>a * ①"]
-    Step3["③<br/>② * d"]
+    <!-- 내부 수식 박스 -->
+    <rect x="40" y="25" width="420" height="50" fill="white" stroke="#666" stroke-width="1" />
 
-    %% ①번 연산: b와 c를 묶음
-    B --- Step1
-    C --- Step1
+    <!-- 수식 텍스트 -->
+    <g font-size="22" font-family="monospace, sans-serif" text-anchor="middle" fill="#222">
+        <text x="80" y="58">a</text>
+        <text x="130" y="60">*</text>
+        <text x="180" y="58">(</text>
+        <text x="220" y="58">b</text>
+        <text x="260" y="58">+</text>
+        <text x="300" y="58">c</text>
+        <text x="340" y="58">)</text>
+        <text x="380" y="60">*</text>
+        <text x="420" y="58">d</text>
+    </g>
 
-    %% ②번 연산: a와 ①번 결과를 묶음
-    A --- Step2
-    Step1 --- Step2
+    <!-- 밑줄 및 직각 연결선 -->
+    <g stroke="#333" stroke-width="1.2" fill="none">
+        <!-- ① (b+c) 밑줄 및 아래로 연결 -->
+        <line x1="210" y1="68" x2="310" y2="68" />
+        <line x1="260" y1="68" x2="260" y2="90" />
 
-    %% ③번 연산: ②번 결과와 d를 묶음
-    Step2 --- Step3
-    D --- Step3
+        <!-- ② a와 ① 연결 -->
+        <line x1="80" y1="75" x2="80" y2="130" />
+        <line x1="260" y1="115" x2="260" y2="130" />
+        <line x1="80" y1="130" x2="260" y2="130" />
+        <line x1="170" y1="130" x2="170" y2="155" />
 
-    %% 디자인 스타일링
-    classDef var fill:#ffffff,stroke:#333333,stroke-width:2px;
-    classDef step fill:#f8fafc,stroke:#64748b,stroke-width:2px,stroke-dasharray: 4 4;
-    class A,B,C,D var;
-    class Step1,Step2,Step3 step;
-```
+        <!-- ③ ②와 d 연결 -->
+        <line x1="170" y1="180" x2="170" y2="200" />
+        <line x1="420" y1="75" x2="420" y2="200" />
+        <line x1="170" y1="200" x2="420" y2="200" />
+        <line x1="300" y1="200" x2="300" y2="225" />
+    </g>
 
+    <!-- 원형 숫자 기호 (①, ②, ③) -->
+    <g font-size="16" font-family="sans-serif" text-anchor="middle" fill="#222">
+        <text x="260" y="108">①</text>
+        <text x="170" y="173">②</text>
+        <text x="300" y="243">③</text>
+    </g>
+</svg>
 
 ```mermaid
 flowchart LR
