@@ -739,6 +739,7 @@ flowchart LR
 ## 단위 모듈 구현의 4가지 원리 ![star]
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 mindmap
   root((단위 모듈<br>구현 원리))
     정보 은닉
