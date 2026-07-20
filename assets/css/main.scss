@@ -905,6 +905,55 @@ table a:hover {
 }
 
 /* =================================================
+   10-1. About 터미널 — 라이트 모드 스킨
+   ================================================= */
+html[data-theme="light"] .about-terminal {
+  background: #FDFCF8;
+  border-color: #E0DDD5;
+  box-shadow: 0 8px 24px rgba(60, 50, 30, 0.10);
+}
+
+html[data-theme="light"] .about-terminal__bar {
+  background: #EFEDE7;
+  border-bottom: 1px solid #E0DDD5;
+}
+
+html[data-theme="light"] .about-terminal__title {
+  color: #8A8F98;
+}
+
+html[data-theme="light"] .about-terminal__body {
+  color: #1F2329;
+}
+
+html[data-theme="light"] .about-terminal__body .cmt {
+  color: #A5AAB4;
+}
+
+html[data-theme="light"] .about-terminal__body .cmd {
+  color: #1F2329;
+}
+
+html[data-theme="light"] .about-terminal__body .prompt,
+html[data-theme="light"] .about-terminal__body .cursor {
+  color: #3F8F3F;
+}
+
+html[data-theme="light"] .about-terminal__body .out {
+  color: #4A5160;
+}
+
+html[data-theme="light"] .about-terminal__body a {
+  color: #3B6FDB;
+  border-bottom-color: #C9CEDC;
+}
+
+html[data-theme="light"] .about-terminal__body a:hover {
+  color: #7847BD;
+  border-bottom-color: #7847BD;
+}
+
+/* =================================================
    11. 전체보기 — 포스트 타임라인
    ================================================= */
 
