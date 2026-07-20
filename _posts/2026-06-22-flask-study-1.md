@@ -1,10 +1,11 @@
 ---
 title: "프로젝트 협업할 때 지켜야할 ROUTIN"
 excerpt: ".gitignore, requirements.txt 등"
-categories: [Flask]
+categories: [Git]
 tags:
   - Python
   - Flask
+  - git
 toc: true
 toc_sticky: true
 --- 
