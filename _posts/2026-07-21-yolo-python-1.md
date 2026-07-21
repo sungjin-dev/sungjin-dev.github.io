@@ -115,20 +115,9 @@ Total\_Loss = (w_1 \times box\_loss) + (w_2 \times cls\_loss) + (w_3 \times dfl\
 
 [ 경사하강법 그래프: 손실(Loss)의 골짜기를 찾는 과정 ]
 
-```mermaid
-graph TD
-    subgraph Over_Shooting [학습률이 너무 클 때]
-        direction TB
-        A1((시작점🔴)) -->|너무 큰 보폭| B1[반대편 높은 곳]
-        B1 -->|더 크게 튕김| C1[오차 폭주 / 발산💥]
-    end
 
-    subgraph Optimal [학습률이 적절할 때]
-        direction TB
-        A2((시작점🔴)) -->|적절한 보폭| B2[오차 감소]
-        B2 -->|스무스한 하강| C2((최적점 도착⭐))
-    end
-```
+<img width="3000" height="1500" alt="gradient_descent" src="https://github.com/user-attachments/assets/7653f568-4052-40a5-b009-c0c3212912ac" />
+
 
 왼쪽(빨간색 궤적): 보폭이 너무 커서 바닥을 지나치고 반대편으로 튕겨 올라가는 모습 (**Over-shooting**)
 
