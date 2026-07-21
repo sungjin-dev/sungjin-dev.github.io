@@ -113,7 +113,8 @@ Total\_Loss = (w_1 \times box\_loss) + (w_2 \times cls\_loss) + (w_3 \times dfl\
 인공지능의 목표는 자신이 내놓은 정답과 실제 정답 사이의 '오차(Loss)'를 최소화하는 것이다.
 오차를 그래프로 그리면 보통 밥그릇 모양의 U자형 곡선이 되는데, 여기서 가장 낮은 바닥(오차가 0에 가까운 곳)을 찾아가는 수학적 기법이 바로 '경사하강법'이다.
 
-[ 경사하강법 그래프: 손실(Loss)의 골짜기를 찾는 과정 ]
+
+**[ 경사하강법 그래프: 손실(Loss)의 골짜기를 찾는 과정 ]**
 
 
 <img width="3000" height="1500" alt="gradient_descent" src="https://github.com/user-attachments/assets/7653f568-4052-40a5-b009-c0c3212912ac" />
