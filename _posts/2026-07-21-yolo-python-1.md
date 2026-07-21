@@ -52,11 +52,23 @@ Confidence는 "여기 확실히 물체가 있어?"를 묻는 도구라고 보면
 
 IoU는 직역하면 합집합에 대한 교집합의 비율이다.
 
-어떤 물체를 찾을 때, 사람이 직접 "진짜 물체 위치"라고 라벨링한 정답 박스($A$)가 있고, AI가 예측해서 그린 박스($B$)가 있다고 가정해보자. 
+어떤 물체를 찾을 때, 사람이 직접 "진짜 물체 위치"라고 라벨링한 정답 박스(A)가 있고, AI가 예측해서 그린 박스(B)가 있다고 가정해보자. 
 
 `IoU`는 이 두 박스가 겹치는 면적을 두 박스의 전체 면적으로 나눈 값이다. 쉽게 말해서 더 많이 포개질 수록 모델이 정교하다는 거다. 
 
-$$IoU = \frac{\text{교집합 면적 (Area of Overlap)}}{\text{합집합 면적 (Area of Union)}} = \frac{\vert{}A \cap B\vert{}}{\vert{}A \cup B\vert{}}$$
+
+<div style="text-align: center; font-size: 1.1em; margin: 20px 0;">
+  <em>IoU</em> = 
+  <span style="display: inline-block; vertical-align: middle; text-align: center; margin: 0 5px;">
+    <span style="border-bottom: 1px solid #333; display: block; padding-bottom: 3px;">교집합 면적 (Area of Overlap)</span>
+    <span style="display: block; padding-top: 3px;">합집합 면적 (Area of Union)</span>
+  </span>
+  = 
+  <span style="display: inline-block; vertical-align: middle; text-align: center; margin: 0 5px;">
+    <span style="border-bottom: 1px solid #333; display: block; padding-bottom: 3px;">|A ∩ B|</span>
+    <span style="display: block; padding-top: 3px;">|A ∪ B|</span>
+  </span>
+</div>
 
 
 ### 1) YOLO에서 IoU가 미치도록 중요한 2가지 이유
