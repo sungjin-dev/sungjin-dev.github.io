@@ -118,7 +118,11 @@ AI를 처음 학습시킬 때, AI는 허공에 무작위로 박스를 마구 던
 
 수식으로 나타내면 다음과 같다. 
 
-Total\_Loss = (w_1 \times box\_loss) + (w_2 \times cls\_loss) + (w_3 \times dfl\_loss)
+
+<div style="text-align: center; font-size: 1.1em; margin: 20px 0; font-family: 'Times New Roman', serif; letter-spacing: 0.5px;">
+  <strong>Total_Loss</strong> = (w<sub>1</sub> &times; <em>box_loss</em>) + (w<sub>2</sub> &times; <em>cls_loss</em>) + (w<sub>3</sub> &times; <em>dfl_loss</em>)
+</div>
+
 
 ### 3. 경사하강법 (Gradient Descent) : 오차의 골짜기를 향해 걷기
 
