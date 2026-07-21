@@ -115,22 +115,19 @@ Total\_Loss = (w_1 \times box\_loss) + (w_2 \times cls\_loss) + (w_3 \times dfl\
 
 [ 경사하강법 그래프: 손실(Loss)의 골짜기를 찾는 과정 ]
 
-```markdown
-📈 오차(Loss)
-│ 
-│ 🔴 (시작점)                                  🔴 (시작점)
-│   \                                      /    \
-│    \    [학습률이 클 때: 핑퐁!]       /      \   [학습률이 적절할 때]
-│     \                              /        \
-│      ↘ -------------------------> ↗          ↘
-│       \                        /              \
-│        \                      /                ↘
-│         \                    /                  \
-│          \                  /                    ↘ (최적점 도착!)
-│           \                /                      \  ⭐ 
-│            \              /                        \___/
-│             \____________/                          골짜기 바닥
-└──────────────────────────────────────────────────────── 가중치(Weight)
+```mermaid
+graph TD
+    subgraph Over_Shooting [학습률이 너무 클 때]
+        direction TB
+        A1((시작점🔴)) -->|너무 큰 보폭| B1[반대편 높은 곳]
+        B1 -->|더 크게 튕김| C1[오차 폭주 / 발산💥]
+    end
+
+    subgraph Optimal [학습률이 적절할 때]
+        direction TB
+        A2((시작점🔴)) -->|적절한 보폭| B2[오차 감소]
+        B2 -->|스무스한 하강| C2((최적점 도착⭐))
+    end
 ```
 
 왼쪽(빨간색 궤적): 보폭이 너무 커서 바닥을 지나치고 반대편으로 튕겨 올라가는 모습 (**Over-shooting**)
@@ -411,3 +408,26 @@ YOLO 출력층: [클래스1 확률, 클래스2 확률, ..., 클래스N 확률, b
 ## 9. 정리하며
 
 마지막으로 서론에서 다뤘던 `last.py`를 통해 재개하는 방법에 대해서 소개하겠다. 
+
+**1. train.py 코드 수정 방법**
+
+기존에 학습을 시작하던 코드에서 model = YOLO("yolov8n.pt") 부분을 last.pt의 경로로 바꿔주고, train() 함수 안에 resume=True 옵션을 추가
+
+```python
+from ultralytics import YOLO
+
+# 1. 새 모델(yolov8n.pt)이 아닌, 멈춘 시점의 마지막 가중치(last.pt)를 불러옵니다.
+# (본인의 last.pt 파일이 있는 정확한 경로로 수정해주세요)
+model = YOLO('runs/detect/train/weights/last.pt') 
+
+# 2. 학습 설정에 resume=True 옵션을 줍니다.
+# (epochs나 batch 같은 설정은 기존에 돌리던 args.yaml 파일에서 알아서 불러오기 때문에 생략해도 무방합니다)
+model.train(resume=True)
+```
+
+**2. 터미널(CLI) 명령어 방식**
+파이썬 스크립트(train.py)를 열어서 수정하기 귀찮다면, 터미널(명령 프롬프트) 창에서 아래 명령어를 한 줄 치는 것만으로도 똑같이 이어서 학습이 시작.
+
+Bash
+# 경로(runs/detect/train/weights/last.pt)는 본인 상황에 맞게 변경.
+yolo train resume model=runs/detect/train/weights/last.pt
