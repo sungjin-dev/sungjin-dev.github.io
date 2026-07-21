@@ -434,6 +434,8 @@ model.train(resume=True)
 **2. 터미널(CLI) 명령어 방식**
 파이썬 스크립트(train.py)를 열어서 수정하기 귀찮다면, 터미널(명령 프롬프트) 창에서 아래 명령어를 한 줄 치는 것만으로도 똑같이 이어서 학습이 시작.
 
+```
 Bash
 # 경로(runs/detect/train/weights/last.pt)는 본인 상황에 맞게 변경.
 yolo train resume model=runs/detect/train/weights/last.pt
+```
