@@ -1528,3 +1528,43 @@ div.highlighter-rouge:hover .code-copy-btn,
     opacity: 0.85;
   }
 }
+
+/* =================================================
+   21. 맨 위로 버튼 (테마 토글 위에 쌓임)
+   ================================================= */
+#scroll-top-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 78px;              /* 토글(44px) + 간격 */
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-panel);
+  color: var(--text-strong);
+  border: 1px solid var(--border-panel);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 1;
+
+  /* 숨김 상태 */
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.15s ease;
+}
+
+#scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#scroll-top-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
