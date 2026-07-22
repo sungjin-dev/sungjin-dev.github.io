@@ -137,7 +137,7 @@ flowchart LR
 
 **가운데 레코드 번호 공식** (소수점은 버림):
 
-$$M = \left[\frac{F+L}{2}\right]$$
+M = [(F + L) / 2]
 
 - F: 남은 범위 내 첫 번째 레코드 번호
 - L: 남은 범위 내 마지막 레코드 번호
@@ -149,7 +149,7 @@ $$M = \left[\frac{F+L}{2}\right]$$
 flowchart TD
     A["1차 시도: M = (1+11)/2 = 6<br/>6번째 값 716 확인"] -->|"901 > 716<br/>오른쪽 절반으로"| B["2차 시도: M = (7+11)/2 = 9<br/>9번째 값 820 확인"]
     B -->|"901 > 820<br/>오른쪽 절반으로"| C["3차 시도: M = (10+11)/2 = 10.5 → 10<br/>10번째 값 901 확인"]
-    C --> D["✅ 901 발견! 종료"]
+    C --> D[" 901 발견! 종료"]
     style D fill:#d4edda
 ```
 
@@ -320,7 +320,6 @@ flowchart LR
   
   <!-- 상단 타이틀 영역 -->
   <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-    <span style="font-size: 1.5em;">📢</span>
     <span style="background-color: #a07474; color: #ffffff; font-weight: bold; padding: 5px 14px; border-radius: 20px; font-size: 0.9em; box-shadow: 1px 1px 3px rgba(0,0,0,0.15);">개념 박살내기</span>
     <strong style="font-size: 1.25em; color: #333;">맥케이브 회전수 계산</strong>
   </div>
