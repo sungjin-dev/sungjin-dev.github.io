@@ -468,3 +468,5 @@ model.train(resume=True)
 # 경로(runs/detect/train/weights/last.pt)는 본인 상황에 맞게 변경.
 yolo train resume model=runs/detect/train/weights/last.pt
 ```
+
+다음글에서는 실제 YOLO학습 데이터를 기반으로 어떻게 학습효과를 증진시켜왔는지 그 과정을 살펴보겠다. 
