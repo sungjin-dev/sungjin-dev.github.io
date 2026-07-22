@@ -293,6 +293,18 @@ div.highlighter-rouge {
   color: var(--code-text) !important;
 }
 
+/* text 블록 = ASCII 다이어그램 → 코드 블록보다 조용한 톤 */
+.page__content div.language-text .highlight,
+.page__content div.language-text .highlight pre {
+  background-color: transparent !important;
+  border: none;
+}
+
+.page__content div.language-text > .highlight {
+  border: 1px dashed var(--border-code);   /* 실선 → 점선으로 힘 빼기 */
+  border-radius: 8px;
+}
+
 /* ================================================= */
 /* 5. 구문 강조 — 다크: One Dark / 라이트: One Light  */
 /* ※ Minimal Mistakes 기본 스킨 완전 오버라이드      */
