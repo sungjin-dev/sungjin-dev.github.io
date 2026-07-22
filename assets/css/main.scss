@@ -1349,6 +1349,13 @@ img[src$="#blog-star-emoji"] {
   overflow: visible !important;
 }
 
+.mermaid .nodeLabel,
+.mermaid .nodeLabel p {
+  white-space: normal;
+  overflow: visible !important;
+  max-width: none !important;
+}
+
 /* =================================================
    18. 좌측 카테고리 내비 — 패널 카드화
    ================================================= */
@@ -1435,3 +1442,5 @@ img[src$="#blog-star-emoji"] {
   background: color-mix(in srgb, var(--accent) 12%, transparent);
   font-weight: 700;
 }
+
+
