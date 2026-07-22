@@ -177,3 +177,40 @@
   update();
 })();
 </script>
+
+<script>
+(function () {
+  var blocks = document.querySelectorAll('.page__content div.highlighter-rouge');
+
+  blocks.forEach(function (block) {
+    // mermaid는 렌더링되며 교체되므로 제외
+    if (block.classList.contains('language-mermaid')) return;
+
+    var code = block.querySelector('pre code') || block.querySelector('pre');
+    if (!code) return;
+
+    var btn = document.createElement('button');
+    btn.className = 'code-copy-btn';
+    btn.type = 'button';
+    btn.textContent = '복사';
+    btn.setAttribute('aria-label', '코드 복사');
+
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(code.textContent).then(function () {
+        btn.textContent = '복사됨 ✓';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = '복사';
+          btn.classList.remove('copied');
+        }, 1600);
+      }).catch(function () {
+        btn.textContent = '실패';
+        setTimeout(function () { btn.textContent = '복사'; }, 1600);
+      });
+    });
+
+    block.style.position = 'relative';
+    block.appendChild(btn);
+  });
+})();
+</script>
