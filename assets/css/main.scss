@@ -250,14 +250,15 @@ code {
   color: var(--chip-text);
   border: none;
   border-bottom: 2px solid var(--chip-underline);
-  font-size: 0.95em;                    /* 1.02em → 살짝 작게 (모노폰트는 같은 크기여도 커 보임) */
-  font-weight: 400;                     /* 700 → 400, 번짐의 주원인 제거 */
+  font-family: 'JetBrains Mono', 'D2Coding', monospace;   /* ★ 추가 */
+  font-size: 0.9em;        /* JetBrains Mono는 자폭이 넓어서 살짝 더 줄임 */
+  font-weight: 500;        /* ★ 400 → 500: 힘은 있고 번짐은 없는 지점 */
   padding: 1px 5px 2px;
   margin: 0 2px;
   border-radius: 3px 3px 0 0;
-  vertical-align: baseline;             /* middle → baseline, 픽셀 정렬 복원 */
+  vertical-align: baseline;
   white-space: nowrap;
-  -webkit-font-smoothing: antialiased;  /* 코드 블록과 동일한 교정 */
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ================================================= */
