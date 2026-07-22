@@ -1461,6 +1461,8 @@ img[src$="#blog-star-emoji"] {
   height: 100%;
   width: 0%;
   background: linear-gradient(90deg, var(--tn-blue), var(--tn-purple));
+  background-size: 100vw 100%;   /* 그라데이션을 화면 전체 폭 기준으로 고정 */
+  background-position: left;
   border-radius: 0 2px 2px 0;
   transition: width 0.1s ease-out;
 }
