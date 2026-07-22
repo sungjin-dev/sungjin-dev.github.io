@@ -289,24 +289,26 @@ toc_sticky: true
 
 ```mermaid
 flowchart LR
-    %% 왼쪽 블록: 테스트 스크립트
     subgraph Script ["테스트 스크립트 (절차 단위)"]
         direction TB
-        P1["Procedure 1. 로그인"] --> P2["Procedure 2. 상품검색"] --> P3["Procedure 3. 장바구니 담기"] --> P4["Procedure 4. 주문"] --> P5["Procedure 5. 결제"]
+        P1["Procedure 1. 로그인"] --> P2["Procedure 2. 상품검색"] 
+        P2 --> P3["Procedure 3. 장바구니 담기"] 
+        P3 --> P4["Procedure 4. 주문"] 
+        P4 --> P5["Procedure 5. 결제"]
     end
 
-    %% 오른쪽 블록: 테스트 시나리오
     subgraph Scenario ["테스트 시나리오 (상황 조합)"]
         direction TB
         S1["시나리오 1: 로그인 → 상품검색 → 장바구니 → 주문 → 결제"]
-        
         S2["시나리오 2: 상품검색 → 장바구니 → 로그인 → 주문 → 결제"]
-        
         S3["시나리오 3: 로그인 → 상품검색 → 바로 구매 → 주문 → 결제"]
         
-        %% 시나리오 박스들이 세로로 예쁘게 정렬되도록 투명 선(~~~)으로 연결
+        %% 세로 정렬을 위한 투명선
         S1 ~~~ S2 ~~~ S3
     end
+
+    %% 💡 핵심 트릭: 왼쪽 그룹과 오른쪽 그룹을 보이지 않는 선으로 강제 연결하여 좌우 배치를 만듭니다.
+    P1 ~~~ S1
 ```
 
 
