@@ -149,15 +149,15 @@ html[data-theme="light"] {
   --shadow-card: 0 2px 12px rgba(60, 50, 30, 0.07);
   --shadow-rest: 0 2px 10px rgba(35, 45, 75, 0.07);
 
-  /* --- 구문 강조 (One Light) --- */
-  --syn-kw: #A626A4;
-  --syn-type: #C18401;
-  --syn-tag: #E45649;
-  --syn-func: #4078F2;
-  --syn-attr: #986801;
-  --syn-plain: #1F2329;
-  --syn-str: #0184BC;
-  --syn-comment: #6E7250;
+  /* --- 구문 강조: 색상환 분산 팔레트 --- */
+  --syn-kw: #A626A4;        /* 키워드 — 보라 (유지) */
+  --syn-tag: #D5423E;       /* 태그 — 빨강 */
+  --syn-func: #3B6FDB;      /* 함수 — 파랑 (--link와 통일) */
+  --syn-str: #35855B;       /* 문자열 — 초록 ★ 파랑→초록으로 이동 */
+  --syn-attr: #C25E00;      /* 속성/CSS프로퍼티 — 주황 */
+  --syn-type: #8C6C13;      /* 타입/클래스 — 앰버 (블로그 포인트색 계열) */
+  --syn-plain: #383A42;     /* 일반 텍스트/괄호 — 진회색 */
+  --syn-comment: #969183;   /* 주석 — 웜그레이, 코드보다 확실히 연하게 */
 
   /* --- Tokyo Night 존 → Tokyo Night Day 대응 --- */
   --tn-card: #FFFFFF;
