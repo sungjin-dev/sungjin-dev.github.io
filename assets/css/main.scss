@@ -209,6 +209,7 @@ html[data-theme="light"] {
 /* ================================================= */
 .page__content h2 {
   color: var(--accent);
+  border-bottom: none;
   padding-left: 12px;
   border-left: 5px solid var(--accent);
   margin-top: 2em;
@@ -561,6 +562,17 @@ table a:hover {
 .page__content li,
 .page__content blockquote {
   max-width: 46em;   /* 폰트 크기 기준 상대 단위 — 한글 약 40자 폭 */
+}
+
+.page__content strong {
+  color: var(--text-strong);
+  font-weight: 700;
+  /* 취향에 따라: background: color-mix(in srgb, var(--accent) 10%, transparent); 로 형광펜 느낌 */
+}
+
+.page__content p, .page__content li {
+  line-height: 1.8;        /* 1.9 → 1.8 */
+  margin-bottom: 1.5em;    /* 1.2 → 1.5, 문단 경계 강화 */
 }
 
 /* ================================================= */
