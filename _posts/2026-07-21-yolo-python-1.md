@@ -252,11 +252,67 @@ Precision과 Recall은 서로 **상충(Trade-off) 관계**에 있는데, 이 둘
 **Confidence Threshold와 Precision과 Recall과의 관계**
 <img width="2179" height="1340" alt="image" src="https://github.com/user-attachments/assets/789e9337-a11b-462a-9946-125871727152" />
 <br><br>
+
+**모델이 현재 정확도(100%)만 좋고 재현율(0%)이 꽝인 상태라고 가정해보자.**
+
+이 때 Confidence Threshold값을 0.1로만 상향 조정해도 재현율이 크게 증가하면서 F1 score값도 가파르게 증가한다. 0.2로 올리면 0.1때보다는 덜하지만 그래도 크게 오를 것이다. 이렇게 쭉 올리다가 0.6에 도달했는데 딱 증감량이 0인 순간이 왔다고 가정해보자. 여기서 0.61로 상향하면 이젠 정확도가 너무 낮아져서 F1 score값이 하락하는 `임계점`에 도달했다고 보면 된다. 그래서 봉우리가 가장 높은 이 부분이 최적점이 된다. 
    
-F1 점수가 높다는 것은 **정밀도와 재현율 어느 한쪽에 치우치지 않고 둘 다 잘하고 있다**는 강력한 증거이다. "정밀도와 재현율의 두 마리 토끼를 얼마나 잘 붙잡고 있는가?"를 보여주는 **균형 지수**인 셈. 
+F1 점수가 높다는 것은 **정밀도와 재현율 어느 한쪽에 치우치지 않고 둘 다 잘하고 있다**는 강력한 증거이다. "정밀도와 재현율의 두 마리 토끼를 얼마나 잘 붙잡고 있는가?"를 보여주는 **균형 지수**인 셈. 보통 경제학에서는 그래프가 서로 만나는 지점이 균형(equilibrium)인 경우가 다수 있다. 수요와 공급곡선이 대표적인데 한계수입이나 한계효용 체감의 법칙 관점으로 접하면 위 그래프와 똑같다. 
 
+> **F1 점수와 '한계효용 체감의 법칙'**
+> 
+> 경제학에서 피자를 한 조각씩 더 먹을수록 처음 느꼈던 엄청난 만족감이 점점 줄어들게 되는 것을 **'한계효용 체감의 법칙'**이라고 한다. 
+> 
+> 처음 한입 베어 물었을 때는 엄청난 만족감에 급격하게 효용이 증가하지만 계속 먹다보면 점점 물리게 된다. 그러다 임계점에 도달하면 오히려 먹는 것이 고통스러워질 것이다. 
+> 
+> 이런 개념을 머릿속에 저장하면 굉장히 많은 개념들을 익히는데 큰 도움이 될 것이다. 
 
-그렇게 균형적으로 탐지를 해야 오탐지 없이 안정적인 성능을 구현할 수 있다. 
+<div align="center" style="margin: 30px 0;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 100%; height: auto;">
+    
+    <!-- 화살표 정의 -->
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#000000" />
+      </marker>
+    </defs>
+
+    <!-- X, Y 축 -->
+    <path d="M 80 430 L 80 60" stroke="#000000" stroke-width="3" marker-end="url(#arrow)" />
+    <path d="M 80 430 L 720 430" stroke="#000000" stroke-width="3" marker-end="url(#arrow)" />
+
+    <!-- Y축 라벨 (효용수준) -->
+    <text x="75" y="40" font-family="'Malgun Gothic', sans-serif" font-size="22" font-weight="bold" text-anchor="middle">효용수준</text>
+    <text x="75" y="15" font-family="'Malgun Gothic', sans-serif" font-size="14" fill="#666" text-anchor="middle">(만족도 ⭐)</text>
+
+    <!-- X축 라벨 (소비량) -->
+    <text x="710" y="470" font-family="'Malgun Gothic', sans-serif" font-size="22" font-weight="bold" text-anchor="end">소비량</text>
+    <text x="710" y="495" font-family="'Malgun Gothic', sans-serif" font-size="14" fill="#666" text-anchor="end">(피자 조각 수 🍕 / 객체 탐지 기준 완화)</text>
+
+    <!-- 총효용 곡선 (빨간색) -->
+    <path d="M 80 430 Q 200 120, 680 100" fill="transparent" stroke="#E63946" stroke-width="4" />
+    
+    <!-- 한계효용 곡선 (파란색) -->
+    <path d="M 110 230 Q 220 400, 680 410" fill="transparent" stroke="#457B9D" stroke-width="4" />
+
+    <!-- 빨간색 곡선 텍스트 -->
+    <text x="450" y="110" font-family="'Malgun Gothic', sans-serif" font-size="20" font-weight="bold" fill="#E63946">총효용 곡선</text>
+    <text x="450" y="135" font-family="'Malgun Gothic', sans-serif" font-size="14" fill="#E63946">▶ [피자] 누적 포만감</text>
+    <text x="450" y="155" font-family="'Malgun Gothic', sans-serif" font-size="14" fill="#E63946">▶ [YOLO] 전체 탐지 성능 (F1 점수)</text>
+
+    <!-- 파란색 곡선 텍스트 -->
+    <text x="450" y="340" font-family="'Malgun Gothic', sans-serif" font-size="20" font-weight="bold" fill="#457B9D">한계효용 곡선</text>
+    <text x="450" y="365" font-family="'Malgun Gothic', sans-serif" font-size="14" fill="#457B9D">▶ [피자] 추가 1조각의 기쁨 하락</text>
+    <text x="450" y="385" font-family="'Malgun Gothic', sans-serif" font-size="14" fill="#457B9D">▶ [YOLO] 오탐지 증가로 인한 정밀도 하락</text>
+
+    <!-- 점선 마커 및 설명 (균형점) -->
+    <line x1="210" y1="210" x2="210" y2="430" stroke="#666" stroke-width="2" stroke-dasharray="5,5" />
+    <circle cx="210" cy="210" r="6" fill="#1D3557" />
+    <text x="225" y="215" font-family="'Malgun Gothic', sans-serif" font-size="14" font-weight="bold" fill="#1D3557">가장 이상적인 밸런스</text>
+    <text x="225" y="235" font-family="'Malgun Gothic', sans-serif" font-size="12" fill="#666">(적절한 재현율과 정밀도의 타협점)</text>
+  </svg>
+</div>
+
 
 <br><br>
 ### 1) 모델의 성능 기준이 되는 mAP
