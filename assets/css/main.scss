@@ -1568,3 +1568,43 @@ div.highlighter-rouge:hover .code-copy-btn,
   border-color: var(--accent);
   transform: translateY(-2px);
 }
+
+/* =================================================
+   22. 코드 블록 접기/펼치기
+   ================================================= */
+div.highlighter-rouge.code-folded > .highlight {
+  max-height: var(--preview-h, 180px);
+  overflow: hidden;
+  position: relative;
+}
+
+/* 잘리는 부분에 그라데이션 페이드 → "더 있다"는 시각 신호 */
+div.highlighter-rouge.code-folded > .highlight::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 70px;
+  background: linear-gradient(transparent, var(--bg-code));
+  pointer-events: none;
+}
+
+.code-fold-btn {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 0;
+  font-family: $sans-serif;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-code);
+  border: 1px dashed var(--border-code);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.code-fold-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
