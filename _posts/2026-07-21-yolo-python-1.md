@@ -1,6 +1,6 @@
 ---
-title: "YOLO 학습데이터 분석"
-excerpt: ""
+title: "[Part 2] YOLO + Flask 파이프라인 그 후: 모델 학습 결과 및 성능 지표 해석하기"
+excerpt: "YOLO 학습 후 'Experiments' 결과 읽는 법"
 categories: [Flask]
 tags:
   - Python
