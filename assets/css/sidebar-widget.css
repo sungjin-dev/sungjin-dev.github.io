@@ -37,15 +37,66 @@
   margin-bottom: 8px;
 }
 
-/* 날씨 */
+/* ── 날씨: 한 줄 가로 배치 ── */
+.weather-card .weather-body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#weather-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  /* 흰 아이콘이 밝은 패널에서 뿌옇게 뜨는 것 보정 */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
+
+html[data-theme="light"] #weather-icon {
+  filter: brightness(0.75) saturate(1.6) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+}
+
+.weather-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
 #weather-temp {
-  font-size: 1.25em;
+  font-size: 1.15em;
   font-weight: 700;
   color: var(--text-strong);
 }
+
 #weather-desc {
-  font-size: 0.85em;
+  font-size: 0.82em;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── 방문자: 라벨 왼쪽, 숫자 오른쪽 ── */
+.my-beautiful-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.badge-label {
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.badge-value {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0;
 }
 
 /* 방문자 수 — 앰버 강조는 유지하되 크기 축소 */
