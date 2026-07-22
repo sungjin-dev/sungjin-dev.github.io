@@ -253,7 +253,8 @@ code {
   font-family: 'JetBrains Mono', 'D2Coding', monospace;   /* ★ 추가 */
   font-size: 0.9em;        /* JetBrains Mono는 자폭이 넓어서 살짝 더 줄임 */
   font-weight: 500;        /* ★ 400 → 500: 힘은 있고 번짐은 없는 지점 */
-  padding: 1px 5px 2px;
+  padding: 2px 5px 3px;
+  line-height: 1; 
   margin: 0 2px;
   border-radius: 3px 3px 0 0;
   vertical-align: baseline;
