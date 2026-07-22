@@ -12,7 +12,7 @@ toc_sticky: true
 
 
 # YOLO 결과물 분석하기
-
+<br><br>
 
  가장 최신인 Ultralytics YOLOv8(Python)로 학습을 진행하면 'my_experiment_v1' 폴더에 다음과 같은 결과물들이 나온다. 
  
