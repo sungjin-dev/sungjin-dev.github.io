@@ -288,24 +288,24 @@ toc_sticky: true
 온라인 쇼핑몰 예시로 보면 바로 이해된다.
 
 ```mermaid
-flowchart TB
-    %% 왼쪽 블록: 테스트 스크립트 (먼저 선언되어 무조건 왼쪽에 위치)
+flowchart LR
     subgraph Script ["테스트 스크립트 (절차 단위)"]
+        direction TB
         P1["Procedure 1. 로그인"] --> P2["Procedure 2. 상품검색"]
         P2 --> P3["Procedure 3. 장바구니 담기"]
         P3 --> P4["Procedure 4. 주문"]
         P4 --> P5["Procedure 5. 결제"]
     end
 
-    %% 오른쪽 블록: 테스트 시나리오
     subgraph Scenario ["테스트 시나리오 (상황 조합)"]
+        direction TB
         S1["시나리오 1: 로그인 → 상품검색 → 장바구니 → 주문 → 결제"]
         S2["시나리오 2: 상품검색 → 장바구니 → 로그인 → 주문 → 결제"]
         S3["시나리오 3: 로그인 → 상품검색 → 바로 구매 → 주문 → 결제"]
-        
-        %% 세로로 가지런히 쌓이도록 투명선 연결
         S1 ~~~ S2 ~~~ S3
     end
+
+    Script ~~~ Scenario
 ```
 
 
