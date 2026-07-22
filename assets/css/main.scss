@@ -1286,6 +1286,7 @@ body {
    17. 테마 토글 버튼 (footer/custom.html에서 삽입)
    ================================================= */
 #theme-toggle {
+  overflow: visible
   position: fixed;
   right: 22px;
   bottom: 22px;
@@ -1354,6 +1355,22 @@ img[src$="#blog-star-emoji"] {
   white-space: normal;
   overflow: visible !important;
   max-width: none !important;
+}
+
+#theme-toggle::after {
+  content: "";
+  position: absolute;
+  inset: -5px;                    /* 버튼보다 5px 바깥에 링 */
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--tn-blue),
+    var(--tn-purple) calc(var(--reading, 0) * 1turn),
+    transparent calc(var(--reading, 0) * 1turn)
+  );
+  /* 가운데를 뚫어서 도넛(두께 3px)으로 만듦 → 아이콘 안 가림 */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px + 0.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px + 0.5px));
+  pointer-events: none;           /* 클릭은 버튼으로 그대로 통과 */
 }
 
 /* =================================================
