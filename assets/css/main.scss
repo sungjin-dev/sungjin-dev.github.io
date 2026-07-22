@@ -1483,3 +1483,48 @@ img[src$="#blog-star-emoji"] {
   border-radius: 0 2px 2px 0;
   transition: width 0.1s ease-out;
 }
+
+/* =================================================
+   20. 코드 블록 복사 버튼
+   ================================================= */
+.code-copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 4px 10px;
+  font-family: $sans-serif;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-chip);
+  border: 1px solid var(--border-code);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* 코드 블록에 마우스를 올렸을 때만 표시 */
+div.highlighter-rouge:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.code-copy-btn.copied {
+  color: var(--accent-green);
+  border-color: var(--accent-green);
+  opacity: 1;
+}
+
+/* 터치 기기(호버 없음)에서는 항상 표시 */
+@media (hover: none) {
+  .code-copy-btn {
+    opacity: 0.85;
+  }
+}
