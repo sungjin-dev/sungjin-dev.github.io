@@ -17,7 +17,7 @@ toc_sticky: true
  가장 최신인 Ultralytics YOLOv8(Python)로 학습을 진행하면 'my_experiment_v1' 폴더에 다음과 같은 결과물들이 나온다. 
  
 <br><br>
-**∴Results in experinments**
+**∴ Results in experinments**
 <br>
 <img width="3000" height="3000" alt="MixCollage-21-Jul-2026-09-39-PM-4190" src="https://github.com/user-attachments/assets/504f2297-96c4-4b9d-834a-c829df873849" />
 
