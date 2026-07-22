@@ -56,7 +56,7 @@ function initClock() {
 
     function render() {
         const now = new Date();
-        if (timeEl) timeEl.textContent = now.toLocaleTimeString("ko-KR");
+        if (timeEl) timeEl.textContent = now.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" });
         if (dateEl) dateEl.textContent = now.toLocaleDateString("ko-KR");
     }
 
