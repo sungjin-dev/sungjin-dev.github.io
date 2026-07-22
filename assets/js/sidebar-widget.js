@@ -75,6 +75,11 @@ async function loadWeather() {
     const descEl = document.getElementById("weather-desc");
     const iconEl = document.getElementById("weather-icon");
 
+    const ICON_EMOJI = {
+  "01": "☀️", "02": "🌤️", "03": "⛅", "04": "☁️",
+  "09": "🌧️", "10": "🌦️", "11": "⛈️", "13": "❄️", "50": "🌫️"
+};
+
     if (!tempEl && !descEl && !iconEl) return;
 
     try {
@@ -88,7 +93,10 @@ async function loadWeather() {
 
         if (tempEl) tempEl.textContent = `${Math.round(data.main.temp)}°C`;
         if (descEl) descEl.textContent = data.weather?.[0]?.description ?? "";
-        if (iconEl) iconEl.src = `https://openweathermap.org/img/wn/${data.weather?.[0]?.icon}@2x.png`;
+        if (iconEl) {
+  const code = data.weather?.[0]?.icon?.slice(0, 2);  // "01d" → "01"
+  iconEl.outerHTML = `<span id="weather-icon" style="font-size:1.6em; line-height:1;">${ICON_EMOJI[code] ?? "🌡️"}</span>`;
+}
 
     } catch (e) {
         console.error("[weather] failed", e);
