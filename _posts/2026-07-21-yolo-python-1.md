@@ -20,6 +20,8 @@ toc_sticky: true
 
 <img width="3000" height="3000" alt="MixCollage-21-Jul-2026-09-39-PM-4190" src="https://github.com/user-attachments/assets/504f2297-96c4-4b9d-834a-c829df873849" />
 
+<br><br>
+
 그 밖에도 가장 중요한 최상의 학습 데이터를 가지고 있는 `best.pt`를 비롯해 각종 수치 결과들을 엑셀로 정리해놓은 `results.csv`까지 다양하게 참고할 자료들을 쏟아낸다. 
 
 YOLO가 수백 번(Epochs) 반복하며 스스로 똑똑해지는 내부 논리는 사실 학생이 공부하는 과정과 완전히 똑같다. 우리도 시험 준비할 때 회독이 중요하다고 하듯 말이다. 그 첫번째 회독이 끝나고 나오는 `val_batch0_pred.jpg`(학습 중인 모델이 검증 -Validation- 이미지에 직접 바운딩 박스를 친 결과물)이 생각보다 엄청 중요하다. 
