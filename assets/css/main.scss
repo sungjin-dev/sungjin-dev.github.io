@@ -8,13 +8,6 @@
 /* ================================================= */
 $max-width: 1800px;
 
-.layout {
-  display: grid;
-  grid-template-columns: 280px minmax(0, 760px) 280px;
-  justify-content: center;
-  gap: 32px;
-}
-
 $right-sidebar-width-narrow: 220px;
 $right-sidebar-width: 300px;
 $right-sidebar-width-wide: 350px;
@@ -465,15 +458,6 @@ div.highlighter-rouge {
 /* 6. 표 디자인                                       */
 /* ================================================= */
 
-.table-wrapper {
-  overflow-x: auto;      /* 넘치면 가로 스크롤 */
-}
-.table-wrapper table {
-  width: 100%;
-  table-layout: fixed;   /* 열 폭을 균등/지정 배분 */
-  font-size: 0.9rem;     /* 크기 조절은 폰트로 */
-}
-
 table th:not(:last-child),
 table td:not(:last-child) {
   border-right: 1px solid var(--border-table);
@@ -575,6 +559,12 @@ table a:hover {
   display: block !important;
   overflow-x: auto;
   max-width: 100% !important;
+}
+
+.post-content table {
+  width: 100%;
+  table-layout: fixed;
+  font-size: 0.9rem;
 }
 
 /* ================================================= */
