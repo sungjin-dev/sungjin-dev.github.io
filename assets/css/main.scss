@@ -8,6 +8,13 @@
 /* ================================================= */
 $max-width: 1800px;
 
+.layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 760px) 280px;
+  justify-content: center;
+  gap: 32px;
+}
+
 $right-sidebar-width-narrow: 220px;
 $right-sidebar-width: 300px;
 $right-sidebar-width-wide: 350px;
