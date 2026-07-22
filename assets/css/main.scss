@@ -250,13 +250,14 @@ code {
   color: var(--chip-text);
   border: none;
   border-bottom: 2px solid var(--chip-underline);
-  font-size: 1.02em;
-  padding: 0px 3px 1px 3px;
+  font-size: 0.95em;                    /* 1.02em → 살짝 작게 (모노폰트는 같은 크기여도 커 보임) */
+  font-weight: 400;                     /* 700 → 400, 번짐의 주원인 제거 */
+  padding: 1px 5px 2px;
   margin: 0 2px;
   border-radius: 3px 3px 0 0;
-  font-weight: 700;
-  vertical-align: middle;
+  vertical-align: baseline;             /* middle → baseline, 픽셀 정렬 복원 */
   white-space: nowrap;
+  -webkit-font-smoothing: antialiased;  /* 코드 블록과 동일한 교정 */
 }
 
 /* ================================================= */
