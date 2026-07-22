@@ -84,3 +84,53 @@
   })();
 </script>
 
+<script>
+(function () {
+  var MIN_ZOOM = 0.65; // 이 비율 밑으로는 줄이지 않음 (너무 작아지는 것 방지)
+
+  function fitTables() {
+    var tables = document.querySelectorAll('.page__content table');
+
+    tables.forEach(function (t) {
+      // 표 안에 중첩된 표는 건너뜀 (바깥 표와 함께 축소됨)
+      if (t.closest('td, th')) return;
+
+      // 모바일(768px 이하)은 기존 가로 스크롤 방식 유지
+      if (window.innerWidth <= 768) {
+        t.style.zoom = '';
+        t.classList.remove('table-overflow');
+        return;
+      }
+
+      t.style.zoom = '';                       // 원래 크기로 되돌려 측정
+      var avail = t.parentElement.clientWidth;
+      var natural = t.offsetWidth;
+
+      if (natural > avail + 1) {
+        var ratio = avail / natural;
+        if (ratio >= MIN_ZOOM) {
+          t.style.zoom = ratio;                // 딱 본문 폭에 맞게 축소
+          t.classList.remove('table-overflow');
+        } else {
+          t.style.zoom = MIN_ZOOM;             // 최소 배율까지만 줄이고
+          t.classList.add('table-overflow');   // 나머지는 표 안에서만 스크롤
+        }
+      } else {
+        t.classList.remove('table-overflow');
+      }
+    });
+  }
+
+  var timer;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(fitTables, 150);
+  });
+
+  document.addEventListener('DOMContentLoaded', fitTables);
+  window.addEventListener('load', fitTables);          // 이미지 로드 후 재측정
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitTables);              // D2Coding 적용 후 재측정
+  }
+})();
+</script>
