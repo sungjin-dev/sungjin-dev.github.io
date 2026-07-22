@@ -517,6 +517,12 @@ table a:hover {
   }
 }
 
+.page__content table.table-overflow {
+  display: block !important;
+  overflow-x: auto;
+  max-width: 100% !important;
+}
+
 /* ================================================= */
 /* 7. 본문 레이아웃                                   */
 /* ================================================= */
