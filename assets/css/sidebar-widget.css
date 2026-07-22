@@ -136,3 +136,34 @@ html[data-theme="light"] #weather-icon {
   font-size: 0.75em;
   color: var(--text-muted);
 }
+
+
+/* 다크 모드에서 사이드바 위젯 통일 */
+.dark .sidebar-widget {        /* 위젯 공통 클래스에 맞게 셀렉터 조정 */
+  background: #1e293b;         /* 본문 카드보다 살짝 밝은 네이비 */
+  border: 1px solid #334155;
+  color: #e2e8f0;
+}
+
+.dark .sidebar-widget h3,
+.dark .sidebar-widget .widget-title {
+  color: #f1f5f9;
+}
+
+/* 보조 텍스트 (날짜, 조회수 라벨 등) */
+.dark .sidebar-widget .text-muted {
+  color: #94a3b8;
+}
+
+/* 포인트 숫자 (208 같은 것) */
+.dark .sidebar-widget .highlight-number {
+  color: #fbbf24;              /* 인라인 코드와 같은 앰버로 통일감 */
+}
+
+/* Latest Posts 링크 */
+.dark .sidebar-widget a {
+  color: #cbd5e1;
+}
+.dark .sidebar-widget a:hover {
+  color: #fbbf24;
+}
