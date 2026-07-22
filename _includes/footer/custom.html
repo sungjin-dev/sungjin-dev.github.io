@@ -124,6 +124,44 @@
 })();
 </script>
 
+
+<script>
+(function () {
+  var AUTO_FOLD_LINES = 25;   // 이 줄 수를 넘으면 자동으로 접힘
+  var PREVIEW_HEIGHT = 180;   // 접힌 상태에서 보여줄 높이(px)
+
+  document.querySelectorAll('.page__content div.highlighter-rouge').forEach(function (block) {
+    if (block.classList.contains('language-mermaid')) return;
+    if (block.classList.contains('nofold')) return;
+
+    var code = block.querySelector('pre code');
+    if (!code) return;
+
+    var lines = code.textContent.split('\n').length;
+    var shouldFold = block.classList.contains('fold') || lines > AUTO_FOLD_LINES;
+    if (!shouldFold) return;
+
+    block.classList.add('code-folded');
+    block.style.setProperty('--preview-h', PREVIEW_HEIGHT + 'px');
+
+    var btn = document.createElement('button');
+    btn.className = 'code-fold-btn';
+    btn.type = 'button';
+    btn.textContent = '코드 펼치기 (' + lines + '줄) ▼';
+
+    btn.addEventListener('click', function () {
+      var folded = block.classList.toggle('code-folded');
+      btn.textContent = folded
+        ? '코드 펼치기 (' + lines + '줄) ▼'
+        : '코드 접기 ▲';
+    });
+
+    block.appendChild(btn);
+  });
+})();
+</script>
+
+
 <script>
 (function () {
   var blocks = document.querySelectorAll('.page__content div.highlighter-rouge');
