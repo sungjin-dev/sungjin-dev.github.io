@@ -318,6 +318,12 @@ div.highlighter-rouge {
   color: var(--code-text) !important;
 }
 
+.page__content .highlight pre,
+.page__content .highlight code {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 .page__content .highlight span,
 .page__content .highlight code span {
   color: var(--syn-plain) !important;
