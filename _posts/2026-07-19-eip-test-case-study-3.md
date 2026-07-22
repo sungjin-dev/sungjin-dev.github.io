@@ -80,124 +80,144 @@ toc_sticky: true
 
 소프트웨어 개발 단계와 테스트 레벨을 연결하여 표현한 것을 **V-모델**이라고 한다.
 
-<div style="background-color: #ffffff; padding: 30px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow-x: auto; max-width: 850px; margin: 0 auto; border: 1px solid #eaeaea;">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" style="display: block; margin: 0 auto; min-width: 700px;">
+<div style="background-color: #ffffff; padding: 30px 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); overflow-x: auto; max-width: 850px; margin: 0 auto; border: 1px solid #eaeaea;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" width="100%" style="display: block; margin: 0 auto; min-width: 750px;">
+    
     <defs>
-      <!-- 배경 V자 화살표 머리 -->
-      <marker id="arrow-v" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="6" markerHeight="6" orient="auto">
-        <path d="M0,-5 L10,0 L0,5 z" fill="#495057" />
+      <!-- V자 화살표 머리 (마커) -->
+      <marker id="v-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#606468" />
       </marker>
       
-      <!-- 박스 그림자 효과 -->
+      <!-- 상자 그림자 효과 -->
       <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.15" />
+        <feDropShadow dx="1.5" dy="2.5" stdDeviation="2" flood-color="#000000" flood-opacity="0.12" />
       </filter>
 
-      <!-- 박스 그라데이션 -->
-      <linearGradient id="boxGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <!-- 상자 배경 그라데이션 (교재 느낌의 미세한 입체감) -->
+      <linearGradient id="boxBg" x1="0%" y1="0%" x2="0%" y2="100%">
         <stop offset="0%" stop-color="#ffffff" />
         <stop offset="100%" stop-color="#f1f3f5" />
       </linearGradient>
     </defs>
 
-    <!-- 외곽 연한 회색 테두리 (교재 느낌) -->
-    <rect x="25" y="45" width="750" height="410" fill="none" stroke="#dee2e6" stroke-width="1.5" />
-
-    <!-- 좌상단 타이틀 -->
-    <g transform="translate(30, 30)">
-      <!-- 붉은색 원형 아이콘 -->
-      <circle cx="10" cy="-5" r="9" fill="#a05252" />
-      <path d="M 6 -7 L 10 -3 L 14 -7" stroke="#ffffff" stroke-width="2" fill="none" />
-      <text x="30" y="0" font-size="18" font-weight="bold" font-family="sans-serif" fill="#333">소프트웨어 생명주기의 V 모델</text>
+    <!-- 좌상단 타이틀 (테두리 밖) -->
+    <g transform="translate(45, 30)">
+      <circle cx="0" cy="0" r="10" fill="#995555" />
+      <path d="M-5,-2 L0,4 L5,-2" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="20" y="6" font-size="20" font-weight="bold" font-family="'Malgun Gothic', sans-serif" fill="#444">소프트웨어 생명주기의 V 모델</text>
     </g>
 
-    <!-- 중앙 세로 점선 -->
-    <line x1="400" y1="70" x2="400" y2="350" stroke="#868e96" stroke-width="2.5" stroke-dasharray="6,6" />
+    <!-- 외곽 연한 회색 테두리 -->
+    <rect x="30" y="55" width="740" height="465" rx="0" fill="none" stroke="#d1d4d7" stroke-width="1.5" />
 
-    <!-- 굵은 V자 배경 화살표 -->
-    <line x1="200" y1="90" x2="380" y2="255" stroke="#495057" stroke-width="8" marker-end="url(#arrow-v)" />
-    <line x1="420" y1="255" x2="600" y2="90" stroke="#495057" stroke-width="8" marker-end="url(#arrow-v)" />
+    <!-- 중앙 이중 점선 -->
+    <line x1="396" y1="70" x2="396" y2="500" stroke="#888" stroke-width="1.5" stroke-dasharray="6,4" />
+    <line x1="404" y1="70" x2="404" y2="500" stroke="#888" stroke-width="1.5" stroke-dasharray="6,4" />
 
-    <!-- ==========================================
-         박스 생성 (왼쪽 하행선)
-         ========================================== -->
-    <g font-family="sans-serif" text-anchor="middle" font-size="14" fill="#212529">
-      
-      <!-- 1단계: 요구사항 -->
-      <rect x="110" y="80" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="175" y="102" font-weight="bold">요구사항</text>
-      <text x="175" y="122" font-size="12" fill="#495057">(Requirements)</text>
-
-      <!-- 2단계: 분석 -->
-      <rect x="170" y="150" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="235" y="172" font-weight="bold">분석</text>
-      <text x="235" y="192" font-size="12" fill="#495057">(Specification)</text>
-
-      <!-- 3단계(사이드): 검증 -->
-      <rect x="100" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="165" y="242" font-weight="bold">검증</text>
-      <text x="165" y="262" font-size="12" fill="#495057">(Verification)</text>
-
-      <!-- 3단계: 설계 -->
-      <rect x="240" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="305" y="242" font-weight="bold">설계</text>
-      <text x="305" y="262" font-size="12" fill="#495057">(Design)</text>
-
-      <!-- 4단계: 구현 -->
-      <rect x="240" y="300" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="305" y="322" font-weight="bold">구현</text>
-      <text x="305" y="342" font-size="12" fill="#495057">(Code)</text>
+    <!-- 굵은 V자 배경 화살표 (상자들 뒤에 위치) -->
+    <line x1="260" y1="110" x2="385" y2="295" stroke="#606468" stroke-width="10" marker-end="url(#v-arrow)" />
+    <line x1="415" y1="295" x2="540" y2="110" stroke="#606468" stroke-width="10" marker-end="url(#v-arrow)" />
 
     <!-- ==========================================
-         박스 생성 (오른쪽 상행선)
+         상자 생성 공통 속성 세팅
          ========================================== -->
+    <g font-family="'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif" text-anchor="middle" fill="#333">
       
-      <!-- 4단계: 단위 테스트 -->
-      <rect x="430" y="300" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="495" y="322" font-weight="bold">단위 테스트</text>
-      <text x="495" y="342" font-size="12" fill="#495057">(Unit Testing)</text>
+      <!-- 1. 요구사항 (좌측 상단) -->
+      <g transform="translate(110, 80)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="26" font-size="14" font-weight="bold">요구사항</text>
+        <text x="60" y="44" font-size="11.5" fill="#555">(Requirements)</text>
+      </g>
 
-      <!-- 3단계: 통합 테스트 -->
-      <rect x="430" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="495" y="242" font-weight="bold">통합 테스트</text>
-      <text x="495" y="262" font-size="12" fill="#495057">(Integration<br>Testing)</text>
-      <!-- 멀티라인 텍스트 처리 -->
-      <rect x="430" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" />
-      <text x="495" y="238" font-weight="bold">통합 테스트</text>
-      <text x="495" y="254" font-size="12" fill="#495057">(Integration</text>
-      <text x="495" y="268" font-size="12" fill="#495057">Testing)</text>
+      <!-- 2. 분석 -->
+      <g transform="translate(180, 160)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="26" font-size="14" font-weight="bold">분석</text>
+        <text x="60" y="44" font-size="11.5" fill="#555">(Specification)</text>
+      </g>
 
-      <!-- 3단계(사이드): 확인 -->
-      <rect x="570" y="220" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="635" y="242" font-weight="bold">확인</text>
-      <text x="635" y="262" font-size="12" fill="#495057">(Validation)</text>
+      <!-- 3. 설계 -->
+      <g transform="translate(250, 240)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="26" font-size="14" font-weight="bold">설계</text>
+        <text x="60" y="44" font-size="11.5" fill="#555">(Design)</text>
+      </g>
 
-      <!-- 2단계: 시스템 테스트 -->
-      <rect x="500" y="150" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="565" y="166" font-weight="bold">시스템 테스트</text>
-      <text x="565" y="182" font-size="12" fill="#495057">(System</text>
-      <text x="565" y="196" font-size="12" fill="#495057">Testing)</text>
+      <!-- 3-side. 검증 (설계 좌측, 요구사항과 수직 정렬) -->
+      <g transform="translate(110, 240)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="26" font-size="14" font-weight="bold">검증</text>
+        <text x="60" y="44" font-size="11.5" fill="#555">(Verification)</text>
+      </g>
 
-      <!-- 1단계: 인수 테스트 -->
-      <rect x="560" y="80" width="130" height="55" rx="6" fill="url(#boxGrad)" stroke="#adb5bd" stroke-width="1.5" filter="url(#shadow)" />
-      <text x="625" y="96" font-weight="bold">인수 테스트</text>
-      <text x="625" y="112" font-size="12" fill="#495057">(Acceptance</text>
-      <text x="625" y="126" font-size="12" fill="#495057">Testing)</text>
+      <!-- 4. 구현 (좌측 하단) -->
+      <g transform="translate(250, 330)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="26" font-size="14" font-weight="bold">구현</text>
+        <text x="60" y="44" font-size="11.5" fill="#555">(Code)</text>
+      </g>
+
+      <!-- ========================================== -->
+
+      <!-- 4. 단위 테스트 (우측 하단) -->
+      <g transform="translate(430, 330)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="26" font-size="14" font-weight="bold">단위 테스트</text>
+        <text x="60" y="44" font-size="11.5" fill="#555">(Unit Testing)</text>
+      </g>
+
+      <!-- 3. 통합 테스트 -->
+      <g transform="translate(430, 240)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="20" font-size="14" font-weight="bold">통합 테스트</text>
+        <text x="60" y="37" font-size="11.5" fill="#555">(Integration</text>
+        <text x="60" y="51" font-size="11.5" fill="#555">Testing)</text>
+      </g>
+
+      <!-- 3-side. 확인 (통합 테스트 우측, 인수 테스트와 수직 정렬) -->
+      <g transform="translate(570, 240)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="26" font-size="14" font-weight="bold">확인</text>
+        <text x="60" y="44" font-size="11.5" fill="#555">(Validation)</text>
+      </g>
+
+      <!-- 2. 시스템 테스트 -->
+      <g transform="translate(500, 150)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="20" font-size="14" font-weight="bold">시스템 테스트</text>
+        <text x="60" y="37" font-size="11.5" fill="#555">(System</text>
+        <text x="60" y="51" font-size="11.5" fill="#555">Testing)</text>
+      </g>
+
+      <!-- 1. 인수 테스트 (우측 상단) -->
+      <g transform="translate(570, 80)">
+        <rect width="120" height="60" rx="6" fill="url(#boxBg)" stroke="#8e9297" stroke-width="1.2" filter="url(#shadow)" />
+        <text x="60" y="20" font-size="14" font-weight="bold">인수 테스트</text>
+        <text x="60" y="37" font-size="11.5" fill="#555">(Acceptance</text>
+        <text x="60" y="51" font-size="11.5" fill="#555">Testing)</text>
+      </g>
+
     </g>
 
     <!-- ==========================================
-         하단 텍스트 및 버튼
+         하단 텍스트 및 버튼 (테두리 안쪽에 완벽히 위치)
          ========================================== -->
-    <g font-family="sans-serif" text-anchor="middle">
+    <g font-family="'Malgun Gothic', sans-serif" text-anchor="middle">
+      
       <!-- 왼쪽 (소프트웨어 아키텍트) -->
-      <text x="195" y="390" font-size="15" font-weight="bold" fill="#333">소프트웨어 아키텍트</text>
-      <rect x="105" y="405" width="180" height="34" rx="17" fill="#5a6268" />
-      <text x="195" y="428" font-size="14" font-weight="bold" fill="#ffffff">테스트 계획 및 설계</text>
+      <text x="240" y="440" font-size="14" font-weight="bold" fill="#333">소프트웨어 아키텍트</text>
+      <!-- 버튼 영역 -->
+      <rect x="150" y="455" width="180" height="32" rx="16" fill="#5a6066" />
+      <text x="240" y="476" font-size="13.5" font-weight="bold" fill="#ffffff">테스트 계획 및 설계</text>
 
       <!-- 오른쪽 (테스트 매니저) -->
-      <text x="605" y="390" font-size="15" font-weight="bold" fill="#333">테스트 매니저</text>
-      <rect x="535" y="405" width="140" height="34" rx="17" fill="#5a6268" />
-      <text x="605" y="428" font-size="14" font-weight="bold" fill="#ffffff">테스트 수행</text>
+      <text x="560" y="440" font-size="14" font-weight="bold" fill="#333">테스트 매니저</text>
+      <!-- 버튼 영역 -->
+      <rect x="490" y="455" width="140" height="32" rx="16" fill="#5a6066" />
+      <text x="560" y="476" font-size="13.5" font-weight="bold" fill="#ffffff">테스트 수행</text>
+
     </g>
 
   </svg>
