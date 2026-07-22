@@ -233,10 +233,25 @@ html[data-theme="light"] {
 code {
   background-color: var(--bg-chip);
   color: var(--syn-attr);
+  font-weight: 700;
   padding: 2px 5px;
   border-radius: 4px;
   font-family: 'D2Coding', 'Consolas', monospace;
-  font-size: 0.95em;
+  font-size: 0.9em;
+}
+
+/* 라이트 모드 */
+:not(pre) > code {
+  background: #faf3e3;
+  color: #b45309;             /* 진한 주황갈색 — 지금보다 한 톤 진하게 */
+  border: 1px solid #e8d9b8;
+}
+
+/* 다크 모드 */
+.dark :not(pre) > code {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;             /* 밝은 앰버 — 어두운 배경에서 잘 뜸 */
+  border: 1px solid rgba(251, 191, 36, 0.25);
 }
 
 /* 본문 안 인라인 코드 칩 */
