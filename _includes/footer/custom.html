@@ -138,3 +138,39 @@
   }
 })();
 </script>
+
+<script>
+(function () {
+  var content = document.querySelector('.page__content');
+  // 본문이 없는 페이지(홈, 목록 등)나 짧은 글에서는 표시하지 않음
+  if (!content || content.offsetHeight < window.innerHeight) return;
+
+  var bar = document.createElement('div');
+  bar.id = 'reading-progress';
+  bar.innerHTML = '<div id="reading-progress__fill"></div>';
+  document.body.appendChild(bar);
+
+  var fill = document.getElementById('reading-progress__fill');
+  var ticking = false;
+
+  function update() {
+    var rect = content.getBoundingClientRect();
+    var start = rect.top + window.scrollY;               // 본문 시작 지점
+    var end = start + content.offsetHeight - window.innerHeight; // 본문 끝이 화면 하단에 닿는 지점
+    var progress = (window.scrollY - start) / (end - start);
+    progress = Math.max(0, Math.min(1, progress));
+    fill.style.width = (progress * 100) + '%';
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
