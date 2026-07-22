@@ -18,23 +18,18 @@
     const { default: mermaid } = await import(
       "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
     );
-
     const isLight = document.documentElement.getAttribute("data-theme") === "light";
     mermaid.initialize({
       startOnLoad: false,
       theme: isLight ? "neutral" : "dark",
       fontFamily: "'Pretendard Variable', Pretendard, sans-serif"
     });
-
     const renderMermaid = async () => {
-      // rouge가 ```mermaid 를 감싸는 형태가 버전에 따라 달라서 두 경우 모두 잡는다
       const blocks = document.querySelectorAll(
         "div.language-mermaid, pre code.language-mermaid"
       );
       console.log("[mermaid] 발견된 블록 수:", blocks.length);
-
       blocks.forEach((el) => {
-        // el이 code면 감싸는 pre(또는 highlighter-rouge div)까지 통째로 교체
         const target = el.closest("div.highlighter-rouge") || el.closest("pre") || el;
         const code = el.tagName === "CODE" ? el : el.querySelector("code");
         if (!code) return;
@@ -43,15 +38,18 @@
         div.textContent = code.textContent;
         target.replaceWith(div);
       });
-
       await mermaid.run({ querySelector: ".mermaid" });
       console.log("[mermaid] 렌더링 완료");
     };
 
+    const start = () => {
+      document.fonts.ready.then(renderMermaid);
+    };
+
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", renderMermaid);
+      document.addEventListener("DOMContentLoaded", start);
     } else {
-      renderMermaid(); // 이미 DOM이 준비된 경우 즉시 실행
+      start();
     }
   } catch (e) {
     console.error("[mermaid] 로드/렌더링 실패:", e);
