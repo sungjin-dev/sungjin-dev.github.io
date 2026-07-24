@@ -74,6 +74,8 @@ IoU는 직역하면 합집합에 대한 교집합의 비율이다.
 </div>
 
 
+예시 :
+
 <img width="600" height="248" alt="image" src="https://github.com/user-attachments/assets/105a4c64-f4cb-4c20-a94a-15422eb64993" />
 
 <br><br>
