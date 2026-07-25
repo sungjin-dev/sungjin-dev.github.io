@@ -3,7 +3,7 @@
 # ============================================================
 - title: "YOLO + Flask 실시간 객체 탐지 파이프라인"
   summary: "YOLOv8 모델 학습부터 Flask 서빙까지. 학습 결과와 성능 지표 정리."
-  thumbnail: "/assets/images/projects/yolo-thumb.png"
+  thumbnail: "/assets/images/projects/yolo.png"
   url: "/projects/yolo-flask/"
   tags: ["Python", "YOLOv8", "Flask"]
   status: "완료"
