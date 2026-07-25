@@ -671,33 +671,33 @@ table a:hover {
   border-top: 2px solid var(--border-panel);
 }
 
-/* 스프링 링 — 카드 위 경계에 반쯤 걸친 도넛 고리들 */
+/* 링: 금속 그라데이션 + 은은한 그림자가 있는 개별 고리 */
 .layout--splash .page__content::before {
   content: "";
   position: absolute;
-  top: -17px;
-  left: 30px;
-  right: 30px;
-  height: 34px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='34' viewBox='0 0 24 34'%3E%3Cellipse cx='12' cy='17' rx='5' ry='14' transform='rotate(22 12 17)' fill='none' stroke='%23474D59' stroke-width='3.2'/%3E%3Cellipse cx='11' cy='16.5' rx='5' ry='14' transform='rotate(22 11 16.5)' fill='none' stroke='%23949CAB' stroke-width='1.1'/%3E%3C/svg%3E");
-  background-size: 24px 34px;
+  top: -27px;
+  left: 26px;
+  right: 26px;
+  height: 46px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='46' viewBox='0 0 38 46'%3E%3Cdefs%3E%3ClinearGradient id='m' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f2f3f5'/%3E%3Cstop offset='0.45' stop-color='%23979eac'/%3E%3Cstop offset='1' stop-color='%23474c57'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='19' cy='23' rx='6.5' ry='17' transform='rotate(12 19 23)' fill='none' stroke='%23272b33' stroke-width='5' opacity='0.22'/%3E%3Cellipse cx='19' cy='23' rx='6.5' ry='17' transform='rotate(12 19 23)' fill='none' stroke='url(%23m)' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 38px 46px;
   background-repeat: repeat-x;
   background-position: left center;
   pointer-events: none;
 }
 
-/* 펀치 구멍: 코일이 통과하는 세로 슬롯 (원이 아니라 타원 자국) */
+/* 구멍: 각 링이 통과하는 자리의 세로 슬롯 */
 .layout--splash .page__content::after {
   content: "";
   position: absolute;
-  top: 5px;
-  left: 30px;
-  right: 30px;
-  height: 12px;
-  background-image: radial-gradient(ellipse 3px 4.5px at 12px 50%,
-    color-mix(in srgb, var(--text-strong) 22%, transparent) 0 62%,
-    transparent 70%);
-  background-size: 24px 12px;
+  top: 6px;
+  left: 26px;
+  right: 26px;
+  height: 11px;
+  background-image: radial-gradient(ellipse 3.5px 5px at 19px 50%,
+    rgba(0, 0, 0, 0.26) 0 60%,
+    transparent 72%);
+  background-size: 38px 11px;
   background-repeat: repeat-x;
   background-position: left center;
   pointer-events: none;
