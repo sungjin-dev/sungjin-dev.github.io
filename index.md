@@ -17,11 +17,6 @@ header:
 
 {% include series-list.html %}
 
-## 다른 주제들
-<div class="topic-chips">
-{% for chip in site.data.series.chips %}<a href="{{ chip.url | relative_url }}">{{ chip.label }}</a>{% endfor %}
-</div>
-
 ## 최근 글
 <ul class="post-timeline">
 {% for post in site.posts limit:5 %}
@@ -32,5 +27,10 @@ header:
   </li>
 {% endfor %}
 </ul>
+
+## 다른 주제들
+<div class="topic-chips">
+{% for chip in site.data.series.chips %}<a href="{{ chip.url | relative_url }}">{{ chip.label }}</a>{% endfor %}
+</div>
 
 <p class="home-more"><a href="{{ '/year-archive/' | relative_url }}">전체 글 보기 →</a></p>
