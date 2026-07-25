@@ -1,0 +1,10 @@
+<ul class="series-list">
+  {% for s in site.data.series.list %}
+  <li>
+    <a class="series-row" href="{{ s.url | relative_url }}" style="--accent: {{ s.accent | default: '#3b82f6' }};">
+      <span class="series-name">{{ s.title }}</span>
+      <span class="series-meta">{{ s.meta }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
