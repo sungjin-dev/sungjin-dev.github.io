@@ -618,51 +618,126 @@ table a:hover {
   margin-bottom: 1.5em;    /* 1.2 → 1.5, 문단 경계 강화 */
 }
 
-/* --- 7-2 (v3). 마스트헤드 — 슬림 + 완전 수직 중앙 정렬 --- */
-.masthead__inner-wrap {
-  padding: 0 1em;               /* 세로 패딩 제거, 높이는 아래 min-height로 통제 */
-}
+/* =================================================
+   [패치 8]
+   ================================================= */
 
-.greedy-nav {
-  display: flex;
-  align-items: center;          /* ★ 모든 자식을 같은 수직 중심선에 */
-  min-height: 56px;             /* 흰 바 최종 높이 — 취향껏 52~60 조절 */
-  background: var(--bg-masthead);
-}
+/* --- 8-0. 마스트헤드 원상 복구 ---
+   7-2 (v2/v3)로 넣었던 마스트헤드 블록을 전부 삭제하세요.
+   (masthead__inner-wrap / greedy-nav / site-title 관련 추가분)
+   테마 기본값으로 돌아갑니다. */
 
-.masthead .site-title {
-  font-size: 1.1em;
-  line-height: 1;
-  padding: 0;
-  margin: 0;
-  align-self: center;
-}
 
-.greedy-nav .visible-links {
+/* --- 8-1. 히어로: 제목 왼쪽 + 문구 오른쪽 배치 --- */
+
+.layout--splash .page__hero--overlay .wrapper {
   display: flex;
   align-items: center;
+  gap: 2.2em;
+}
+
+.layout--splash .page__hero--overlay .page__title {
   margin: 0;
-  padding: 0;
-  flex: 1;
-  justify-content: flex-end;
+  flex-shrink: 0;
 }
 
-.greedy-nav .visible-links li {
-  display: flex;
-  align-items: center;
+.layout--splash .page__hero--overlay .page__lead {
+  margin: 0;
+  padding-left: 2em;
+  max-width: 430px;             /* 터미널 카드와 겹치지 않는 선 */
+  border-left: 2px solid;
+  border-image: linear-gradient(180deg, #7dcfff, #bb9af7) 1;   /* 제목 밑줄과 같은 그라데이션 */
 }
 
-.greedy-nav .visible-links a {
-  padding: 0 0.9em;
-  line-height: 1;
-  height: auto;
+/* 좁은 화면: 다시 세로 배치 */
+@media (max-width: 900px) {
+  .layout--splash .page__hero--overlay .wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9em;
+  }
+  .layout--splash .page__hero--overlay .page__lead {
+    padding-left: 0;
+    border-left: none;
+  }
 }
 
-.greedy-nav .search__toggle {
-  align-self: center;
-  height: auto;
-  margin-left: 0.5em;
+
+/* --- 8-2. 본문 카드: 스프링 노트 제본 --- */
+
+.layout--splash .page__content {
+  position: relative;
+  margin-top: 30px;             /* 링이 나올 공간 */
+  border-top: 2px solid var(--border-panel);
 }
+
+/* 스프링 링 — 카드 위 경계에 반쯤 걸친 도넛 고리들 */
+.layout--splash .page__content::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 28px;
+  right: 28px;
+  height: 28px;
+  background-image: radial-gradient(closest-side,
+    transparent 33%,
+    color-mix(in srgb, var(--text-muted) 85%, transparent) 36% 52%,
+    transparent 55%);
+  background-size: 34px 28px;
+  background-repeat: repeat-x;
+  background-position: left center;
+  pointer-events: none;
+}
+
+/* 펀치 구멍 — 카드 표면의 뚫린 자국 */
+.layout--splash .page__content::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 28px;
+  right: 28px;
+  height: 9px;
+  background-image: radial-gradient(circle,
+    color-mix(in srgb, var(--text-muted) 30%, transparent) 0 3px,
+    transparent 4px);
+  background-size: 34px 9px;
+  background-repeat: repeat-x;
+  background-position: left center;
+  pointer-events: none;
+}
+
+/* 구멍 줄과 본문이 겹치지 않게 상단 패딩 소폭 확보 (16px → 26px) */
+.layout--splash .page__content {
+  padding-top: 26px;
+}
+
+
+/* --- 8-3. About: 홈 히어로 남색과 정확히 매칭 --- */
+
+/* About 페이지 상단에 홈과 동일한 남색 그라데이션 밴드
+   (about.md front matter에 header: overlay_color 추가 필요 — 안내 참조) */
+.about--page .page__hero--overlay {
+  background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
+  padding: 1.2em 0 1.1em;
+  min-height: 0;
+}
+
+.about--page .page__hero--overlay .page__title {
+  color: #fff !important;
+}
+
+/* About 터미널 — 히어로 터미널과 동일한 색값으로 통일
+   (기존 10번 섹션의 .about-terminal background: #171A26 을 아래 값으로 교체) */
+.about-terminal {
+  background: #16161e;          /* 히어로 터미널·썸네일 배경과 동일 */
+  border-color: #3b4261;        /* 히어로 터미널 테두리와 동일 */
+}
+
+.about-terminal__bar {
+  background: #24283b;          /* 히어로 터미널 바와 동일 */
+}
+
+
 /* ================================================= */
 /* 8. 사이드바 시계/날씨 위젯 접기(Toggle)             */
 /* ================================================= */
