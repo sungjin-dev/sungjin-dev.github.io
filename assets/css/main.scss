@@ -1733,3 +1733,57 @@ div.highlighter-rouge.code-folded > .highlight::after {
     }
   }
 }
+
+.search-empty-state__section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  border-bottom: none;   /* 기존 밑줄 제거 */
+  padding-bottom: 0;
+}
+
+.search-empty-state__section h3::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-panel);
+}
+
+.search-content__inner-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.search-empty-state {
+  margin-top: 2.2em;
+}
+
+.search-empty-state .post-timeline li:hover .post-timeline__date {
+  color: var(--accent);
+}
+
+.search-content {
+  background-color: var(--bg-page);
+}
+
+.search-content .search-input {
+  background: var(--bg-card);
+  color: var(--text-body);
+  border: 1px solid var(--border-panel);
+}
+
+.search-content .search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.topic-chips .tag-count {
+  font-size: 0.8em;
+  color: var(--tn-muted);
+  margin-left: 3px;
+}
