@@ -2435,3 +2435,11 @@ div.highlighter-rouge.code-folded > .highlight::after {
   color: var(--tn-strong);
   border-bottom-color: var(--tn-border);
 }
+
+/* intro 페이드인이 끊겨 반투명으로 멈추는 것 방지 */
+.layout--splash #main,
+.layout--splash .page__content,
+.layout--splash .page__content h2 {
+  animation: none !important;
+  opacity: 1 !important;
+}
