@@ -1039,31 +1039,126 @@ html[data-theme="light"] .about-terminal__body a:hover {
   border-bottom-color: #7847BD;
 }
 
+
 /* =================================================
-   11. 전체보기 — 포스트 타임라인
+   11. 전체보기 — git log 타임라인 (기존 11번 전체 교체)
    ================================================= */
 
+/* ---------- 헤더: $ git log --all --oneline ---------- */
+.gitlog-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0.4em 0 1.6em;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--tn-border-soft);
+  font-family: 'D2Coding', monospace;
+}
+
+.gitlog-cmd {
+  font-size: 0.95em;
+  color: var(--tn-strong);
+  font-weight: 700;
+}
+
+.gitlog-cmd .prompt {
+  color: var(--accent-green);
+  margin-right: 6px;
+}
+
+.gitlog-count {
+  font-size: 0.82em;
+  color: var(--tn-muted);
+}
+
+/* ---------- 타임라인 레일 ---------- */
+.timeline {
+  position: relative;
+  padding-left: 34px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg,
+    var(--tn-blue),
+    var(--tn-purple) 55%,
+    var(--tn-border-soft));
+  opacity: 0.45;
+}
+
+/* ---------- 연도 노드 ---------- */
+.timeline__year {
+  margin: 1.8em 0 0.9em -34px;
+}
+
+.timeline .post-timeline:first-of-type,
+.timeline__year:first-child {
+  margin-top: 0.2em;
+}
+
+.timeline__year span {
+  display: inline-block;
+  font-family: 'D2Coding', monospace;
+  font-size: 0.9em;
+  font-weight: 700;
+  color: var(--tn-strong);
+  background: var(--tn-card);
+  border: 1px solid var(--tn-border);
+  padding: 4px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-rest);
+}
+
+/* ---------- 커밋(글) 행 ---------- */
 .post-timeline {
   list-style: none;
-  margin: 0 0 2em;
+  margin: 0 0 1.2em;
   padding: 0;
 }
 
 .post-timeline li {
+  --cat: var(--tn-blue);          /* 카테고리 색 기본값 */
+  position: relative;
   display: flex;
   align-items: baseline;
   gap: 14px;
-  padding: 12px 8px;
-  border-bottom: 1px solid var(--tn-border-soft);
-  transition: background 0.15s ease;
+  padding: 12px 14px;
+  border-radius: 10px;
+  max-width: none;
+  margin: 0;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .post-timeline li:hover {
-  background: color-mix(in srgb, var(--tn-blue) 5%, transparent);
+  background: var(--tn-hover);
+  transform: translateX(4px);
 }
 
-.post-timeline li:last-child {
-  border-bottom: none;
+/* 레일 위 커밋 점 — 카테고리 색 */
+.timeline .post-timeline li::before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-page);
+  border: 2px solid var(--cat);
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.timeline .post-timeline li:hover::before {
+  background: var(--cat);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--cat) 20%, transparent);
 }
 
 .post-timeline__date {
@@ -1071,6 +1166,11 @@ html[data-theme="light"] .about-terminal__body a:hover {
   font-family: 'D2Coding', monospace;
   font-size: 0.85em;
   color: var(--tn-muted);
+  transition: color 0.15s ease;
+}
+
+.post-timeline li:hover .post-timeline__date {
+  color: var(--cat);
 }
 
 .post-timeline a {
@@ -1083,29 +1183,59 @@ html[data-theme="light"] .about-terminal__body a:hover {
 }
 
 .post-timeline li:hover a {
-  color: var(--tn-blue);
+  color: var(--cat);
 }
 
+/* 카테고리 뱃지 — 카테고리 색 */
 .post-timeline__cat {
   flex-shrink: 0;
   font-size: 0.75em;
   font-weight: 700;
-  color: var(--tn-purple);
-  background: color-mix(in srgb, var(--tn-purple) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--tn-purple) 35%, transparent);
+  color: var(--cat);
+  background: color-mix(in srgb, var(--cat) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cat) 35%, transparent);
   padding: 2px 10px;
   border-radius: 999px;
 }
 
+/* ---------- 카테고리 → 색 매핑 ---------- */
+.post-timeline .cat-yolo        { --cat: var(--tn-yellow); }
+.post-timeline .cat-정처기       { --cat: var(--tn-purple); }
+.post-timeline .cat-python      { --cat: var(--tn-blue); }
+.post-timeline .cat-java        { --cat: var(--tn-yellow); }
+.post-timeline .cat-sql         { --cat: var(--tn-purple); }
+.post-timeline .cat-flask       { --cat: var(--accent-green); }
+.post-timeline .cat-git         { --cat: var(--accent-green); }
+.post-timeline .cat-javascript,
+.post-timeline .cat-java_script { --cat: var(--tn-yellow); }
+.post-timeline .cat-c           { --cat: var(--tn-blue); }
+.post-timeline .cat-css         { --cat: var(--tn-purple); }
+
+/* ---------- 모바일 ---------- */
 @media (max-width: 600px) {
+  .timeline {
+    padding-left: 24px;
+  }
+  .timeline::before {
+    left: 6px;
+  }
+  .timeline .post-timeline li::before {
+    left: -22px;
+    width: 8px;
+    height: 8px;
+  }
+  .timeline__year {
+    margin-left: -24px;
+  }
   .post-timeline li {
     gap: 10px;
-    padding: 11px 4px;
+    padding: 11px 8px;
   }
   .post-timeline__cat {
     display: none;
   }
 }
+
 
 /* =================================================
    12. 카테고리/목록 페이지 — 글 목록 카드화
