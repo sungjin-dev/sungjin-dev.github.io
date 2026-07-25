@@ -232,6 +232,13 @@
   if (!input || !empty) return;
 
   function toggle() {
+    var isEmpty = input.value.trim() === '';
+    empty.style.display = isEmpty ? '' : 'none';
+    var resultsCount = document.querySelector('.results__found'); // 혹시 다른 클래스명일 수 있음
+    if (resultsCount) resultsCount.style.display = isEmpty ? 'none' : '';
+  }
+     
+  function toggle() {
     empty.style.display = input.value.trim() === '' ? '' : 'none';
   }
 
