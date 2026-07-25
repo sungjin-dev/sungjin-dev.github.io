@@ -663,51 +663,54 @@ table a:hover {
 }
 
 
-/* --- 8-2. 본문 카드: 스프링 노트 제본 --- */
+/* --- 8-2. 본문 카드: 클래식 스프링 노트 제본 --- */
 
+/* 1. 종이(본문) 질감 및 입체감 세팅 */
 .layout--splash .page__content {
   position: relative;
-  margin-top: 30px;             /* 링이 나올 공간 */
-  border-top: 2px solid var(--border-panel);
+  margin-top: 40px; 
+  padding-top: 45px; /* 링과 구멍이 들어갈 상단 여백 넉넉히 확보 */
+  background-color: #fdfdfc; /* 클래식한 미백색 종이 느낌 (다크모드라면 var(--테마색) 으로 변경하세요) */
+  border-radius: 8px; /* 노트 모서리를 살짝 둥글게 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* 부드럽고 깊은 종이 그림자 */
+  border: 1px solid #e3e6f0;
 }
 
-/* 링: 금속 그라데이션 + 은은한 그림자가 있는 개별 고리 */
+/* 2. 구멍(Holes): 펀치로 뚫린 듯한 선명하고 깊은 공간 */
+.layout--splash .page__content::after {
+  content: "";
+  position: absolute;
+  top: 15px; /* 종이 상단에서 살짝 내려온 위치 */
+  left: 26px;
+  right: 26px;
+  height: 14px;
+  /* 경계가 뚜렷한 진한 회색/검정 구멍으로 뚫린 느낌 극대화 */
+  background-image: radial-gradient(circle 5.5px at 19px 50%, #222428 90%, transparent 100%);
+  background-size: 38px 14px; /* 링 간격과 동일하게 38px */
+  background-repeat: repeat-x;
+  background-position: left center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 3. 링(Spring): 금속 광택 강화 + 실제 그림자 투사(drop-shadow) */
 .layout--splash .page__content::before {
   content: "";
   position: absolute;
-  top: -27px;
+  top: -12px; /* 종이 위쪽으로 살짝 튀어나오게 위치 조정 */
   left: 26px;
   right: 26px;
   height: 46px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='46' viewBox='0 0 38 46'%3E%3Cdefs%3E%3ClinearGradient id='m' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f2f3f5'/%3E%3Cstop offset='0.45' stop-color='%23979eac'/%3E%3Cstop offset='1' stop-color='%23474c57'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='19' cy='23' rx='6.5' ry='17' transform='rotate(12 19 23)' fill='none' stroke='%23272b33' stroke-width='5' opacity='0.22'/%3E%3Cellipse cx='19' cy='23' rx='6.5' ry='17' transform='rotate(12 19 23)' fill='none' stroke='url(%23m)' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  /* 두께를 키우고(stroke-width='4.5'), 빛 반사가 확실한 하이라이트 금속 그라데이션 적용 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='46' viewBox='0 0 38 46'%3E%3Cdefs%3E%3ClinearGradient id='metal' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23e8ebf0'/%3E%3Cstop offset='25%25' stop-color='%23ffffff'/%3E%3Cstop offset='60%25' stop-color='%238a919d'/%3E%3Cstop offset='100%25' stop-color='%233a3e47'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cellipse cx='19' cy='23' rx='7' ry='17' transform='rotate(15 19 23)' fill='none' stroke='url(%23metal)' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E");
   background-size: 38px 46px;
   background-repeat: repeat-x;
   background-position: left center;
   pointer-events: none;
+  z-index: 2; /* 구멍 위를 덮도록 z-index 설정 */
+  /* SVG 안에 가짜 그림자를 빼고, CSS로 종이 위에 진짜 그림자를 투 */
+  filter: drop-shadow(3px 5px 3px rgba(0, 0, 0, 0.35));
 }
-
-/* 구멍: 각 링이 통과하는 자리의 세로 슬롯 */
-.layout--splash .page__content::after {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 26px;
-  right: 26px;
-  height: 11px;
-  background-image: radial-gradient(ellipse 3.5px 5px at 19px 50%,
-    rgba(0, 0, 0, 0.26) 0 60%,
-    transparent 72%);
-  background-size: 38px 11px;
-  background-repeat: repeat-x;
-  background-position: left center;
-  pointer-events: none;
-}
-
-/* 구멍 줄과 본문이 겹치지 않게 상단 패딩 소폭 확보 (16px → 26px) */
-.layout--splash .page__content {
-  padding-top: 26px;
-}
-
 
 /* --- 8-3 (v2). About: 남색 계열 통일 + 명도로 구분 --- */
 
