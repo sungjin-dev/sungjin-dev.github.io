@@ -2029,16 +2029,40 @@ div.highlighter-rouge.code-folded > .highlight::after {
   margin: 0;
 }
 
+/* 상태 뱃지 — 어떤 썸네일 위에서도 보이도록 */
 .project-status {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 0.72em;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7em;
   font-weight: 700;
-  padding: 3px 11px;
+  padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #1a1b26;
+  background: rgba(22, 22, 30, 0.82);      /* 고정 다크 — 터미널과 같은 톤 */
+  color: #e8edf9;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* 상태 표시등 (터미널 신호등과 같은 문법) */
+.project-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9ece6a;                     /* 기본: 완료 = 초록 */
+  box-shadow: 0 0 6px rgba(158, 206, 106, 0.7);
+}
+
+/* 진행 중 프로젝트용 — 노란 표시등 */
+.project-status--wip::before {
+  background: #e0af68;
+  box-shadow: 0 0 6px rgba(224, 175, 104, 0.7);
 }
 
 .project-body {
