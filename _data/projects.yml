@@ -1,0 +1,14 @@
+# 프로젝트 목록 — 위에 있을수록 먼저 노출됩니다
+- title: "YOLO + Flask 실시간 객체 탐지 파이프라인"
+  summary: "YOLOv8 모델 학습부터 Flask 서빙까지. mAP 0.87 달성 과정과 성능 개선 기록."
+  thumbnail: "/assets/img/projects/yolo-thumb.png"   # 탐지 결과 스크린샷 추천
+  url: "/projects/yolo-flask/"
+  tags: ["Python", "YOLOv8", "Flask"]
+  status: "완료"
+
+- title: "두 번째 프로젝트"
+  summary: "한 줄로 결과를 요약해 주세요. 무엇을 만들었고 어떤 성과가 있었는지."
+  thumbnail: "/assets/img/projects/placeholder.png"
+  url: "/projects/second/"
+  tags: ["Java", "Spring"]
+  status: "진행 중"
