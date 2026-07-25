@@ -44,6 +44,7 @@ chips:
   - { label: "Flask", url: "/flask/" }
   - { label: "SQL", url: "/sql/" }         
   - { label: "Git", url: "/git/" }
+  - { label: "Yolo", url: "/yolo/" }
   - { label: "오답노트", url: "/wrong_note/" }     
   # C++ 은 글이 생기면 다시 추가 (권장 permalink: /cpp/)
   # - { label: "C++", url: "/cpp/" }
