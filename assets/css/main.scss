@@ -844,6 +844,20 @@ table a:hover {
   color: var(--tn-btn-hover-text);
 }
 
+/* 2 → 3n+2, 3 → 3n+3 으로 변경하면 4~6번째 카드에도 색 순환 */
+.layout--splash .feature__item:nth-child(3n+2) .archive__item {
+  border-top-color: var(--tn-yellow);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--tn-yellow) 8%, transparent),
+    transparent 45%);
+}
+.layout--splash .feature__item:nth-child(3n+3) .archive__item {
+  border-top-color: var(--tn-purple);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--tn-purple) 8%, transparent),
+    transparent 45%);
+}
+
 /* ---------- 알약 칩 ---------- */
 .layout--splash .topic-chips a {
   display: inline-block;
