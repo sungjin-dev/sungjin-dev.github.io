@@ -1,14 +1,48 @@
-# 프로젝트 목록 — 위에 있을수록 먼저 노출됩니다
+# ============================================================
+# 1) _data/projects.yml  — 새 파일로 추가
+# ============================================================
 - title: "YOLO + Flask 실시간 객체 탐지 파이프라인"
-  summary: "YOLOv8 모델 학습부터 Flask 서빙까지. mAP 0.87 달성 과정과 성능 개선 기록."
-  thumbnail: "/assets/img/projects/yolo-thumb.png"   # 탐지 결과 스크린샷 추천
+  summary: "YOLOv8 모델 학습부터 Flask 서빙까지. 학습 결과와 성능 지표 정리."
+  thumbnail: "/assets/images/projects/yolo-thumb.png"
   url: "/projects/yolo-flask/"
   tags: ["Python", "YOLOv8", "Flask"]
   status: "완료"
 
-- title: "두 번째 프로젝트"
-  summary: "한 줄로 결과를 요약해 주세요. 무엇을 만들었고 어떤 성과가 있었는지."
-  thumbnail: "/assets/img/projects/placeholder.png"
-  url: "/projects/second/"
-  tags: ["Java", "Spring"]
-  status: "진행 중"
+# 프로젝트가 늘어나면 여기에 항목만 추가하면 됩니다.
+
+
+# ============================================================
+# 2) 기존 _data/series.yml 에 아래 `list:` 키를 추가
+#    (기존 chips: 와 series-cards.html 이 쓰던 키는 그대로 두세요)
+# ============================================================
+# list:
+#   - title: "Python 정규표현식 시리즈"
+#     meta: "4편 완결"
+#     url: "/series/python-regex/"
+#     accent: "#3b82f6"
+#
+#   - title: "Java 메모리 & 참조 타입"
+#     meta: "연재 중"
+#     url: "/series/java-jvm/"
+#     accent: "#b45309"
+#
+#   - title: "SQL 시험대비 단권화"
+#     meta: "시리즈"
+#     url: "/series/sql/"
+#     accent: "#7c3aed"
+#
+#   - title: "정처기 필기 대비 1"
+#     meta: "시리즈"
+#     url: "/series/jeongcheogi-1/"
+#     accent: "#3b82f6"
+#
+#   - title: "YOLO 분석 전체보기"
+#     meta: "분석 노트"
+#     url: "/series/yolo/"
+#     accent: "#b45309"
+#
+#   - title: "필기노트 전체보기"
+#     meta: "전체 글"
+#     url: "/notes/"
+#     accent: "#7c3aed"
+
