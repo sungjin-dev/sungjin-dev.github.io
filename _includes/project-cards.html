@@ -7,7 +7,7 @@
       {% else %}
       <span>$ preview --coming-soon</span>
       {% endif %}
-      {% if p.status %}<span class="project-status">{{ p.status }}</span>{% endif %}
+      {% if p.status %}<span class="project-status{% if p.status == '진행 중' %} project-status--wip{% endif %}">{{ p.status }}</span>{% endif %}
     </div>
     <div class="project-body">
       <h3 class="project-title">{{ p.title }}</h3>
