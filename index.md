@@ -49,5 +49,5 @@ feature_row:
 ## 최근 글
 
 {% for post in site.posts limit:5 %}
-  {% include archive-single.html %}
+  {% include archive-single.html post=post %}
 {% endfor %}
