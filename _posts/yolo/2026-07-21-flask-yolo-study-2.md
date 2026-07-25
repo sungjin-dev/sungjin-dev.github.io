@@ -2,7 +2,7 @@
 title: "[Part 1] YOLO 실시간 객체 탐지 파이프라인(Flask)  "
 excerpt: "ESP32-CAM → Flask → YOLO"
 categories:
-  - Flask
+  - yolo
 tags:
   - YOLO
   - Flask
