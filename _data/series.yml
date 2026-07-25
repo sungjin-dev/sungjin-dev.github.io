@@ -4,46 +4,46 @@ list:
   - title: "Python 정규표현식 시리즈"
     meta: "4편 완결"
     desc: "re.match()부터 패턴 문법까지, 문자열 검사의 전 과정."
-    url: "/python/"                # python.md 의 permalink 확인 (대소문자!)
+    url: "/python/"                
     accent: "var(--tn-blue)"
 
   - title: "Java 메모리 & 참조 타입"
     meta: "연재 중"
     desc: "스택·힙·메타스페이스, JVM 실행 과정을 구조부터."
-    url: "/java/"                  # java.md 의 permalink 확인
+    url: "/java/"                
     accent: "var(--tn-yellow)"
 
   - title: "SQL 시험대비 단권화"
     meta: "시리즈"
     desc: "데이터 모델링 기초에서 DML·TCL·DDL·DCL까지."
-    url: "/sql/"                   # sql.md permalink가 /sql/ 이므로 소문자
+    url: "/sql/"               
     accent: "var(--tn-purple)"
 
   - title: "정처기 필기 대비 1"
     meta: "시리즈"
     desc: "소프트웨어 설계와 개발 핵심 정리."
-    url: "/정처기/"                 # 정처기 카테고리 페이지의 permalink 확인
+    url: "/정처기/"                 
     accent: "var(--tn-blue)"
 
   - title: "YOLO 분석 전체보기"
     meta: "분석 노트"
     desc: "YOLO+Flask 파이프라인과 학습 결과·성능 지표."
-    url: "/yolo/"                  # yolo 카테고리 페이지의 permalink 확인
+    url: "/yolo/"              
     accent: "var(--tn-yellow)"
 
   - title: "필기노트 전체보기"
     meta: "전체 글"
     desc: "공부하며 남긴 기록 전체를 시간순으로."
-    url: "/notes/"                 # ★ 전체보기 페이지의 실제 permalink로 교체 필요
+    url: "/year-archive/"                
     accent: "var(--tn-purple)"
 
 chips:
-  - { label: "C", url: "/C/" }             # C.md의 permalink가 /C/ 이므로 유지
-  - { label: "JavaScript", url: "/javascript/" }   # ★ 페이지 permalink 확인
+  - { label: "C", url: "/C/" }           
+  - { label: "JavaScript", url: "/javascript/" }  
   - { label: "CSS", url: "/css/" }
   - { label: "Flask", url: "/flask/" }
-  - { label: "SQL", url: "/sql/" }         # /SQL/ → /sql/ 수정 (대소문자 불일치가 404 원인)
+  - { label: "SQL", url: "/sql/" }         
   - { label: "Git", url: "/git/" }
-  - { label: "오답노트", url: "/wrong_note/" }     # ★ wrong_note 페이지가 있다면 추가
+  - { label: "오답노트", url: "/wrong_note/" }     
   # C++ 은 글이 생기면 다시 추가 (권장 permalink: /cpp/)
   # - { label: "C++", url: "/cpp/" }
