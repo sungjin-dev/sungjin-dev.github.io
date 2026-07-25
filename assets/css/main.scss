@@ -618,31 +618,50 @@ table a:hover {
   margin-bottom: 1.5em;    /* 1.2 → 1.5, 문단 경계 강화 */
 }
 
-/* --- 7-2 (v2). 마스트헤드 — 적당한 높이 + 수직 정렬 --- */
+/* --- 7-2 (v3). 마스트헤드 — 슬림 + 완전 수직 중앙 정렬 --- */
 .masthead__inner-wrap {
-  padding: 0.85em 1em;          /* 0.6em은 과했음 → 중간값 */
+  padding: 0 1em;               /* 세로 패딩 제거, 높이는 아래 min-height로 통제 */
+}
+
+.greedy-nav {
+  display: flex;
+  align-items: center;          /* ★ 모든 자식을 같은 수직 중심선에 */
+  min-height: 56px;             /* 흰 바 최종 높이 — 취향껏 52~60 조절 */
+  background: var(--bg-masthead);
 }
 
 .masthead .site-title {
   font-size: 1.1em;
-  line-height: 1.4;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  align-self: center;
 }
 
-/* 로고·메뉴·검색 아이콘을 같은 수직 중심선에 */
-.greedy-nav,
 .greedy-nav .visible-links {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.greedy-nav .visible-links li {
   display: flex;
   align-items: center;
 }
 
-.greedy-nav a {
-  padding: 0.35em 0.8em;
-  line-height: 1.4;             /* site-title과 동일 → 기준선 일치 */
+.greedy-nav .visible-links a {
+  padding: 0 0.9em;
+  line-height: 1;
+  height: auto;
 }
 
 .greedy-nav .search__toggle {
   align-self: center;
-  margin-left: 0.4em;
+  height: auto;
+  margin-left: 0.5em;
 }
 /* ================================================= */
 /* 8. 사이드바 시계/날씨 위젯 접기(Toggle)             */
