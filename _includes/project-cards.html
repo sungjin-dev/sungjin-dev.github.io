@@ -1,9 +1,11 @@
 <div class="project-grid">
   {% for p in site.data.projects %}
   <a class="project-card" href="{{ p.url | relative_url }}">
-    <div class="project-thumb">
+    <div class="project-thumb{% unless p.thumbnail %} project-thumb--empty{% endunless %}">
       {% if p.thumbnail %}
       <img src="{{ p.thumbnail | relative_url }}" alt="{{ p.title }} 미리보기" loading="lazy">
+      {% else %}
+      <span>$ preview --coming-soon</span>
       {% endif %}
       {% if p.status %}<span class="project-status">{{ p.status }}</span>{% endif %}
     </div>
