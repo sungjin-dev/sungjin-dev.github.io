@@ -47,6 +47,15 @@ kramdown:
 
 mermaid:
   version: 11.4.0
+
+# =======================================================
+# 프로젝트 컬렉션
+# =======================================================
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/    
+  
   
 # =======================================================
 # 블로그 글 기본 설정 (오른쪽 목차 메뉴 자동 고정)
@@ -62,17 +71,8 @@ defaults:
       toc_sticky: true  # 스크롤 시 목차 오른쪽 고정
       sidebar:         
         nav: "sidebar_category"
-
-# =======================================================
-# 프로젝트
-# =======================================================
-collections:
-  projects:
-    output: true
-    permalink: /projects/:name/
-
-defaults:
-  - scope:
+        
+ - scope:
       path: ""
       type: "projects"
     values:
@@ -80,3 +80,6 @@ defaults:
       author_profile: false
       toc: true
       toc_sticky: true
+
+
+
