@@ -1,0 +1,21 @@
+<div class="project-grid">
+  {% for p in site.data.projects %}
+  <a class="project-card" href="{{ p.url | relative_url }}">
+    <div class="project-thumb">
+      {% if p.thumbnail %}
+      <img src="{{ p.thumbnail | relative_url }}" alt="{{ p.title }} 미리보기" loading="lazy">
+      {% endif %}
+      {% if p.status %}<span class="project-status">{{ p.status }}</span>{% endif %}
+    </div>
+    <div class="project-body">
+      <h3 class="project-title">{{ p.title }}</h3>
+      <p class="project-summary">{{ p.summary }}</p>
+      {% if p.tags %}
+      <ul class="project-tags">
+        {% for tag in p.tags %}<li>{{ tag }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
