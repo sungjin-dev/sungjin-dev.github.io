@@ -6,48 +6,17 @@ title: "SungJin의 개발 공부 기록"
 excerpt: '선명한 기억보다 희미한 기록이 낫다.<br>구조부터 이해하는 학습 노트. <span class="hero-terminal"><span class="hero-terminal__bar"><span></span><span></span><span></span></span><span class="hero-terminal__body"><span class="prompt">$</span> whoami<br><span class="out">sungjin — 기록하는 개발자</span><br><span class="prompt">$</span> ls series/<br><span class="out">python-regex/  java-jvm/</span></span></span>'
 header:
   overlay_color: "#1a1b26"
-feature_row:
-  - title: "Python 정규표현식 시리즈"
-    excerpt: "re.match()부터 패턴 문법까지, 문자열 검사의 모든 것을 다룬 4편 완결 시리즈."
-    url: "/python/"
-    btn_label: "시리즈 보기"
-    btn_class: "btn--primary"
-  - title: "Java 메모리 & 참조 타입"
-    excerpt: "스택·힙·메타스페이스, JVM 실행 과정까지. 구조부터 이해하는 자바 연재."
-    url: "/java/"
-    btn_label: "연재 보기"
-    btn_class: "btn--primary"
-  - title: "SQL 시험대비 단권화"
-    excerpt: "데이터 모델링 기초에서 DML·TCL·DDL·DCL까지."
-    url: "/sql/"
-    btn_label: "시리즈 보기"
-    btn_class: "btn--primary"
-  - title: "정처기 필기 대비 1"
-    excerpt: "소프트웨어 설계와 개발 "
-    url: "/정처기/"
-    btn_label: "시리즈 보기"
-    btn_class: "btn--primary"
-  - title: "YOLO 분석 전체보기"
-    excerpt: " YOLO+Flask 파이프라인과 모델 학습 결과 및 성능 지표 해석."
-    url: "/yolo/"
-    btn_label: "연재 보기"
-    btn_class: "btn--primary"
-  - title: "필기노트 전체보기"
-    excerpt: "모든 글을 시간순으로. 공부하며 남긴 기록 전체 목록."
-    url: "/year-archive/"
-    btn_label: "전체 글 보기"
-    btn_class: "btn--primary"
+
 ---
 
-{% include feature_row %}
+{% include series-cards.html %}
 
 ## 다른 주제들
-
-[C](/C/) [C++](/C++/) [JavaScript](/javascript/) [CSS](/css/) [Flask](/flask/) [SQL](/SQL/) [Git](/git/)
-{: .topic-chips}
+<div class="topic-chips">
+{% for chip in site.data.series.chips %}<a href="{{ chip.url | relative_url }}">{{ chip.label }}</a>{% endfor %}
+</div>
 
 ## 최근 글
-
 {% for post in site.posts limit:5 %}
   {% include archive-single.html post=post %}
 {% endfor %}
