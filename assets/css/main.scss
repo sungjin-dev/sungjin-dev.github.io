@@ -595,14 +595,6 @@ table a:hover {
   }
 }
 
-/* 터미널이 보이는 화면(1101px 이상)에서는 밴드가 터미널을 품도록 */
-@media (min-width: 1101px) {
-  .layout--splash .page__hero--overlay {
-    min-height: 225px;
-    display: flex;
-    align-items: center;
-  }
-}
 
 .page__content p,
 .page__content li,
@@ -2424,4 +2416,13 @@ div.highlighter-rouge.code-folded > .highlight::after {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* 터미널이 보이는 화면(1101px 이상)에서는 밴드가 터미널을 품도록 */
+@media (min-width: 1101px) {
+  .layout--splash .page__hero--overlay {
+    min-height: 225px;
+    display: flex;
+    align-items: center;
+  }
 }
