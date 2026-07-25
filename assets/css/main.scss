@@ -2427,3 +2427,11 @@ div.highlighter-rouge.code-folded > .highlight::after {
     align-items: center;
   }
 }
+
+/* =================================================
+   26. 다크모드 홈 h2 최종 확정 (선언 순서 이슈 방지)
+   ================================================= */
+.layout--splash .page__content h2 {
+  color: var(--tn-strong);
+  border-bottom-color: var(--tn-border);
+}
