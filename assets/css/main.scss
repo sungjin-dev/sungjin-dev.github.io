@@ -664,7 +664,7 @@ table a:hover {
 .layout--splash .page__content {
   position: relative;
   margin-top: 40px; 
-  padding-top: 70px; 
+  padding-top: 44px; 
   background-color: #fdfdfc; 
   border-radius: 8px; 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
@@ -679,7 +679,9 @@ table a:hover {
   left: 26px;
   right: 26px;
   height: 14px;
-  background-image: radial-gradient(circle 5.5px at 19px 50%, #222428 90%, transparent 100%);
+   background-image: radial-gradient(ellipse 3.5px 5px at 21px 50%,
+    rgba(0, 0, 0, 0.26) 0 60%,
+    transparent 72%);
   background-size: 38px 14px; 
   background-repeat: repeat-x;
   background-position: left center;
@@ -691,7 +693,7 @@ table a:hover {
 .layout--splash .page__content::before {
   content: "";
   position: absolute;
-  top: -24px; /* 구멍이 올라간 만큼 링도 위로 이동 (기존 -20px -> -24px) */
+  top: -31px; /* 구멍이 올라간 만큼 링도 위로 이동 
   left: 26px;
   right: 26px;
   height: 46px;
@@ -785,7 +787,7 @@ table a:hover {
   right: 7%;
   top: 50%;
   transform: translateY(-50%);
-  width: 264px;
+  width: 240px;
   background: #16161e;
   border: 1px solid #3b4261;
   border-radius: 10px;
@@ -796,13 +798,14 @@ table a:hover {
 .hero-terminal__bar {
   display: block;
   background: #24283b;
-  padding: 7px 12px;
+  padding: 6px 11px;
 }
 .hero-terminal__bar span {
   display: inline-block;
-  width: 11px; height: 11px;
   border-radius: 50%;
   margin-right: 6px;
+  width: 9px;
+  height: 9px;
 }
 .hero-terminal__bar span:nth-child(1) { background: #f7768e; }
 .hero-terminal__bar span:nth-child(2) { background: #e0af68; }
@@ -811,10 +814,10 @@ table a:hover {
 .hero-terminal__body {
   display: block;
   margin: 0;
-  padding: 10px 14px;
+  padding: 8px 12px;
   font-family: 'D2Coding', monospace;
-  font-size: 0.72em;
-  line-height: 1.75;
+  font-size: 0.68em;
+  line-height: 1.65;
   background: transparent;
   color: #c0caf5;
   text-align: left;
@@ -2421,7 +2424,7 @@ div.highlighter-rouge.code-folded > .highlight::after {
 /* 터미널이 보이는 화면(1101px 이상)에서는 밴드가 터미널을 품도록 */
 @media (min-width: 1101px) {
   .layout--splash .page__hero--overlay {
-    min-height: 225px;
+    min-height: 190px;
     display: flex;
     align-items: center;
   }
