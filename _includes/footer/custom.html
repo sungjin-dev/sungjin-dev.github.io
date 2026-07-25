@@ -224,3 +224,19 @@
   }, { passive: true });
 })();
 </script>
+
+<script>
+(function () {
+  var input = document.getElementById('search');       // 테마 검색 input id 확인 필요
+  var empty = document.getElementById('search-empty-state');
+  if (!input || !empty) return;
+
+  function toggle() {
+    empty.style.display = input.value.trim() === '' ? '' : 'none';
+  }
+
+  input.addEventListener('keyup', toggle);
+  input.addEventListener('input', toggle);
+  toggle();
+})();
+</script>
