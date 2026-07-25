@@ -29,7 +29,7 @@ feature_row:
     btn_class: "btn--primary"
   - title: "YOLO 분석 전체보기"
     excerpt: " YOLO+Flask 파이프라인과 모델 학습 결과 및 성능 지표 해석."
-    url: "/year-archive/"
+    url: "/yolo/"
     btn_label: "전체 글 보기"
     btn_class: "btn--primary"
   - title: "필기노트 전체보기"
