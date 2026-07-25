@@ -62,3 +62,21 @@ defaults:
       toc_sticky: true  # 스크롤 시 목차 오른쪽 고정
       sidebar:         
         nav: "sidebar_category"
+
+# =======================================================
+# 프로젝트
+# =======================================================
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "single"
+      author_profile: false
+      toc: true
+      toc_sticky: true
