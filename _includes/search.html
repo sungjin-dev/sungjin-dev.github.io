@@ -1,0 +1,25 @@
+<!-- _includes/search-empty-state.html
+     검색어가 비어있을 때 보여줄 최근 글 + 태그 -->
+<div class="search-empty-state" id="search-empty-state">
+  <div class="search-empty-state__section">
+    <h3>최근 글</h3>
+    <ul class="post-timeline">
+      {% for post in site.posts limit:5 %}
+      <li>
+        <span class="post-timeline__date">{{ post.date | date: "%m.%d" }}</span>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="search-empty-state__section">
+    <h3>태그</h3>
+    <div class="topic-chips">
+      {% assign tags = site.tags | sort %}
+      {% for tag in tags limit:12 %}
+      <a href="{{ '/tags/' | append: tag[0] | slugify | relative_url }}">{{ tag[0] }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
