@@ -678,14 +678,15 @@ table a:hover {
   position: relative;
 }
 
+/* 기존:  width: 340px; → 아래로 교체 (히어로가 줄어든 만큼 터미널도 축소) */
 .hero-terminal {
   display: block;
   position: absolute;
   right: 7%;
   top: 50%;
   transform: translateY(-50%);
-  width: 340px;
-  background: #16161e;               /* 고정: 터미널은 항상 다크 */
+  width: 290px;
+  background: #16161e;
   border: 1px solid #3b4261;
   border-radius: 10px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
@@ -712,7 +713,7 @@ table a:hover {
   margin: 0;
   padding: 12px 16px;
   font-family: 'D2Coding', monospace;
-  font-size: 0.85em;
+  font-size: 0.78em;
   line-height: 1.75;
   background: transparent;
   color: #c0caf5;
@@ -728,12 +729,13 @@ table a:hover {
 /* 히어로: 고정 다크 그라데이션 (라이트 모드에서도 다크 밴드) */
 .layout--splash .page__hero--overlay {
   background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
-  padding: 2.2em 0 2em;
+  padding: 1.5em 0 1.3em;
   min-height: 0;
 }
 
+/* 기존:  font-size: 2.6em;  →  아래로 교체 */
 .layout--splash .page__hero--overlay .page__title {
-  font-size: 2.6em;
+  font-size: 1.9em;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -748,14 +750,16 @@ table a:hover {
   content: "";
   display: block;
   width: 64px;
-  height: 5px;
-  margin-top: 0.4em;
+  height: 4px;
+  margin-top: 0.3em;
   border-radius: 3px;
   background: linear-gradient(90deg, #7dcfff, #bb9af7);
 }
 
+/* 기존:  font-size: 1.1em;  →  아래로 교체 (줄간격도 살짝 압축) */
 .layout--splash .page__hero--overlay .page__lead {
-  font-size: 1.1em;
+  font-size: 0.98em;
+  line-height: 1.7;
   color: #a9b1d6;
   max-width: 640px;
 }
@@ -1960,4 +1964,27 @@ div.highlighter-rouge.code-folded > .highlight::after {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+}
+
+/* 프로젝트 카드 제목 — .page__content h3의 초록색 오버라이드 */
+.layout--splash .page__content .project-title {
+  color: var(--tn-strong);
+  margin-top: 0;
+  margin-bottom: 0.45em;
+  font-size: 1.12em;
+}
+
+/* 홈 섹션 h2(Projects/Series 등) — 앰버 대신 본문 강조색으로 통일 */
+.layout--splash .page__content h2 {
+  color: var(--tn-strong);
+}
+
+/* 썸네일 없는 카드용 폴백 — 터미널풍 플레이스홀더 */
+.project-thumb--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'D2Coding', monospace;
+  font-size: 0.85em;
+  color: #565f89;
 }
