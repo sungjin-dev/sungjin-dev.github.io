@@ -7,24 +7,24 @@ main:
 sidebar_category:
   - title: "개발 공부 기록"
     children:
-      - title: "C"
-        url: /c/
-      - title: "C++"
-        url: /c++/
       - title: "Python"
         url: /python/
+      - title: "Flask"
+        url: /flask/
+      - title: "YOLO"
+        url: /yolo/
       - title: "Java"
         url: /java/
       - title: "JavaScript"
         url: /javascript/
       - title: "CSS"
         url: /css/
-      - title: "Flask"
-        url: /flask/
       - title: "SQL"
         url: /sql/
       - title: "정보처리기사"
         url: /정처기/
+      - title: "C"
+        url: /c/  
         children:
           - title: "오답노트 1권"
             url: /정처기/wrong-note-part1/
