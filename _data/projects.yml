@@ -8,41 +8,6 @@
   tags: ["Python", "YOLOv8", "Flask"]
   status: "완료"
 
-# 프로젝트가 늘어나면 여기에 항목만 추가하면 됩니다.
 
 
-# ============================================================
-# 2) 기존 _data/series.yml 에 아래 `list:` 키를 추가
-#    (기존 chips: 와 series-cards.html 이 쓰던 키는 그대로 두세요)
-# ============================================================
-# list:
-#   - title: "Python 정규표현식 시리즈"
-#     meta: "4편 완결"
-#     url: "/series/python-regex/"
-#     accent: "#3b82f6"
-#
-#   - title: "Java 메모리 & 참조 타입"
-#     meta: "연재 중"
-#     url: "/series/java-jvm/"
-#     accent: "#b45309"
-#
-#   - title: "SQL 시험대비 단권화"
-#     meta: "시리즈"
-#     url: "/series/sql/"
-#     accent: "#7c3aed"
-#
-#   - title: "정처기 필기 대비 1"
-#     meta: "시리즈"
-#     url: "/series/jeongcheogi-1/"
-#     accent: "#3b82f6"
-#
-#   - title: "YOLO 분석 전체보기"
-#     meta: "분석 노트"
-#     url: "/series/yolo/"
-#     accent: "#b45309"
-#
-#   - title: "필기노트 전체보기"
-#     meta: "전체 글"
-#     url: "/notes/"
-#     accent: "#7c3aed"
 
