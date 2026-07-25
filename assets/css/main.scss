@@ -675,32 +675,29 @@ table a:hover {
 .layout--splash .page__content::before {
   content: "";
   position: absolute;
-  top: -14px;
-  left: 28px;
-  right: 28px;
-  height: 28px;
-  background-image: radial-gradient(closest-side,
-    transparent 33%,
-    color-mix(in srgb, var(--text-muted) 85%, transparent) 36% 52%,
-    transparent 55%);
-  background-size: 34px 28px;
+  top: -17px;
+  left: 30px;
+  right: 30px;
+  height: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='34' viewBox='0 0 24 34'%3E%3Cellipse cx='12' cy='17' rx='5' ry='14' transform='rotate(22 12 17)' fill='none' stroke='%23474D59' stroke-width='3.2'/%3E%3Cellipse cx='11' cy='16.5' rx='5' ry='14' transform='rotate(22 11 16.5)' fill='none' stroke='%23949CAB' stroke-width='1.1'/%3E%3C/svg%3E");
+  background-size: 24px 34px;
   background-repeat: repeat-x;
   background-position: left center;
   pointer-events: none;
 }
 
-/* 펀치 구멍 — 카드 표면의 뚫린 자국 */
+/* 펀치 구멍: 코일이 통과하는 세로 슬롯 (원이 아니라 타원 자국) */
 .layout--splash .page__content::after {
   content: "";
   position: absolute;
-  top: 7px;
-  left: 28px;
-  right: 28px;
-  height: 9px;
-  background-image: radial-gradient(circle,
-    color-mix(in srgb, var(--text-muted) 30%, transparent) 0 3px,
-    transparent 4px);
-  background-size: 34px 9px;
+  top: 5px;
+  left: 30px;
+  right: 30px;
+  height: 12px;
+  background-image: radial-gradient(ellipse 3px 4.5px at 12px 50%,
+    color-mix(in srgb, var(--text-strong) 22%, transparent) 0 62%,
+    transparent 70%);
+  background-size: 24px 12px;
   background-repeat: repeat-x;
   background-position: left center;
   pointer-events: none;
