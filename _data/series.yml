@@ -1,0 +1,34 @@
+featured:
+  - title: "Python 정규표현식 시리즈"
+    excerpt: "re.match()부터 패턴 문법까지, 문자열 검사의 모든 것을 다룬 4편 완결 시리즈."
+    url: "/python/"
+    btn_label: "시리즈 보기"
+  - title: "Java 메모리 & 참조 타입"
+    excerpt: "스택·힙·메타스페이스, JVM 실행 과정까지. 구조부터 이해하는 자바 연재."
+    url: "/java/"
+    btn_label: "연재 보기"
+  - title: "SQL 시험대비 단권화"
+    excerpt: "데이터 모델링 기초에서 DML·TCL·DDL·DCL까지."
+    url: "/sql/"
+    btn_label: "시리즈 보기"
+  - title: "정처기 필기 대비 1"
+    excerpt: "소프트웨어 설계와 개발"
+    url: "/정처기/"
+    btn_label: "시리즈 보기"
+  - title: "YOLO 분석 전체보기"
+    excerpt: "YOLO+Flask 파이프라인과 모델 학습 결과 및 성능 지표 해석."
+    url: "/yolo/"
+    btn_label: "연재 보기"
+  - title: "필기노트 전체보기"
+    excerpt: "모든 글을 시간순으로. 공부하며 남긴 기록 전체 목록."
+    url: "/year-archive/"
+    btn_label: "전체 글 보기"
+
+chips:
+  - { label: "C", url: "/C/" }
+  - { label: "C++", url: "/C++/" }
+  - { label: "JavaScript", url: "/javascript/" }
+  - { label: "CSS", url: "/css/" }
+  - { label: "Flask", url: "/flask/" }
+  - { label: "SQL", url: "/SQL/" }
+  - { label: "Git", url: "/git/" }
