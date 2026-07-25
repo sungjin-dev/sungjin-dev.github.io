@@ -72,7 +72,7 @@ defaults:
       sidebar:         
         nav: "sidebar_category"
         
- - scope:
+  - scope:
       path: ""
       type: "projects"
     values:
