@@ -6,7 +6,7 @@ tech: [Python, statsmodels, PostgreSQL, Spring Boot, Chart.js]
 github: "https://github.com/sungjin-dev/저장소명"
 ---
 
-> **🚧 진행 중인 프로젝트입니다.** 데이터 수집·계량분석 파이프라인까지 완성,
+> **진행 중인 프로젝트입니다.** 데이터 수집·계량분석 파이프라인까지 완성,
 > Spring Boot API와 대시보드는 개발 중. 과정은 [연재 포스트](#관련-포스트)로 기록하고 있습니다.
 
 ## 무엇을 알아보려는 프로젝트인가
