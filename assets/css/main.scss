@@ -618,20 +618,32 @@ table a:hover {
   margin-bottom: 1.5em;    /* 1.2 → 1.5, 문단 경계 강화 */
 }
 
-/* --- 7-2. 마스트헤드(상단 네비) 슬림화 — 새로 추가 --- */
-/* MM 기본 마스트헤드는 세로가 ~90px로 큼 → ~64px로 */
+/* --- 7-2 (v2). 마스트헤드 — 적당한 높이 + 수직 정렬 --- */
 .masthead__inner-wrap {
-  padding: 0.6em 1em;
+  padding: 0.85em 1em;          /* 0.6em은 과했음 → 중간값 */
 }
 
 .masthead .site-title {
-  font-size: 1.05em;
+  font-size: 1.1em;
+  line-height: 1.4;
+}
+
+/* 로고·메뉴·검색 아이콘을 같은 수직 중심선에 */
+.greedy-nav,
+.greedy-nav .visible-links {
+  display: flex;
+  align-items: center;
 }
 
 .greedy-nav a {
-  padding: 0.6em 0.75em;
+  padding: 0.35em 0.8em;
+  line-height: 1.4;             /* site-title과 동일 → 기준선 일치 */
 }
 
+.greedy-nav .search__toggle {
+  align-self: center;
+  margin-left: 0.4em;
+}
 /* ================================================= */
 /* 8. 사이드바 시계/날씨 위젯 접기(Toggle)             */
 /* ================================================= */
@@ -743,7 +755,7 @@ table a:hover {
 /* 히어로: 고정 다크 그라데이션 (라이트 모드에서도 다크 밴드) */
 .layout--splash .page__hero--overlay {
   background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
-  padding: 0.9em 0 0.85em;
+  padding: 0.75em 0 0.7em;
   min-height: 0;
 }
 
@@ -2224,7 +2236,7 @@ div.highlighter-rouge.code-folded > .highlight::after {
    ================================================= */
 .layout--splash #main {
   max-width: 1280px;
-  margin-top: 0.4em;
+  margin-top: 0.2em;
 }
 
 /* 흰 카드 상단 패딩 축소 (30px → 22px) */
