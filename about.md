@@ -1,5 +1,7 @@
 ---
 title: "About"
+header:
+  overlay_color: "#1a1b26"
 layout: single
 permalink: /about/
 author_profile: true
