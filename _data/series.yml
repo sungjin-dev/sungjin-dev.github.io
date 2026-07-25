@@ -39,10 +39,9 @@ list:
 
 chips:
   - { label: "C", url: "/C/" }
-  - { label: "C++", url: "/C++/" }
   - { label: "JavaScript", url: "/javascript/" }
   - { label: "CSS", url: "/css/" }
   - { label: "Flask", url: "/flask/" }
-  - { label: "SQL", url: "/SQL/" }
+  - { label: "SQL", url: "/sql/" }
   - { label: "Git", url: "/git/" }
   - { label: "Yolo", url: "/yolo/" }
