@@ -685,7 +685,7 @@ table a:hover {
   right: 7%;
   top: 50%;
   transform: translateY(-50%);
-  width: 290px;
+  width: 264px;
   background: #16161e;
   border: 1px solid #3b4261;
   border-radius: 10px;
@@ -696,7 +696,7 @@ table a:hover {
 .hero-terminal__bar {
   display: block;
   background: #24283b;
-  padding: 9px 12px;
+  padding: 7px 12px;
 }
 .hero-terminal__bar span {
   display: inline-block;
@@ -711,9 +711,9 @@ table a:hover {
 .hero-terminal__body {
   display: block;
   margin: 0;
-  padding: 12px 16px;
+  padding: 10px 14px;
   font-family: 'D2Coding', monospace;
-  font-size: 0.78em;
+  font-size: 0.72em;
   line-height: 1.75;
   background: transparent;
   color: #c0caf5;
@@ -729,13 +729,13 @@ table a:hover {
 /* 히어로: 고정 다크 그라데이션 (라이트 모드에서도 다크 밴드) */
 .layout--splash .page__hero--overlay {
   background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
-  padding: 1.5em 0 1.3em;
+  padding: 1.1em 0 1em;
   min-height: 0;
 }
 
 /* 기존:  font-size: 2.6em;  →  아래로 교체 */
 .layout--splash .page__hero--overlay .page__title {
-  font-size: 1.9em;
+  font-size: 1.65em;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -758,8 +758,8 @@ table a:hover {
 
 /* 기존:  font-size: 1.1em;  →  아래로 교체 (줄간격도 살짝 압축) */
 .layout--splash .page__hero--overlay .page__lead {
-  font-size: 0.98em;
-  line-height: 1.7;
+  font-size: 0.92em;
+  line-height: 1.6;
   color: #a9b1d6;
   max-width: 640px;
 }
@@ -1841,7 +1841,7 @@ div.highlighter-rouge.code-folded > .highlight::after {
 
 .project-thumb {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2 / 1;
   background: #16161e;               /* 히어로 터미널과 동일한 고정 다크 */
   border-bottom: 1px solid var(--tn-border-soft);
 }
@@ -1867,7 +1867,7 @@ div.highlighter-rouge.code-folded > .highlight::after {
 }
 
 .project-body {
-  padding: 1.2em 1.35em 1.35em;
+  padding: 1em 1.25em 1.15em;
 }
 
 .project-title {
@@ -1881,7 +1881,7 @@ div.highlighter-rouge.code-folded > .highlight::after {
   font-size: 0.9em;
   line-height: 1.7;
   color: var(--tn-text);
-  margin: 0 0 1em;
+  margin: 0 0 0.75em;
 }
 
 .project-tags {
@@ -2080,4 +2080,21 @@ div.highlighter-rouge.code-folded > .highlight::after {
    ================================================= */
 .layout--splash #main {
   max-width: 1280px;
+  margin-top: 0.8em;
+}
+
+/* 흰 카드 상단 패딩 축소 (30px → 22px) */
+.layout--splash .page__content {
+  padding-top: 22px;
+}
+
+/* 첫 번째 h2(Projects)의 margin-top: 2em 제거 */
+.layout--splash .page__content h2:first-of-type {
+  margin-top: 0.2em;
+}
+
+/* 이후 섹션 h2 간격도 살짝 압축 (2em → 1.6em) */
+.layout--splash .page__content h2 {
+  margin-top: 1.6em;
+  margin-bottom: 0.9em;
 }
