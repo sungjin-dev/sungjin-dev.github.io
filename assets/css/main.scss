@@ -664,7 +664,7 @@ table a:hover {
 .layout--splash .page__content {
   position: relative;
   margin-top: 40px; 
-  padding-top: 44px; 
+  padding-top: 70px; 
   background-color: #fdfdfc; 
   border-radius: 8px; 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
@@ -679,9 +679,7 @@ table a:hover {
   left: 26px;
   right: 26px;
   height: 14px;
-   background-image: radial-gradient(ellipse 3.5px 5px at 21px 50%,
-    rgba(0, 0, 0, 0.26) 0 60%,
-    transparent 72%);
+  background-image: radial-gradient(circle 5.5px at 19px 50%, #222428 90%, transparent 100%);
   background-size: 38px 14px; 
   background-repeat: repeat-x;
   background-position: left center;
@@ -693,7 +691,7 @@ table a:hover {
 .layout--splash .page__content::before {
   content: "";
   position: absolute;
-  top: -31px; /* 구멍이 올라간 만큼 링도 위로 이동 
+  top: -24px; /* 구멍이 올라간 만큼 링도 위로 이동 (기존 -20px -> -24px) */
   left: 26px;
   right: 26px;
   height: 46px;
