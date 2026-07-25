@@ -2228,3 +2228,54 @@ div.highlighter-rouge.code-folded > .highlight::after {
   margin-top: 1.6em;
   margin-bottom: 0.9em;
 }
+
+그건 Minimal Mistakes의 이전/다음 글 버튼(.pagination--pager)인데, dark 스킨이 밝은 글자색을 하드코딩해둬서 라이트 모드 배경에서 글자가 묻히는 거예요. 테마 변수를 타도록 오버라이드하면 됩니다. main.scss 맨 아래에 이 블록을 추가하세요:
+
+scss
+/* =================================================
+   25. 이전/다음 글 버튼 — 테마 변수 대응
+   ================================================= */
+.pagination--pager {
+  background: var(--tn-card);
+  border: 1px solid var(--tn-border);
+  border-radius: 10px;
+  color: var(--tn-strong) !important;
+  font-weight: 700;
+  box-shadow: var(--shadow-rest);
+  transition: border-color 0.15s ease, color 0.15s ease,
+              transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pagination--pager:hover {
+  color: var(--tn-blue) !important;
+  border-color: var(--tn-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+}
+
+/* 이전/다음 글이 없을 때 (첫 글·마지막 글) */
+.pagination--pager.disabled {
+  color: var(--tn-muted) !important;
+  background: transparent;
+  border-color: var(--tn-border-soft);
+  box-shadow: none;
+  opacity: 0.55;
+}
+
+.pagination--pager.disabled:hover {
+  transform: none;
+  border-color: var(--tn-border-soft);
+  color: var(--tn-muted) !important;
+}
+
+/* 두 버튼 사이 간격 — 붙은 표처럼 보이는 것 해소 */
+.pagination {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5em;
+}
+
+.pagination--pager {
+  flex: 1;
+}
