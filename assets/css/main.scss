@@ -1669,3 +1669,67 @@ div.highlighter-rouge.code-folded > .highlight::after {
   color: var(--accent);
   border-color: var(--accent);
 }
+
+/* =================================================
+   23. 검색 페이지 (/search/) — 기본 테마 오버라이드
+   ================================================= */
+.search-content {
+  &__inner-wrap {
+    max-width: 700px;
+    padding: 2em 1em;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    font-size: 1.05rem;          /* 거대한 $type-size-3 → 정상 크기로 */
+    padding: 0.65em 1em;
+    border: 1px solid var(--border-panel);
+    border-radius: 8px;
+    background: var(--bg-card);
+    color: var(--text-body);
+    box-shadow: var(--shadow-rest);
+    transition: border-color 0.15s ease;
+
+    &::placeholder {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    &:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+  }
+
+  .results {
+    margin-top: 1.4em;
+
+    &__found {
+      font-size: 0.85em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-panel);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .list__item {
+      border-bottom: 1px solid var(--tn-border-soft);
+      padding: 12px 4px;
+      transition: background 0.15s ease;
+    }
+
+    .list__item:hover {
+      background: var(--tn-hover);
+    }
+
+    .archive__item-title {
+      font-size: 1.05em;
+      color: var(--tn-title);
+    }
+
+    .archive__item-excerpt {
+      color: var(--tn-muted);
+      font-size: 0.9em;
+    }
+  }
+}
