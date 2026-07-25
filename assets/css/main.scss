@@ -595,9 +595,12 @@ table a:hover {
   }
 }
 
-@media (min-width: 1500px) {
-  .page__inner-wrap {
-    max-width: 1250px;
+/* 터미널이 보이는 화면(1101px 이상)에서는 밴드가 터미널을 품도록 */
+@media (min-width: 1101px) {
+  .layout--splash .page__hero--overlay {
+    min-height: 225px;
+    display: flex;
+    align-items: center;
   }
 }
 
