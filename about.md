@@ -1,11 +1,11 @@
 ---
 title: "About"
-header:
-  overlay_color: "#1a1b26"
 layout: single
 permalink: /about/
-author_profile: true
 classes: about--page
+author_profile: false
+header:
+  overlay_color: "#1a1b26"
 ---
 <div class="about-terminal">
   <div class="about-terminal__bar">
