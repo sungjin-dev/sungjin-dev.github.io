@@ -2017,3 +2017,35 @@ div.highlighter-rouge.code-folded > .highlight::after {
   font-size: 0.85em;
   color: #565f89;
 }
+
+/* =================================================
+   [패치 4] 24번 섹션 맨 아래에 추가
+   홈 최근 글 타임라인 폭 해제 + 전체 글 보기 링크
+   ================================================= */
+
+/* 본문용 li 폭 제한(46em) 해제 — 타임라인 행이 중간에 끊기지 않게 */
+.layout--splash .page__content .post-timeline li {
+  max-width: none;
+}
+
+/* 다만 행이 1800px까지 늘어지면 날짜↔제목 거리가 머니 적정 폭으로 캡 */
+.layout--splash .post-timeline {
+  max-width: 900px;
+}
+
+/* "전체 글 보기 →" 링크 */
+.home-more {
+  margin-top: -0.5em;
+}
+
+.home-more a {
+  font-size: 0.9em;
+  font-weight: 700;
+  color: var(--tn-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.home-more a:hover {
+  color: var(--tn-blue);
+}
