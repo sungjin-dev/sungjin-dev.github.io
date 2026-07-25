@@ -16,7 +16,7 @@
   <div class="search-empty-state__section">
     <h3>태그</h3>
     <div class="topic-chips">
-      {% assign sorted_tags = site.tags | sort: 'size' | reverse %}
+      {% assign sorted_tags = site.tags | sort %}
      {% for tag in sorted_tags limit:12 %}
      <a href="{{ '/tags/' | append: tag[0] | slugify | relative_url }}">{{ tag[0] }} <span class="tag-count">{{ tag[1].size }}</span></a>
      {% endfor %}
