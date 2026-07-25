@@ -712,10 +712,9 @@ table a:hover {
 }
 
 
-/* --- 8-3. About: 홈 히어로 남색과 정확히 매칭 --- */
+/* --- 8-3 (v2). About: 남색 계열 통일 + 명도로 구분 --- */
 
-/* About 페이지 상단에 홈과 동일한 남색 그라데이션 밴드
-   (about.md front matter에 header: overlay_color 추가 필요 — 안내 참조) */
+/* 상단 밴드: 홈 히어로와 동일한 그라데이션 (연결감) */
 .about--page .page__hero--overlay {
   background: linear-gradient(135deg, #16161e 0%, #1a1b26 45%, #24283b 100%);
   padding: 1.2em 0 1.1em;
@@ -726,15 +725,16 @@ table a:hover {
   color: #fff !important;
 }
 
-/* About 터미널 — 히어로 터미널과 동일한 색값으로 통일
-   (기존 10번 섹션의 .about-terminal background: #171A26 을 아래 값으로 교체) */
+/* 터미널: 같은 Tokyo Night 계열이지만 밴드보다 한 단계 밝게 → 떠 보임 */
 .about-terminal {
-  background: #16161e;          /* 히어로 터미널·썸네일 배경과 동일 */
-  border-color: #3b4261;        /* 히어로 터미널 테두리와 동일 */
+  background: #1f2335;                       /* 밴드(#1a1b26)보다 한 단계 위 */
+  border-color: #414868;                     /* 테두리도 한 단계 밝게 */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45),
+              0 0 0 1px rgba(125, 207, 255, 0.06);   /* 미세한 블루 림 라이트 */
 }
 
 .about-terminal__bar {
-  background: #24283b;          /* 히어로 터미널 바와 동일 */
+  background: #292e42;                       /* 본체보다 또 한 단계 위 */
 }
 
 
