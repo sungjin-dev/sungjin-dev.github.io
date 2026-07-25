@@ -227,7 +227,7 @@
 
 <script>
 (function () {
-  var input = document.getElementById('search');       // 테마 검색 input id 확인 필요
+  var input = document.getElementById('search');           // 실제 id: search
   var empty = document.getElementById('search-empty-state');
   if (!input || !empty) return;
 
@@ -237,6 +237,6 @@
 
   input.addEventListener('keyup', toggle);
   input.addEventListener('input', toggle);
-  toggle();
+  toggle();  // 페이지 로드 시 초기 상태 설정
 })();
 </script>
