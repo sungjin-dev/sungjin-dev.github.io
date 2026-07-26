@@ -27,7 +27,7 @@ sidebar:
     <h2>{{ group.name }}</h2>
     <div class="entries-list">
       {% for post in sorted_items %}
-        {% include archive-single.html %}
+        {% include archive-single.html post=post %}
       {% endfor %}
     </div>
 
@@ -43,7 +43,7 @@ sidebar:
     <h2>기타 글</h2>
     <div class="entries-list">
       {% for post in etc_items %}
-        {% include archive-single.html %}
+        {% include archive-single.html post=post %}
       {% endfor %}
     </div>
 
