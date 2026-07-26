@@ -1,5 +1,5 @@
 ---
-title: " [정처기 공부 #1] 요약 노트"
+title: " [정처기 공부 #0] 요약 노트"
 excerpt: "주요 용어 정리"
 categories: 정처기
 order: 1
@@ -7,6 +7,7 @@ tags:
   - EIP
 toc: true
 toc_sticky: true
+published: false
 ---
 
 # 정보처리기사 필기 
