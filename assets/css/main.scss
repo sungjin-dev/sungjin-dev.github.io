@@ -2568,20 +2568,29 @@ html[data-theme="dark"] .layout--splash .page__content h2::after {
     linear-gradient(rgba(125,207,255,0.85), rgba(125,207,255,0.85)) 100% 50% / 1.5px 9px no-repeat;
 }
 
-/* ---------- 5) 콘텐츠 카드 = 도면 위 구획 ---------- */
+/* ---------- 5 (v2). 콘텐츠 카드 = 도면 위 패널 ---------- */
 html[data-theme="dark"] .layout--splash .project-card,
 html[data-theme="dark"] .layout--splash .series-row {
-  background-color: rgba(125, 207, 255, 0.045);
-  border-color: rgba(125, 207, 255, 0.30);
+  background-color: #131E33;                              /* 용지보다 반 단계 밝은 남색 */
+  background-image: linear-gradient(180deg,
+    rgba(125, 207, 255, 0.06),
+    rgba(125, 207, 255, 0.0) 55%);                        /* 위에서 스미는 시안 빛 */
+  border: 1px solid rgba(125, 207, 255, 0.32);
+  border-top-color: rgba(125, 207, 255, 0.55);            /* 상단 모서리가 빛을 받은 느낌 */
   border-radius: 3px;
-  box-shadow: none;
+  box-shadow:
+    0 8px 22px rgba(4, 8, 18, 0.55),                      /* 용지에서 떠 있는 그림자 */
+    inset 0 1px 0 rgba(207, 233, 255, 0.07);              /* 안쪽 상단 하이라이트 */
 }
 
 html[data-theme="dark"] .layout--splash .project-card:hover,
 html[data-theme="dark"] .layout--splash .series-row:hover {
-  background-color: rgba(125, 207, 255, 0.075);
-  border-color: rgba(125, 207, 255, 0.6);
-  box-shadow: 0 0 0 3px rgba(125, 207, 255, 0.09);   /* 시안 글로우 */
+  background-color: #16233C;
+  border-color: rgba(125, 207, 255, 0.65);
+  box-shadow:
+    0 12px 30px rgba(4, 8, 18, 0.65),
+    0 0 0 3px rgba(125, 207, 255, 0.10),
+    inset 0 1px 0 rgba(207, 233, 255, 0.1);
 }
 
 /* 도면 위에서는 썸네일 프레임도 시안 라인으로 */
