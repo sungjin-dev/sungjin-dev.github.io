@@ -161,38 +161,27 @@ xychart-beta
 
 > ※ 암기 팁: **우논시절통순기** — 뒤로 갈수록 응집도가 **높아짐** (기능적이 최고!)
 
-<div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
-  <table style="width: 100%; min-width: 700px; border-collapse: collapse; text-align: center;">
-    <thead>
-      <tr style="background-color: #f8f9fa;">
-        <th style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">품질</th>
-        <th style="padding: 10px; border: 1px solid #dee2e6;" colspan="7">🔴 나쁨 (낮음) ───►───►───►───►───► 🟢 좋음 (높음)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #fff9db; font-weight: bold; color: #b25329;">우연적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">논리적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">시간적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">절차적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">통신적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">순차적</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #e6fcf5; font-weight: bold; color: #0ca678;">기능적</td>
-      </tr>
-      <tr style="color: #666; font-size: 0.9em;">
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">순서</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">1단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">2단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">3단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">4단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">5단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">6단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; color: #0ca678;">7단계 (최고)</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>품질</th>
+      <th colspan="7">🔴 나쁨 (낮음) ───►───►───► 🟢 좋음 (높음)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>단계</th>
+      <td class="cell-warn">우연적</td>
+      <td>논리적</td><td>시간적</td><td>절차적</td><td>통신적</td><td>순차적</td>
+      <td class="cell-good">기능적</td>
+    </tr>
+    <tr>
+      <th>순서</th>
+      <td>1단계</td><td>2단계</td><td>3단계</td><td>4단계</td><td>5단계</td><td>6단계</td>
+      <td class="cell-good">7단계 (최고)</td>
+    </tr>
+  </tbody>
+</table>
 
 
 | 지표 | 설명 |
