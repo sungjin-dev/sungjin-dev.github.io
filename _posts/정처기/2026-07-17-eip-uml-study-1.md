@@ -1,5 +1,5 @@
 ---
-title: "[정보처리기사 필기] UML과 애자일 방법론 정리"
+title: "[정처기 공부 #2]  UML과 애자일 방법론 정리"
 excerpt: "UML 구성요소·다이어그램·관계, 스테레오 타입부터 애자일 선언문, XP·스크럼·린까지"
 categories: [정처기]
 tags:
@@ -8,6 +8,7 @@ tags:
   - XP
   - 스크럼
   - 요구사항분석
+order: 2
 toc: true
 toc_sticky: true
 mermaid: true
