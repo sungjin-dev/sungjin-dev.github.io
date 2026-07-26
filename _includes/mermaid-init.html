@@ -35,10 +35,46 @@
     };
   };
 
-  var blocks = document.querySelectorAll(".mermaid");
-  blocks.forEach(function (el) {
-    el.dataset.mermaidSrc = el.textContent;
-  });
+  // 1) kramdown/rouge가 만드는 ```mermaid 코드펜스를
+  //    <pre><code class="language-mermaid">...</code></pre> (또는 div.language-mermaid 래퍼) 로
+  //    렌더링하므로, mermaid가 인식하는 <div class="mermaid"> 형태로 최초 1회 변환한다.
+  function convertBlocks() {
+    var raw = document.querySelectorAll(
+      "div.language-mermaid, pre code.language-mermaid, code.language-mermaid"
+    );
+    raw.forEach(function (el) {
+      var code = el.tagName === "CODE" ? el : el.querySelector("code");
+      var text = code ? code.textContent : el.textContent;
+
+      // 바깥 래퍼를 최대한 넓게 찾아서 통째로 교체
+      // (div.language-mermaid > pre > code 구조든, pre > code.language-mermaid 구조든 모두 대응)
+      var wrapper =
+        el.closest("div.language-mermaid") ||
+        el.closest("div.highlighter-rouge") ||
+        el.closest("pre") ||
+        el;
+
+      var div = document.createElement("div");
+      div.className = "mermaid";
+      div.textContent = text;
+
+      wrapper.parentNode.replaceChild(div, wrapper);
+    });
+  }
+
+  var blocks = [];
+
+  function collectAndRender() {
+    convertBlocks();
+
+    // 변환 후 실제 .mermaid 블록들을 대상으로 소스를 보관 (테마 재렌더링용)
+    blocks = document.querySelectorAll(".mermaid");
+    blocks.forEach(function (el) {
+      el.dataset.mermaidSrc = el.textContent;
+    });
+
+    render();
+  }
 
   function render() {
     mermaid.initialize(config());
@@ -49,7 +85,11 @@
     mermaid.run({ nodes: blocks });
   }
 
-  render();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", collectAndRender);
+  } else {
+    collectAndRender();
+  }
 
   new MutationObserver(function (muts) {
     for (var i = 0; i < muts.length; i++) {
