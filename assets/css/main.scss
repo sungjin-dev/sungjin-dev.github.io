@@ -2649,3 +2649,16 @@ html[data-theme="dark"] .mermaid {
   /* loop 라벨 박스 */
   .labelBox { fill: #1f2335 !important; stroke: #3b4261 !important; }
 }
+
+/* 표 강조 셀 — 테마 자동 대응 */
+table td.cell-warn, table th.cell-warn {
+  background-color: color-mix(in srgb, var(--syn-attr) 14%, var(--bg-table)) !important;
+  color: var(--syn-attr) !important;
+  font-weight: 700;
+}
+
+table td.cell-good, table th.cell-good {
+  background-color: color-mix(in srgb, var(--accent-green) 14%, var(--bg-table)) !important;
+  color: var(--accent-green) !important;
+  font-weight: 700;
+}
