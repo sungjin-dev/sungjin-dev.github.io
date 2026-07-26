@@ -3,10 +3,29 @@
      기존 테마의 page.previous / page.next (전체 글 기준) 대신 이걸 사용.
      스타일은 main.scss 26번 섹션(.pagination, .pagination--pager)을 그대로 재사용. -->
 
-{% assign category = page.categories.first %}
+{% comment %}
+  그룹 기준: page.series 가 있으면 그걸 우선 사용 (같은 카테고리 안에
+  여러 하위 시리즈가 섞여 있어도 서로 간섭하지 않음).
+  series가 없으면 기존처럼 첫 번째 카테고리를 기준으로 사용.
+{% endcomment %}
+{% assign group_key = page.series | default: page.categories.first %}
 
-{% if category %}
-  {% assign series_posts = site.categories[category] | sort: "date" %}
+{% if group_key %}
+  {% if page.series %}
+    {% assign group_posts = site.posts | where: "series", group_key %}
+  {% else %}
+    {% assign group_posts = site.categories[group_key] %}
+  {% endif %}
+
+  {% comment %} 그룹 안의 "모든" 글이 order를 갖고 있을 때만 order 정렬 사용.
+                일부만 있으면 값이 뒤섞여 잘못 정렬될 수 있으므로 안전하게 날짜로 폴백. {% endcomment %}
+  {% assign missing_order = group_posts | where_exp: "p", "p.order == nil" %}
+
+  {% if missing_order.size == 0 %}
+    {% assign series_posts = group_posts | sort: "order" %}
+  {% else %}
+    {% assign series_posts = group_posts | sort: "date" %}
+  {% endif %}
 {% else %}
   {% assign series_posts = site.posts | sort: "date" %}
 {% endif %}
