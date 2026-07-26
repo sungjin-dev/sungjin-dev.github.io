@@ -131,8 +131,6 @@ graph TD
     class CLASS_INFOS transparent_group;
     class CL1,CLN obj_box;
 ```
-Copy failed — try from claude.ai in browser
-
 
 ### JVM 메모리 구조 핵심 포인트
 **ⓐ JVM 스택 영역 (Stack)**
