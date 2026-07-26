@@ -261,15 +261,16 @@ toc_sticky: true
 
 ## 4. 식별자 (Identifier)
 
-**식별자** = 엔터티 안에서 각 인스턴스를 구별해주는 속성(또는 속성 조합).
+**식별자** = 엔터티 안에서 각 인스턴스를 구별해주는 속성(또는 속성 조합). 
 
-용어 구분: **논리 모델링에서는 '식별자', 물리 모델링에서는 '키(Key)'**라고 부른다.
+용어 구분: **논리 모델링에서는 '식별자', 물리 모델링에서는 '키(Key)'** 라고 부른다.
 
 ### 식별자의 4가지 특성 (단골 출제)
 
 | 특성 | 의미 |
 | --- | --- |
 | **유일성** | 인스턴스를 유일하게 구분 |
+| **대표성** | 엔터티를 대표할 수 있는 속성이어야 함 |
 | **최소성** | 필요 최소한의 속성으로 구성 |
 | **불변성** | 값이 변하지 않아야 함 |
 | **존재성** | 반드시 값이 존재 (**NULL 불가**) |
@@ -312,6 +313,108 @@ toc_sticky: true
 - 객체 재사용이 필요하면 → **비식별자 관계** 고려
 
 식별자 관계만 계속 쓰면 부모 PK가 자식→손자로 계속 전이(상속)되면서 PK가 눈덩이처럼 불어난다. 그래서 실무에서는 적절히 비식별자 관계를 섞는다.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 380" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;">
+  
+  <!-- Outer Frame -->
+  <rect x="15" y="15" width="790" height="350" fill="none" stroke="#333333" stroke-width="1.5" rx="4"/>
+
+  <!-- ==================== 식별자 관계 ==================== -->
+  <g id="identifying-relationship">
+    <text x="35" y="48" font-size="16" font-weight="bold" fill="#1d4ed8">[식별자 관계] - 실선</text>
+    
+    <!-- Parent Entity: 주문 -->
+    <rect x="40" y="70" width="150" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="40" y="70" width="150" height="28" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="115" y="89" font-size="14" font-weight="bold" text-anchor="middle" fill="#111827">주문</text>
+    
+    <!-- Red Box on Parent PK -->
+    <rect x="48" y="103" width="56" height="20" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="52" y="117" font-size="13" font-weight="bold" fill="#dc2626">주문번호</text>
+    
+    <line x1="40" y1="128" x2="190" y2="128" stroke="#111827" stroke-width="1.2"/>
+    <text x="52" y="146" font-size="12" fill="#4b5563">주문일자</text>
+    <text x="52" y="166" font-size="12" fill="#4b5563">결제금액</text>
+
+    <!-- Child Entity: 주문상세 -->
+    <rect x="235" y="70" width="150" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="235" y="70" width="150" height="28" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="310" y="89" font-size="14" font-weight="bold" text-anchor="middle" fill="#111827">주문상세</text>
+    
+    <!-- Red Box on Child PK (FK included in PK section) -->
+    <rect x="243" y="102" width="80" height="20" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="247" y="116" font-size="12" font-weight="bold" fill="#dc2626">주문번호(FK)</text>
+    <text x="247" y="132" font-size="12" fill="#111827">상품코드</text>
+
+    <line x1="235" y1="138" x2="385" y2="138" stroke="#111827" stroke-width="1.2"/>
+    <text x="247" y="156" font-size="12" fill="#4b5563">주문수량</text>
+
+    <!-- Solid Relationship Line -->
+    <line x1="190" y1="120" x2="235" y2="120" stroke="#111827" stroke-width="1.8"/>
+    <line x1="198" y1="112" x2="198" y2="128" stroke="#111827" stroke-width="1.8"/>
+    <!-- Crow's foot right -->
+    <path d="M 235 120 L 220 112 M 235 120 L 220 128" stroke="#111827" stroke-width="1.8"/>
+
+    <!-- Description -->
+    <text x="40" y="210" font-size="12" fill="#1e40af" font-weight="bold">✔ 부모 PK가 자식의 [PK 영역]으로 들어감</text>
+    <text x="40" y="230" font-size="12" fill="#4b5563">✔ 부모 없이는 자식이 존재할 수 없음 (강한 결합)</text>
+  </g>
+
+  <!-- Section Separator Line -->
+  <line x1="405" y1="35" x2="405" y2="345" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+  <!-- ==================== 비식별자 관계 ==================== -->
+  <g id="non-identifying-relationship">
+    <text x="425" y="48" font-size="16" font-weight="bold" fill="#4b5563">[비식별자 관계] - 점선</text>
+
+    <!-- Parent Entity: 고객 -->
+    <rect x="430" y="70" width="150" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="430" y="70" width="150" height="28" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="505" y="89" font-size="14" font-weight="bold" text-anchor="middle" fill="#111827">고객</text>
+    
+    <!-- Red Box on Parent PK -->
+    <rect x="438" y="103" width="48" height="20" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="442" y="117" font-size="13" font-weight="bold" fill="#dc2626">고객ID</text>
+
+    <line x1="430" y1="128" x2="580" y2="128" stroke="#111827" stroke-width="1.2"/>
+    <text x="442" y="146" font-size="12" fill="#4b5563">이름</text>
+    <text x="442" y="166" font-size="12" fill="#4b5563">전화번호</text>
+
+    <!-- Child Entity: 주문 -->
+    <rect x="625" y="70" width="150" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="625" y="70" width="150" height="28" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="700" y="89" font-size="14" font-weight="bold" text-anchor="middle" fill="#111827">주문</text>
+    
+    <text x="637" y="117" font-size="13" font-weight="bold" fill="#111827">주문번호</text>
+    <line x1="625" y1="128" x2="775" y2="128" stroke="#111827" stroke-width="1.2"/>
+    
+    <!-- Red Box on Child Normal Attribute (FK area) -->
+    <rect x="633" y="133" width="68" height="20" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="637" y="147" font-size="12" font-weight="bold" fill="#dc2626">고객ID(FK)</text>
+    <text x="637" y="166" font-size="12" fill="#4b5563">주문일자</text>
+
+    <!-- Dashed Relationship Line -->
+    <line x1="580" y1="120" x2="625" y2="120" stroke="#111827" stroke-width="1.8" stroke-dasharray="5,4"/>
+    <line x1="588" y1="112" x2="588" y2="128" stroke="#111827" stroke-width="1.8"/>
+    <!-- Optional Circle + Crow's foot right -->
+    <circle cx="612" cy="120" r="4" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <path d="M 625 120 L 615 112 M 625 120 L 615 128" stroke="#111827" stroke-width="1.8"/>
+
+    <!-- Description -->
+    <text x="430" y="210" font-size="12" fill="#374151" font-weight="bold">✔ 부모 PK가 자식의 [일반 속성 영역]으로 들어감</text>
+    <text x="430" y="230" font-size="12" fill="#4b5563">✔ 자식이 독립적인 PK를 가지며 느슨하게 연결됨</text>
+  </g>
+
+  <!-- Bottom Comparison Table -->
+  <g id="comparison-footer">
+    <rect x="35" y="260" font-size="12" width="750" height="85" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
+    <text x="50" y="285" font-size="13" font-weight="bold" fill="#111827">💡 시험 단골 암기 포인트</text>
+    <text x="50" y="308" font-size="12" fill="#1f2937">• <tspan font-weight="bold" fill="#1d4ed8">식별자 관계:</tspan> 실선 표기 / 자식의 PK에 포함 / 상속받은 키가 없으면 자식 행 생성 불가</text>
+    <text x="50" y="328" font-size="12" fill="#1f2937">• <tspan font-weight="bold" fill="#4b5563">비식별자 관계:</tspan> 점선 표기 / 자식의 일반 속성에 포함 / 부모 연결 없이도 독자적인 PK 존재</text>
+  </g>
+
+</svg>
+
 
 ---
 
