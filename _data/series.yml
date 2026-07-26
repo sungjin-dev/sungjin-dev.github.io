@@ -38,13 +38,15 @@ list:
     accent: "var(--tn-purple)"
 
 chips:
-  - { label: "C", url: "/C/" }           
+  - { label: "Python", url: "/python/" }  
+  - { label: "Flask", url: "/flask/" }
   - { label: "JavaScript", url: "/javascript/" }  
   - { label: "CSS", url: "/css/" }
-  - { label: "Flask", url: "/flask/" }
+  - { label: "정처기", url: "/정처기/" }
   - { label: "SQL", url: "/sql/" }         
   - { label: "Git", url: "/git/" }
   - { label: "Yolo", url: "/yolo/" }
+  - { label: "C", url: "/C/" }  
   - { label: "오답노트", url: "/wrong_note/" }     
   # C++ 은 글이 생기면 다시 추가 (권장 permalink: /cpp/)
   # - { label: "C++", url: "/cpp/" }
