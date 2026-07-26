@@ -13,6 +13,7 @@ tags:
 toc: true
 toc_sticky: true
 order: 4
+series: "정처기-공부"
 ---
 
 ## 1. 알고리즘
