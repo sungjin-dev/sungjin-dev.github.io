@@ -2,7 +2,7 @@
 title: " [정처기 공부 #1] 요약 노트"
 excerpt: "주요 용어 정리"
 categories: [정처기]
-order: 7
+order: 1
 tags:
   - EIP
 toc: true
