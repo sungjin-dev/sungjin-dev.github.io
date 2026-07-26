@@ -2443,3 +2443,12 @@ div.highlighter-rouge.code-folded > .highlight::after {
   animation: none !important;
   opacity: 1 !important;
 }
+
+/* h2 유령 현상 — 가능한 원인 전부 차단 */
+.layout--splash .page__content h2 {
+  color: var(--tn-strong) !important;
+  -webkit-text-fill-color: currentColor !important;
+  opacity: 1 !important;
+  animation: none !important;
+  text-shadow: none !important;
+}
