@@ -2314,8 +2314,8 @@ html[data-theme="light"] .mermaid {
   font-size: 1.25em;
   font-weight: 700;
   color: var(--tn-blue);
-  margin: 2em 0 0.6em;
-  padding: 0;
+  margin: 2em 0 0;          /* 기존: 2em 0 0.6em → 카드와 완전히 붙임 */
+  padding-left: 4px;         /* 카드의 왼쪽 액센트 라인과 시각적으로 정렬 */
   border: none;
 }
 
@@ -2372,3 +2372,11 @@ html[data-theme="light"] .mermaid {
   background: var(--tn-hover);
   padding-left: 12px;
 }
+
+/* 제목과 카드 사이 간격을 없애는 대신, 카드 상단 모서리를 각지게 해서
+   "제목에 카드가 매달린" 느낌으로 통일 */
+.archive .entries-list {
+  margin-top: 0;
+  border-top-left-radius: 0;
+}
+
