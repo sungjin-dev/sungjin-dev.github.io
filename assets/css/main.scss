@@ -2467,61 +2467,6 @@ html[data-theme="dark"] .layout--splash .series-row {
   border-color: #3B4261;
 }
 
-/* =================================================
-   27 (v2). 다크모드 홈 = 터미널 창 컨셉
-   (라이트 = 스프링 노트, 다크 = 코드 에디터)
-   ================================================= */
-
-html[data-theme="dark"] .layout--splash .page__content {
-  background: #1A1B26;                     /* Tokyo Night 에디터 표면 */
-  border: 1px solid #3B4261;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
-  margin-top: 58px;                        /* 링 자리 → 타이틀바 위 여백 */
-  padding-top: 58px;                       /* 타이틀바(40px) + 본문 여백 */
-}
-
-/* 스프링 링 → 터미널 타이틀바 (신호등 3개) */
-html[data-theme="dark"] .layout--splash .page__content::before {
-  content: "";
-  top: 0;
-  left: -1px;
-  right: -1px;
-  height: 40px;
-  background: #24283b;
-  border: 1px solid #3B4261;
-  border-bottom-color: #2B3045;
-  border-radius: 10px 10px 0 0;
-  background-image:
-    radial-gradient(circle 5.5px at 24px 20px, #f7768e 97%, transparent),
-    radial-gradient(circle 5.5px at 44px 20px, #e0af68 97%, transparent),
-    radial-gradient(circle 5.5px at 64px 20px, #9ece6a 97%, transparent);
-  background-size: auto;
-  background-repeat: no-repeat;
-}
-
-/* 펀치 구멍 → 타이틀바 경로 텍스트 */
-html[data-theme="dark"] .layout--splash .page__content::after {
-  content: "sungjin@dev: ~/study-log";
-  top: 0;
-  left: 86px;
-  right: auto;
-  height: 40px;
-  line-height: 40px;
-  background: none;
-  font-family: 'D2Coding', monospace;
-  font-size: 0.82em;
-  color: #828bb8;
-}
-
-/* 섹션 제목: 마크다운 헤딩 스타일 */
-html[data-theme="dark"] .layout--splash .page__content h2::before {
-  content: "## ";
-  font-family: 'D2Coding', monospace;
-  color: var(--tn-blue);
-  font-weight: 700;
-}
 
 /* =================================================
    28. 다크모드 홈 = 청사진(Blueprint) 컨셉
