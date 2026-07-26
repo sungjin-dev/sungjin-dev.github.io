@@ -208,32 +208,32 @@ xychart-beta
 > ※ 암기 팁: **내공외제스자** — 뒤로 갈수록 결합도가 **낮아짐** (자료가 최고!)<br>
 
 
-<div style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
-  <table style="width: 100%; min-width: 600px; border-collapse: collapse; text-align: center;">
+<div class="table-overflow-wrap">
+  <table>
     <thead>
-      <tr style="background-color: #f8f9fa;">
-        <th style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">품질</th>
-        <th style="padding: 10px; border: 1px solid #dee2e6;" colspan="6">🔴 나쁨 (높음) ───►───►───►───►───► 🟢 좋음 (낮음)</th>
+      <tr>
+        <th>품질</th>
+        <th colspan="6">🔴 나쁨 (높음) ───►───►───►───►───► 🟢 좋음 (낮음)</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #fff9db; font-weight: bold; color: #b25329;">내용</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">공통</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">외부</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">제어</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">스탬프</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; background-color: #e6fcf5; font-weight: bold; color: #0ca678;">자료</td>
+        <th>단계</th>
+        <td class="cell-warn">내용</td>
+        <td>공통</td>
+        <td>외부</td>
+        <td>제어</td>
+        <td>스탬프</td>
+        <td class="cell-good">자료</td>
       </tr>
-      <tr style="color: #666; font-size: 0.9em;">
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; background-color: #f8f9fa;">순서</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">1단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">2단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">3단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">4단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6;">5단계</td>
-        <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold; color: #0ca678;">6단계 (최고)</td>
+      <tr>
+        <th>순서</th>
+        <td>1단계</td>
+        <td>2단계</td>
+        <td>3단계</td>
+        <td>4단계</td>
+        <td>5단계</td>
+        <td class="cell-good">6단계 (최고)</td>
       </tr>
     </tbody>
   </table>
