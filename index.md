@@ -33,4 +33,6 @@ header:
 {% for chip in site.data.series.chips %}<a href="{{ chip.url | relative_url }}">{{ chip.label }}</a>{% endfor %}
 </div>
 
+
+
 <p class="home-more"><a href="{{ '/year-archive/' | relative_url }}">전체 글 보기 →</a></p>
