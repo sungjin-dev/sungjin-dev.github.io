@@ -601,10 +601,6 @@ graph TD
     Model -->|"3. Result"| Controller
     Controller -->|"4. 요청"| View(View)
     View -->|"5. Response 결과화면"| Client
-
-    style Controller fill:#fff5f5,stroke:#ff8787,stroke-width:2px
-    style Model fill:#e6fcf5,stroke:#0ca678
-    style View fill:#e3fafc,stroke:#1098ad
 ```
 
 - 대화형 애플리케이션을 **모델, 뷰, 컨트롤러 3개의 서브 시스템**으로 구조화하는 패턴
