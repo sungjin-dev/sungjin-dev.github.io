@@ -2300,31 +2300,28 @@ html[data-theme="light"] .mermaid {
 }
 
 /* =================================================
-   28. 카테고리 아카이브 — 시리즈 그룹 위계 강화
-   (/정처기/, /sql/ 등 시리즈별 그룹 목록 페이지용)
+   28 (수정). 카테고리 아카이브 — 시리즈 그룹 위계 강화
+   실제 DOM: <div class="archive"><h1>...</h1><h2>...</h2>...
+   → .page__content 래퍼가 없으므로 선택자에서 제거
    ================================================= */
 
-/* 페이지 제목(h1)은 이미 --text-strong으로 처리되고 있음.
-   여기선 시리즈 그룹 제목(h2)만 별도 취급 */
-
-.archive .page__content h2 {
+.archive h2 {
   display: flex;
   align-items: baseline;
   gap: 10px;
   font-size: 1.25em;
   font-weight: 700;
-  color: var(--tn-blue);
-  margin: 2em 0 0;          /* 기존: 2em 0 0.6em → 카드와 완전히 붙임 */
-  padding-left: 4px;         /* 카드의 왼쪽 액센트 라인과 시각적으로 정렬 */
-  border: none;
+  color: var(--tn-blue) !important;
+  margin: 2em 0 0;
+  padding-left: 4px;
+  border: none !important;
 }
 
-.archive .page__content h2:first-of-type {
+.archive h2:first-of-type {
   margin-top: 0.4em;
 }
 
-/* 제목 옆 작은 카운트/장식 — 시리즈 그룹임을 시각적으로 표시 */
-.archive .page__content h2::after {
+.archive h2::after {
   content: "";
   flex: 1;
   height: 1px;
@@ -2332,22 +2329,22 @@ html[data-theme="light"] .mermaid {
   margin-left: 4px;
 }
 
-/* 시리즈 그룹 전체를 감싸는 은은한 카드 프레임 */
 .archive .entries-list {
   background: var(--tn-card);
   border: 1px solid var(--tn-border);
   border-left: 3px solid var(--tn-blue);
   border-radius: 10px;
+  border-top-left-radius: 0;
   padding: 6px 20px;
+  margin-top: 0;
   margin-bottom: 1.8em;
 }
 
-/* "기타 글" 그룹은 색을 낮춰서 시리즈보다 한 단계 조용하게 */
-.archive .page__content h2:last-of-type {
-  color: var(--tn-muted);
+.archive h2:last-of-type {
+  color: var(--tn-muted) !important;
 }
 
-.archive .page__content h2:last-of-type::after {
+.archive h2:last-of-type::after {
   background: linear-gradient(90deg, var(--tn-border-soft), transparent);
 }
 
@@ -2355,8 +2352,6 @@ html[data-theme="light"] .mermaid {
   border-left-color: var(--tn-border);
 }
 
-/* 목록 안 개별 글 항목 — 기존 archive__item 스타일(18번 섹션)을 그대로 쓰되
-   카드 안에서는 좌우 인디케이터 제거해 이중 테두리 방지 */
 .archive .entries-list .archive__item {
   border-bottom: 1px solid var(--tn-border-soft);
   border-radius: 0;
@@ -2373,10 +2368,13 @@ html[data-theme="light"] .mermaid {
   padding-left: 12px;
 }
 
-/* 제목과 카드 사이 간격을 없애는 대신, 카드 상단 모서리를 각지게 해서
-   "제목에 카드가 매달린" 느낌으로 통일 */
-.archive .entries-list {
-  margin-top: 0;
-  border-top-left-radius: 0;
+.archive .entries-list .archive__item-title::after {
+  opacity: 0;
+  width: 0;
+}
+
+.archive .entries-list .archive__item:hover .archive__item-title::after {
+  opacity: 1;
+  width: 36px;
 }
 
