@@ -2644,3 +2644,25 @@ html[data-theme="dark"] .layout--splash .project-thumb {
   border-bottom: 1px solid rgba(125, 207, 255, 0.25);
 }
 
+/* 라이트 모드: 책상 위의 공책 느낌 강화 */
+html[data-theme="light"] body.layout--splash {
+  background-color: #DCD8CE;              /* 따뜻한 데스크 톤 (기존 #E8E8E4보다 두 단계 아래) */
+}
+
+html[data-theme="light"] .layout--splash .page__content {
+  box-shadow: 0 10px 32px rgba(60, 50, 30, 0.16),
+              0 2px 8px rgba(60, 50, 30, 0.08);   /* 이중 그림자 = 들려 있는 종이 */
+}
+
+/* 다크모드 히어로 = 라이트 반전 (밝은 종이 밴드) */
+html[data-theme="dark"] .layout--splash .page__hero--overlay {
+  background: linear-gradient(135deg, #F2F4EF 0%, #EAECE6 55%, #E2E5DE 100%);
+}
+
+html[data-theme="dark"] .home .page__hero--overlay .page__title {
+  color: #16161e !important;
+}
+
+html[data-theme="dark"] .layout--splash .page__hero--overlay .page__lead {
+  color: #3E4358;
+}
