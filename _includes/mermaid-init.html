@@ -45,6 +45,10 @@
     raw.forEach(function (el) {
       var code = el.tagName === "CODE" ? el : el.querySelector("code");
       var text = code ? code.textContent : el.textContent;
+      // 코드펜스 파싱 과정에서 앞뒤로 개행/공백이 섞여 들어오면
+      // mermaid가 첫 줄에서 다이어그램 타입을 못 읽고
+      // "No diagram type detected" 에러를 내므로 반드시 trim.
+      text = text.trim();
 
       // 바깥 래퍼를 최대한 넓게 찾아서 통째로 교체
       // (div.language-mermaid > pre > code 구조든, pre > code.language-mermaid 구조든 모두 대응)
