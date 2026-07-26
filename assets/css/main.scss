@@ -2599,9 +2599,10 @@ html[data-theme="light"] .layout--splash .page__content {
               0 2px 8px rgba(60, 50, 30, 0.08);   /* 이중 그림자 = 들려 있는 종이 */
 }
 
-/* 다크모드 히어로 = 라이트 반전 (밝은 종이 밴드) */
+/* 다크모드 히어로 = 밝은 종이 밴드 (인라인 overlay_color까지 제압) */
 html[data-theme="dark"] .layout--splash .page__hero--overlay {
-  background: linear-gradient(135deg, #F2F4EF 0%, #EAECE6 55%, #E2E5DE 100%);
+  background: linear-gradient(135deg, #F2F4EF 0%, #EAECE6 55%, #E2E5DE 100%) !important;
+  background-color: #EAECE6 !important;
 }
 
 html[data-theme="dark"] .home .page__hero--overlay .page__title {
@@ -2609,5 +2610,5 @@ html[data-theme="dark"] .home .page__hero--overlay .page__title {
 }
 
 html[data-theme="dark"] .layout--splash .page__hero--overlay .page__lead {
-  color: #3E4358;
+  color: #3E4358 !important;
 }
