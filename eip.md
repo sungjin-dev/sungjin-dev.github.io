@@ -43,7 +43,7 @@ sidebar:
 
 {% assign etc_items = group.items | sort: "date" | reverse %}
 
-## 기타 글
+## 오답노트
 
 <div class="entries-list" markdown="1">
 
