@@ -2522,3 +2522,125 @@ html[data-theme="dark"] .layout--splash .page__content h2::before {
   color: var(--tn-blue);
   font-weight: 700;
 }
+
+/* =================================================
+   28. 다크모드 홈 = 청사진(Blueprint) 컨셉
+   라이트 = 스프링 노트 / 다크 = 설계 도면
+   ※ 기존 27(터미널 컨셉)과 #181B23·#1B1F2B 계열의
+     다크모드 홈 블록은 전부 삭제 후 이걸로 교체
+   ================================================= */
+
+/* ---------- 1) 페이지 배경: 남색 + 희미한 시안 모눈 격자 ---------- */
+html[data-theme="dark"] body.layout--splash {
+  background-color: #0E1626;
+  background-image:
+    linear-gradient(rgba(125, 207, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 207, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(125, 207, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 207, 255, 0.09) 1px, transparent 1px);
+  background-size:
+    24px 24px,
+    24px 24px,
+    120px 120px,
+    120px 120px;
+}
+
+/* ---------- 2) 본문 카드 = 도면 용지 ---------- */
+html[data-theme="dark"] .layout--splash .page__content {
+  background-color: rgba(16, 26, 44, 0.92);
+  border: 1px solid rgba(125, 207, 255, 0.30);
+  border-radius: 3px;                     /* 도면은 모서리가 날카롭게 */
+  box-shadow:
+    0 0 0 6px rgba(125, 207, 255, 0.035), /* 용지 바깥 이중 프레임 느낌 */
+    0 16px 44px rgba(0, 0, 0, 0.5);
+  margin-top: 34px;
+  padding-top: 44px;
+  padding-bottom: 64px;                   /* 명판 자리 */
+
+  /* 네 모서리의 제도 마크 (L자 크로스마크) */
+  background-image:
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55)),
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55)),
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55)),
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55)),
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55)),
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55)),
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55)),
+    linear-gradient(rgba(125,207,255,0.55), rgba(125,207,255,0.55));
+  background-repeat: no-repeat;
+  background-size:
+    16px 1.5px, 1.5px 16px,   /* 좌상 */
+    16px 1.5px, 1.5px 16px,   /* 우상 */
+    16px 1.5px, 1.5px 16px,   /* 좌하 */
+    16px 1.5px, 1.5px 16px;   /* 우하 */
+  background-position:
+    12px 12px, 12px 12px,
+    calc(100% - 12px) 12px, calc(100% - 12px) 12px,
+    12px calc(100% - 12px), 12px calc(100% - 12px),
+    calc(100% - 12px) calc(100% - 12px), calc(100% - 12px) calc(100% - 12px);
+}
+
+/* ---------- 3) 스프링 링·구멍 → 다크에선 도면 요소로 대체 ---------- */
+
+/* 링 제거 */
+html[data-theme="dark"] .layout--splash .page__content::before {
+  content: none;
+}
+
+/* 구멍 → 도면 명판(우측 하단 타이틀 블록)으로 재활용 */
+html[data-theme="dark"] .layout--splash .page__content::after {
+  content: "SUNGJIN.DEV — STUDY LOG · SHEET 01";
+  top: auto;
+  bottom: 16px;
+  right: 20px;
+  left: auto;
+  height: auto;
+  background: none;
+  font-family: 'D2Coding', monospace;
+  font-size: 0.66em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(125, 207, 255, 0.5);
+  border: 1px solid rgba(125, 207, 255, 0.28);
+  padding: 4px 12px;
+  pointer-events: none;
+}
+
+/* ---------- 4) 섹션 제목 = 치수선 스타일 ---------- */
+html[data-theme="dark"] .layout--splash .page__content h2 {
+  color: #CFE9FF;                          /* 청사진 잉크색 */
+}
+
+/* 그라데이션 바 대신 양끝 틱이 있는 치수선 */
+html[data-theme="dark"] .layout--splash .page__content h2::after {
+  width: 110px;
+  height: 9px;
+  margin-top: 0.4em;
+  border-radius: 0;
+  background:
+    linear-gradient(rgba(125,207,255,0.85), rgba(125,207,255,0.85)) 0 50% / 100% 1px no-repeat,
+    linear-gradient(rgba(125,207,255,0.85), rgba(125,207,255,0.85)) 0 50% / 1.5px 9px no-repeat,
+    linear-gradient(rgba(125,207,255,0.85), rgba(125,207,255,0.85)) 100% 50% / 1.5px 9px no-repeat;
+}
+
+/* ---------- 5) 콘텐츠 카드 = 도면 위 구획 ---------- */
+html[data-theme="dark"] .layout--splash .project-card,
+html[data-theme="dark"] .layout--splash .series-row {
+  background-color: rgba(125, 207, 255, 0.045);
+  border-color: rgba(125, 207, 255, 0.30);
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .layout--splash .project-card:hover,
+html[data-theme="dark"] .layout--splash .series-row:hover {
+  background-color: rgba(125, 207, 255, 0.075);
+  border-color: rgba(125, 207, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(125, 207, 255, 0.09);   /* 시안 글로우 */
+}
+
+/* 도면 위에서는 썸네일 프레임도 시안 라인으로 */
+html[data-theme="dark"] .layout--splash .project-thumb {
+  border-bottom: 1px solid rgba(125, 207, 255, 0.25);
+}
+
