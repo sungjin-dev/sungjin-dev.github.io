@@ -594,14 +594,12 @@ graph TD
 
 #### ⑤ 모델-뷰-컨트롤러 패턴 (MVC; Model View Controller Pattern)
 
-```mermaid
 graph TD
-    Client([Client]) -->|"1. Request"| Controller(Controller)
-    Controller -->|"2. Call"| Model(Model)
-    Model -->|"3. Result"| Controller
-    Controller -->|"4. 요청"| View(View)
-    View -->|"5. Response 결과화면"| Client
-```
+    Client([Client]) -->|"1) Request"| Controller(Controller)
+    Controller -->|"2) Call"| Model(Model)
+    Model -->|"3) Result"| Controller
+    Controller -->|"4) 요청"| View(View)
+    View -->|"5) Response 결과화면"| Client
 
 - 대화형 애플리케이션을 **모델, 뷰, 컨트롤러 3개의 서브 시스템**으로 구조화하는 패턴
 
