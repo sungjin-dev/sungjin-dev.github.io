@@ -38,17 +38,17 @@ toc_sticky: true
 
 | 분류 | 설명 | 예시 |
 | --- | --- | --- |
-| **유형 엔터티** | 물리적 형태가 있음 | 학생, 사원, 강사 |
-| **개념 엔터티** | 개념적인 정보 | 조직, 보험상품 |
-| **사건 엔터티** | 업무 수행에 따라 발생 | 주문, 청구 |
+| **유형 엔터티** | 물리적 형태가 있음 | 학생, 사원, 강사, 챡, 고객 |
+| **개념 엔터티** | 개념적인 정보 | 과목, 학과, 조직, 보험상품 |
+| **사건 엔터티** | 업무 수행에 따라 발생 | 수강, 주문, 청구, 예약 |
 
 **발생시점에 따라:**
 
 | 분류 | 설명 | 예시 |
 | --- | --- | --- |
-| **기본 엔터티** | 독립적으로 생성 가능 | 고객, 상품 |
-| **중심 엔터티** | 기본 엔터티로부터 생성 | 계약, 주문 |
-| **행위 엔터티** | 두 엔터티 간의 행위로 생성 | 주문목록, 사원변경이력 |
+| **기본 엔터티** | 독립적으로 생성 가능 | 학생, 고객, 상품 |
+| **중심 엔터티** | 기본 엔터티로부터 생성 | 수강신청, 계약, 주문 |
+| **행위 엔터티** | 두개 이상 엔터티 간의 행위로 생성 | 수강, 주문목록, 사원변경이력 |
 
 ### 엔터티 명명 규칙
 
@@ -67,7 +67,7 @@ toc_sticky: true
 - 업무에서 필요하고 관리해야 할 정보여야 한다
 - **주식별자에 함수적으로 종속**되어야 한다 (정규화 이론과 연결)
 - **하나의 속성은 하나의 값만** 가진다 (단일값 원칙 → 1정규형의 근거)
-- **도메인**: 속성이 가질 수 있는 값의 범위
+- **도메인**: 속성이 가질 수 있는 값의 범위. 데이터의 타입과 크기에 대한 제한사항 정의(데이터 무결성-Data Integrity)
 
 ### 속성의 분류
 
@@ -103,6 +103,12 @@ toc_sticky: true
 - **존재에 의한 관계**: 항상 존재 (사원은 부서에 *속한다*)
 - **행위에 의한 관계**: 특정 행위로 발생 (고객이 상품을 *구매한다*)
 
+>**존재에 의한 관계**: 사원 - 부서 (사원이 부서에 '속해 있다'는 상태)
+>
+>**행위에 의한 관계**: 고객 - 주문 (고객이 주문을 '하는' 행위)
+>
+> "사원이 부서에 속하는 것은 행위에 의한 관계이다." ➡️ (X) 존재에 의한 관계
+
 **카디널리티(참여자 수):**
 - **1:1** — 양쪽 인스턴스가 1:1 대응
 - **1:M** — 한쪽 인스턴스가 여러 인스턴스와 관계
@@ -117,6 +123,139 @@ toc_sticky: true
 - **현재형 동사** 사용
 - 참여자 관점에서 **능동적**으로 명명
 - **양방향**(능동/수동)으로 명명
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 760" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;">
+  
+  <!-- Outer Frame -->
+  <rect x="15" y="15" width="790" height="730" fill="none" stroke="#333333" stroke-width="1.5" rx="4"/>
+
+  <!-- ==================== 1:1 Relationship ==================== -->
+  <g id="section-1-1">
+    <text x="35" y="45" font-size="16" font-weight="bold" fill="#111827">[1:1 관계]</text>
+    
+    <!-- Entity: 고객 -->
+    <rect x="45" y="65" width="190" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="45" y="65" width="190" height="32" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="140" y="86" font-size="15" font-weight="bold" text-anchor="middle" fill="#111827">고객</text>
+    <text x="60" y="118" font-size="13" fill="#374151">고객ID</text>
+    <text x="60" y="140" font-size="13" fill="#374151">이름</text>
+    <text x="60" y="162" font-size="13" fill="#374151">전화번호</text>
+    <line x1="45" y1="124" x2="235" y2="124" stroke="#e5e7eb" stroke-width="1"/>
+
+    <!-- Entity: 장바구니 -->
+    <rect x="585" y="65" width="190" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="585" y="65" width="190" height="32" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="680" y="86" font-size="15" font-weight="bold" text-anchor="middle" fill="#111827">장바구니</text>
+    <text x="600" y="118" font-size="13" fill="#374151">장바구니ID</text>
+    <text x="600" y="140" font-size="13" fill="#374151">고객ID</text>
+    <text x="600" y="162" font-size="13" fill="#374151">생성일자</text>
+    <line x1="585" y1="124" x2="775" y2="124" stroke="#e5e7eb" stroke-width="1"/>
+
+    <!-- Line & Cardinality -->
+    <line x1="235" y1="120" x2="585" y2="120" stroke="#111827" stroke-width="1.5"/>
+    <!-- 1 mandatory left -->
+    <line x1="250" y1="110" x2="250" y2="130" stroke="#111827" stroke-width="1.5"/>
+    <!-- 1 mandatory right -->
+    <line x1="570" y1="110" x2="570" y2="130" stroke="#111827" stroke-width="1.5"/>
+
+    <!-- Relationship Text -->
+    <rect x="365" y="105" width="90" height="30" fill="#ffffff"/>
+    <text x="410" y="125" font-size="14" font-weight="bold" fill="#1d4ed8" text-anchor="middle">보유한다</text>
+  </g>
+
+
+  <!-- ==================== 1:M Relationship ==================== -->
+  <g id="section-1-m">
+    <text x="35" y="280" font-size="16" font-weight="bold" fill="#111827">[1:M 관계]</text>
+    
+    <!-- Entity: 고객 -->
+    <rect x="45" y="300" width="190" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="45" y="300" width="190" height="32" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="140" y="321" font-size="15" font-weight="bold" text-anchor="middle" fill="#111827">고객</text>
+    <text x="60" y="353" font-size="13" fill="#374151">고객ID</text>
+    <text x="60" y="375" font-size="13" fill="#374151">이름</text>
+    <text x="60" y="397" font-size="13" fill="#374151">전화번호</text>
+    <line x1="45" y1="359" x2="235" y2="359" stroke="#e5e7eb" stroke-width="1"/>
+
+    <!-- Entity: 주문 -->
+    <rect x="585" y="300" width="190" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="585" y="300" width="190" height="32" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="680" y="321" font-size="15" font-weight="bold" text-anchor="middle" fill="#111827">주문</text>
+    <text x="600" y="353" font-size="13" fill="#374151">주문번호</text>
+    <text x="600" y="375" font-size="13" fill="#374151">고객ID</text>
+    <text x="600" y="397" font-size="13" fill="#374151">주문일자</text>
+    <line x1="585" y1="359" x2="775" y2="359" stroke="#e5e7eb" stroke-width="1"/>
+
+    <!-- Line & Cardinality -->
+    <line x1="235" y1="355" x2="585" y2="355" stroke="#111827" stroke-width="1.5"/>
+    <!-- 1 mandatory left -->
+    <line x1="250" y1="345" x2="250" y2="365" stroke="#111827" stroke-width="1.5"/>
+    <!-- M optional right (Circle + Crow's foot) -->
+    <circle cx="550" cy="355" r="6" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <path d="M 585 355 L 560 343 M 585 355 L 560 367" stroke="#111827" stroke-width="1.5"/>
+
+    <!-- Relationship Text -->
+    <rect x="365" y="340" width="90" height="30" fill="#ffffff"/>
+    <text x="410" y="360" font-size="14" font-weight="bold" fill="#1d4ed8" text-anchor="middle">주문한다</text>
+  </g>
+
+
+  <!-- ==================== M:N Relationship ==================== -->
+  <g id="section-m-n">
+    <text x="35" y="515" font-size="16" font-weight="bold" fill="#111827">[M:N 관계]</text>
+    
+    <!-- Entity: 고객 -->
+    <rect x="45" y="535" width="190" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="45" y="535" width="190" height="32" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="140" y="556" font-size="15" font-weight="bold" text-anchor="middle" fill="#111827">고객</text>
+    <text x="60" y="588" font-size="13" fill="#374151">고객ID</text>
+    <text x="60" y="610" font-size="13" fill="#374151">이름</text>
+    <text x="60" y="632" font-size="13" fill="#374151">전화번호</text>
+    <line x1="45" y1="594" x2="235" y2="594" stroke="#e5e7eb" stroke-width="1"/>
+
+    <!-- Entity: 상품 -->
+    <rect x="585" y="535" width="190" height="110" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <rect x="585" y="535" width="190" height="32" fill="#f3f4f6" stroke="#111827" stroke-width="1.5"/>
+    <text x="680" y="556" font-size="15" font-weight="bold" text-anchor="middle" fill="#111827">상품</text>
+    <text x="600" y="588" font-size="13" fill="#374151">상품코드</text>
+    <text x="600" y="610" font-size="13" fill="#374151">상품명</text>
+    <text x="600" y="632" font-size="13" fill="#374151">판매가격</text>
+    <line x1="585" y1="594" x2="775" y2="594" stroke="#e5e7eb" stroke-width="1"/>
+
+    <!-- Line & Cardinality -->
+    <line x1="235" y1="590" x2="585" y2="590" stroke="#111827" stroke-width="1.5"/>
+    <!-- M optional left -->
+    <circle cx="270" cy="590" r="6" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <path d="M 235 590 L 260 578 M 235 590 L 260 602" stroke="#111827" stroke-width="1.5"/>
+    <!-- N optional right -->
+    <circle cx="550" cy="590" r="6" fill="#ffffff" stroke="#111827" stroke-width="1.5"/>
+    <path d="M 585 590 L 560 578 M 585 590 L 560 602" stroke="#111827" stroke-width="1.5"/>
+
+    <!-- Relationship Text -->
+    <rect x="365" y="575" width="90" height="30" fill="#ffffff"/>
+    <text x="410" y="595" font-size="14" font-weight="bold" fill="#1d4ed8" text-anchor="middle">찜한다</text>
+  </g>
+
+
+  <!-- ==================== Annotations & Callouts ==================== -->
+  <!-- Relationship Label Pointer -->
+  <text x="410" y="220" font-size="14" font-weight="bold" fill="#dc2626" text-anchor="middle">관계명</text>
+  <path d="M 410 200 L 410 145" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <path d="M 410 230 L 410 335" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+  
+  <polygon points="406,145 410,137 414,145" fill="#dc2626"/>
+  <polygon points="406,335 410,343 414,335" fill="#dc2626"/>
+
+  <!-- Optional Participation Label Pointer -->
+  <text x="410" y="475" font-size="14" font-weight="bold" fill="#dc2626" text-anchor="middle">선택적 참여 (O)</text>
+  <!-- Pointer to 1:M optional circle -->
+  <path d="M 465 465 L 545 365" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="540,363 547,362 546,370" fill="#dc2626"/>
+  <!-- Pointer to M:N optional circle -->
+  <path d="M 465 480 L 545 580" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <polygon points="546,575 547,583 540,582" fill="#dc2626"/>
+</svg>
+
 
 ---
 
