@@ -10,6 +10,7 @@ tags:
   - 요구사항관리
 toc: true
 toc_sticky: true
+series: "정처기-공부"
 order: 2
 ---
 
