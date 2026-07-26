@@ -1,0 +1,63 @@
+<!-- _includes/mermaid-init.html
+     기존에 mermaid를 로드/초기화하던 코드를 전부 이걸로 교체.
+     보통 _includes/head/custom.html 이나 footer/custom.html 에서
+     {% include mermaid-init.html %} 로 불러오면 됨. -->
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@{{ site.mermaid.version | default: '11.4.0' }}/dist/mermaid.esm.min.mjs";
+
+  const isDark = () =>
+    document.documentElement.getAttribute("data-theme") === "dark";
+
+  // 다크 모드용 Tokyo Night 팔레트 (xychart 포함)
+  const darkVars = {
+    xyChart: {
+      backgroundColor: "#1a1b26",
+      titleColor: "#c0caf5",
+      xAxisLabelColor: "#a9b1d6",
+      xAxisTitleColor: "#c0caf5",
+      xAxisTickColor: "#3b4261",
+      xAxisLineColor: "#3b4261",
+      yAxisLabelColor: "#a9b1d6",
+      yAxisTitleColor: "#c0caf5",
+      yAxisTickColor: "#3b4261",
+      yAxisLineColor: "#3b4261",
+      plotColorPalette: "#7dcfff,#e0af68,#bb9af7,#9ece6a,#f7768e"
+    }
+  };
+
+  const config = () => ({
+    startOnLoad: false,
+    securityLevel: "loose",
+    theme: isDark() ? "dark" : "default",
+    themeVariables: isDark() ? darkVars : {},
+    flowchart: { htmlLabels: true }
+  });
+
+  // 재렌더링을 위해 원본 소스를 보관
+  const blocks = document.querySelectorAll(".mermaid");
+  blocks.forEach((el) => {
+    el.dataset.mermaidSrc = el.textContent;
+  });
+
+  async function render() {
+    mermaid.initialize(config());
+    blocks.forEach((el) => {
+      el.removeAttribute("data-processed");
+      el.textContent = el.dataset.mermaidSrc;
+    });
+    await mermaid.run({ nodes: blocks });
+  }
+
+  // 최초 렌더
+  render();
+
+  // 테마 토글 감지 → 다이어그램 자동 재렌더 (토글 코드 수정 불필요)
+  new MutationObserver((muts) => {
+    for (const m of muts) {
+      if (m.attributeName === "data-theme") {
+        render();
+        break;
+      }
+    }
+  }).observe(document.documentElement, { attributes: true });
+</script>
