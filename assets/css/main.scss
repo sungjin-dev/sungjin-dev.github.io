@@ -2368,13 +2368,4 @@ html[data-theme="light"] .mermaid {
   padding-left: 12px;
 }
 
-.archive .entries-list .archive__item-title::after {
-  opacity: 0;
-  width: 0;
-}
-
-.archive .entries-list .archive__item:hover .archive__item-title::after {
-  opacity: 1;
-  width: 36px;
-}
 
