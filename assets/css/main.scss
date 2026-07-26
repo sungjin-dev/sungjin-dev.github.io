@@ -2452,3 +2452,17 @@ div.highlighter-rouge.code-folded > .highlight::after {
   animation: none !important;
   text-shadow: none !important;
 }
+
+/* 다크모드 홈 — 명도 사다리 복원 */
+html[data-theme="dark"] .layout--splash .page__content {
+  background: #181B23;                 /* 페이지(#12141D)와 카드 사이의 중간층 */
+  border-top-color: #2E3340;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* 시리즈/프로젝트 카드가 노트 위에서 확실히 떠 보이게 */
+html[data-theme="dark"] .layout--splash .project-card,
+html[data-theme="dark"] .layout--splash .series-row {
+  background-color: #262B3B;           /* 노트(#181B23)보다 두 단계 위 */
+  border-color: #3B4261;
+}
