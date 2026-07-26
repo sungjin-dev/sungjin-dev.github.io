@@ -2635,6 +2635,29 @@ html[data-theme="dark"] .mermaid {
     fill: #c0caf5 !important;
     stroke: none !important;
   }
+
+  /* 엣지 라벨 뒤의 배경 사각형 — 어두운 판 + 살짝 투명 */
+  .edgeLabel rect,
+  .labelBkg,
+  .edgeLabels rect {
+    fill: #1f2335 !important;
+    opacity: 0.9 !important;
+  }
+}
+
+/* 라이트 모드에서도 SVG 라벨이 확실히 보이게 */
+html[data-theme="light"] .mermaid {
+  .edgeLabel text,
+  svg text {
+    fill: #383A42 !important;
+  }
+
+  .edgeLabel rect,
+  .labelBkg {
+    fill: #F6F6F4 !important;
+    opacity: 0.9 !important;
+  }
+}
   
   .marker, .arrowheadPath { fill: #a9b1d6 !important; stroke: #a9b1d6 !important; }
 
@@ -2650,14 +2673,6 @@ html[data-theme="dark"] .mermaid {
     color: #c0caf5 !important;
   }
 
-  /* 엣지 라벨 뒤의 배경 사각형 — 어두운 판 + 살짝 투명 */
-  .edgeLabel rect,
-  .labelBkg,
-  .edgeLabels rect {
-    fill: #1f2335 !important;
-    opacity: 0.9 !important;
-  }
-}
 
   /* loop 라벨 박스 */
   .labelBox { fill: #1f2335 !important; stroke: #3b4261 !important; }
