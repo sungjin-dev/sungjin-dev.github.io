@@ -1,5 +1,5 @@
 ---
-title: "[정처기 공부 #2]  UML과 애자일 방법론 정리"
+title: "[정처기 공부 #1]  UML과 애자일 방법론 정리"
 excerpt: "UML 구성요소·다이어그램·관계, 스테레오 타입부터 애자일 선언문, XP·스크럼·린까지"
 categories: [정처기]
 tags:
@@ -8,10 +8,9 @@ tags:
   - XP
   - 스크럼
   - 요구사항분석
-order: 2
+order: 1
 toc: true
 toc_sticky: true
-mermaid: true
 ---
 
 > **기출 빈도 요약** — UML 구성요소·다이어그램은 거의 매년 출제된다. 애자일 선언문, XP 가치·원리, 스크럼 용어도 단골이다. 괄호 안 연도는 실제 기출 회차다.
