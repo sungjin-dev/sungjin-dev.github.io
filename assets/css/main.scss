@@ -2624,3 +2624,28 @@ html[data-theme="dark"] .home .page__hero--overlay .page__title {
 html[data-theme="dark"] .layout--splash .page__hero--overlay .page__lead {
   color: #3E4358 !important;
 }
+
+/* Mermaid 다크모드 가시성 보정 */
+html[data-theme="dark"] .mermaid {
+  /* 선·화살표 (플로차트/시퀀스 공통) */
+  .edgePath path, .messageLine0, .messageLine1, .loopLine,
+  .flowchart-link, path.path {
+    stroke: #a9b1d6 !important;
+  }
+  .marker, .arrowheadPath { fill: #a9b1d6 !important; stroke: #a9b1d6 !important; }
+
+  /* 텍스트 */
+  text, .messageText, .loopText, .labelText, .noteText, tspan {
+    fill: #c0caf5 !important;
+    stroke: none !important;
+  }
+
+  /* 엣지 라벨(선 위 글자) 배경 */
+  .edgeLabel, .edgeLabel p {
+    background-color: #1f2335 !important;
+    color: #c0caf5 !important;
+  }
+
+  /* loop 라벨 박스 */
+  .labelBox { fill: #1f2335 !important; stroke: #3b4261 !important; }
+}
