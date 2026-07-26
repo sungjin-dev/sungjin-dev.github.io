@@ -50,8 +50,6 @@ flowchart TB
 
  **Modern JVM Memory Layout (Java 8 ~ 21+)**
 
-JVM 메모리 구조 Mermaid 다이어그램 소스 코드를 복사할 수 있는 코드블록
-복사
 ```mermaid
 graph TD
     subgraph RDA ["JVM Runtime Data Area (JVM이 직접 관리)"]
@@ -86,7 +84,7 @@ graph TD
             end
         end
 
-        %% 좌우 배치를 강제하는 투명 힌트 링크 — RDA 안쪽에 위치해야 효과가 있음
+        
         STACK_AREA ~~~ HEAP_AREA
     end
 
