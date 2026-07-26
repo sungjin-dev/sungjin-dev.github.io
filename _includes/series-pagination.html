@@ -1,0 +1,53 @@
+<!-- _includes/series-pagination.html
+     같은 카테고리(시리즈) 안에서만 이전/다음 글을 계산해 렌더링.
+     기존 테마의 page.previous / page.next (전체 글 기준) 대신 이걸 사용.
+     스타일은 main.scss 26번 섹션(.pagination, .pagination--pager)을 그대로 재사용. -->
+
+{% assign category = page.categories.first %}
+
+{% if category %}
+  {% assign series_posts = site.categories[category] | sort: "date" %}
+{% else %}
+  {% assign series_posts = site.posts | sort: "date" %}
+{% endif %}
+
+{% assign series_size = series_posts | size %}
+{% assign page_index = -1 %}
+{% for p in series_posts %}
+  {% if p.url == page.url %}
+    {% assign page_index = forloop.index0 %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if page_index > -1 %}
+  {% assign prev_index = page_index | minus: 1 %}
+  {% assign next_index = page_index | plus: 1 %}
+
+  {% if prev_index >= 0 %}
+    {% assign series_previous = series_posts[prev_index] %}
+  {% endif %}
+  {% if next_index < series_size %}
+    {% assign series_next = series_posts[next_index] %}
+  {% endif %}
+{% endif %}
+
+{% if series_previous or series_next %}
+<nav class="pagination">
+  {% if series_previous %}
+    <a href="{{ series_previous.url | relative_url }}" class="pagination--pager">
+      ← {{ series_previous.title }}
+    </a>
+  {% else %}
+    <span class="pagination--pager disabled">← 시리즈 첫 글</span>
+  {% endif %}
+
+  {% if series_next %}
+    <a href="{{ series_next.url | relative_url }}" class="pagination--pager">
+      {{ series_next.title }} →
+    </a>
+  {% else %}
+    <span class="pagination--pager disabled">시리즈 마지막 글 →</span>
+  {% endif %}
+</nav>
+{% endif %}
