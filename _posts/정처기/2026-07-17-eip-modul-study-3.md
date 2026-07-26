@@ -11,6 +11,7 @@ tags:
 toc: true
 toc_sticky: true
 order: 3
+series: "정처기-공부"
 ---
 
 # [정보처리기사] 애플리케이션 설계 — 공통 모듈 설계 & 소프트웨어 아키텍처 총정리
