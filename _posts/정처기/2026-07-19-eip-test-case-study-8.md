@@ -1,5 +1,5 @@
 ---
-title: "[정처기 공부 #9] 애플리케이션 테스트 관리 정리"
+title: "[정처기 공부 #8] 애플리케이션 테스트 관리 정리"
 excerpt: "테스트 케이스부터 통합 테스트까지"
 categories:
   - 정처기
@@ -10,7 +10,8 @@ tags:
   - 결함
 toc: true
 toc_sticky: true
-order: 9
+order: 8
+series: "정처기-공부"
 ---
 
 ## 1. 테스트 케이스 설계
