@@ -1644,11 +1644,13 @@ html[data-theme="light"] .about-terminal__body a:hover {
   background: linear-gradient(90deg, var(--tn-blue), var(--tn-purple));
   opacity: 0.55;
   transition: width 0.25s ease, opacity 0.25s ease;
+  flex-shrink: 0;   /* ← 이 줄 추가: flex 부모 안에서 찌그러지지 않게 */
 }
 
 .archive__item:hover .archive__item-title::after {
   width: 84px;
   opacity: 1;
+  flex-shrink: 0;   /* ← 여기도 동일하게 추가 */
 }
 
 /* =================================================
