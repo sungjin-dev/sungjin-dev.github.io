@@ -24,6 +24,27 @@ const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 100000
 
 처음 마주치게 되면 "그냥 Math.random(1000000, 9999999)라고 써서 구하면 되는데, 왜 이렇게 귀찮게 꼬아놨을까?" 하는 의문이 드는 것이 당연하다. 이렇듯 복잡한 과정으로 도출하게된 근본적인 이유는 자바스크립트에서 기본적으로 제공하는 무작위 도구가 딱 하나(0 이상 1 미만 소수)뿐이기 때문이다. 
 
+목적은 두 가지다.
+
+- **연도 접두사**: 앞에 `2026`을 붙여서 언제 생성된 ID인지 한눈에 구분한다.
+- **자릿수 고정 난수**: 뒤에 7자리, 2자리 난수를 붙여서 중복 가능성을 낮춘다.
+
+이건 "min 이상 max 이하의 정수"를 뽑는 자바스크립트의 정석 공식이다.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 100" width="100%" height="100%">
+  <!-- 배경을 투명하게 처리하여 블로그 테마와 자연스럽게 어울리도록 설정 -->
+  <rect x="0" y="0" width="600" height="100" fill="transparent" />
+  
+  <!-- currentColor를 사용해 라이트모드(검은 글씨)/다크모드(흰 글씨) 자동 대응 -->
+  <text x="50%" y="50%" font-family="'Times New Roman', Times, serif" font-size="26" fill="currentColor" text-anchor="middle" dominant-baseline="middle" letter-spacing="0.5">
+    Math.floor(Math.random() * (max - min + 1)) + min
+  </text>
+</svg>
+
+
+복잡한 수식으로만 공부하려면 머리가 아플 수 있다. 비유적으로 한번 알아보자. 
+
+
 ## 2. 고무줄 늘리기 
 
 <img width="250" height="350" alt="고양이" src="https://github.com/user-attachments/assets/757a086c-db2a-473c-97e2-624d28bd7d1b" />
@@ -109,7 +130,6 @@ const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 100000
 </svg>
 
 
-
 **1단계: 고무줄을 900만 배로 쫙 늘리기** 
 
 (* 9000000)우리가 필요한 숫자의 개수(범위)가 총 900만 개이므로, 1cm짜리 고무줄을 900만 배로 팽팽하게 늘려준다. 
@@ -155,31 +175,6 @@ let dice = getRandomInt(1, 6);                  // 1~6 사이 주사위 눈
 
 요약하자면 자바스크립트가 0~1 사이의 기본 소수만 제공하다 보니, 우리가 [원하는 범위만큼 곱해서 늘리고] ➡ [소수점 자르고] ➡ [시작점으로 이동시키는] 수학적 가공을 직접 해주는 것이다. 
 
-
-목적은 두 가지다.
-
-- **연도 접두사**: 앞에 `2026`을 붙여서 언제 생성된 ID인지 한눈에 구분한다.
-- **자릿수 고정 난수**: 뒤에 7자리, 2자리 난수를 붙여서 중복 가능성을 낮춘다.
-
-
-이건 "min 이상 max 이하의 정수"를 뽑는 자바스크립트의 정석 공식이다.
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 100" width="100%" height="100%">
-  <!-- 배경을 투명하게 처리하여 블로그 테마와 자연스럽게 어울리도록 설정 -->
-  <rect x="0" y="0" width="600" height="100" fill="transparent" />
-  
-  <!-- currentColor를 사용해 라이트모드(검은 글씨)/다크모드(흰 글씨) 자동 대응 -->
-  <text x="50%" y="50%" font-family="'Times New Roman', Times, serif" font-size="26" fill="currentColor" text-anchor="middle" dominant-baseline="middle" letter-spacing="0.5">
-    Math.floor(Math.random() * (max - min + 1)) + min
-  </text>
-</svg>
-
-
-- `Math.random() * (9999999 - 1000000 + 1) + 1000000` → 항상 1,000,000~9,999,999 사이 값, 즉 무조건 7자리
-- 
-- `Math.random() * (99 - 10 + 1) + 10` → 항상 10~99 사이 값, 즉 무조건 2자리
-
-굳이 이렇게 복잡하게 계산하는 이유는 `000123`처럼 앞자리가 0으로 시작해서 자릿수가 줄어드는 문제를 막기 위해서다. 단순히 `Math.random() * 10000000` 을 쓰면 6자리, 5자리짜리 값이 나올 수 있기 때문이다.
 
 
 ## 2. 더 간단하게 만드는 3가지 대안
