@@ -22,39 +22,18 @@ const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 100000
 // 결과 예시: 2026-5839201-42
 ```
 
-처음 마주치게 되면 "그냥 Math.random(1000000, 9999999)라고 써서 구하면 되는데, 왜 이렇게 귀찮게 꼬아놨을까?" 하는 의문이 드는 것이 당연하다. 하지만 이렇게 복잡한 과정으로 도출하게된 근본적인 이유는 자바스크립트에서 기본적으로 제공하는 무작위 도구가 딱 하나(0 이상 1 미만 소수)뿐이기 때문이다. 
+처음 마주치게 되면 "그냥 Math.random(1000000, 9999999)라고 써서 구하면 되는데, 왜 이렇게 귀찮게 꼬아놨을까?" 하는 의문이 드는 것이 당연하다. 이렇듯 복잡한 과정으로 도출하게된 근본적인 이유는 자바스크립트에서 기본적으로 제공하는 무작위 도구가 딱 하나(0 이상 1 미만 소수)뿐이기 때문이다. 
 
 ##2. 고무줄 늘리기 
 
-자바스크립트가 우리에게 준 재료는 길이가 1cm짜리인 고무줄(0.000... ~ 0.999...) 하나다. 우리는 이 고무줄을 가지고 "1,000,000부터 9,999,999까지의 눈금"을 만들어야 하는데 
+<p align="center">
+  <img src="<img width="620" height="894" alt="고양이" src="https://github.com/user-attachments/assets/1c878d47-56ea-4462-a662-30a8e51ab7c4" />
+" width="400" alt="고무줄 늘이는 고양이">
+  <br>
+  <sub style="color: #666;">▲ 1단계: 0~1 사이 소수를 900만 배로 쫙 늘리는 현장</sub>
+</p>
 
-```mermaid
-
-flowchart TD
-    S1["<b>[원래 재료] Math.random()</b><br/><code>0.0 ──────────────> 0.9999...</code><br/><i>(길이: 1cm / 소수 상태)</i>"]
-    
-    S2["<b>1단계: 곱하기 (* 900만)</b><br/><code>0.0 ────────────────────────────────────────> 8999999.9999...</code><br/><i>(고무줄 늘리기: 범위 크기 9,000,000)</i>"]
-    
-    S3["<b>2단계: 소수점 버림 (Math.floor)</b><br/><code>[ 0,  1,  2,  ...  8999998,  8999999 ]</code><br/><i>(소수점 싹둑: 딱 떨어지는 정수 9,000,000개)</i>"]
-    
-    S4["<b>3단계: 시작점 이동 (+ 100만)</b><br/><code>[ 1000000,  1000001,  ...  9999999 ]</code><br/><i>(평행 이동: 최종 목표 7자리 난수 완성!)</i>"]
-
-    S1 ==>|"범위 확장 (* 9000000)"| S2
-    S2 ==>|"정수화 Math.floor()"| S3
-    S3 ==>|"시작 위치 보정 (+ 1000000)"| S4
-
-    %% 스타일 설정
-    classDef orig fill:#f8fafc,stroke:#94a3b8,stroke-width:2px,color:#334155;
-    classDef step1 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px,color:#1e3a8a;
-    classDef step2 fill:#f0fdf4,stroke:#22c55e,stroke-width:2px,color:#14532d;
-    classDef step3 fill:#fff7ed,stroke:#f97316,stroke-width:2px,color:#7c2d12;
-
-    class S1 orig;
-    class S2 step1;
-    class S3 step2;
-    class S4 step3;
-```
-
+ 지금 가지고 있는건 고작 길이가 1cm짜리인 고무줄(0.000... ~ 0.999...) 하나다. 우리는 이 고무줄을 가지고 "1,000,000부터 9,999,999까지의 눈금"을 만들어야 한다. 
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Pretendard', 'Malgun Gothic', sans-serif;">
   <!-- Outer Card Container -->
@@ -64,73 +43,121 @@ flowchart TD
   <text x="380" y="45" font-size="20" font-weight="bold" fill="#0f172a" text-anchor="middle">Math.random() 범위 변환 메커니즘 (고무줄 비유)</text>
 
   <!-- Step 0: Original -->
-  <g id="step0" transform="translate(30, 75)">
-    <rect x="0" y="0" width="700" height="85" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="8"/>
+  <g id="step0" transform="translate(30, 70)">
+    <rect x="0" y="0" width="700" height="90" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="8"/>
     <text x="20" y="28" font-size="14" font-weight="bold" fill="#475569">[원래 재료] Math.random() — 기본 1cm 고무줄</text>
+    
     <!-- Visual Line -->
     <line x1="120" y1="58" x2="260" y2="58" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
     <circle cx="120" cy="58" r="5" fill="#64748b"/>
     <circle cx="260" cy="58" r="5" fill="#64748b"/>
     <text x="120" y="78" font-size="12" fill="#64748b" text-anchor="middle">0.0</text>
     <text x="260" y="78" font-size="12" fill="#64748b" text-anchor="middle">0.9999...</text>
-    <text x="300" y="62" font-size="12" font-weight="bold" fill="#64748b">(길이: 1)</text>
+    <text x="300" y="62" font-size="13" font-weight="bold" fill="#64748b">(길이: 1)</text>
   </g>
 
   <!-- Step 1: Multiply -->
-  <g id="step1" transform="translate(30, 180)">
-    <rect x="0" y="0" width="700" height="85" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="8"/>
+  <g id="step1" transform="translate(30, 175)">
+    <rect x="0" y="0" width="700" height="90" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="8"/>
     <text x="20" y="28" font-size="14" font-weight="bold" fill="#1d4ed8">1단계: * 9,000,000 — 고무줄 900만 배 쫙 늘리기</text>
+    
     <!-- Visual Line -->
-    <line x1="120" y1="58" x2="580" y2="58" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+    <line x1="120" y1="58" x2="520" y2="58" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
     <circle cx="120" cy="58" r="5" fill="#3b82f6"/>
-    <circle cx="580" cy="58" r="5" fill="#3b82f6"/>
+    <circle cx="520" cy="58" r="5" fill="#3b82f6"/>
     <text x="120" y="78" font-size="12" fill="#1d4ed8" text-anchor="middle">0.0</text>
-    <text x="580" y="78" font-size="12" fill="#1d4ed8" text-anchor="middle">8999999.9999...</text>
-    <text x="635" y="62" font-size="12" font-weight="bold" fill="#2563eb">(길이: 900만)</text>
+    <text x="520" y="78" font-size="12" fill="#1d4ed8" text-anchor="middle">8999999.9999...</text>
+    <text x="590" y="62" font-size="13" font-weight="bold" fill="#2563eb">(길이: 900만)</text>
   </g>
 
   <!-- Step 2: Math.floor -->
-  <g id="step2" transform="translate(30, 285)">
-    <rect x="0" y="0" width="700" height="85" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5" rx="8"/>
+  <g id="step2" transform="translate(30, 280)">
+    <rect x="0" y="0" width="700" height="95" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5" rx="8"/>
     <text x="20" y="28" font-size="14" font-weight="bold" fill="#15803d">2단계: Math.floor() — 소수점 버려서 딱 떨어지는 정수 칸 만들기</text>
-    <!-- Discrete Ticks -->
-    <line x1="120" y1="58" x2="580" y2="58" stroke="#16a34a" stroke-width="3" stroke-dasharray="2,6"/>
-    <rect x="116" y="50" width="8" height="16" fill="#16a34a" rx="2"/>
-    <rect x="576" y="50" width="8" height="16" fill="#16a34a" rx="2"/>
-    <text x="120" y="78" font-size="12" fill="#15803d" text-anchor="middle">0</text>
-    <text x="350" y="62" font-size="12" fill="#16a34a" text-anchor="middle">■ ■ ■ 정수 칸 9,000,000개 ■ ■ ■</text>
-    <text x="580" y="78" font-size="12" fill="#15803d" text-anchor="middle">8999999</text>
+    
+    <!-- Line & Ticks -->
+    <line x1="120" y1="60" x2="580" y2="60" stroke="#16a34a" stroke-width="3" stroke-dasharray="3,6"/>
+    <rect x="116" y="52" width="8" height="16" fill="#16a34a" rx="2"/>
+    <rect x="576" y="52" width="8" height="16" fill="#16a34a" rx="2"/>
+    <text x="120" y="82" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">0</text>
+    <text x="580" y="82" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">8999999</text>
+
+    <!-- Center Label Badge (선이 가려지도록 배경 배지 적용) -->
+    <rect x="245" y="46" width="210" height="28" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="14"/>
+    <text x="350" y="64" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">■ 정수 칸 9,000,000개 ■</text>
   </g>
 
   <!-- Step 3: Shift (+ min) -->
   <g id="step3" transform="translate(30, 390)">
-    <rect x="0" y="0" width="700" height="85" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="8"/>
+    <rect x="0" y="0" width="700" height="95" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="8"/>
     <text x="20" y="28" font-size="14" font-weight="bold" fill="#c2410c">3단계: + 1,000,000 (+ min) — 시작 위치를 100만으로 밀어주기</text>
-    <!-- Shifted Line -->
-    <line x1="220" y1="58" x2="680" y2="58" stroke="#ea580c" stroke-width="3" stroke-dasharray="2,6"/>
-    <rect x="216" y="50" width="8" height="16" fill="#ea580c" rx="2"/>
-    <rect x="676" y="50" width="8" height="16" fill="#ea580c" rx="2"/>
-    <!-- Arrow indicating shift -->
-    <path d="M 120 58 Q 170 35 210 54" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="3,3"/>
-    <polygon points="210,57 205,50 202,56" fill="#f97316"/>
     
-    <text x="220" y="78" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">1000000</text>
-    <text x="450" y="62" font-size="12" fill="#ea580c" text-anchor="middle">■ ■ ■ 최종 원하는 범위 완성 ■ ■ ■</text>
-    <text x="680" y="78" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">9999999</text>
+    <!-- Shift Arrow -->
+    <path d="M 120 60 Q 165 30 210 54" stroke="#f97316" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
+    <polygon points="212,58 205,51 203,57" fill="#f97316"/>
+    <text x="162" y="38" font-size="11" font-weight="bold" fill="#ea580c" text-anchor="middle">+100만 이동</text>
+
+    <!-- Line & Ticks -->
+    <line x1="220" y1="60" x2="680" y2="60" stroke="#ea580c" stroke-width="3" stroke-dasharray="3,6"/>
+    <rect x="216" y="52" width="8" height="16" fill="#ea580c" rx="2"/>
+    <rect x="676" y="52" width="8" height="16" fill="#ea580c" rx="2"/>
+    <text x="220" y="82" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">1000000</text>
+    <text x="680" y="82" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">9999999</text>
+
+    <!-- Center Label Badge (선이 가려지도록 배경 배지 적용) -->
+    <rect x="345" y="46" width="210" height="28" fill="#ffffff" stroke="#f97316" stroke-width="1.5" rx="14"/>
+    <text x="450" y="64" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">■ 최종 원하는 범위 완성 ■</text>
   </g>
 </svg>
 
 
 
-1단계: 고무줄을 900만 배로 쫙 늘리기 (* 9000000)우리가 필요한 숫자의 개수(범위)가 총 900만 개이므로, 1cm짜리 고무줄을 900만 배로 팽팽하게 늘려줍니다.결과 범위: 0.000... ~ 8999999.999...의미: 이제 고무줄의 전체 길이가 900만cm가 되었습니다.2단계: 소수점 싹둑 잘라내기 (Math.floor)아직 고무줄 위에는 4710600.3812... 같은 자질구레한 소수점들이 묻어있습니다. 우리는 깔끔한 정수(자연수)만 필요하므로 소수점 이하를 버림(floor) 처리합니다.결과 범위: 0, 1, 2, 3 ... 8999999 (총 900만 개의 정수)의미: 이제 0부터 8,999,999까지 딱 떨어지는 정수 칸 900만 개가 완성되었습니다.3단계: 시작 위치 이동시키기 (+ 1000000)위의 결과는 범위 개수(900만 개)는 맞지만, 시작점이 0입니다. 하지만 우리가 원하는 숫자는 1,000,000부터 시작해야 하죠. 그래서 전체 결과를 오른쪽으로 100만 칸 이동(평행이동)시킵니다.0 + 1000000 $\rightarrow$ 1000000 (최솟값)8999999 + 1000000 $\rightarrow$ 9999999 (최댓값)최종 결과: 1000000 ~ 9999999 사이의 정수!💡 개발자들은 실무에서 이걸 매번 칠까요?당연히 개발자들도 이 공식이 너무 길고 번거롭다고 생각합니다!그래서 실무나 개인 프로젝트를 할 때는 아래처럼 나만의 함수(도구)를 하나 래핑(포장)해서 만들어두고 평생 재사용합니다.JavaScript// 1. 공식을 가둔 나만의 만능 랜덤 함수를 만든다.
+**1단계: 고무줄을 900만 배로 쫙 늘리기** 
+
+(* 9000000)우리가 필요한 숫자의 개수(범위)가 총 900만 개이므로, 1cm짜리 고무줄을 900만 배로 팽팽하게 늘려준다. 
+
+결과 범위: 0.000... ~ 8999999.999...
+
+>이제 고무줄의 전체 길이는 900만cm가 된다.
+
+**2단계: 소수점 싹둑 잘라내기** 
+
+(Math.floor)아직 고무줄 위에는 4710600.3812... 같은 지저분한 소수점들이 묻어 있다. 
+
+우리는 깔끔한 정수(자연수)만 필요하므로 소수점 이하는 버린다(floor).
+
+결과 범위: 0, 1, 2, 3 ... 8999999 (총 900만 개의 정수)
+
+>의미: 0부터 8,999,999까지 딱 떨어지는 정수 칸 900만 개가 완성된다.
+
+**3단계: 시작 위치 이동시키기** 
+
+(+ 1000000)위의 결과는 범위 개수(900만 개)는 맞지만, 시작점이 0입니다. 하지만 우리가 원하는 숫자는 1,000,000부터 시작해야 한다. 그래서 전체 결과를 오른쪽으로 100만 칸 이동(평행이동)시킨다.
+
+* **최솟값:** `0` + 1,000,000 → **1,000,000**
+* **최댓값:** `8,999,999` + 1,000,000 → **9,999,999** 
+
+(최댓값)최종 결과: 1000000 ~ 9999999 사이의 정수!
+
+이 공식이 너무 길고 번거롭다고 생각이 드는건 당연하다. 그래서 실무나 개인 프로젝트를 할 때는 아래처럼 나만의 함수(도구)를 하나 만들어 놓고 모듈처럼 재사용하면 그만이다. 
+
+```javascript
+
+//1. 공식을 가둔 나만의 만능 랜덤 함수를 만든다.
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// 2. 이제부터는 귀찮은 공식 쓸 필요 없이 이렇게만 씁니다!
+// 2. 이제부터는 귀찮은 공식 쓸 필요 없다.
+
 let myNumber = getRandomInt(1000000, 9999999); // 100만~999만9999 사이 정수
 let dice = getRandomInt(1, 6);                  // 1~6 사이 주사위 눈
-요약하자면:자바스크립트가 0~1 사이의 기본 소수만 제공하다 보니, 우리가 [원하는 범위만큼 곱해서 늘리고] $\rightarrow$ [소수점 자르고] $\rightarrow$ [시작점으로 이동시키는] 수학적 가공을 직접 해주는 것입니다!
+```
+
+요약하자면 자바스크립트가 0~1 사이의 기본 소수만 제공하다 보니, 우리가 [원하는 범위만큼 곱해서 늘리고] ➡ [소수점 자르고] ➡ [시작점으로 이동시키는] 수학적 가공을 직접 해주는 것이다. 
+
+
 목적은 두 가지다.
 
 - **연도 접두사**: 앞에 `2026`을 붙여서 언제 생성된 ID인지 한눈에 구분한다.
