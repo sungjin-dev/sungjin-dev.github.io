@@ -15,7 +15,7 @@ toc_sticky: true
 
 ## 1. 굳이 복잡한 코드로 ID를 만드는 이유는 뭘까?
 
-아래 같은 코드를 종종 보게 된다.
+쇼핑몰 주문 번호 및 예약 번호같은 걸 생성할 때 아래 같은 코드를 종종 보게 된다.
 
 ```javascript
 const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 1000000 + 1) + 1000000)}-${Math.floor(Math.random() * (99 - 10 + 1) + 10)}`;
@@ -28,7 +28,7 @@ const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 100000
 
 <img width="250" height="350" alt="고양이" src="https://github.com/user-attachments/assets/757a086c-db2a-473c-97e2-624d28bd7d1b" />
 <br>
-<center><sub>▲ 1단계: 0~1 사이 소수를 900만 배로 쫙 늘리는 현장</sub></center>
+<sub>▲ 1단계: 0~1 사이 소수를 900만 배로 쫙 늘리는 현장</sub>
 <br><br>
 
  지금 가지고 있는건 고작 길이가 1cm짜리인 고무줄(0.000... ~ 0.999...) 하나다. 우리는 이 고무줄을 가지고 "1,000,000부터 9,999,999까지의 눈금"을 만들어야 한다. 
