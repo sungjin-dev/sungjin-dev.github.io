@@ -29,6 +29,7 @@ const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 100000
 <img width="250" height="350" alt="고양이" src="https://github.com/user-attachments/assets/757a086c-db2a-473c-97e2-624d28bd7d1b" />
 <br>
 <center><sub>▲ 1단계: 0~1 사이 소수를 900만 배로 쫙 늘리는 현장</sub></center>
+<br><br>
 
  지금 가지고 있는건 고작 길이가 1cm짜리인 고무줄(0.000... ~ 0.999...) 하나다. 우리는 이 고무줄을 가지고 "1,000,000부터 9,999,999까지의 눈금"을 만들어야 한다. 
 
