@@ -54,80 +54,8 @@ const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 100000
 
  지금 가지고 있는건 고작 길이가 1cm짜리인 고무줄(0.000... ~ 0.999...) 하나다. 우리는 이 고무줄을 가지고 "1,000,000부터 9,999,999까지의 눈금"을 만들어야 한다. 
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 520" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Pretendard', 'Malgun Gothic', sans-serif;">
-  <!-- Outer Card Container -->
-  <rect x="10" y="10" width="740" height="500" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" rx="16"/>
+<img width="1440" height="1060" alt="image" src="https://github.com/user-attachments/assets/2b2b016d-e8a9-4eca-ac7b-f3bbb7453f21" />
 
-  <!-- Title -->
-  <text x="380" y="45" font-size="20" font-weight="bold" fill="#0f172a" text-anchor="middle">Math.random() 범위 변환 메커니즘 (고무줄 비유)</text>
-
-  <!-- Step 0: Original -->
-  <g id="step0" transform="translate(30, 70)">
-    <rect x="0" y="0" width="700" height="90" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="8"/>
-    <text x="20" y="28" font-size="14" font-weight="bold" fill="#475569">[원래 재료] Math.random() — 기본 1cm 고무줄</text>
-    
-    <!-- Visual Line -->
-    <line x1="120" y1="58" x2="260" y2="58" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="120" cy="58" r="5" fill="#64748b"/>
-    <circle cx="260" cy="58" r="5" fill="#64748b"/>
-    <text x="120" y="78" font-size="12" fill="#64748b" text-anchor="middle">0.0</text>
-    <text x="260" y="78" font-size="12" fill="#64748b" text-anchor="middle">0.9999...</text>
-    <text x="300" y="62" font-size="13" font-weight="bold" fill="#64748b">(길이: 1)</text>
-  </g>
-
-  <!-- Step 1: Multiply -->
-  <g id="step1" transform="translate(30, 175)">
-    <rect x="0" y="0" width="700" height="90" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="8"/>
-    <text x="20" y="28" font-size="14" font-weight="bold" fill="#1d4ed8">1단계: * 9,000,000 — 고무줄 900만 배 쫙 늘리기</text>
-    
-    <!-- Visual Line -->
-    <line x1="120" y1="58" x2="520" y2="58" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="120" cy="58" r="5" fill="#3b82f6"/>
-    <circle cx="520" cy="58" r="5" fill="#3b82f6"/>
-    <text x="120" y="78" font-size="12" fill="#1d4ed8" text-anchor="middle">0.0</text>
-    <text x="520" y="78" font-size="12" fill="#1d4ed8" text-anchor="middle">8999999.9999...</text>
-    <text x="590" y="62" font-size="13" font-weight="bold" fill="#2563eb">(길이: 900만)</text>
-  </g>
-
-  <!-- Step 2: Math.floor -->
-  <g id="step2" transform="translate(30, 280)">
-    <rect x="0" y="0" width="700" height="95" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5" rx="8"/>
-    <text x="20" y="28" font-size="14" font-weight="bold" fill="#15803d">2단계: Math.floor() — 소수점 버려서 딱 떨어지는 정수 칸 만들기</text>
-    
-    <!-- Line & Ticks -->
-    <line x1="120" y1="60" x2="580" y2="60" stroke="#16a34a" stroke-width="3" stroke-dasharray="3,6"/>
-    <rect x="116" y="52" width="8" height="16" fill="#16a34a" rx="2"/>
-    <rect x="576" y="52" width="8" height="16" fill="#16a34a" rx="2"/>
-    <text x="120" y="82" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">0</text>
-    <text x="580" y="82" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">8999999</text>
-
-    <!-- Center Label Badge (선이 가려지도록 배경 배지 적용) -->
-    <rect x="245" y="46" width="210" height="28" fill="#ffffff" stroke="#22c55e" stroke-width="1.5" rx="14"/>
-    <text x="350" y="64" font-size="12" font-weight="bold" fill="#15803d" text-anchor="middle">■ 정수 칸 9,000,000개 ■</text>
-  </g>
-
-  <!-- Step 3: Shift (+ min) -->
-  <g id="step3" transform="translate(30, 390)">
-    <rect x="0" y="0" width="700" height="95" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="8"/>
-    <text x="20" y="28" font-size="14" font-weight="bold" fill="#c2410c">3단계: + 1,000,000 (+ min) — 시작 위치를 100만으로 밀어주기</text>
-    
-    <!-- Shift Arrow -->
-    <path d="M 120 60 Q 165 30 210 54" stroke="#f97316" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
-    <polygon points="212,58 205,51 203,57" fill="#f97316"/>
-    <text x="162" y="38" font-size="11" font-weight="bold" fill="#ea580c" text-anchor="middle">+100만 이동</text>
-
-    <!-- Line & Ticks -->
-    <line x1="220" y1="60" x2="680" y2="60" stroke="#ea580c" stroke-width="3" stroke-dasharray="3,6"/>
-    <rect x="216" y="52" width="8" height="16" fill="#ea580c" rx="2"/>
-    <rect x="676" y="52" width="8" height="16" fill="#ea580c" rx="2"/>
-    <text x="220" y="82" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">1000000</text>
-    <text x="680" y="82" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">9999999</text>
-
-    <!-- Center Label Badge (선이 가려지도록 배경 배지 적용) -->
-    <rect x="345" y="46" width="210" height="28" fill="#ffffff" stroke="#f97316" stroke-width="1.5" rx="14"/>
-    <text x="450" y="64" font-size="12" font-weight="bold" fill="#c2410c" text-anchor="middle">■ 최종 원하는 범위 완성 ■</text>
-  </g>
-</svg>
 
 
 **1단계: 고무줄을 900만 배로 쫙 늘리기** 
