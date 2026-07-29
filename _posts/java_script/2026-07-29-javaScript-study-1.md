@@ -24,14 +24,11 @@ const id = `${date.getFullYear()}-${Math.floor(Math.random() * (9999999 - 100000
 
 처음 마주치게 되면 "그냥 Math.random(1000000, 9999999)라고 써서 구하면 되는데, 왜 이렇게 귀찮게 꼬아놨을까?" 하는 의문이 드는 것이 당연하다. 이렇듯 복잡한 과정으로 도출하게된 근본적인 이유는 자바스크립트에서 기본적으로 제공하는 무작위 도구가 딱 하나(0 이상 1 미만 소수)뿐이기 때문이다. 
 
-##2. 고무줄 늘리기 
+## 2. 고무줄 늘리기 
 
-<p align="center">
-  <img src="<img width="620" height="894" alt="고양이" src="https://github.com/user-attachments/assets/1c878d47-56ea-4462-a662-30a8e51ab7c4" />
-" width="400" alt="고무줄 늘이는 고양이">
-  <br>
-  <sub style="color: #666;">▲ 1단계: 0~1 사이 소수를 900만 배로 쫙 늘리는 현장</sub>
-</p>
+<img width="620" height="894" alt="고양이" src="https://github.com/user-attachments/assets/757a086c-db2a-473c-97e2-624d28bd7d1b" />
+
+<center><sub>▲ 1단계: 0~1 사이 소수를 900만 배로 쫙 늘리는 현장</sub></center>
 
  지금 가지고 있는건 고작 길이가 1cm짜리인 고무줄(0.000... ~ 0.999...) 하나다. 우리는 이 고무줄을 가지고 "1,000,000부터 9,999,999까지의 눈금"을 만들어야 한다. 
 
