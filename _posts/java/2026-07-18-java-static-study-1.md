@@ -19,7 +19,7 @@ toc_sticky: true
 
 ## 1. 한 줄 정의부터
 
-> **Java의 static 변수 = "인스턴스가 아니라 클래스에 소속된 변수"**
+> **Java의 static 변수 = "인스턴스가 아니라 클래스 자체에 소속된 변수"**
 
 일반 필드(인스턴스 변수)는 객체를 만들 때마다 하나씩 생기지만, static 변수는 **클래스당 딱 하나만** 존재한다. 
 
@@ -124,7 +124,7 @@ JVM의 런타임 메모리는 크게 이렇게 나뇐다.
 - **Java 7까지**: static 변수는 힙의 특수 영역인 PermGen(Permanent Generation)에 저장.
 - **Java 8부터**: PermGen이 제거되고 클래스 *메타데이터*는 네이티브 메모리의 **Metaspace**로 이동. 하지만 **static 변수 자체는 힙(Heap)으로 옮겨져서**, 해당 클래스의 `java.lang.Class` 객체와 함께 저장된다.
 
-즉, 현재의 Java(8+)에서 정확한 문장은 이렇습니다.
+즉, 현재의 Java(8+)에서 정확한 문장은 이렇다.
 
 > **static 변수는 힙에 있다. 정확히는 그 클래스를 나타내는 `Class` 객체에 붙어서 저장된다.**
 
@@ -132,7 +132,7 @@ JVM의 런타임 메모리는 크게 이렇게 나뇐다.
 
 ### 그림으로 보는 인스턴스 변수 vs static 변수
 
-위의 `User` 예제를 메모리 그림으로 그리면 이렇습니다.
+위의 `User` 예제를 메모리 그림으로 그리면 이렇다.
 
 <div style="background-color: #ffffff; padding: 30px 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); max-width: 700px; margin: 0 auto; border: 1px solid #eaeaea; overflow-x: auto;">
   
