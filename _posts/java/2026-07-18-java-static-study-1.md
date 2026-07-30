@@ -9,7 +9,6 @@ tags:
   - c
 toc: true
 toc_sticky: true
-published: false
 ---
 
 # static 변수 완전 정복 — Java를 중심으로, C와 비교하며 이해하기
