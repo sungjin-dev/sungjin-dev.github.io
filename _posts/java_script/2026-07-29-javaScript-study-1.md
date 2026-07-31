@@ -1,6 +1,6 @@
 ---
-title: "[JavaScript] 기초 #1 "
-excerpt: "자바스크립트로 고유 ID 만들기, 그리고 entries() 정리"
+title: "[JavaScript] 자바스크립트로 고유 ID 만들기 "
+excerpt: "추가로 entries() 정리"
 categories:
   - javascript
 tags:
