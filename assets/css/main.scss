@@ -2302,25 +2302,33 @@ html[data-theme="light"] .mermaid {
 }
 
 /* ===================================================================
-   카테고리 아카이브 — 시리즈 그룹 카드 스타일 (통합/정리본)
-   실제 DOM: <div class="archive"><h1>...</h1><h2>...</h2>
-             <div class="entries-list"><div class="archive__item">...
+   카테고리 아카이브 — 시리즈 그룹 카드 스타일 (v3)
+   실제 DOM:
+     <div class="archive">
+       <h1>...</h1>
+       <h2>시리즈 이름</h2>                 ← .archive의 "직속 자식"일 때만 시리즈 라벨
+       <div class="entries-list">
+         <div class="list__item">
+           <article class="archive__item">
+             <h2 class="archive__item-title">...</h2>   ← 글 제목도 h2라서 주의!
+             <p class="archive__item-excerpt">...</p>
+           </article>
+         </div>
+         ...
+       </div>
+       ...
+     </div>
    → .page__content 래퍼가 없어 선택자에서 제외
-
-   * 이전 버전에서 "카드 스타일 부여 → 다시 해제"가 중복/충돌하던 규칙을
-     하나로 합쳤어. (같은 우선순위의 선택자가 뒤에서 서로를 덮어써서
-     카드 배경·테두리가 사라지고 밋밋해 보이던 게 원인)
-   * :first-of-type / :last-of-type 로 시리즈마다 색을 다르게 주던 부분도
-     제거함 → 시리즈가 몇 개든 항상 동일하게 적용되어 다른 시리즈물에도
-     그대로 재사용 가능.
+   → 글 제목도 <h2>라서, 시리즈 라벨 스타일이 실수로 글 제목까지 타지
+     않도록 반드시 `.archive > h2` (직속 자식)로만 한정함
    =================================================================== */
 
 .archive h1 {
   margin-bottom: 0.2em;
 }
 
-/* 1. 시리즈 이름(h2) ------------------------------------------------ */
-.archive h2 {
+/* 1. 시리즈 이름(h2, .archive 바로 아래 있을 때만) ------------------------ */
+.archive > h2 {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2328,13 +2336,13 @@ html[data-theme="light"] .mermaid {
   padding-left: 2px;
   font-size: 1.1em;
   font-weight: 700;
-  color: var(--tn-title) !important;
-  border: none !important;
+  color: var(--tn-title);
+  border: none;
 }
-.archive h2:first-of-type {
+.archive > h2:first-of-type {
   margin-top: 0.6em;
 }
-.archive h2::before {
+.archive > h2::before {
   content: "";
   width: 6px;
   height: 6px;
@@ -2342,7 +2350,7 @@ html[data-theme="light"] .mermaid {
   background: var(--tn-blue);
   flex-shrink: 0;
 }
-.archive h2::after {
+.archive > h2::after {
   content: "";
   flex: 1;
   height: 1px;
@@ -2350,42 +2358,54 @@ html[data-theme="light"] .mermaid {
   background: linear-gradient(90deg, var(--tn-border) 0%, transparent 85%);
 }
 
-/* 2. 시리즈 카드(entries-list) --------------------------------------- */
+/* 2. 시리즈 카드(entries-list) — 개별 글들을 담는 바깥 그룹 --------------- */
 .archive .entries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin: 12px 0 2.2em;
-  padding: 2px 22px;
+  padding: 14px;
   background: var(--tn-card);
   border: 1px solid var(--tn-border);
   border-radius: 12px;
   border-top-left-radius: 0; /* 바로 위 제목과 시각적으로 이어지도록 */
-  box-shadow: var(--shadow-card); /* 다크/라이트 각각 맞춰둔 값을 그대로 사용 */
+  box-shadow: var(--shadow-card);
 }
 
-/* 3. 개별 글(archive__item) ------------------------------------------ */
+/* 3. 개별 글 — 한 줄씩 테두리로 뚜렷하게 박스 처리 ------------------------ */
 .archive .entries-list .archive__item {
-  padding: 15px 4px;
-  border-bottom: 1px solid var(--tn-border-soft);
-  border-radius: 0;
-  transition: background 0.12s ease, padding-left 0.12s ease;
-}
-.archive .entries-list .archive__item:last-child {
-  border-bottom: none;
+  padding: 16px 18px;
+  border: 1px solid var(--tn-border);
+  border-radius: 10px;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 .archive .entries-list .archive__item:hover {
-  transform: none;
-  background: var(--tn-hover);
-  padding-left: 12px;
+  border-color: var(--tn-blue);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
-/* 글 제목 / 요약 — 실제 클래스명이 다르면 이 두 선택자만 바꿔주면 돼 */
+/* 글 제목 밑 짧은 포인트 바 — 시리즈 라벨과는 별개의, 흰 배경에서도
+   또렷하게 보이는 진한 단색(그라데이션 아님) */
 .archive .entries-list .archive__item-title {
+  position: relative;
+  display: inline-block;
   font-size: 1em;
   font-weight: 600;
+  padding-bottom: 8px;
+  margin-bottom: 2px;
+}
+.archive .entries-list .archive__item-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--tn-blue);
 }
 .archive .entries-list .archive__item-excerpt {
   color: var(--tn-muted);
   font-size: 0.92em;
-  margin-top: 3px;
+  margin-top: 2px;
 }
-
-
