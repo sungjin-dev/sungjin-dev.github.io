@@ -1,6 +1,6 @@
 ---
 title: "[JavaScript] 모듈 및 DTO/VO/Entity 정리"
-excerpt: ""
+excerpt: "기초 개념 파악하기"
 categories: [JavaScript]
 tags:
   - Module
