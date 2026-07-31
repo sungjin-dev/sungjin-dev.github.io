@@ -1,8 +1,7 @@
 ---
 title: "[JavaScript] setInterval / setTimeout 제대로 알기"
 excerpt: "개념부터 오차 보정까지"
-categories:
-  - javascript
+categories: [JavaScript]
 tags:
   - javascript
   - padStart
