@@ -88,7 +88,7 @@ html[data-theme="dark"] {
 
   /* --- Tokyo Night 존 --- */
   --tn-card: #24283b;
-  --tn-hover: #24283b;
+  --tn-hover: #2b3050;
   --tn-border: #3b4261;
   --tn-border-soft: #2b3045;
   --tn-text: #a9b1d6;
@@ -2301,5 +2301,91 @@ html[data-theme="light"] .mermaid {
   }
 }
 
+/* ===================================================================
+   카테고리 아카이브 — 시리즈 그룹 카드 스타일 (통합/정리본)
+   실제 DOM: <div class="archive"><h1>...</h1><h2>...</h2>
+             <div class="entries-list"><div class="archive__item">...
+   → .page__content 래퍼가 없어 선택자에서 제외
+
+   * 이전 버전에서 "카드 스타일 부여 → 다시 해제"가 중복/충돌하던 규칙을
+     하나로 합쳤어. (같은 우선순위의 선택자가 뒤에서 서로를 덮어써서
+     카드 배경·테두리가 사라지고 밋밋해 보이던 게 원인)
+   * :first-of-type / :last-of-type 로 시리즈마다 색을 다르게 주던 부분도
+     제거함 → 시리즈가 몇 개든 항상 동일하게 적용되어 다른 시리즈물에도
+     그대로 재사용 가능.
+   =================================================================== */
+
+.archive h1 {
+  margin-bottom: 0.2em;
+}
+
+/* 1. 시리즈 이름(h2) ------------------------------------------------ */
+.archive h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2.4em 0 0;
+  padding-left: 2px;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--tn-title) !important;
+  border: none !important;
+}
+.archive h2:first-of-type {
+  margin-top: 0.6em;
+}
+.archive h2::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tn-blue);
+  flex-shrink: 0;
+}
+.archive h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  margin-left: 6px;
+  background: linear-gradient(90deg, var(--tn-border) 0%, transparent 85%);
+}
+
+/* 2. 시리즈 카드(entries-list) --------------------------------------- */
+.archive .entries-list {
+  margin: 12px 0 2.2em;
+  padding: 2px 22px;
+  background: var(--tn-card);
+  border: 1px solid var(--tn-border);
+  border-radius: 12px;
+  border-top-left-radius: 0; /* 바로 위 제목과 시각적으로 이어지도록 */
+  box-shadow: var(--shadow-card); /* 다크/라이트 각각 맞춰둔 값을 그대로 사용 */
+}
+
+/* 3. 개별 글(archive__item) ------------------------------------------ */
+.archive .entries-list .archive__item {
+  padding: 15px 4px;
+  border-bottom: 1px solid var(--tn-border-soft);
+  border-radius: 0;
+  transition: background 0.12s ease, padding-left 0.12s ease;
+}
+.archive .entries-list .archive__item:last-child {
+  border-bottom: none;
+}
+.archive .entries-list .archive__item:hover {
+  transform: none;
+  background: var(--tn-hover);
+  padding-left: 12px;
+}
+
+/* 글 제목 / 요약 — 실제 클래스명이 다르면 이 두 선택자만 바꿔주면 돼 */
+.archive .entries-list .archive__item-title {
+  font-size: 1em;
+  font-weight: 600;
+}
+.archive .entries-list .archive__item-excerpt {
+  color: var(--tn-muted);
+  font-size: 0.92em;
+  margin-top: 3px;
+}
 
 
