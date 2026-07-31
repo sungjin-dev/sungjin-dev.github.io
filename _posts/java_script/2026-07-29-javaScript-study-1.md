@@ -1,8 +1,7 @@
 ---
 title: "[JavaScript] 자바스크립트로 고유 ID 만들기 "
 excerpt: "추가로 entries() 정리"
-categories:
-  - javascript
+categories: [JavaScript]
 tags:
   - javascript
   - padStart
