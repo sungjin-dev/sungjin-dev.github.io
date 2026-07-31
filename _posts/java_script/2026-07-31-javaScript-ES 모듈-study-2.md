@@ -1,8 +1,7 @@
 ---
 title: "[JavaScript] ESM 라이브 바인딩으로 알아보는 두 가지 상태 관리 패턴"
 excerpt: ""
-categories:
-  - javascript
+categories: [JavaScript]
 tags:
   - ES 모듈
   - 라이브 바인딩
