@@ -1,95 +1,146 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="280" viewBox="0 0 1000 280">
-<title>SungJin Park GitHub Profile Banner - Live Dashboard Concept</title>
-<desc>이름과 Data Analyst 소개 문구 옆에 막대그래프가 실시간으로 자라나고 줄어드는 라이브 대시보드 카드가 있는 배너</desc>
+<title>SungJin Park GitHub Profile Banner - Pro Data Analyst Dashboard</title>
+<desc>데이터 애널리스트의 전문성을 강조하는 부드러운 곡선 차트와 글래스모피즘 라이브 대시보드가 적용된 하이엔드 배너</desc>
 
 <defs>
+  <!-- Background Gradients -->
   <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#0d1117"/>
-    <stop offset="55%" stop-color="#161b33"/>
-    <stop offset="100%" stop-color="#1a1b3a"/>
+    <stop offset="0%" stop-color="#09090e"/>
+    <stop offset="50%" stop-color="#111526"/>
+    <stop offset="100%" stop-color="#0c0e18"/>
   </linearGradient>
+  
+  <!-- Text & Accent Gradients -->
   <linearGradient id="textGrad" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0%" stop-color="#7aa2f7"/>
-    <stop offset="55%" stop-color="#bb9af7"/>
-    <stop offset="100%" stop-color="#73daca"/>
+    <stop offset="40%" stop-color="#c099ff"/>
+    <stop offset="100%" stop-color="#2ac3de"/>
   </linearGradient>
-  <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
-    <stop offset="0%" stop-color="#7aa2f7"/>
-    <stop offset="100%" stop-color="#73daca"/>
+
+  <!-- Chart Gradients -->
+  <linearGradient id="chartLineGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#2ac3de"/>
+    <stop offset="100%" stop-color="#c099ff"/>
   </linearGradient>
+  <linearGradient id="chartFillGrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#c099ff" stop-opacity="0.4"/>
+    <stop offset="100%" stop-color="#2ac3de" stop-opacity="0.0"/>
+  </linearGradient>
+
+  <!-- Glow Effects -->
   <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#7aa2f7" stop-opacity="0.28"/>
-    <stop offset="100%" stop-color="#7aa2f7" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#2ac3de" stop-opacity="0.15"/>
+    <stop offset="100%" stop-color="#2ac3de" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#bb9af7" stop-opacity="0.25"/>
-    <stop offset="100%" stop-color="#bb9af7" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#c099ff" stop-opacity="0.15"/>
+    <stop offset="100%" stop-color="#c099ff" stop-opacity="0"/>
   </radialGradient>
+
   <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%">
-    <feGaussianBlur stdDeviation="30"/>
+    <feGaussianBlur stdDeviation="40"/>
   </filter>
-  <pattern id="graphGrid" width="50" height="50" patternUnits="userSpaceOnUse">
-    <path d="M0,0 L0,50 M0,0 L50,0" stroke="#202443" stroke-width="1" opacity="0.5"/>
+
+  <!-- Subtle Background Grid -->
+  <pattern id="graphGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M0,0 L0,40 M0,0 L40,0" stroke="#1f2335" stroke-width="1" opacity="0.4"/>
   </pattern>
 </defs>
 
-<!-- background -->
+<!-- ================= BACKGROUND ================= -->
 <rect x="0" y="0" width="1000" height="280" fill="url(#bgGrad)"/>
 <rect x="0" y="0" width="1000" height="280" fill="url(#graphGrid)"/>
-<circle cx="130" cy="220" r="140" fill="url(#glowBlue)" filter="url(#blurSoft)"/>
-<circle cx="880" cy="90" r="150" fill="url(#glowPurple)" filter="url(#blurSoft)"/>
+<!-- Ambient Glows -->
+<circle cx="150" cy="200" r="180" fill="url(#glowBlue)" filter="url(#blurSoft)"/>
+<circle cx="850" cy="80" r="180" fill="url(#glowPurple)" filter="url(#blurSoft)"/>
 
-<!-- top-right caption -->
-<text x="960" y="30" text-anchor="end" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="13" fill="#565f89">SELECT trend FROM metrics;</text>
 
-<!-- name & tagline -->
-<text x="60" y="140" font-family="'Segoe UI',system-ui,-apple-system,sans-serif" font-size="54" font-weight="800" letter-spacing="1" fill="url(#textGrad)">SungJin Park</text>
-<text x="62" y="180" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="20" fill="#7dcfff">// Data Analyst · Python &amp; SQL</text>
-<rect x="470" y="164" width="11" height="22" fill="#7dcfff">
-  <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite" calcMode="discrete"/>
-</rect>
+<!-- ================= LEFT: TEXT SECTION ================= -->
+<g transform="translate(60, 135)">
+  <!-- Name -->
+  <text x="0" y="0" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" letter-spacing="1.5" fill="url(#textGrad)">SungJin Park</text>
+  
+  <!-- Role / Tagline -->
+  <text x="3" y="38" font-family="ui-monospace, 'Cascadia Code', 'Fira Code', monospace" font-size="18" font-weight="500" fill="#a9b1d6">
+    <tspan fill="#2ac3de">></tspan> Data Analyst <tspan fill="#565f89">|</tspan> Python &amp; SQL
+  </text>
 
-<!-- dashboard card -->
-<rect x="580" y="50" width="380" height="175" rx="14" fill="#12142a" stroke="#282a44" stroke-width="1.5"/>
-<text x="602" y="76" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="13" fill="#9aa5ce">Live Metrics</text>
-<circle cx="930" cy="72" r="5" fill="#9ece6a">
-  <animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/>
-</circle>
+  <!-- Blinking Cursor -->
+  <rect x="290" y="21" width="10" height="20" fill="#2ac3de" rx="2">
+    <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+  </rect>
+</g>
 
-<!-- grid lines inside card -->
-<line x1="602" y1="195" x2="940" y2="195" stroke="#3b4261" stroke-width="1"/>
-<line x1="602" y1="150" x2="940" y2="150" stroke="#282a44" stroke-width="1" stroke-dasharray="3,4" opacity="0.7"/>
-<line x1="602" y1="105" x2="940" y2="105" stroke="#282a44" stroke-width="1" stroke-dasharray="3,4" opacity="0.7"/>
+<!-- Top Left Code Accent -->
+<text x="60" y="45" font-family="ui-monospace, 'Cascadia Code', monospace" font-size="12" fill="#565f89" opacity="0.6">
+  import pandas as pd
+</text>
 
-<!-- trend accent -->
-<path d="M610,150 L925,95" stroke="#73daca" stroke-width="1.5" stroke-dasharray="4,4" fill="none" opacity="0.8"/>
-<path d="M915,90 L927,94 L917,102 Z" fill="#73daca" opacity="0.8"/>
 
-<!-- animated bars -->
-<g>
-  <rect x="602" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
-    <animate attributeName="height" values="0;55;0" keyTimes="0;0.5;1" dur="4s" begin="0s" repeatCount="indefinite"/>
-    <animate attributeName="y" values="195;140;195" keyTimes="0;0.5;1" dur="4s" begin="0s" repeatCount="indefinite"/>
-  </rect>
-  <rect x="664" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
-    <animate attributeName="height" values="0;85;0" keyTimes="0;0.5;1" dur="4s" begin="0.2s" repeatCount="indefinite"/>
-    <animate attributeName="y" values="195;110;195" keyTimes="0;0.5;1" dur="4s" begin="0.2s" repeatCount="indefinite"/>
-  </rect>
-  <rect x="726" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
-    <animate attributeName="height" values="0;35;0" keyTimes="0;0.5;1" dur="4s" begin="0.4s" repeatCount="indefinite"/>
-    <animate attributeName="y" values="195;160;195" keyTimes="0;0.5;1" dur="4s" begin="0.4s" repeatCount="indefinite"/>
-  </rect>
-  <rect x="788" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
-    <animate attributeName="height" values="0;100;0" keyTimes="0;0.5;1" dur="4s" begin="0.6s" repeatCount="indefinite"/>
-    <animate attributeName="y" values="195;95;195" keyTimes="0;0.5;1" dur="4s" begin="0.6s" repeatCount="indefinite"/>
-  </rect>
-  <rect x="850" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
-    <animate attributeName="height" values="0;65;0" keyTimes="0;0.5;1" dur="4s" begin="0.8s" repeatCount="indefinite"/>
-    <animate attributeName="y" values="195;130;195" keyTimes="0;0.5;1" dur="4s" begin="0.8s" repeatCount="indefinite"/>
-  </rect>
-  <rect x="912" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
-    <animate attributeName="height" values="0;90;0" keyTimes="0;0.5;1" dur="4s" begin="1.0s" repeatCount="indefinite"/>
-    <animate attributeName="y" values="195;105;195" keyTimes="0;0.5;1" dur="4s" begin="1.0s" repeatCount="indefinite"/>
-  </rect>
+<!-- ================= RIGHT: DASHBOARD UI ================= -->
+<!-- Glassmorphism Card -->
+<rect x="540" y="40" width="410" height="195" rx="16" fill="#161b2e" fill-opacity="0.6" stroke="#292e42" stroke-width="1.5"/>
+
+<!-- Mac-style Window Controls -->
+<circle cx="560" cy="60" r="4.5" fill="#f7768e" opacity="0.8"/>
+<circle cx="575" cy="60" r="4.5" fill="#e0af68" opacity="0.8"/>
+<circle cx="590" cy="60" r="4.5" fill="#9ece6a" opacity="0.8"/>
+
+<!-- Card Header -->
+<text x="615" y="64" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="600" fill="#c0caf5" letter-spacing="0.5">Live Analytics</text>
+
+<!-- Live Pulse Indicator -->
+<g transform="translate(870, 59)">
+  <rect x="0" y="0" width="60" height="20" rx="10" fill="#9ece6a" fill-opacity="0.1" stroke="#9ece6a" stroke-opacity="0.3"/>
+  <circle cx="12" cy="10" r="4" fill="#9ece6a">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <text x="22" y="14" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#9ece6a">LIVE</text>
+</g>
+
+<!-- Big Stat Number -->
+<text x="560" y="105" font-family="'Segoe UI', system-ui, sans-serif" font-size="28" font-weight="800" fill="#ffffff">1,337</text>
+<text x="635" y="103" font-family="'Segoe UI', system-ui, sans-serif" font-size="13" font-weight="700" fill="#9ece6a">+24.8%</text>
+
+<!-- Chart Inner Grid -->
+<path d="M 560 135 L 920 135 M 560 170 L 920 170 M 560 205 L 920 205" stroke="#292e42" stroke-width="1" stroke-dasharray="4,4" opacity="0.8"/>
+
+
+<!-- ================= ANIMATED CHART ================= -->
+<g transform="translate(0, 10)">
+  
+  <!-- Background Bar Histogram (Subtle) -->
+  <g opacity="0.3">
+    <rect x="560" y="170" width="20" height="25" rx="3" fill="#2ac3de"><animate attributeName="height" values="20;30;20" dur="3s" repeatCount="indefinite"/></rect>
+    <rect x="595" y="160" width="20" height="35" rx="3" fill="#2ac3de"><animate attributeName="height" values="30;45;30" dur="3s" begin="0.2s" repeatCount="indefinite"/></rect>
+    <rect x="630" y="140" width="20" height="55" rx="3" fill="#2ac3de"><animate attributeName="height" values="50;65;50" dur="3s" begin="0.4s" repeatCount="indefinite"/></rect>
+    <rect x="665" y="175" width="20" height="20" rx="3" fill="#2ac3de"><animate attributeName="height" values="15;30;15" dur="3s" begin="0.6s" repeatCount="indefinite"/></rect>
+    <rect x="700" y="150" width="20" height="45" rx="3" fill="#2ac3de"><animate attributeName="height" values="40;55;40" dur="3s" begin="0.8s" repeatCount="indefinite"/></rect>
+    <rect x="735" y="120" width="20" height="75" rx="3" fill="#c099ff"><animate attributeName="height" values="70;90;70" dur="3s" begin="1.0s" repeatCount="indefinite"/></rect>
+    <rect x="770" y="145" width="20" height="50" rx="3" fill="#c099ff"><animate attributeName="height" values="45;60;45" dur="3s" begin="1.2s" repeatCount="indefinite"/></rect>
+    <rect x="805" y="110" width="20" height="85" rx="3" fill="#c099ff"><animate attributeName="height" values="80;100;80" dur="3s" begin="1.4s" repeatCount="indefinite"/></rect>
+    <rect x="840" y="130" width="20" height="65" rx="3" fill="#c099ff"><animate attributeName="height" values="60;80;60" dur="3s" begin="1.6s" repeatCount="indefinite"/></rect>
+    <rect x="875" y="90" width="20" height="105" rx="3" fill="#c099ff"><animate attributeName="height" values="95;115;95" dur="3s" begin="1.8s" repeatCount="indefinite"/></rect>
+  </g>
+
+  <!-- Smooth Area Fill under the line -->
+  <path d="M 560 160 C 600 160 620 180 660 150 C 700 120 720 160 760 110 C 800 60 840 100 890 70 L 890 195 L 560 195 Z" fill="url(#chartFillGrad)">
+    <!-- Fade in animation for area -->
+    <animate attributeName="opacity" values="0;1" dur="2s" fill="freeze" />
+  </path>
+
+  <!-- The Self-Drawing Glowing Line -->
+  <path d="M 560 160 C 600 160 620 180 660 150 C 700 120 720 160 760 110 C 800 60 840 100 890 70" 
+        fill="none" stroke="url(#chartLineGrad)" stroke-width="4" stroke-linecap="round"
+        stroke-dasharray="500" stroke-dashoffset="500">
+    <!-- Drawing animation -->
+    <animate attributeName="stroke-dashoffset" values="500;0" dur="2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/>
+  </path>
+  
+  <!-- Final Data Point Circle -->
+  <circle cx="890" cy="70" r="6" fill="#161b2e" stroke="#c099ff" stroke-width="3">
+    <animate attributeName="opacity" values="0;1" dur="2s" fill="freeze"/>
+  </circle>
+
 </g>
 </svg>
