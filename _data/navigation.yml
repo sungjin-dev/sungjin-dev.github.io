@@ -19,12 +19,12 @@ sidebar_category:
         url: /javascript/
       - title: "CSS"
         url: /css/
+      - title: "C"
+        url: /c/ 
       - title: "SQL"
         url: /sql/
       - title: "정보처리기사"
         url: /정처기/
-      - title: "C"
-        url: /c/  
         children:
           - title: "오답노트 1권"
             url: /정처기/wrong-note-part1/
