@@ -7,6 +7,7 @@ tags:
   - padStart
   - entries()
   - toString
+  - JavaScript
 toc: true
 toc_sticky: true
 ---
