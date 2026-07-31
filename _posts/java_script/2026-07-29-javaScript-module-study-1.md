@@ -6,7 +6,8 @@ tags:
   - Module
   - DTO
   - VO
-  - Entity
+  - Entity'
+  - JavaScript
 toc: true
 toc_sticky: true
 ---
