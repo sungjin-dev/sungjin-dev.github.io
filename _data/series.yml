@@ -30,6 +30,12 @@ list:
     desc: "YOLO+Flask 파이프라인과 학습 결과·성능 지표."
     url: "/yolo/"              
     accent: "var(--tn-yellow)"
+    
+  - title: "JavaScript 기초분석"
+    meta: "분석 노트"
+    desc: "면접 단골 주제 및 개념파악"
+    url: "/javascript/"              
+    accent: "var(--tn-yellow)"
 
   - title: "필기노트 전체보기"
     meta: "전체 글"
