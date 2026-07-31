@@ -2370,4 +2370,14 @@ html[data-theme="light"] .mermaid {
   padding-left: 12px;
 }
 
+/* 정처기/시리즈 목록의 파란색 강제 테두리 해제 */
+.archive .entries-list {
+  border-left: 1px solid var(--tn-border) !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.archive h2 {
+  color: var(--tn-title) !important;
+}
 
