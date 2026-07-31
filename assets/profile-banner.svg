@@ -92,5 +92,4 @@
     <animate attributeName="y" values="195;105;195" keyTimes="0;0.5;1" dur="4s" begin="1.0s" repeatCount="indefinite"/>
   </rect>
 </g>
-
 </svg>
