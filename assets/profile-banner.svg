@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="280" viewBox="0 0 1000 280">
 <title>SungJin Park GitHub Profile Banner - Pro Data Analyst Dashboard</title>
-<desc>데이터 애널리스트의 전문성을 강조하는 부드러운 곡선 차트와 글래스모피즘 라이브 대시보드가 적용된 하이엔드 배너</desc>
+<desc>데이터 애널리스트의 전문성과 위트를 강조하는 부드러운 곡선 차트와 글래스모피즘 라이브 대시보드가 적용된 하이엔드 배너</desc>
 
 <defs>
   <!-- Background Gradients -->
@@ -54,6 +54,9 @@
 <circle cx="150" cy="200" r="180" fill="url(#glowBlue)" filter="url(#blurSoft)"/>
 <circle cx="850" cy="80" r="180" fill="url(#glowPurple)" filter="url(#blurSoft)"/>
 
+<!-- top-right SQL caption -->
+<text x="960" y="30" text-anchor="end" font-family="ui-monospace, 'Cascadia Code', 'Fira Code', monospace" font-size="13" fill="#565f89">SELECT trend FROM metrics;</text>
+
 
 <!-- ================= LEFT: TEXT SECTION ================= -->
 <g transform="translate(60, 135)">
@@ -81,16 +84,17 @@
 <!-- Glassmorphism Card -->
 <rect x="540" y="40" width="410" height="195" rx="16" fill="#161b2e" fill-opacity="0.6" stroke="#292e42" stroke-width="1.5"/>
 
-<!-- Mac-style Window Controls -->
-<circle cx="560" cy="60" r="4.5" fill="#f7768e" opacity="0.8"/>
-<circle cx="575" cy="60" r="4.5" fill="#e0af68" opacity="0.8"/>
-<circle cx="590" cy="60" r="4.5" fill="#9ece6a" opacity="0.8"/>
+<!-- Professional Code/Data Tab UI Elements -->
+<g transform="translate(560, 50)">
+  <rect x="0" y="0" width="85" height="22" rx="4" fill="#292e42" fill-opacity="0.4"/>
+  <text x="10" y="15" font-family="ui-monospace, monospace" font-size="11" fill="#c0caf5">analysis.sql</text>
+  
+  <rect x="90" y="0" width="75" height="22" rx="4" fill="#1f2335" fill-opacity="0.3"/>
+  <text x="100" y="15" font-family="ui-monospace, monospace" font-size="11" fill="#a9b1d6">model.py</text>
+</g>
 
-<!-- Card Header -->
-<text x="615" y="64" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="600" fill="#c0caf5" letter-spacing="0.5">Live Analytics</text>
-
-<!-- Live Pulse Indicator -->
-<g transform="translate(870, 59)">
+<!-- Live Pulse Indicator (Aligned with Tabs) -->
+<g transform="translate(870, 51)">
   <rect x="0" y="0" width="60" height="20" rx="10" fill="#9ece6a" fill-opacity="0.1" stroke="#9ece6a" stroke-opacity="0.3"/>
   <circle cx="12" cy="10" r="4" fill="#9ece6a">
     <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
@@ -98,9 +102,17 @@
   <text x="22" y="14" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#9ece6a">LIVE</text>
 </g>
 
-<!-- Big Stat Number -->
-<text x="560" y="105" font-family="'Segoe UI', system-ui, sans-serif" font-size="28" font-weight="800" fill="#ffffff">1,337</text>
-<text x="635" y="103" font-family="'Segoe UI', system-ui, sans-serif" font-size="13" font-weight="700" fill="#9ece6a">+24.8%</text>
+<!-- Card Header (Moved down to avoid overlap & Left-aligned) -->
+<text x="560" y="94" font-family="'Segoe UI', system-ui, sans-serif" font-size="13" font-weight="600" fill="#a9b1d6" letter-spacing="0.5">Live Analytics</text>
+
+<!-- Big Stat Number (Moved down to fit header) -->
+<text x="560" y="126" font-family="'Segoe UI', system-ui, sans-serif" font-size="28" font-weight="800" fill="#ffffff">1,337</text>
+
+<!-- Growth Percentage Updated to Ultimate Answer +42.0% -->
+<text x="645" y="112" font-family="'Segoe UI', system-ui, sans-serif" font-size="14" font-weight="700" fill="#9ece6a">+42.0%</text>
+
+<!-- Added Wit Explanation -->
+<text x="645" y="126" font-family="ui-monospace, 'Cascadia Code', monospace" font-size="10" fill="#565f89">// 데이터의 궁극의 정답 찾기</text>
 
 <!-- Chart Inner Grid -->
 <path d="M 560 135 L 920 135 M 560 170 L 920 170 M 560 205 L 920 205" stroke="#292e42" stroke-width="1" stroke-dasharray="4,4" opacity="0.8"/>
