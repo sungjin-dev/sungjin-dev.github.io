@@ -14,7 +14,7 @@ header:
   </div>
   <pre class="about-terminal__body"><span class="cmt"># ── 소개 ─────────────────────────────</span>
 <span class="prompt">$</span> <span class="cmd">whoami</span>
-<span class="out">박성진 (SungJin Park) — 풀스택 개발자 지망</span>
+<span class="out">박성진 (SungJin Park) — 데이터 분석가(Data Analyst), 데이터 사이언티스트(Data Scientist) 지망</span>
 <span class="prompt">$</span> <span class="cmd">cat profile.txt</span>
 <span class="out">"선명한 기억보다 희미한 기록이 낫다"
 경제학에서 개발로 방향을 바꿔, 기초부터 구조로 쌓아가는 중입니다.
@@ -22,7 +22,6 @@ header:
 <span class="cmt"># ── 학력 · 교육 ──────────────────────</span>
 <span class="prompt">$</span> <span class="cmd">cat education.txt</span>
 <span class="out">성균관대학교 경제학과 (졸업)
-2026 ~ 진행 중 · DW Academy 풀스택 개발 과정</span>
 <span class="cmt"># ── 기술 · 학습 ──────────────────────</span>
 <span class="prompt">$</span> <span class="cmd">ls skills/</span>
 <span class="out">Python/   Java/   Flask/   SQL/
