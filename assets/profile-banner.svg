@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="280" viewBox="0 0 1000 280">
-<title>SungJin Park GitHub Profile Banner - Convolution Kernel Concept</title>
-<desc>이름 텍스트가 놓인 3행 그리드(feature map) 위로 Sobel-X 3x3 커널이 좌우로 슬라이딩하는 컨볼루션 애니메이션 배너</desc>
+<title>SungJin Park GitHub Profile Banner - Live Dashboard Concept</title>
+<desc>이름과 Data Analyst 소개 문구 옆에 막대그래프가 실시간으로 자라나고 줄어드는 라이브 대시보드 카드가 있는 배너</desc>
 
 <defs>
   <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
@@ -13,57 +13,84 @@
     <stop offset="55%" stop-color="#bb9af7"/>
     <stop offset="100%" stop-color="#73daca"/>
   </linearGradient>
+  <linearGradient id="barGrad" x1="0" y1="1" x2="0" y2="0">
+    <stop offset="0%" stop-color="#7aa2f7"/>
+    <stop offset="100%" stop-color="#73daca"/>
+  </linearGradient>
   <radialGradient id="glowBlue" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#7aa2f7" stop-opacity="0.30"/>
+    <stop offset="0%" stop-color="#7aa2f7" stop-opacity="0.28"/>
     <stop offset="100%" stop-color="#7aa2f7" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#bb9af7" stop-opacity="0.28"/>
+    <stop offset="0%" stop-color="#bb9af7" stop-opacity="0.25"/>
     <stop offset="100%" stop-color="#bb9af7" stop-opacity="0"/>
   </radialGradient>
   <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%">
     <feGaussianBlur stdDeviation="30"/>
   </filter>
-  <filter id="noiseTex" x="0" y="0" width="100%" height="100%">
-    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="11" result="n"/>
-    <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.48  0 0 0 0 0.55  0 0 0 0 0.75  0 0 0 0.12 0"/>
-  </filter>
-  <pattern id="gridPattern" width="40" height="35" patternUnits="userSpaceOnUse">
-    <path d="M0,0 L0,35 M0,0 L40,0" stroke="#3b4261" stroke-width="1" opacity="0.55"/>
+  <pattern id="graphGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M0,0 L0,50 M0,0 L50,0" stroke="#202443" stroke-width="1" opacity="0.5"/>
   </pattern>
 </defs>
 
 <!-- background -->
 <rect x="0" y="0" width="1000" height="280" fill="url(#bgGrad)"/>
-<rect x="0" y="0" width="1000" height="280" fill="#000000" filter="url(#noiseTex)"/>
-<circle cx="150" cy="220" r="140" fill="url(#glowBlue)" filter="url(#blurSoft)"/>
-<circle cx="870" cy="110" r="150" fill="url(#glowPurple)" filter="url(#blurSoft)"/>
+<rect x="0" y="0" width="1000" height="280" fill="url(#graphGrid)"/>
+<circle cx="130" cy="220" r="140" fill="url(#glowBlue)" filter="url(#blurSoft)"/>
+<circle cx="880" cy="90" r="150" fill="url(#glowPurple)" filter="url(#blurSoft)"/>
 
-<!-- caption -->
-<text x="960" y="52" text-anchor="end" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="13" fill="#565f89">Conv2D · kernel 3×3 · stride 1</text>
+<!-- top-right caption -->
+<text x="960" y="30" text-anchor="end" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="13" fill="#565f89">SELECT trend FROM metrics;</text>
 
-<!-- feature-map grid band -->
-<rect x="40" y="70" width="920" height="105" fill="url(#gridPattern)"/>
-<rect x="40" y="70" width="920" height="105" fill="none" stroke="#3b4261" stroke-width="1.5" opacity="0.85"/>
-
-<!-- name, sitting inside the "feature map" -->
-<text x="60" y="145" font-family="'Segoe UI',system-ui,-apple-system,sans-serif" font-size="54" font-weight="800" letter-spacing="1" fill="url(#textGrad)">SungJin Park</text>
-
-<!-- sliding 3x3 kernel (Sobel-X weights) -->
-<g transform="translate(40,70)">
-  <animateTransform attributeName="transform" type="translate" values="40,70;800,70;40,70" keyTimes="0;0.5;1" dur="6s" repeatCount="indefinite"/>
-  <rect x="0" y="0" width="120" height="105" fill="#73daca" fill-opacity="0.10" stroke="#73daca" stroke-width="2.5" stroke-dasharray="6,4"/>
-  <g font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="15" fill="#e8ecff" text-anchor="middle">
-    <text x="20" y="23">-1</text><text x="60" y="23">0</text><text x="100" y="23">1</text>
-    <text x="20" y="58">-2</text><text x="60" y="58">0</text><text x="100" y="58">2</text>
-    <text x="20" y="93">-1</text><text x="60" y="93">0</text><text x="100" y="93">1</text>
-  </g>
-</g>
-
-<!-- subtitle -->
-<text x="62" y="218" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="20" fill="#7dcfff">// Dev &amp; Computer Vision Enthusiast</text>
-<rect x="500" y="202" width="11" height="22" fill="#7dcfff">
+<!-- name & tagline -->
+<text x="60" y="140" font-family="'Segoe UI',system-ui,-apple-system,sans-serif" font-size="54" font-weight="800" letter-spacing="1" fill="url(#textGrad)">SungJin Park</text>
+<text x="62" y="180" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="20" fill="#7dcfff">// Data Analyst · Python &amp; SQL</text>
+<rect x="470" y="164" width="11" height="22" fill="#7dcfff">
   <animate attributeName="opacity" values="1;0" dur="1s" repeatCount="indefinite" calcMode="discrete"/>
 </rect>
+
+<!-- dashboard card -->
+<rect x="580" y="50" width="380" height="175" rx="14" fill="#12142a" stroke="#282a44" stroke-width="1.5"/>
+<text x="602" y="76" font-family="ui-monospace,'Cascadia Code','Fira Code',monospace" font-size="13" fill="#9aa5ce">Live Metrics</text>
+<circle cx="930" cy="72" r="5" fill="#9ece6a">
+  <animate attributeName="opacity" values="1;0.25;1" dur="1.6s" repeatCount="indefinite"/>
+</circle>
+
+<!-- grid lines inside card -->
+<line x1="602" y1="195" x2="940" y2="195" stroke="#3b4261" stroke-width="1"/>
+<line x1="602" y1="150" x2="940" y2="150" stroke="#282a44" stroke-width="1" stroke-dasharray="3,4" opacity="0.7"/>
+<line x1="602" y1="105" x2="940" y2="105" stroke="#282a44" stroke-width="1" stroke-dasharray="3,4" opacity="0.7"/>
+
+<!-- trend accent -->
+<path d="M610,150 L925,95" stroke="#73daca" stroke-width="1.5" stroke-dasharray="4,4" fill="none" opacity="0.8"/>
+<path d="M915,90 L927,94 L917,102 Z" fill="#73daca" opacity="0.8"/>
+
+<!-- animated bars -->
+<g>
+  <rect x="602" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
+    <animate attributeName="height" values="0;55;0" keyTimes="0;0.5;1" dur="4s" begin="0s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="195;140;195" keyTimes="0;0.5;1" dur="4s" begin="0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="664" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
+    <animate attributeName="height" values="0;85;0" keyTimes="0;0.5;1" dur="4s" begin="0.2s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="195;110;195" keyTimes="0;0.5;1" dur="4s" begin="0.2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="726" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
+    <animate attributeName="height" values="0;35;0" keyTimes="0;0.5;1" dur="4s" begin="0.4s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="195;160;195" keyTimes="0;0.5;1" dur="4s" begin="0.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="788" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
+    <animate attributeName="height" values="0;100;0" keyTimes="0;0.5;1" dur="4s" begin="0.6s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="195;95;195" keyTimes="0;0.5;1" dur="4s" begin="0.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="850" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
+    <animate attributeName="height" values="0;65;0" keyTimes="0;0.5;1" dur="4s" begin="0.8s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="195;130;195" keyTimes="0;0.5;1" dur="4s" begin="0.8s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="912" y="195" width="26" height="0" rx="3" fill="url(#barGrad)" fill-opacity="0.9">
+    <animate attributeName="height" values="0;90;0" keyTimes="0;0.5;1" dur="4s" begin="1.0s" repeatCount="indefinite"/>
+    <animate attributeName="y" values="195;105;195" keyTimes="0;0.5;1" dur="4s" begin="1.0s" repeatCount="indefinite"/>
+  </rect>
+</g>
 
 </svg>
