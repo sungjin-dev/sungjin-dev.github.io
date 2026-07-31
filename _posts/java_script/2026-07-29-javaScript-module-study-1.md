@@ -1,8 +1,7 @@
 ---
 title: "[JavaScript] 모듈 및 DTO/VO/Entity 정리"
 excerpt: ""
-categories:
-  - [JavaScript]
+categories: [JavaScript]
 tags:
   - Module
   - DTO
