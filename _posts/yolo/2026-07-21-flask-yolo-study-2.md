@@ -12,6 +12,7 @@ toc: true
 toc_sticky: true
 ---
 
+
 저가형 카메라 모듈 하나로 **데이터 수집 → 커스텀 모델 학습 → 실시간 Bounding Box 스트리밍**까지. 전체 흐름을 5단계로 압축해서 정리했다.
 
 | 항목 | 스택 |
@@ -98,7 +99,8 @@ delay(100);                         // 이론상 ≈ 10 FPS
 
 ## STEP 2 — Flask 수집 서버: 받고, 보여주고, 저장한다
 
-서버는 세 가지 일을 한다. 수신한 바이트를 `np.frombuffer → cv2.imdecode`로 BGR 이미지로 복원하고, 전역 변수 `current_frame`에 최신 프레임을 유지하며, `COLLECT_DATA_MODE`가 켜져 있으면 타임스탬프 파일명으로 저장까지 한다.
+서버는 세 가지 일을 한다. 수신한 바이트를 `np.frombuffer → cv2.imdecode`로 BGR 이미지로 복원하고, 
+전역 변수 `current_frame`에 최신 프레임을 유지하며, `COLLECT_DATA_MODE`가 켜져 있으면 타임스탬프 파일명으로 저장까지 한다.
 
 ```python
 # app.py — /upload 핵심부
