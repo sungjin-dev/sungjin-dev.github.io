@@ -1,5 +1,6 @@
 # _data/series.yml — 실제 카테고리 페이지 permalink에 맞춘 최종본
 # 주의: url은 각 카테고리 페이지 md의 permalink 값과 대소문자까지 일치해야 함
+
 list:
   - title: "Python 정규표현식 시리즈"
     meta: "4편 완결"
