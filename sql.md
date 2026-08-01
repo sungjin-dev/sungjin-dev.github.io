@@ -27,10 +27,15 @@ sidebar:
 </div>
 {% endunless %}
 {% endfor %}
-{% comment %} ── 2) 시리즈에 안 묶인 낱개 글들 — 날짜 최신순 ── {% endcomment %}
+{% comment %} ── 2) 시리즈에 안 묶인 낱개 글들 — order 있으면 order순, 없으면 최신순 ── {% endcomment %}
 {% for group in grouped %}
 {% if group.name == "기타" %}
+{% assign etc_missing_order = group.items | where_exp: "p", "p.order == nil" %}
+{% if etc_missing_order.size == 0 %}
+{% assign etc_items = group.items | sort: "order" %}
+{% else %}
 {% assign etc_items = group.items | sort: "date" | reverse %}
+{% endif %}
 <div class="entries-list" markdown="1">
 {% for post in etc_items %}
 {% include archive-single.html post=post %}
