@@ -2355,7 +2355,7 @@ html[data-theme="light"] .mermaid {
   flex: 1;
   height: 1px;
   margin-left: 6px;
-  background: linear-gradient(90deg, var(--tn-border) 0%, transparent 85%);
+  background: linear-gradient(90deg, var(--tn-muted) 0%, transparent 85%);
 }
 
 /* 2. 시리즈 카드(entries-list) — 개별 글들을 담는 바깥 그룹 --------------- */
@@ -2367,8 +2367,8 @@ html[data-theme="light"] .mermaid {
   padding: 14px;
   background: var(--tn-card);
   border: 1px solid var(--tn-border);
-  border-radius: 12px;
-  border-top-left-radius: 0; /* 바로 위 제목과 시각적으로 이어지도록 */
+  border-radius: 24px; /* 안쪽 박스 radius(10px) + 안쪽 여백(14px)에 맞춰
+                          동심원처럼 겹쳐 보이도록. 더 이상 모서리를 각지게 두지 않음 */
   box-shadow: var(--shadow-card);
 }
 
@@ -2377,11 +2377,13 @@ html[data-theme="light"] .mermaid {
   padding: 16px 18px;
   border: 1px solid var(--tn-border);
   border-radius: 10px;
-  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: var(--shadow-rest); /* 기본 상태에도 은은한 뜬 느낌 (다크에선 none이라 테두리만으로 충분) */
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease;
 }
 .archive .entries-list .archive__item:hover {
   border-color: var(--tn-blue);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-card); /* hover 시 더 깊은 그림자로 확실히 "떠 보이게" */
+  transform: translateY(-1px);
 }
 
 /* 글 제목 밑 짧은 포인트 바 — 시리즈 라벨과는 별개의, 흰 배경에서도
