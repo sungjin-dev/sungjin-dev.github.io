@@ -5,7 +5,7 @@ import plotly.express as px # 화려한 차트를 그리기 위한 라이브러�
 # 1. 페이지 기본 설정 (가장 넓은 화면 쓰기)
 st.set_page_config(page_title="지역 거시경제 대시보드", page_icon="📊", layout="wide")
 
-st.title("📊 거시경제 지표 및 지역 데이터 대시보드")
+st.title("거시경제 지표 및 지역 데이터 대시보드")
 st.markdown("매일 자동 수집되는 파이프라인 기반 데이터입니다.")
 
 @st.cache_data
@@ -18,7 +18,7 @@ try:
     df = load_data()
     
     # --- 사이드바 (검색 필터 만들기) ---
-    st.sidebar.header("🔍 검색 필터")
+    st.sidebar.header("검색 필터")
     # 지역을 다중 선택할 수 있는 드롭다운
     selected_region = st.sidebar.multiselect(
         "비교할 지역을 선택하세요", 
@@ -30,7 +30,7 @@ try:
     filtered_df = df[df['region'].isin(selected_region)]
 
     # --- 핵심 지표 요약 (상단 KPI 카드) ---
-    st.subheader("💡 핵심 지표 요약")
+    st.subheader("핵심 지표 요약")
     col1, col2, col3 = st.columns(3)
     
     latest_quarter = filtered_df['quarter'].max()
@@ -43,7 +43,7 @@ try:
     st.divider() # 가로선 긋기
 
     # --- 인터랙티브 차트 그리기 (마우스 오버, 확대/축소 가능) ---
-    st.subheader("📈 지역별 기준금리 추이")
+    st.subheader("지역별 기준금리 추이")
     
     # Plotly를 사용해 분기별 선 그래프 생성
     fig = px.line(
