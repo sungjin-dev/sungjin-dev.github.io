@@ -26,7 +26,7 @@ flowchart TD
     C -->|regression_results.json| D["PostgreSQL 적재<br/>(db/ · Python = 쓰기 전용)"]
     D --> E["Spring Boot REST API<br/>(Java = 읽기 전용)"]
     E --> F["대시보드<br/>(Chart.js / Recharts)"]
-
+```
 <br>
 
 
