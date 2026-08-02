@@ -1,13 +1,26 @@
 ---
+# ----------------------------------------------------
+# 1. 썸네일 카드 설정 (바깥에 보여지는 부분)
+# ----------------------------------------------------
 title: "지역경제 비교 분석 대시보드 (대전 vs 대구/울산)"
 excerpt: "ECOS·KOSIS 데이터를 다중회귀(OLS + Newey-West HAC)로 분석하고 Spring Boot 대시보드로 시각화"
 status: "진행 중"
-tech: [Python, statsmodels, PostgreSQL, Spring Boot, Chart.js]
-github: "https://github.com/sungjin-dev/저장소명"
+# 썸네일 이미지 경로 (assets 폴더 등에 캡처본을 넣고 경로를 적어주세요)
+image: 
+  path: /assets/img/projects/econ-dashboard-thumb.png
+# 카드 하단에 뱃지로 뜰 태그들
+tags: [Python, GitHub Actions, OpenAPI, Data Pipeline]
 ---
 
-> **진행 중인 프로젝트입니다.** 데이터 수집·계량분석 파이프라인까지 완성,
-> Spring Boot API와 대시보드는 개발 중. 과정은 [연재 포스트](#관련-포스트)로 기록하고 있습니다.
+
+> ## 개요
+
+한국은행(ECOS)과 통계청(KOSIS)의 OpenAPI를 연동하여 지역별 거시경제 데이터를 자동으로 수집하고 전처리하는 파이프라인입니다. GitHub Actions를 통해 매일 최신 데이터가 갱신되며, 아래 대시보드에서 결과를 확인할 수 있습니다.
+
+<iframe src="/dashboard.html" width="100%" height="600px" style="border:none; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
+
+<br>
+
 
 ## 무엇을 알아보려는 프로젝트인가
 
@@ -26,13 +39,10 @@ flowchart TD
     E --> F["대시보드<br/>(Chart.js / Recharts)"]
 ```
 
+<br>
+
+
 ## 핵심 설계 결정
-
-### 왜 Python은 쓰기 전용, Java는 읽기 전용인가
-
-분석(Python 생태계가 압도적)과 서빙(운영·타입 안정성)의 책임을 언어 경계로 분리했습니다.
-DB를 유일한 접점으로 두면 두 세계가 서로의 코드를 몰라도 되고, 장애 원인 추적도 단순해집니다.
-서빙 쪽은 쓰기 로직이 없으므로 전 구간 `@Transactional(readOnly = true)`.
 
 ### 왜 단순 OLS가 아니라 Newey-West HAC인가
 
@@ -47,23 +57,24 @@ DB를 유일한 접점으로 두면 두 세계가 서로의 코드를 몰라도 
 γ 계수의 유의성으로 판단합니다. 모델은 M1(실물) → M2(+금융) → M3(+대외·심리)로
 단계 확장하며 조정 R²로 비교합니다.
 
-## 정직한 한계
+## 한계점
 
 신용카드 사용액과 서비스업 생산은 동시에 움직이는 변수라 인과 방향을 특정할 수 없습니다.
 시차 모형(R1)으로 강건성만 확인하고, 결론은 인과가 아닌 **연관성**으로 서술합니다.
 
-## 다음 단계
+## 다음 단계(심화)
 
 Spring Boot 조회 API 3개(`/api/series`, `/api/regressions`, `/api/diagnostics`)와
 프론트 대시보드, GitHub Actions 월 1회 자동 갱신이 남아 있습니다.
 향후 6~7개 광역시 패널 고정효과 모형(`linearmodels.PanelOLS`)으로 확장 예정.
 
-## 관련 포스트
+> ## 관련 글
 
-(연재를 시작하면 여기에 링크가 쌓입니다)
+* <span style="color:gray">2026-08-02</span> &nbsp; [ [Part 1] 공공데이터 API 연동 및 데이터 파이프라인 아키텍처 설계 ](/링크주소1)
+* <span style="color:gray">2026-08-03</span> &nbsp; [ [Part 2] GitHub Actions를 활용한 데이터 수집 및 렌더링 자동화 ](/링크주소2)
 
-## 기술 스택 & 저장소
+> ## 기술 스택
 
-`Python` `statsmodels` `PostgreSQL` `Spring Boot` `JPA` `Chart.js`
+Python, Pandas, GitHub Actions, Plotly, python-dotenv
 
-[GitHub 저장소 보기](https://github.com/sungjin-dev/저장소명){: .btn .btn--primary}
+
