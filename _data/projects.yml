@@ -9,7 +9,7 @@
   status: "완료"
 
 
-- title: "지역 거시경제 데이터 파이프라인"
+- title: "지역 거시경제 데이터 파이프라인(대전 vs 대구/울산)"
   summary: "ECOS/KOSIS API와 GitHub Actions를 활용한 데이터 수집 자동화 및 대시보드"
   url: "/projects/regional-econ-dashboard" 
   thumbnail: "/assets/img/projects/econ-dashboard-thumb.png"
