@@ -60,7 +60,7 @@ User c = new User("GilDong");
 System.out.println(User.getCount()); // 3
 ```
 
-`a`, `b`, `c`는 각자 자신만의 `name`을 갖지만, `count`는 셋이 **하나를 공유**합니다. 만약 `count`가 인스턴스 변수였다면 각 객체의 count는 전부 1이 되어 아무 의미가 없다.
+`a`, `b`, `c`는 각자 자신만의 `name`을 갖지만, `count`는 셋이 **하나를 공유**. 만약 `count`가 인스턴스 변수였다면 각 객체의 count는 전부 1이 되어 아무 의미가 없다.
 
 접근할 때도 `a.getCount()`가 아니라 `User.getCount()`처럼 **클래스 이름으로 접근하는 것이 원칙**이다. (인스턴스로도 접근은 되지만 뒤에서 설명)
 
