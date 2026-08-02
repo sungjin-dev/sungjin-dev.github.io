@@ -12,7 +12,7 @@ import requests
 import xml.etree.ElementTree as ET
 
 # 우리의 전역 설정 파일을 불러와서 API 키를 사용.
-import config
+from collector import config
 
 # 표준출력 인코딩을 utf-8로 강제 지정 (Python 3.7+)
 if hasattr(sys.stdout, "reconfigure"):
