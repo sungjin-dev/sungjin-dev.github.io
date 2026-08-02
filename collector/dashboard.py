@@ -12,7 +12,7 @@ st.markdown("ECOS 및 KOSIS API를 통해 매일 자동 업데이트되는 데�
 @st.cache_data
 def load_data():
     # 예시: GitHub Actions가 수집해서 저장해둔 파일
-    df = pd.read_csv("collector/data/regional_data.csv") 
+    df = pd.read_csv("collector/data/panel_quarterly.csv") 
     return df
 
 try:
