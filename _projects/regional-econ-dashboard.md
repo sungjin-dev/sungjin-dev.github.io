@@ -7,7 +7,8 @@ image:
 tags: [Python, GitHub Actions, OpenAPI, Data Pipeline]
 ---
 
-> ## 개요
+
+## 개요
 
 한국은행(ECOS)과 통계청(KOSIS)의 OpenAPI를 연동하여 지역별 거시경제 데이터를 자동으로 수집하고 전처리하는 파이프라인입니다. GitHub Actions를 통해 매일 최신 데이터가 갱신되며, 아래 대시보드에서 결과를 확인할 수 있습니다.
 
