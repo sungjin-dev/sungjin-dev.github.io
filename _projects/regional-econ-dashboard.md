@@ -1,14 +1,9 @@
 ---
-# ----------------------------------------------------
-# 1. 썸네일 카드 설정 (바깥에 보여지는 부분)
-# ----------------------------------------------------
 title: "지역경제 비교 분석 대시보드 (대전 vs 대구/울산)"
-excerpt: "ECOS·KOSIS 데이터를 다중회귀(OLS + Newey-West HAC)로 분석하고 Spring Boot 대시보드로 시각화"
+excerpt: "ECOS·KOSIS 데이터를 다중회귀(OLS + Newey-West HAC)로 분석하고 대시보드로 시각화"
 status: "진행 중"
-# 썸네일 이미지 경로 (assets 폴더 등에 캡처본을 넣고 경로를 적어주세요)
 image: 
   path: /assets/img/projects/econ-dashboard-thumb.png
-# 카드 하단에 뱃지로 뜰 태그들
 tags: [Python, GitHub Actions, OpenAPI, Data Pipeline]
 ---
 
