@@ -1,4 +1,3 @@
-# explore.py
 """
 ECOS 및 KOSIS OpenAPI 메타데이터(통계표, 항목 코드) 탐색 유틸리티.
 
