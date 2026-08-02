@@ -18,8 +18,8 @@ import sys
 import pandas as pd
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config import (INDICATORS, REGIONS, START, END,
-                    RAW_DIR, PANEL_CSV, COVID_QUARTERS)
+from collector.config import (INDICATORS, REGIONS, START, END,
+                              RAW_DIR, PANEL_CSV, COVID_QUARTERS)
 from collector.ecos_client import EcosClient
 from collector.kosis_client import KosisClient
 
