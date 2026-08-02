@@ -11,7 +11,7 @@ st.markdown("매일 자동 수집되는 파이프라인 기반 데이터입니�
 @st.cache_data
 def load_data():
     # 경로와 파일명은 지금 쓰고 계신 그대로 유지하시면 됩니다.
-    df = pd.read_csv("collector/data/regional_data.csv") 
+    df = pd.read_csv("collector/data/panel_quarterly.csv") 
     return df
 
 try:
