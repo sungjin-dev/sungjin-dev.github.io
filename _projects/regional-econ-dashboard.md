@@ -7,20 +7,15 @@ image:
 tags: [Python, GitHub Actions, OpenAPI, Data Pipeline]
 ---
 
-
 > ## 개요
 
 한국은행(ECOS)과 통계청(KOSIS)의 OpenAPI를 연동하여 지역별 거시경제 데이터를 자동으로 수집하고 전처리하는 파이프라인입니다. GitHub Actions를 통해 매일 최신 데이터가 갱신되며, 아래 대시보드에서 결과를 확인할 수 있습니다.
 
-<iframe src="https://sungjin-devappio-qtpf6auvpnpluyxwjqkuea.streamlit.app/?embed=true" width="100%" height="600px" style="border:none; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"></iframe>
-<br>
-
+<iframe src="https://sungjin-devappio-qtpf6auvpnpluyxwjqkuea.streamlit.app/?embed=true" width="100%" height="650px" style="border:1px solid #eee; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 20px 0;"></iframe>
 
 ## 무엇을 알아보려는 프로젝트인가
 
-"대전의 경제를 움직이는 요인은 대구·울산과 다른가?" — 한국은행 ECOS와 통계청 KOSIS의
-공개 데이터를 이용해 지역별 경제 결정요인을 통계적으로 비교하고, 그 결과를 누구나 볼 수 있는
-대시보드로 만드는 프로젝트입니다.
+"대전의 경제를 움직이는 요인은 대구·울산과 다른가?" — 한국은행 ECOS와 통계청 KOSIS의 공개 데이터를 이용해 지역별 경제 결정요인을 통계적으로 비교하고, 그 결과를 누구나 볼 수 있는 대시보드로 만드는 프로젝트입니다.
 
 ## 아키텍처
 
@@ -31,7 +26,6 @@ flowchart TD
     C -->|regression_results.json| D["PostgreSQL 적재<br/>(db/ · Python = 쓰기 전용)"]
     D --> E["Spring Boot REST API<br/>(Java = 읽기 전용)"]
     E --> F["대시보드<br/>(Chart.js / Recharts)"]
-```
 
 <br>
 
