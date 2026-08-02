@@ -15,7 +15,7 @@ from __future__ import annotations
 import time
 import requests
 import pandas as pd
-import config
+from collector import config
 import sys, os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -26,7 +26,7 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from config import ECOS_API_KEY, ECOS_BASE_URL
+from collector.config import ECOS_API_KEY, ECOS_BASE_URL
 
 
 
