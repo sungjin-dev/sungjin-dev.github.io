@@ -32,7 +32,7 @@ jobs:
         ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         KOSIS_API_KEY: ${{ secrets.KOSIS_API_KEY }}
       run: |
-        python collector/collect.py 
+        python -m collector.collect 
 
     - name: 5. 수집된 데이터(또는 대시보드 HTML)를 깃허브에 자동 커밋 및 푸시
       run: |
