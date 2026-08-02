@@ -62,12 +62,12 @@ Spring Boot 조회 API 3개(`/api/series`, `/api/regressions`, `/api/diagnostics
 프론트 대시보드, GitHub Actions 월 1회 자동 갱신
 향후 6~7개 광역시 패널 고정효과 모형(`linearmodels.PanelOLS`)으로 확장 예정.
 
-> ## 관련 글
+## 관련 글
 
 * <span style="color:gray">2026-08-02</span> &nbsp; [ [Part 1] 공공데이터 API 연동 및 데이터 파이프라인 아키텍처 설계 ](/링크주소1)
 * <span style="color:gray">2026-08-03</span> &nbsp; [ [Part 2] GitHub Actions를 활용한 데이터 수집 및 렌더링 자동화 ](/링크주소2)
 
-> ## 기술 스택
+## 기술 스택
 
 Python, Pandas, GitHub Actions, Plotly, python-dotenv
 
