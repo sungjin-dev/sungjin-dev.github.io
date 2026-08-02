@@ -3,7 +3,7 @@ title: "지역경제 비교 분석 대시보드 (대전 vs 대구/울산)"
 excerpt: "ECOS·KOSIS 데이터를 다중회귀(OLS + Newey-West HAC)로 분석하고 대시보드로 시각화"
 status: "진행 중"
 image:
-  path: /assets/img/projects/dashboard.png
+  path: /assets/images/projects/dashboard.png
 tags: [Python, GitHub Actions, OpenAPI, Data Pipeline]
 ---
 
