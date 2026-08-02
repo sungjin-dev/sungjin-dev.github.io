@@ -53,7 +53,7 @@ flowchart TD
 ## 다음 단계(심화)
 
 Spring Boot 조회 API 3개(`/api/series`, `/api/regressions`, `/api/diagnostics`)와
-프론트 대시보드, GitHub Actions 월 1회 자동 갱신이 남아 있습니다.
+프론트 대시보드, GitHub Actions 월 1회 자동 갱신
 향후 6~7개 광역시 패널 고정효과 모형(`linearmodels.PanelOLS`)으로 확장 예정.
 
 > ## 관련 글
