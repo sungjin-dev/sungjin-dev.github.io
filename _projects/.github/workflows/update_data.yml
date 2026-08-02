@@ -1,6 +1,5 @@
 name: Update Regional Econ Data
 
-# 언제 이 작업이 실행될지(Trigger) 정의합니다.
 on:
   schedule:
     # 매일 아침 9시 (KST)에 실행. (깃허브 서버는 UTC 기준이므로 한국 시간 - 9시간인 00:00으로 설정)
