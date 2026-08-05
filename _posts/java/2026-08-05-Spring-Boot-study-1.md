@@ -398,7 +398,7 @@ sequenceDiagram
 
 ---
 
-## 오늘 정리
+## 요약 정리
 
 - 스프링 부트는 스프링을 **설정 없이 바로 쓰게 해주는** 도구다.
 - 핵심 무기 세 개: **자동 설정**, **스타터 의존성**, **내장 서버**.
@@ -406,17 +406,7 @@ sequenceDiagram
 - `@RestController` + `@GetMapping` 조합이면 API 하나가 완성된다.
 - 객체를 리턴하면 JSON으로 자동 변환된다.
 
-## 오늘의 과제
-
-1. `/calc?a=3&b=5` 로 요청하면 `{"result": 8}` 을 돌려주는 API를 만들어본다.
-2. `@GetMapping` 말고 `@PostMapping`도 있다는 걸 확인하고, 포스트맨이나 `curl`로 POST 요청을 날려본다.
-3. `application.properties`에 `server.port=9090`을 넣고 포트가 바뀌는지 확인해본다.
-
 ---
-
-**다음 글 예고 — 2일차: 계층 구조와 의존성 주입(DI)**
-컨트롤러 하나에 코드를 다 때려박으면 금방 지옥이 된다. 내일은 Controller / Service / Repository로 역할을 쪼개고, 스프링의 핵심 개념인 **DI(의존성 주입)** 를 파본다.
-
 
 
 [star]: /assets/images/star.png#blog-star-emoji "star"
