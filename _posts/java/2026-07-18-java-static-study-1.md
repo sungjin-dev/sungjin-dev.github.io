@@ -207,7 +207,7 @@ JVM의 런타임 메모리는 크게 이렇게 나뇐다.
 
 ## 4. 초기화는 "언제" 일어날까 — 클래스 로딩과 static 블록
 
-static 변수는 `new`를 할 때가 아니라 **클래스가 초기화될 때** 만들어지고 초기화된다. 그리고 Java의 클래스 초기화는 **게으르게(lazy)** 일어납니다. JLS(자바 언어 명세)상 클래스는 다음과 같은 시점에 처음으로 초기화된다.
+static 변수는 `new`를 할 때가 아니라 **클래스가 초기화될 때** 만들어지고 초기화된다. 그리고 Java의 클래스 초기화는 **게으르다(lazy)** . JLS(자바 언어 명세)상 클래스는 다음과 같은 시점에 처음으로 초기화된다.
 
 - 그 클래스의 인스턴스를 처음 생성할 때
 - 그 클래스의 static 메서드를 처음 호출할 때
@@ -268,7 +268,7 @@ Config 클래스의 준비(초기화)가 완벽하게 끝났으니, 원래 하�
 ![star] 이 코드에서 얻어가야 할 핵심 포인트 2가지
 `게으른 로딩 (Lazy Loading)`: 자바는 프로그램이 시작될 때 모든 클래스를 한꺼번에 다 메모리에 올리지 않는다. 메모리를 아끼기 위해 "해당 클래스가 처음으로 사용되는 그 순간(변수 접근, 메서드 호출, 객체 생성 등)"에 메모리에 올리고 초기화한다.
 
-static 블록의 역할: `static { ... }` 블록은 클래스가 메모리에 올라갈 때 딱 한 번만 실행됩니다. 보통 위 코드처럼 맵(Map)에 복잡한 기본 세팅 값을 미리 꽉꽉 채워 넣거나, DB 연결 같은 무거운 초기 설정 작업을 할 때 아주 유용하게 쓰인다.
+static 블록의 역할: `static { ... }` 블록은 클래스가 메모리에 올라갈 때 딱 한 번만 실행된다. 보통 위 코드처럼 맵(Map)에 복잡한 기본 세팅 값을 미리 꽉꽉 채워 넣거나, DB 연결 같은 무거운 초기 설정 작업을 할 때 아주 유용하게 쓰인다.
 
 `Config`를 실제로 건드리기 전까지는 초기화가 일어나지 않는다는 점에 주목하자. 이 lazy 초기화는 뒤에서 볼 C와의 중요한 차이이다.
 
@@ -402,7 +402,7 @@ C 프로그램의 전형적인 메모리 구조는 이렇다.
 <div style="background-color: #ffffff; padding: 25px 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); max-width: 600px; margin: 0 auto; border: 1px solid #eaeaea; font-family: 'Helvetica Neue', Arial, sans-serif;">
   
   <div style="text-align: center; font-size: 1.25em; font-weight: bold; color: #212529; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #dee2e6;">
-    🧠 프로그램 메모리 구조
+     프로그램 메모리 구조
   </div>
 
   <!-- 높은 주소 -->
@@ -521,7 +521,7 @@ User a = null;
 System.out.println(a.getCount()); // NPE가 날 것 같지만... 정상 동작!
 ```
 
-static 멤버 접근은 컴파일 시점에 `User.getCount()`로 해석되므로 `a`가 null이어도 예외가 발생하지 않습니다. 직관과 어긋나는 코드가 되는 거다.
+static 멤버 접근은 컴파일 시점에 `User.getCount()`로 해석되므로 `a`가 null이어도 예외가 발생하지 않는다. 직관과 어긋나는 코드가 되는 거다.
 
 ### (2) 멀티스레드 환경에서는 공유 = 경쟁
 
