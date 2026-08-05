@@ -1,8 +1,7 @@
 ---
 title: "[Java] Spring Boot 입문 1일차 "
 excerpt: "스프링 부트란? 첫 API까지 만들어보기"
-categories:
-  - [Java]
+categories: [Java]
 tags:
   - 톰캣
   - 스프링
