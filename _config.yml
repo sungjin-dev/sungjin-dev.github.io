@@ -65,6 +65,7 @@ defaults:
       path: ""       # 블로그의 모든 경로에 있는
       type: "posts"
     values:
+      order: 999
       author_profile: true
       layout: "single"  # 포스트 기본 레이아웃
       toc: true         # 목차(TOC) 활성화
