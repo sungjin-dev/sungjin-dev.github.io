@@ -20,7 +20,7 @@ sidebar_category:
       - title: "CSS"
         url: /css/
       - title: "C"
-        url: /c/ 
+        url: /c/
       - title: "SQL"
         url: /sql/
         children:
