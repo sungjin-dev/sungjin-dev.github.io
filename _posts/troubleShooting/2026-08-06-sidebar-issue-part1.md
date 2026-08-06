@@ -150,6 +150,7 @@ jekyll 3.9.0 | Error: undefined method 'tainted?' for nil
 
 **해결:** `github-pages`를 버리고 최신 Jekyll을 직접 지정.
 
+
 ### 3-4. `Dependency Error: jekyll-relative-links`
 
 **원인:** GitHub Pages가 기본 제공하던 플러그인들을 로컬은 챙겨주지 않는다. `_config.yml`의 `plugins:` 목록을 전부 `Gemfile`에 명시해야 한다.
@@ -196,6 +197,11 @@ gem "wdm", ">= 0.1.0", platforms: [:windows]
 grep -rn "nav_list" _layouts/ _includes/
 ```
 
+
+<img width="684" height="238" alt="3" src="https://github.com/user-attachments/assets/da4e6512-8209-4eec-b88d-5a3af4eb33cf" />
+
+
+
 **결과가 아무것도 없었다.**
 
 내가 만든 `_includes/nav_list.html`을 **아무도 부르지 않고 있었다.**
@@ -226,6 +232,11 @@ curl -o _includes/sidebar.html \
   https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/_includes/sidebar.html
 ```
 
+그럼 이런 형식으로 터미널에 보인다.
+
+<img width="1569" height="495" alt="4" src="https://github.com/user-attachments/assets/3e25bba9-0967-4fee-931f-32cf8a000786" />
+
+
 **② 호출부 파일명을 맞춤** (2군데)
 
 ```liquid
@@ -237,6 +248,9 @@ curl -o _includes/sidebar.html \
 {% if s.nav %}{% include nav_list.html locale=locale nav=s.nav %}{% endif %}
 {% include nav_list.html locale=locale nav=page.sidebar.nav %}{% endraw %}
 ```
+
+
+
 
 저장하자마자 3단계 메뉴가 전부 나왔다. **소요 시간 5분.**
 
@@ -258,18 +272,25 @@ git pull --no-rebase
 git push
 ```
 
+<img width="3000" height="3000" alt="MixCollage-07-Aug-2026-12-00-AM-6958" src="https://github.com/user-attachments/assets/c46771aa-70e5-47dc-8113-1896aaf62d04" />
+
+
+
 ---
 
 ## 부수적으로 정리한 것들
 
-| 항목 | 내용 |
-|---|---|
-| `.gitignore` | `_site/`, `.jekyll-cache/` 추가 — 빌드 결과물은 커밋하지 않는다 |
-| 미래 날짜 글 | `2026-08-07-*.md`는 `has a future date`로 빌드 제외됨. `--future` 옵션으로 확인 가능 |
-| Sass deprecation | 200여 개 경고가 뜨지만 전부 무시 가능. 테마가 옛 문법을 쓰는 것뿐 |
-| CRLF 경고 | Windows 줄바꿈 변환 안내. 파일은 안 깨진다 |
+
+1. `.gitignore`에 `_site/`, `.jekyll-cache/` 추가 — 빌드 결과물은 커밋하지 않기! 
+
+<img width="3000" height="3000" alt="MixCollage-06-Aug-2026-11-52-PM-1566" src="https://github.com/user-attachments/assets/effba688-6f42-492f-bf9f-f158d0a1559c" />
+
+2. `Sass deprecation`에  200여 개 경고가 뜨지만 전부 무시 가능. 테마가 옛 문법을 쓰는 것뿐이다.
+
+<img width="831" height="231" alt="5" src="https://github.com/user-attachments/assets/b5a91b92-323c-4287-bf1e-a334f8ffce70" />
 
 ---
+
 
 ## 되새김질 해보기
 
