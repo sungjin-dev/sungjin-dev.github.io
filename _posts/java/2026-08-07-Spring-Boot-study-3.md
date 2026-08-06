@@ -1,13 +1,11 @@
 ---
 title: "[Java] Spring Boot 입문 3일차"
 excerpt: "JPA로 DB에 저장 후 예외 처리와 검증"
-categories:
-  - [Java]
+categories: [Java]
 tags:
-  - CASE
-  - UI설계
-  - 모델링
-  - 요구사항관리
+  - ORM
+  - JPA
+  - JpaRepository
 toc: true
 toc_sticky: true
 ---
