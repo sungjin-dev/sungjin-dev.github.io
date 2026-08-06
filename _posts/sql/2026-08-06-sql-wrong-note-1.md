@@ -2,6 +2,7 @@
 title: "[SQLD] 오답노트"
 permalink: /sql/wrong-note-part1/
 categories: [SQL]
+order: 9
 tags:
   - SQL
 toc: true
