@@ -43,3 +43,17 @@ sidebar:
 </div>
 {% endif %}
 {% endfor %}
+
+## 오답노트
+
+<div class="entries-list" markdown="1">
+
+{% for post in etc_items %}
+{% include archive-single.html post=post %}
+{% endfor %}
+
+</div>
+
+{% endif %}
+{% endfor %}
+
