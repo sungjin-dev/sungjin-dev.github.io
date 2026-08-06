@@ -3,7 +3,7 @@ main:
     url: /projects/
   - title: "About"
     url: /about/
-    
+
 sidebar_category:
   - title: "개발 공부 기록"
     children:
