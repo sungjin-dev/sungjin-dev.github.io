@@ -1,44 +1,45 @@
+---
 main:
-  - title: "Projects"
+  - title: Projects
     url: /projects/
-  - title: "About"
+  - title: About
     url: /about/
-
 sidebar_category:
-  - title: "개발 공부 기록"
+  - title: 개발 공부 기록
     children:
-      - title: "Python"
+      - title: Python
         url: /python/
-      - title: "Flask"
+      - title: Flask
         url: /flask/
-      - title: "YOLO"
+      - title: YOLO
         url: /yolo/
-      - title: "Java"
+      - title: Java
         url: /java/
-      - title: "JavaScript"
+      - title: JavaScript
         url: /javascript/
-      - title: "CSS"
+      - title: CSS
         url: /css/
-      - title: "C"
+      - title: C
         url: /c/
-      - title: "SQL"
+      - title: SQL
         url: /sql/
         children:
-          - title: "오답노트"
+          - title: 오답노트
             url: /sql/wrong-note-part1/
-      - title: "정보처리기사"
+      - title: 정보처리기사
         url: /정처기/
         children:
-          - title: "오답노트 1권"
+          - title: 오답노트 1권
             url: /정처기/wrong-note-part1/
-          - title: "오답노트 2권"
+          - title: 오답노트 2권
             url: /정처기/wrong-note-part2/
-          - title: "오답노트 3권"
+          - title: 오답노트 3권
             url: /정처기/wrong-note-part3/
-          - title: "오답노트 4권"
+          - title: 오답노트 4권
             url: /정처기/wrong-note-part4/
-
-  - title: "필기노트"
+      - title: Trouble Shooting
+        url: /troubleshooting/
+  - title: 필기노트
     children:
-      - title: "전체보기"
+      - title: 전체보기
         url: /year-archive/
