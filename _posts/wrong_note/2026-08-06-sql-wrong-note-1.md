@@ -182,10 +182,10 @@ mermaid: true
 > ㉤ 관계 선택성을 표시한다.  
 > ㉥ 관계명을 작성한다.  
 
-① ㉠ $\rightarrow$ ㉡ $\rightarrow$ ㉢ $\rightarrow$ ㉣ $\rightarrow$ ㉤ $\rightarrow$ ㉥  
-② ㉣ $\rightarrow$ ㉢ $\rightarrow$ ㉠ $\rightarrow$ ㉡ $\rightarrow$ ㉥ $\rightarrow$ ㉤  
-③ ㉣ $\rightarrow$ ㉢ $\rightarrow$ ㉠ $\rightarrow$ ㉥ $\rightarrow$ ㉡ $\rightarrow$ ㉤  
-④ ㉢ $\rightarrow$ ㉣ $\rightarrow$ ㉠ $\rightarrow$ ㉥ $\rightarrow$ ㉡ $\rightarrow$ ㉤  
+① ㉠ → ㉡ → ㉢ → ㉣ → ㉤ → ㉥
+② ㉣ → ㉢ → ㉠ → ㉡ → ㉥ → ㉤
+③ ㉣ → ㉢ → ㉠ → ㉥ → ㉡ → ㉤
+④ ㉢ → ㉣ → ㉠ → ㉥ → ㉡ → ㉤
 
 <details>
 <summary><b> 정답 및 해설 보기 (클릭)</b></summary>
