@@ -1,6 +1,6 @@
 ---
 title: "[SQLD] 오답노트"
-permalink: /정처기/wrong-note-part1/
+permalink: /sql/wrong-note-part1/
 categories: [SQL]
 tags:
   - SQL
