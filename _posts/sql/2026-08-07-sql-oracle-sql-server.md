@@ -1,7 +1,7 @@
 ---
 title: " [SQLD 특별편] Oracle vs MySQL 문법 차이 총정리"
 excerpt: "Oracle, SQL Server 두 DBMS 비교"
-categories: [SQL]
+categories: [sql]
 order: 9
 tags:
   - Oracle
