@@ -1,6 +1,6 @@
 ---
 title: "[Trouble Shooting] 사이드바 3단계 메뉴가 안 나온다 — 배포 큐부터 테마 오버라이드까지"
-permalink: /troubleshooting/jekyll-sidebar-nav/
+permalink: /troubleshooting/
 categories: [TroubleShooting]
 tags:
   - Jekyll
