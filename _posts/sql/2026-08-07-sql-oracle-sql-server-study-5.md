@@ -4,7 +4,10 @@ excerpt: "Oracle, SQL Server 두 DBMS 비교"
 categories: [sql]
 order: 9
 tags:
-  - SQP
+  - NULL
+  - Oracle
+  - MySQL
+  - SQL Server
 toc: true
 toc_sticky: true
 ---
