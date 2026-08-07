@@ -4,7 +4,6 @@ excerpt: "Oracle, SQL Server 두 DBMS 비교"
 categories: [sql]
 order: 9
 tags:
-  - NULL
   - Oracle
   - MySQL
   - SQL Server
