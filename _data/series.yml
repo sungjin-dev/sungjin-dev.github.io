@@ -43,6 +43,12 @@ list:
     desc: "공부하며 남긴 기록 전체를 시간순으로."
     url: "/year-archive/"                
     accent: "var(--tn-purple)"
+    
+  - title: "트러블 슈팅내역"
+    meta: "고군분투 흔적"
+    desc: "디버깅하면서 실력 올리기"
+    url: "/troubleshooting/"                
+    accent: "var(--tn-purple)"
 
 chips:
   - { label: "Python", url: "/python/" }  
