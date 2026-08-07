@@ -1,6 +1,6 @@
 ---
 title: "[Trouble Shooting] 1차 프로젝트 트러블슈팅 16건 총정리 — Git 충돌부터 실시간 CCTV 데이터 포맷 충돌까지"
-permalink: /troubleshooting/1st-project-log/
+permalink: /troubleshooting/jekyll-sidebar-nav/
 categories: [TroubleShooting]
 tags:
   - Git
