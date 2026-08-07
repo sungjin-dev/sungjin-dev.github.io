@@ -6,7 +6,7 @@ sidebar:
   nav: "sidebar_category"
 ---
 
-{% assign posts = site.categories["SQL"] %}
+{% assign posts = site.categories["sql"] %}
 
 {% if posts %}
   {% assign grouped = posts | group_by_exp: "post", "post.series | default: '기타'" %}
