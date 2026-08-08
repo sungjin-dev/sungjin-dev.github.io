@@ -12,7 +12,6 @@ tags:
   - 미들웨어
 toc: true
 toc_sticky: true
-order: 9
 series: "정처기-공부"
 ---
 
