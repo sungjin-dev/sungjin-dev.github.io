@@ -1,5 +1,5 @@
 ---
-title: "[정보처리기사 필기] 응용 SW 기초 기술 활용"
+title: "[정처기 공부 #10] 응용 SW 기초 기술 활용"
 excerpt: "운영체제, 메모리 관리, 프로세스 스케줄링"
 categories:
   - 정처기
@@ -14,6 +14,7 @@ tags:
   - 지역성
   - 프로세스
 toc: true
+order: 10
 toc_sticky: true
 series: "정처기-공부"
 ---
