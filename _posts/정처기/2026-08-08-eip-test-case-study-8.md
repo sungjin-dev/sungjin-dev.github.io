@@ -1,7 +1,8 @@
 ---
 title: "[정보처리기사 필기]  프로그래밍 언어 활용 (Chapter 02) 정리"
 excerpt: "언어특성 활용 → 라이브러리 활용 → 데이터 입출력 → 예외 처리"
-categories: [정처기]
+categories:
+  - 정처기
 tags:
   - 객체지향
   - 스크립트
@@ -11,6 +12,7 @@ tags:
 toc: true
 order: 9
 toc_sticky: true
+series: "정처기-공부"
 ---
 
 
