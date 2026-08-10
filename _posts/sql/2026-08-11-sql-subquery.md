@@ -90,8 +90,9 @@ WHERE total_amount > (SELECT AVG(total_amount) FROM orders);
 | 서브쿼리 안에서 `ORDER BY`는 보통 무의미 | `TOP-N`/`LIMIT`와 함께 쓸 때만 의미 있음 |
 | 반환 형태와 연산자가 맞아야 한다 | 단일행 값에 `IN`, 다중행에 `=` 쓰면 에러 |
 
+<br>
 
-참고) 
+### 참고) 
 
 **1. 서브쿼리 안의 `ORDER BY`는 왜 무의미할까?**
 
@@ -119,6 +120,7 @@ WHERE S.성적 >= 80;
 
 만약 최종 출력 순서를 꼭 정해야 한다면, 반드시 제일 바깥쪽 메인 쿼리에 ORDER BY를 쓰면 된다. 
 
+<br>
 
 **2. 왜 "TOP-N / LIMIT와 함께 쓸 때만 의미"가 있을까?**
    
@@ -170,6 +172,7 @@ WHERE ROWNUM <= 3;
 
 이처럼 LIMIT나 ROWNUM으로 자르기 위한 '목적'이 있을 때는 서브쿼리 안의 ORDER BY가 필수적이고 의미를 갖게 된다. 
 
+<br>
 
 **3. 최종 요약**
 
