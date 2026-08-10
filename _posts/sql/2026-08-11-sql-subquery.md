@@ -724,7 +724,7 @@ WHERE p.price > (
 
   <!-- 하단 에러 박스 -->
   <rect x="20" y="225" width="760" height="160" rx="10" class="sq3-bg"/>
-  <text x="40" y="252" class="sq3-h">![star] 가장 흔한 에러 두 가지</text>
+  <text x="40" y="252" class="sq3-h"> 가장 흔한 에러 두 가지</text>
 
   <text x="40" y="282" class="sq3-tb">① 단일행 연산자에 다중행이 왔을 때</text>
   <text x="40" y="304" class="sq3-c">SELECT * FROM customers WHERE customer_id = (SELECT customer_id FROM orders);</text>
