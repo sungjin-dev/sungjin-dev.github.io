@@ -1979,10 +1979,6 @@ SELECT o.customer_id, SUM(oi.quantity * oi.unit_price) AS 총구매액
 
 ### 부록 B. 실행 계획 보는 명령어
 
-```sql
--- PostgreSQL
-EXPLAIN (ANALYZE, BUFFERS) SELECT ...;
-
 -- Oracle
 EXPLAIN PLAN FOR SELECT ...;
 SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
