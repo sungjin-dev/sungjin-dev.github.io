@@ -43,9 +43,9 @@ toc_sticky: true
 
 ---
 
-## 1. 정규화가 없으면 생기는 일 — 이상 현상
+## 1. 정규화를 하지 않을 경우 — 이상 현상 발생
 
-정규화를 배우기 전에 **정규화를 안 하면 뭐가 아픈지**부터 느껴야 한다. 그 아픔의 이름이 이상 현상(Anomaly)이다.
+정규화를 배우기 전에 **정규화를 안 하면 뭐가 문제인지**부터 몸소 느껴야 한다. 대표적인게 이상 현상(Anomaly)이다.
 
 다음처럼 모든 정보를 한 테이블에 때려 넣었다고 하자.
 
@@ -117,7 +117,7 @@ toc_sticky: true
 - "컴퓨터공학과 사무실은 공학관 301이다" → 학과에 관한 사실
 - "S001은 CS101에서 A를 받았다" → 수강에 관한 사실
 
-이 세 가지를 각자의 집으로 돌려보내는 작업, 그게 정규화다.
+이 세 가지를 각자의 영역으로 구분하는 작업이 바로 정규화다.
 
 ---
 
@@ -337,7 +337,7 @@ graph TD
 
 핵심은 **누적적(cumulative)** 이라는 점이다. 3NF라고 말하려면 1NF, 2NF를 이미 만족하고 있어야 한다.
 
-> 💡 **실무 기준선**
+> ![star] **실무 기준선**
 > 대부분의 OLTP 서비스는 **3NF 또는 BCNF**까지 맞추면 충분하다. 4NF와 5NF는 개념적으로 알아 두되, 실제로 위반 사례가 나오는 일은 드물다.
 
 ---
@@ -411,7 +411,7 @@ graph LR
 `과목코드 = 'CS101, CS102'` 상태에서 "CS101을 듣는 학생을 모두 찾아라"를 실행해 보자.
 
 ```sql
--- 😱 문자열 검색으로 때워야 한다
+--  문자열 검색으로 때워야 한다
 SELECT * FROM 수강신청_원본
 WHERE 과목코드 LIKE '%CS101%';
 ```
@@ -436,7 +436,7 @@ CREATE TABLE 수강신청_1NF (
     과목코드    VARCHAR(20),
     과목명      VARCHAR(50),
     성적        VARCHAR(2),
-    PRIMARY KEY (학번, 과목코드)   -- 👈 복합 기본키
+    PRIMARY KEY (학번, 과목코드)   --  복합 기본키
 );
 ```
 
@@ -451,10 +451,10 @@ CREATE TABLE 수강신청_1NF (
 이제 인덱스도 타고, 집계도 된다.
 
 ```sql
--- 😊 인덱스를 탄다
+--  인덱스를 탄다
 SELECT 학번, 학생명 FROM 수강신청_1NF WHERE 과목코드 = 'CS101';
 
--- 😊 집계도 자연스럽다
+--  집계도 자연스럽다
 SELECT 과목코드, COUNT(*) AS 수강인원
 FROM 수강신청_1NF
 GROUP BY 과목코드;
@@ -730,7 +730,7 @@ ADD COLUMN 합계 DECIMAL(10,2)
 GENERATED ALWAYS AS (단가 * 수량) STORED;
 ```
 
-> 💬 단, **주문 시점의 가격을 박제해야 하는 경우**는 예외다. 상품 마스터의 가격이 나중에 바뀌어도 과거 주문서의 금액은 그대로여야 하므로, `주문상세.단가`는 중복이 아니라 **스냅샷**이다. 이건 정규화 위반이 아니라 올바른 설계다.
+>  단, **주문 시점의 가격을 박제해야 하는 경우**는 예외다. 상품 마스터의 가격이 나중에 바뀌어도 과거 주문서의 금액은 그대로여야 하므로, `주문상세.단가`는 중복이 아니라 **스냅샷**이다. 이건 정규화 위반이 아니라 올바른 설계다.
 
 ---
 
@@ -1268,37 +1268,8 @@ ALTER TABLE 주문상세 ADD COLUMN 주문시_단가 DECIMAL(10,2);
 
 ---
 
-### 부록 A. GitHub Pages에서 Mermaid 켜기
 
-Jekyll 블로그에서 mermaid 코드블록을 렌더링하려면 레이아웃에 다음을 추가한다.
-
-```html
-<!-- _layouts/post.html 또는 _includes/footer.html -->
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: 'default',
-    securityLevel: 'loose'
-  });
-
-  // Jekyll이 만든 <pre><code class="language-mermaid"> 를 <pre class="mermaid"> 로 변환
-  document.querySelectorAll('code.language-mermaid').forEach((el) => {
-    const pre = document.createElement('pre');
-    pre.className = 'mermaid';
-    pre.textContent = el.textContent;
-    el.closest('pre').replaceWith(pre);
-  });
-
-  mermaid.run();
-</script>
-```
-
-`_config.yml`에서 포스트별로 켜고 싶다면 front matter에 `mermaid: true`를 두고 조건부로 로드하면 된다.
-
-인라인 SVG는 별도 설정 없이 그대로 렌더링된다. 다만 `kramdown`이 HTML을 그대로 통과시키도록, SVG 앞뒤에 **빈 줄**을 넣어 두는 것이 안전하다.
-
-### 부록 B. 더 읽을거리
+### 부록. 더 읽을거리
 
 - Codd, E.F. (1970), *A Relational Model of Data for Large Shared Data Banks* — 관계형 모델의 원전
 - Codd, E.F. (1971), *Further Normalization of the Data Base Relational Model* — 2NF·3NF 제안
