@@ -275,65 +275,69 @@ graph TD
 
 본격적으로 들어가기 전에 전체 지도를 보자.
 
-<svg viewBox="0 0 820 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정규화 단계 사다리">
+<svg viewBox="0 0 850 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정규화 단계 사다리">
   <style>
     .st-txt  { font:bold 15px sans-serif; fill:#ffffff; }
     .st-sub  { font:12px sans-serif; fill:#ffffff; opacity:.92; }
     .st-side { font:13px sans-serif; fill:#475569; }
     .st-sb   { font:bold 13px sans-serif; fill:#0f172a; }
     .st-h    { font:bold 18px sans-serif; fill:#0f172a; }
-    .st-ar   { stroke:#94a3b8; stroke-width:2; fill:none; marker-end:url(#stA); }
     @media (prefers-color-scheme: dark) {
       .st-side { fill:#cbd5e1; } .st-sb, .st-h { fill:#f1f5f9; }
     }
   </style>
-  <defs>
-    <marker id="stA" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
-      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
-    </marker>
-  </defs>
-  <text x="410" y="26" text-anchor="middle" class="st-h">올라갈수록 중복은 줄고, JOIN은 늘어난다</text>
 
-  <rect x="40" y="355" width="330" height="46" rx="8" fill="#94a3b8"/>
-  <text x="60" y="374" class="st-txt">비정규 릴레이션</text>
-  <text x="60" y="392" class="st-sub">한 칸에 값이 여러 개 들어 있음</text>
+  <!-- 메인 제목 (상단 여백 확보) -->
+  <text x="425" y="35" text-anchor="middle" class="st-h">올라갈수록 중복은 줄고, JOIN은 늘어난다</text>
+    
+  <!-- 비정규 릴레이션 -->
+  <rect x="40" y="420" width="330" height="46" rx="8" fill="#94a3b8"/>
+  <text x="60" y="439" class="st-txt">비정규 릴레이션</text>
+  <text x="60" y="457" class="st-sub">한 칸에 값이 여러 개 들어 있음</text>
 
-  <rect x="80" y="298" width="330" height="46" rx="8" fill="#f97316"/>
-  <text x="100" y="317" class="st-txt">1NF</text>
-  <text x="100" y="335" class="st-sub">모든 속성이 원자값(Atomic)</text>
-  <text x="425" y="322" class="st-sb">제거 대상 →</text>
-  <text x="520" y="322" class="st-side">다중값 속성 / 반복 그룹</text>
+  <!-- 1NF -->
+  <rect x="80" y="360" width="330" height="46" rx="8" fill="#f97316"/>
+  <text x="100" y="379" class="st-txt">1NF</text>
+  <text x="100" y="397" class="st-sub">모든 속성이 원자값(Atomic)</text>
+  <text x="425" y="387" class="st-sb">제거 대상 →</text>
+  <text x="520" y="387" class="st-side">다중값 속성 / 반복 그룹</text>
 
-  <rect x="120" y="241" width="330" height="46" rx="8" fill="#eab308"/>
-  <text x="140" y="260" class="st-txt">2NF</text>
-  <text x="140" y="278" class="st-sub">키 전체에 완전 함수 종속</text>
-  <text x="465" y="265" class="st-sb">제거 대상 →</text>
-  <text x="560" y="265" class="st-side">부분 함수 종속</text>
+  <!-- 2NF -->
+  <rect x="120" y="300" width="330" height="46" rx="8" fill="#eab308"/>
+  <text x="140" y="319" class="st-txt">2NF</text>
+  <text x="140" y="337" class="st-sub">키 전체에 완전 함수 종속</text>
+  <text x="465" y="327" class="st-sb">제거 대상 →</text>
+  <text x="560" y="327" class="st-side">부분 함수 종속</text>
 
-  <rect x="160" y="184" width="330" height="46" rx="8" fill="#22c55e"/>
-  <text x="180" y="203" class="st-txt">3NF</text>
-  <text x="180" y="221" class="st-sub">비주요 속성 간 이행 종속 없음</text>
-  <text x="505" y="208" class="st-sb">제거 대상 →</text>
-  <text x="600" y="208" class="st-side">이행적 종속</text>
+  <!-- 3NF -->
+  <rect x="160" y="240" width="330" height="46" rx="8" fill="#22c55e"/>
+  <text x="180" y="259" class="st-txt">3NF</text>
+  <text x="180" y="277" class="st-sub">비주요 속성 간 이행 종속 없음</text>
+  <text x="505" y="267" class="st-sb">제거 대상 →</text>
+  <text x="600" y="267" class="st-side">이행적 종속</text>
 
-  <rect x="200" y="127" width="330" height="46" rx="8" fill="#0ea5e9"/>
-  <text x="220" y="146" class="st-txt">BCNF</text>
-  <text x="220" y="164" class="st-sub">모든 결정자가 후보키</text>
-  <text x="545" y="151" class="st-sb">제거 대상 →</text>
-  <text x="640" y="151" class="st-side">후보키 아닌 결정자</text>
+  <!-- BCNF -->
+  <rect x="200" y="180" width="330" height="46" rx="8" fill="#0ea5e9"/>
+  <text x="220" y="199" class="st-txt">BCNF</text>
+  <text x="220" y="217" class="st-sub">모든 결정자가 후보키</text>
+  <text x="545" y="207" class="st-sb">제거 대상 →</text>
+  <text x="640" y="207" class="st-side">후보키 아닌 결정자</text>
 
-  <rect x="240" y="70" width="330" height="46" rx="8" fill="#6366f1"/>
-  <text x="260" y="89" class="st-txt">4NF</text>
-  <text x="260" y="107" class="st-sub">다치 종속 제거</text>
-  <text x="585" y="94" class="st-sb">제거 대상 →</text>
-  <text x="680" y="94" class="st-side">다치 종속(MVD)</text>
+  <!-- 4NF -->
+  <rect x="240" y="120" width="330" height="46" rx="8" fill="#6366f1"/>
+  <text x="260" y="139" class="st-txt">4NF</text>
+  <text x="260" y="157" class="st-sub">다치 종속 제거</text>
+  <text x="585" y="147" class="st-sb">제거 대상 →</text>
+  <text x="680" y="147" class="st-side">다치 종속(MVD)</text>
 
-  <rect x="280" y="13" width="330" height="46" rx="8" fill="#a855f7"/>
-  <text x="300" y="32" class="st-txt">5NF</text>
-  <text x="300" y="50" class="st-sub">조인 종속 제거</text>
-  <text x="625" y="37" class="st-sb">제거 대상 →</text>
-  <text x="720" y="37" class="st-side">조인 종속(JD)</text>
+  <!-- 5NF -->
+  <rect x="280" y="60" width="330" height="46" rx="8" fill="#a855f7"/>
+  <text x="300" y="79" class="st-txt">5NF</text>
+  <text x="300" y="97" class="st-sub">조인 종속 제거</text>
+  <text x="625" y="87" class="st-sb">제거 대상 →</text>
+  <text x="720" y="87" class="st-side">조인 종속(JD)</text>
 </svg>
+
 
 핵심은 **누적적(cumulative)** 이라는 점이다. 3NF라고 말하려면 1NF, 2NF를 이미 만족하고 있어야 한다.
 
