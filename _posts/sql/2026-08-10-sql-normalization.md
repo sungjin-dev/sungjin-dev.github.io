@@ -1067,45 +1067,48 @@ flowchart TD
     style Q5 fill:#f8fafc,stroke:#94a3b8,color:#0f172a
 ```
 
+
 ### 최종 스키마
 
 지금까지의 작업 결과다.
 
+
 ```mermaid
 erDiagram
-    학과 ||--o{ 학생 : "소속"
-    학생 ||--o{ 수강 : "신청"
-    과목 ||--o{ 수강 : "개설"
-    과목 ||--o{ 교수담당 : "담당"
-    학생 ||--o{ 학생취미 : "보유"
+    학과 ||--o{ 학생 : 소속
+    학생 ||--o{ 수강 : 신청
+    과목 ||--o{ 수강 : 개설
+    과목 ||--o{ 교수담당 : 담당
+    학생 ||--o{ 학생취미 : 보유
 
     학과 {
-        varchar 학과명 PK
-        varchar 학과사무실
+        string 학과명 PK
+        string 학과사무실
     }
     학생 {
-        varchar 학번 PK
-        varchar 학생명
-        varchar 학과명 FK
+        string 학번 PK
+        string 학생명
+        string 학과명 FK
     }
     과목 {
-        varchar 과목코드 PK
-        varchar 과목명
+        string 과목코드 PK
+        string 과목명
     }
     수강 {
-        varchar 학번 PK_FK
-        varchar 과목코드 PK_FK
-        varchar 성적
+        string 학번 PK "FK"
+        string 과목코드 PK "FK"
+        string 성적
     }
     교수담당 {
-        varchar 교수 PK
-        varchar 과목코드 FK
+        string 교수 PK
+        string 과목코드 FK
     }
     학생취미 {
-        varchar 학번 PK_FK
-        varchar 취미 PK
+        string 학번 PK "FK"
+        string 취미 PK
     }
 ```
+
 
 컬럼 7개짜리 테이블 하나가 6개 테이블이 되었다. 대신 **모든 사실이 정확히 한 곳에만 저장된다.**
 
