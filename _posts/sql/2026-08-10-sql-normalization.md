@@ -1026,50 +1026,101 @@ JOIN 납품관계 sj ON sp.공급자 = sj.공급자 AND pj.프로젝트 = sj.프
 
 내 테이블이 몇 정규형인지 헷갈릴 때 이 순서대로 따라가면 된다.
 
-```mermaid
-flowchart TD
-    START([테이블 하나를 고른다]) --> Q1{"한 칸에 값이<br/>여러 개 들어있나?<br/>반복 컬럼이 있나?"}
-    Q1 -->|예| F1["🔧 값을 행으로 펼친다<br/><b>→ 1NF 달성</b>"]
-    Q1 -->|아니오| Q2{"기본키가<br/>복합키인가?"}
-    F1 --> Q2
+<svg width="100%" viewBox="0 0 680 540" role="img" xmlns="http://www.w3.org/2000/svg"
+     font-family="'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <title>정규화 판단 사다리</title>
+  <desc>1NF부터 4NF까지 각 단계의 판단 질문과 조치</desc>
+  <style>
+    .lbl{font-size:12px;fill:#334155}
+    .hd {font-size:13.5px;font-weight:500;fill:#0f172a}
+    .lg {font-size:11.5px;fill:#64748b}
+    .bd {font-size:11px;font-weight:500;fill:#4c1d95}
+    .qbox{fill:#f8fafc;stroke:#cbd5e1;stroke-width:.8}
+    .abox{fill:#ecfdf5;stroke:#10b981;stroke-width:.8}
+    .abox ~ .atx{fill:#065f46}
+    .badge{fill:#ede9fe;stroke:#c4b5fd;stroke-width:.8}
+    .pill{fill:#eef2ff;stroke:#a5b4fc;stroke-width:.8}
+    .pill2{fill:#dcfce7;stroke:#4ade80;stroke-width:.8}
+    .arr{stroke:#94a3b8;stroke-width:1.4;fill:none}
+    @media (prefers-color-scheme: dark){
+      .lbl{fill:#cbd5e1}.hd{fill:#f1f5f9}.lg{fill:#94a3b8}.bd{fill:#ddd6fe}
+      .qbox{fill:#1e293b;stroke:#475569}
+      .abox{fill:#064e3b;stroke:#34d399}.atx{fill:#d1fae5}
+      .badge{fill:#3b2f6b;stroke:#8b5cf6}
+      .pill{fill:#312e81;stroke:#818cf8}.pill2{fill:#065f46;stroke:#34d399}
+      .arr{stroke:#64748b}
+    }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
 
-    Q2 -->|아니오| Q3
-    Q2 -->|예| Q2A{"키의 <b>일부</b>만으로<br/>결정되는 속성이 있나?"}
-    Q2A -->|예| F2["결정자별로 테이블 분리<br/><b>→ 2NF 달성</b>"]
-    Q2A -->|아니오| Q3
-    F2 --> Q3
+  <text class="lg" x="14" y="22">→ 예 : 조치 후 다음 행으로   ·   ↓ 아니오 : 그대로 다음 행으로</text>
 
-    Q3{"키가 아닌 속성이<br/>다른 속성을<br/>결정하나?"}
-    Q3 -->|예| F3["🔧 중간 결정자를 독립 테이블로<br/><b>→ 3NF 달성</b>"]
-    Q3 -->|아니오| Q4
-    F3 --> Q4
+  <rect class="pill" x="90" y="40" width="254" height="32" rx="16"/>
+  <text class="hd" x="217" y="56" text-anchor="middle" dominant-baseline="central">테이블 하나를 고른다</text>
+  <line class="arr" x1="217" y1="72" x2="217" y2="88" marker-end="url(#ar)"/>
 
-    Q4{"결정자 중에<br/>후보키가 아닌 게<br/>있나?"}
-    Q4 -->|예| F4["🔧 그 결정자를 PK로 하는<br/>테이블로 분리<br/><b>→ BCNF 달성</b><br/><i>단, 종속성 보존 확인</i>"]
-    Q4 -->|아니오| Q5
-    F4 --> Q5
+  <rect class="badge" x="14" y="113" width="54" height="20" rx="6"/>
+  <text class="bd" x="41" y="123" text-anchor="middle" dominant-baseline="central">1NF</text>
+  <rect class="qbox" x="76" y="92" width="282" height="62" rx="8"/>
+  <text class="lbl" x="217" y="115" text-anchor="middle" dominant-baseline="central">한 칸에 값이 여러 개거나</text>
+  <text class="lbl" x="217" y="133" text-anchor="middle" dominant-baseline="central">반복 컬럼이 있나?</text>
+  <line class="arr" x1="362" y1="123" x2="392" y2="123" marker-end="url(#ar)"/>
+  <rect class="abox" x="396" y="92" width="270" height="62" rx="8"/>
+  <text class="lbl atx" x="531" y="115" text-anchor="middle" dominant-baseline="central">값을 행으로 펼쳐</text>
+  <text class="lbl atx" x="531" y="133" text-anchor="middle" dominant-baseline="central">원자값으로 만든다</text>
+  <line class="arr" x1="217" y1="154" x2="217" y2="166" marker-end="url(#ar)"/>
 
-    Q5{"서로 무관한 다중값<br/>관계가 2개 이상<br/>섞여 있나?"}
-    Q5 -->|예| F5["🔧 관계별로 테이블 분리<br/><b>→ 4NF 달성</b>"]
-    Q5 -->|아니오| DONE
-    F5 --> DONE
+  <rect class="badge" x="14" y="191" width="54" height="20" rx="6"/>
+  <text class="bd" x="41" y="201" text-anchor="middle" dominant-baseline="central">2NF</text>
+  <rect class="qbox" x="76" y="170" width="282" height="62" rx="8"/>
+  <text class="lbl" x="217" y="193" text-anchor="middle" dominant-baseline="central">복합키인데, 키 일부만으로</text>
+  <text class="lbl" x="217" y="211" text-anchor="middle" dominant-baseline="central">결정되는 속성이 있나?</text>
+  <line class="arr" x1="362" y1="201" x2="392" y2="201" marker-end="url(#ar)"/>
+  <rect class="abox" x="396" y="170" width="270" height="62" rx="8"/>
+  <text class="lbl atx" x="531" y="193" text-anchor="middle" dominant-baseline="central">그 결정자와 종속 속성을</text>
+  <text class="lbl atx" x="531" y="211" text-anchor="middle" dominant-baseline="central">별도 테이블로 분리</text>
+  <line class="arr" x1="217" y1="232" x2="217" y2="244" marker-end="url(#ar)"/>
 
-    DONE([✔ 실무 기준 충분])
+  <rect class="badge" x="14" y="269" width="54" height="20" rx="6"/>
+  <text class="bd" x="41" y="279" text-anchor="middle" dominant-baseline="central">3NF</text>
+  <rect class="qbox" x="76" y="248" width="282" height="62" rx="8"/>
+  <text class="lbl" x="217" y="271" text-anchor="middle" dominant-baseline="central">키가 아닌 속성이 다른</text>
+  <text class="lbl" x="217" y="289" text-anchor="middle" dominant-baseline="central">속성을 결정하나?</text>
+  <line class="arr" x1="362" y1="279" x2="392" y2="279" marker-end="url(#ar)"/>
+  <rect class="abox" x="396" y="248" width="270" height="62" rx="8"/>
+  <text class="lbl atx" x="531" y="271" text-anchor="middle" dominant-baseline="central">중간 결정자를</text>
+  <text class="lbl atx" x="531" y="289" text-anchor="middle" dominant-baseline="central">독립 테이블로 분리</text>
+  <line class="arr" x1="217" y1="310" x2="217" y2="322" marker-end="url(#ar)"/>
 
-    style START fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#1e1b4b
-    style DONE fill:#dcfce7,stroke:#22c55e,stroke-width:3px,color:#052e16
-    style F1 fill:#ffedd5,stroke:#f97316,stroke-width:2px,color:#431407
-    style F2 fill:#fef9c3,stroke:#eab308,stroke-width:2px,color:#422006
-    style F3 fill:#dcfce7,stroke:#22c55e,stroke-width:2px,color:#052e16
-    style F4 fill:#e0f2fe,stroke:#0ea5e9,stroke-width:2px,color:#082f49
-    style F5 fill:#ede9fe,stroke:#8b5cf6,stroke-width:2px,color:#2e1065
-    style Q1 fill:#f8fafc,stroke:#94a3b8,color:#0f172a
-    style Q2 fill:#f8fafc,stroke:#94a3b8,color:#0f172a
-    style Q2A fill:#f8fafc,stroke:#94a3b8,color:#0f172a
-    style Q3 fill:#f8fafc,stroke:#94a3b8,color:#0f172a
-    style Q4 fill:#f8fafc,stroke:#94a3b8,color:#0f172a
-    style Q5 fill:#f8fafc,stroke:#94a3b8,color:#0f172a
-```
+  <rect class="badge" x="14" y="347" width="54" height="20" rx="6"/>
+  <text class="bd" x="41" y="357" text-anchor="middle" dominant-baseline="central">BCNF</text>
+  <rect class="qbox" x="76" y="326" width="282" height="62" rx="8"/>
+  <text class="lbl" x="217" y="349" text-anchor="middle" dominant-baseline="central">결정자 중에 후보키가</text>
+  <text class="lbl" x="217" y="367" text-anchor="middle" dominant-baseline="central">아닌 것이 있나?</text>
+  <line class="arr" x1="362" y1="357" x2="392" y2="357" marker-end="url(#ar)"/>
+  <rect class="abox" x="396" y="326" width="270" height="62" rx="8"/>
+  <text class="lbl atx" x="531" y="342" text-anchor="middle" dominant-baseline="central">그 결정자를 PK로 하는</text>
+  <text class="lbl atx" x="531" y="358" text-anchor="middle" dominant-baseline="central">테이블로 분리</text>
+  <text class="lbl atx" x="531" y="376" text-anchor="middle" dominant-baseline="central" font-size="11">단, 종속성 보존 확인</text>
+  <line class="arr" x1="217" y1="388" x2="217" y2="400" marker-end="url(#ar)"/>
+
+  <rect class="badge" x="14" y="425" width="54" height="20" rx="6"/>
+  <text class="bd" x="41" y="435" text-anchor="middle" dominant-baseline="central">4NF</text>
+  <rect class="qbox" x="76" y="404" width="282" height="62" rx="8"/>
+  <text class="lbl" x="217" y="427" text-anchor="middle" dominant-baseline="central">무관한 다중값 관계가</text>
+  <text class="lbl" x="217" y="445" text-anchor="middle" dominant-baseline="central">2개 이상 섞여 있나?</text>
+  <line class="arr" x1="362" y1="435" x2="392" y2="435" marker-end="url(#ar)"/>
+  <rect class="abox" x="396" y="404" width="270" height="62" rx="8"/>
+  <text class="lbl atx" x="531" y="435" text-anchor="middle" dominant-baseline="central">관계별로 테이블 분리</text>
+  <line class="arr" x1="217" y1="466" x2="217" y2="482" marker-end="url(#ar)"/>
+
+  <rect class="pill2" x="90" y="486" width="254" height="32" rx="16"/>
+  <text class="hd" x="217" y="502" text-anchor="middle" dominant-baseline="central">실무 기준 충분</text>
+</svg>
 
 
 ### 최종 스키마
