@@ -1901,3 +1901,7 @@ SET STATISTICS IO, TIME ON;
 ```
 
 인라인 SVG는 별도 설정 없이 렌더링된다. kramdown이 HTML을 그대로 통과시키도록 SVG 블록 앞뒤에 **빈 줄**을 유지하는 것만 지키면 된다.
+
+
+
+[star]: /assets/images/star.png#blog-star-emoji "star"
