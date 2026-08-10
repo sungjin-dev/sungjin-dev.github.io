@@ -1075,37 +1075,37 @@ flowchart TD
 
 ```mermaid
 erDiagram
-    학과 ||--o{ 학생 : 소속
-    학생 ||--o{ 수강 : 신청
-    과목 ||--o{ 수강 : 개설
-    과목 ||--o{ 교수담당 : 담당
-    학생 ||--o{ 학생취미 : 보유
+    학과 ||--o{ 학생 : "소속"
+    학생 ||--o{ 수강 : "신청"
+    과목 ||--o{ 수강 : "개설"
+    과목 ||--o{ 교수담당 : "담당"
+    학생 ||--o{ 학생취미 : "보유"
 
     학과 {
-        string 학과명 PK
-        string 학과사무실
+        varchar 학과명 PK
+        varchar 학과사무실
     }
     학생 {
-        string 학번 PK
-        string 학생명
-        string 학과명 FK
+        varchar 학번 PK
+        varchar 학생명
+        varchar 학과명 FK
     }
     과목 {
-        string 과목코드 PK
-        string 과목명
+        varchar 과목코드 PK
+        varchar 과목명
     }
     수강 {
-        string 학번 PK "FK"
-        string 과목코드 PK "FK"
-        string 성적
+        varchar 학번 PK,FK
+        varchar 과목코드 PK,FK
+        varchar 성적
     }
     교수담당 {
-        string 교수 PK
-        string 과목코드 FK
+        varchar 교수 PK
+        varchar 과목코드 FK
     }
     학생취미 {
-        string 학번 PK "FK"
-        string 취미 PK
+        varchar 학번 PK,FK
+        varchar 취미 PK
     }
 ```
 
