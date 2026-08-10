@@ -488,32 +488,82 @@ WHERE p.price > (
 
 ### 실행 순서 요약
 
-```mermaid
-flowchart LR
-    subgraph NC["비상관 서브쿼리"]
-        direction TB
-        A1["서브쿼리 실행<br/>(1회)"] --> A2["결과를 상수로 치환"] --> A3["주 쿼리 실행<br/>(1회)"]
-    end
+<svg width="100%" viewBox="0 0 680 442" role="img" xmlns="http://www.w3.org/2000/svg"
+     font-family="'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <title>비상관 서브쿼리와 상관 서브쿼리 비교</title>
+  <desc>비상관은 1회, 상관은 행마다 N회 실행된다는 차이</desc>
+  <style>
+    .t12{font-size:12px;fill:#334155}
+    .hd {font-size:13.5px;font-weight:500;fill:#0f172a}
+    .box{fill:#f8fafc;stroke:#cbd5e1;stroke-width:.8}
+    .ok {fill:#ecfdf5;stroke:#10b981;stroke-width:.8}
+    .oktx{fill:#065f46}
+    .hot{fill:#fff1ec;stroke:#e07a5f;stroke-width:.8}
+    .hottx{fill:#8c3a1f}
+    .pane{fill:none;stroke:#cbd5e1;stroke-width:.8;stroke-dasharray:4 4}
+    .arr{stroke:#94a3b8;stroke-width:1.4;fill:none}
+    @media (prefers-color-scheme: dark){
+      .t12{fill:#cbd5e1}.hd{fill:#f1f5f9}
+      .box{fill:#1e293b;stroke:#475569}
+      .ok{fill:#064e3b;stroke:#34d399}.oktx{fill:#d1fae5}
+      .hot{fill:#5c2718;stroke:#f0997b}.hottx{fill:#fadbd0}
+      .pane{stroke:#475569}.arr{stroke:#64748b}
+    }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
 
-    subgraph C["상관 서브쿼리"]
-        direction TB
-        B1["주 쿼리 행 하나 읽기"] --> B2["그 행의 값을<br/>서브쿼리에 전달"]
-        B2 --> B3["서브쿼리 실행"]
-        B3 --> B4{"조건 만족?"}
-        B4 -->|예| B5["결과에 포함"]
-        B4 -->|아니오| B6["버림"]
-        B5 --> B7{"다음 행 있나?"}
-        B6 --> B7
-        B7 -->|예| B1
-        B7 -->|아니오| B8["종료"]
-    end
+  <rect class="pane" x="14" y="34" width="318" height="388" rx="12"/>
+  <text class="hd" x="173" y="58" text-anchor="middle" dominant-baseline="central">비상관 서브쿼리</text>
 
-    style A1 fill:#dcfce7,stroke:#22c55e,stroke-width:2px,color:#052e16
-    style A3 fill:#dcfce7,stroke:#22c55e,stroke-width:2px,color:#052e16
-    style B1 fill:#ffedd5,stroke:#f97316,stroke-width:2px,color:#431407
-    style B3 fill:#ffedd5,stroke:#f97316,stroke-width:2px,color:#431407
-    style B8 fill:#e0e7ff,stroke:#6366f1,stroke-width:2px,color:#1e1b4b
-```
+  <rect class="ok" x="44" y="78" width="258" height="52" rx="8"/>
+  <text class="t12 oktx" x="173" y="97" text-anchor="middle" dominant-baseline="central">서브쿼리를 먼저 실행</text>
+  <text class="t12 oktx" x="173" y="115" text-anchor="middle" dominant-baseline="central">전체에서 딱 1회</text>
+  <line class="arr" x1="173" y1="130" x2="173" y2="142" marker-end="url(#ar)"/>
+
+  <rect class="box" x="44" y="146" width="258" height="52" rx="8"/>
+  <text class="t12" x="173" y="172" text-anchor="middle" dominant-baseline="central">결과를 상수처럼 치환</text>
+  <line class="arr" x1="173" y1="198" x2="173" y2="210" marker-end="url(#ar)"/>
+
+  <rect class="ok" x="44" y="214" width="258" height="52" rx="8"/>
+  <text class="t12 oktx" x="173" y="240" text-anchor="middle" dominant-baseline="central">주 쿼리를 한 번 실행</text>
+  <line class="arr" x1="173" y1="266" x2="173" y2="296" marker-end="url(#ar)"/>
+
+  <rect class="box" x="44" y="300" width="258" height="52" rx="8"/>
+  <text class="t12" x="173" y="319" text-anchor="middle" dominant-baseline="central">행이 100만 개여도</text>
+  <text class="t12" x="173" y="337" text-anchor="middle" dominant-baseline="central">서브쿼리 실행 횟수는 그대로</text>
+
+  <rect class="ok" x="44" y="368" width="258" height="34" rx="8"/>
+  <text class="hd oktx" x="173" y="385" text-anchor="middle" dominant-baseline="central">서브쿼리 실행 1회</text>
+
+  <rect class="pane" x="348" y="34" width="318" height="388" rx="12"/>
+  <text class="hd" x="507" y="58" text-anchor="middle" dominant-baseline="central">상관 서브쿼리</text>
+
+  <rect class="hot" x="378" y="78" width="258" height="52" rx="8"/>
+  <text class="t12 hottx" x="507" y="97" text-anchor="middle" dominant-baseline="central">주 쿼리 행 하나를 읽어</text>
+  <text class="t12 hottx" x="507" y="115" text-anchor="middle" dominant-baseline="central">그 값을 서브쿼리에 전달</text>
+  <line class="arr" x1="507" y1="130" x2="507" y2="142" marker-end="url(#ar)"/>
+
+  <rect class="hot" x="378" y="146" width="258" height="52" rx="8"/>
+  <text class="t12 hottx" x="507" y="165" text-anchor="middle" dominant-baseline="central">그 행 전용으로</text>
+  <text class="t12 hottx" x="507" y="183" text-anchor="middle" dominant-baseline="central">서브쿼리 실행</text>
+  <line class="arr" x1="507" y1="198" x2="507" y2="210" marker-end="url(#ar)"/>
+
+  <rect class="box" x="378" y="214" width="258" height="52" rx="8"/>
+  <text class="t12" x="507" y="233" text-anchor="middle" dominant-baseline="central">조건 만족하면 결과에 포함</text>
+  <text class="t12" x="507" y="251" text-anchor="middle" dominant-baseline="central">아니면 버림</text>
+  <line class="arr" x1="507" y1="266" x2="507" y2="296" marker-end="url(#ar)"/>
+  <text class="t12" x="519" y="284" dominant-baseline="central">↻ 다음 행 반복</text>
+
+  <rect class="box" x="378" y="300" width="258" height="52" rx="8"/>
+  <text class="t12" x="507" y="326" text-anchor="middle" dominant-baseline="central">모든 행이 끝나면 종료</text>
+
+  <rect class="hot" x="378" y="368" width="258" height="34" rx="8"/>
+  <text class="hd hottx" x="507" y="385" text-anchor="middle" dominant-baseline="central">서브쿼리 실행 N회</text>
+</svg>
 
 > ⚠ 위 그림은 **개념적 실행 순서**다. 실제로는 옵티마이저가 상관 서브쿼리를 조인으로 바꿔버리는 경우가 많다. 13장에서 다룬다.
 
@@ -1011,7 +1061,7 @@ GROUP BY c.customer_id, c.name;
 
 ```sql
 SELECT ...
-FROM ( SELECT ... ) AS 별칭     -- 👈 별칭이 사실상 필수
+FROM ( SELECT ... ) AS 별칭     -- ![star]별칭이 사실상 필수
 ```
 
 ### 언제 쓰는가
@@ -1089,7 +1139,7 @@ FROM customers c
 LEFT JOIN LATERAL (
     SELECT o.order_id, o.ordered_at
       FROM orders o
-     WHERE o.customer_id = c.customer_id   -- 👈 바깥 c 참조 가능
+     WHERE o.customer_id = c.customer_id   -- ![star] 바깥 c 참조 가능
      ORDER BY o.ordered_at DESC
      LIMIT 2                                -- 회원별 최근 2건
 ) AS recent ON TRUE;
@@ -1220,7 +1270,7 @@ WITH RECURSIVE tree AS (
            t.depth + 1,
            CAST(t.path || ' > ' || ct.category_name AS VARCHAR(500))
       FROM category_tree ct
-      JOIN tree t ON ct.parent_id = t.category_id   -- 👈 자기 자신을 참조
+      JOIN tree t ON ct.parent_id = t.category_id   -- ![star] 자기 자신을 참조
 )
 SELECT depth, category_id, path
 FROM tree
@@ -1305,7 +1355,7 @@ ORDER BY path;
     ...
       FROM category_tree ct
       JOIN tree t ON ct.parent_id = t.category_id
-     WHERE t.depth < 10          -- 👈 깊이 제한
+     WHERE t.depth < 10          -- ![star] 깊이 제한
 ```
 
 DB별 안전장치도 있다.
@@ -1710,7 +1760,7 @@ WHERE customer_id NOT IN (
         SELECT MIN(customer_id)
           FROM customers
          GROUP BY name, city
-    ) AS keep_list         -- 👈 MySQL 우회용 래핑
+    ) AS keep_list         -- ![star] MySQL 우회용 래핑
 );
 ```
 
