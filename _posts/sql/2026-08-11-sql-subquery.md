@@ -90,6 +90,97 @@ WHERE total_amount > (SELECT AVG(total_amount) FROM orders);
 | 서브쿼리 안에서 `ORDER BY`는 보통 무의미 | `TOP-N`/`LIMIT`와 함께 쓸 때만 의미 있음 |
 | 반환 형태와 연산자가 맞아야 한다 | 단일행 값에 `IN`, 다중행에 `=` 쓰면 에러 |
 
+
+참고) 
+
+**1. 서브쿼리 안의 `ORDER BY`는 왜 무의미할까?**
+
+기본적으로 데이터베이스에서 집합이란 본래 순서가 없는 데이터들의 모음이기 때문이다. 
+
+여기서 의문이 들 수도 있다. PK(사원번호 등)로 조회할 때 1, 2, 3, 4 순서대로 예쁘게 나오는 걸 자주 목격한 까닭일지 모른다. 하지만 DB 내부의 '인덱스(Index)' 구조 때문에 우연히 순서대로 읽혀서 나온 것뿐이다. PK(Primary Key)를 만들면 데이터베이스는 내부적으로 '클러스터드 인덱스'라는 특수한 구조를 생성하는데, 이 클러스터드 인덱스는 마치 '사전'처럼 디스크 물리적 공간에 데이터를 PK 순서대로 정렬해서 저장해둔다. 하지만 데이터가 많아지거나 삭제 재삽입 등 순서가 엉키게 되면 순서도 뒤틀리게 된다. 고로 `ORDER BY`를 쓰지 않으면 순서는 '랜덤'이다. 
+
+
+ⓐ.무의미한 케이스 (리소스 낭비)
+
+```sql
+SELECT *
+FROM (
+    -- 서브쿼리 내부에서 열심히 정렬해 놓음
+    SELECT 이름, 성적
+    FROM 학생
+    ORDER BY 성적 DESC
+) S
+WHERE S.성적 >= 80;
+```
+
+1차적으로 서브쿼리에서 학생들을 성적순으로 내림차순 정렬하였다. 
+
+하지만 메인 쿼리(WHERE S.성적 >= 80)가 이 결과를 가져갈 때, DB 최적화기(Optimizer)는 어차피 조건에 맞는 행만 추출해서 출력하기 때문에 서브쿼리의 ORDER BY를 무시해 버리거나 무의미한 CPU 연산만 늘어난다. 
+
+만약 최종 출력 순서를 꼭 정해야 한다면, 반드시 제일 바깥쪽 메인 쿼리에 ORDER BY를 쓰면 된다. 
+
+
+**2. 왜 "TOP-N / LIMIT와 함께 쓸 때만 의미"가 있을까?**
+   
+예를 들어 "전교 Top 3 학생의 정보"를 뽑아야 하는 상황을 가정해 보자. 
+
+Top 3을 뽑으려면 반드시 먼저 성적순으로 정렬을 해놓은 상태에서 상위 3명을 색출해야한다. 정렬을 안 하고 그냥 3명을 추출한다면 무작위로 뽑히게 된다. 
+
+
+ⓑ. 의미가 있는 케이스 (TOP-N 추출)
+
+[ANSI 표준 / `OFFSET ... FETCH FIRST` 구문 활용]
+
+```sql
+SELECT *
+FROM (
+    SELECT 이름, 성적
+    FROM 학생
+    ORDER BY 성적 DESC
+    OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY
+) S;
+```
+
+[SQL Server 예시]
+
+```sql
+SELECT *
+FROM (
+    -- 1. 성적순으로 정렬한 뒤
+    -- 2. 상위 3명만 잘라냄 (TOP 3)
+    SELECT TOP 3 이름, 성적
+    FROM 학생
+    ORDER BY 성적 DESC
+) S;
+```
+
+[Oracle 예시 (ROWNUM 활용)]
+
+```sql
+SELECT *
+FROM (
+    -- 성적순으로 정렬된 서브쿼리 결과를 만들어야
+    -- 바깥에서 ROWNUM <= 3 으로 자를 때 올바른 Top 3가 나옴
+    SELECT 이름, 성적
+    FROM 학생
+    ORDER BY 성적 DESC
+)
+WHERE ROWNUM <= 3;
+```
+
+이처럼 LIMIT나 ROWNUM으로 자르기 위한 '목적'이 있을 때는 서브쿼리 안의 ORDER BY가 필수적이고 의미를 갖게 된다. 
+
+
+**3. 최종 요약**
+
+서브쿼리의 ORDER BY: 
+
+메인 쿼리로 넘어가면서 순서가 보장되지 않으므로 무의미함 (최종 출력에 영향 X, DB 성능만 갉아먹음).
+
+LIMIT / TOP / ROWNUM과 함께 쓰는 ORDER BY:
+
+"누구를 잘라낼지" 기준을 정해주기 때문에 아주 유의미함.
+
 ---
 
 ## 2. 실습 스키마 — 온라인 쇼핑몰
@@ -157,7 +248,7 @@ CREATE TABLE customers (
 
 CREATE TABLE orders (
     order_id     VARCHAR(10) PRIMARY KEY,
-    customer_id  VARCHAR(10) NULL        --  비회원 주문은 NULL (7장의 복선)
+    customer_id  VARCHAR(10) NULL        --  비회원 주문은 NULL 
                  REFERENCES customers(customer_id),
     ordered_at   DATE NOT NULL,
     status       VARCHAR(20) NOT NULL    -- PAID / CANCELLED / REFUNDED
@@ -215,7 +306,7 @@ CREATE TABLE order_items (
 | O1004 | P01 | 1 | 129000 |
 | O1005 | P05 | 1 | 38000 |
 
-`C004(최유리)`, `C005(정하늘)`은 주문이 없고, `P05`를 산 주문은 **비회원 주문**이다. 이 두 가지가 뒤에서 계속 등장한다.
+`C004(최유리)`, `C005(정하늘)`은 주문이 없고, `P05`를 산 주문은 **비회원 주문**이다. 
 
 ---
 
