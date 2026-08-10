@@ -1950,24 +1950,38 @@ SELECT o.customer_id, SUM(oi.quantity * oi.unit_price) AS 총구매액
 
 ### 부록 A. DB별 지원 현황 요약
 
-| 기능 | PostgreSQL | MySQL | Oracle | SQL Server |
-|---|---|---|---|---|
-| CTE (`WITH`) | ✔ 8.4+ | ✔ 8.0+ | ✔ 9i+ | ✔ 2005+ |
-| 재귀 CTE | ✔ `WITH RECURSIVE` | ✔ `WITH RECURSIVE` | ✔ (또는 `CONNECT BY`) | ✔ `WITH` |
-| `LATERAL` | ✔ 9.3+ | ✔ 8.0.14+ | ✔ 12c+ | `CROSS/OUTER APPLY` |
-| 다중열 `IN` | ✔ | ✔ | ✔ | X (`EXISTS`로 우회) |
-| `UPDATE ... FROM` | ✔ | `UPDATE ... JOIN` | `MERGE` | ✔ |
-| 대상 테이블 서브쿼리 참조 | ✔ | X (래핑 필요) | ✔ | ✔ |
+### SQLD 핵심 기능 비교표 (Oracle vs SQL Server)
+
+| 기능 / 구분 | Oracle | SQL Server (MS-SQL) | SQLD 출제 포인트 & 시험 팁 |
+| :--- | :--- | :--- | :--- |
+| **CTE (`WITH`)** | ✔ 지원 | ✔ 지원 | 서브쿼리의 가독성을 높이는 임시 테이블 생성 구문 (`WITH` 절) |
+| **계층형 쿼리 (재귀)** | **`START WITH ... CONNECT BY`** (메인)<br> 또는 `WITH` 구문 | **`WITH` (재귀 CTE)** | **Oracle의 `START WITH ... CONNECT BY`가 단골 출제** (`PRIOR` 위치, `LEVEL` 계산 필수 암기) |
+| **상관 서브쿼리 / 조인** | `LATERAL` (12c+) | **`CROSS APPLY / OUTER APPLY`** | **SQL Server의 `APPLY` 연산자**(`CROSS APPLY`, `OUTER APPLY`)가 시험 지문으로 빈번하게 등장 |
+| **다중열 (Multi-column) `IN`** | ✔ 지원<br>`(A, B) IN ((1, 2))` |X 미지원<br>(`EXISTS`나 `JOIN` 우회) | **Oracle 기준 문제**에서 `WHERE (A, B) IN (SELECT X, Y ...)` 형태의 다중열 조건문이 자주 출제됨 |
+| **`UPDATE`문 조인 / 수정** | **`MERGE`** 또는 서브쿼리 사용 | **`UPDATE ... FROM`** | SQL Server 특유의 `UPDATE ... FROM ... JOIN` 문법과 Oracle의 **`MERGE INTO`** 문법 비교 문제 출제 |
+
+---
+
+### SQLD 시험 핵심 요약 
+
+#### 1. 계층형 쿼리 (가장 중요! ![star]![star]![star])
+* **Oracle:** `START WITH 조건 CONNECT BY PRIOR 자식 = 부모` 
+  * `PRIOR` 키워드가 어디 붙느냐에 따라 순방향/역방향 전개가 결정되는 원리를 반드시 숙지
+* **SQL Server:** `WITH` 절을 이용한 재귀 CTE(`Recursive CTE`) 형태 사용.
+
+#### 2. `APPLY` 연산자 (SQL Server 특화 단골 ![star])
+* 서브쿼리나 Inline View를 테이블 행 단위로 조인할 때 사용합니다.
+* **`CROSS APPLY`**: Inner Join과 유사 (조인 결과가 있는 행만 추출)
+* **`OUTER APPLY`**: Left Outer Join과 유사 (상대 테이블에 결과가 없어도 Left 행 유지)
+
+#### 3. 다중열 `IN` 조건절
+* Oracle 문제를 풀 때 `WHERE (부서코드, 직급) IN (SELECT 부서코드, 최고직급 FROM ...)` 처럼 **2개 이상의 컬럼을 괄호로 묶어서 한 번에 비교하는 문법**은 Oracle 정답지 표현으로 매우 자주 쓰임
 
 ### 부록 B. 실행 계획 보는 명령어
 
 ```sql
 -- PostgreSQL
 EXPLAIN (ANALYZE, BUFFERS) SELECT ...;
-
--- MySQL 8.0+
-EXPLAIN ANALYZE SELECT ...;
-EXPLAIN FORMAT=TREE SELECT ...;
 
 -- Oracle
 EXPLAIN PLAN FOR SELECT ...;
@@ -1977,24 +1991,6 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 SET STATISTICS IO, TIME ON;
 -- 또는 SSMS에서 "실제 실행 계획 포함" (Ctrl+M)
 ```
-
-### 부록 C. GitHub Pages에서 Mermaid 켜기
-
-```html
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
-  document.querySelectorAll('code.language-mermaid').forEach((el) => {
-    const pre = document.createElement('pre');
-    pre.className = 'mermaid';
-    pre.textContent = el.textContent;
-    el.closest('pre').replaceWith(pre);
-  });
-  mermaid.run();
-</script>
-```
-
-인라인 SVG는 별도 설정 없이 렌더링된다. kramdown이 HTML을 그대로 통과시키도록 SVG 블록 앞뒤에 **빈 줄**을 유지하는 것만 지키면 된다.
 
 
 
