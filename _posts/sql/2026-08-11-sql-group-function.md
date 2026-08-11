@@ -224,6 +224,268 @@ GROUP BY ROLLUP(컬럼1, 컬럼2);
 넉 개를 다 이해하면 집계 쿼리는 자유자재로 작성할 수 있다. 실무에서도 복잡한 보고서를 한 번의 쿼리로 정리할 수 있으니, 꼭 알아두자
 
 
+# 시험대비 그룹 함수 핵심 정리
+
+
+
+---
+
+## 1분 요약
+
+| 함수 | 결과 | 개수 | 핵심 |
+|------|------|------|------|
+| **ROLLUP(A,B)** | (A,B), (A), () | **N+1** | 계층적, 순서 중요 |
+| **CUBE(A,B)** | (A,B), (A), (B), () | **2^N** | 모든 조합 |
+| **GROUPING SETS** | 지정한 것만 | 자유 | 효율적 |
+| **GROUPING()** | 0 or 1 | - | NULL 판별 |
+
+---
+
+## 핵심 공식 암기
+
+### ROLLUP 그룹 개수
+```
+ROLLUP(A) = 2개
+ROLLUP(A, B) = 3개 ✓
+ROLLUP(A, B, C) = 4개 ✓
+ROLLUP(A, B, C, D) = 5개 ✓
+
+공식: N + 1
+```
+
+### CUBE 그룹 개수
+```
+CUBE(A) = 2개 (2^1 = 2)
+CUBE(A, B) = 4개 (2^2 = 4) ✓
+CUBE(A, B, C) = 8개 (2^3 = 8) ✓
+CUBE(A, B, C, D) = 16개 (2^4 = 16)
+
+공식: 2^N
+```
+
+---
+
+## 각 함수 특징 한 줄 정리
+
+### ROLLUP
+- **계층적 소계**를 원할 때
+- 순서: 부서 > 직급 > 개인 (점점 세분화)
+- 결과 구조: (A,B,C), (A,B), (A), ()
+- 특징: **B만의 소계는 없다** ← 중요!
+
+### CUBE
+- **모든 각도의 소계**를 원할 때
+- 순서 상관없음
+- 결과 구조: (A,B), (A), (B), ()
+- 특징: **각 컬럼 단독 소계 포함** ← ROLLUP과의 차이!
+
+### GROUPING SETS
+- **원하는 그룹만** 구할 때
+- 계층 구조 없음
+- `GROUPING SETS((A), (B))` → (A) 소계, (B) 소계만 나옴
+- 특징: 불필요한 계산 생략 (효율적)
+
+### GROUPING()
+- **소계/합계 행 판별**할 때
+- 출력: 0(일반 행) or 1(소계 행)
+- CASE WHEN과 자주 조합
+- 특징: **원래 데이터 NULL과 구분**할 수 있음
+
+---
+
+## 헷갈리기 쉬운 포인트
+
+### ❌ 자주 틀리는 것
+1. ROLLUP 그룹 개수를 CUBE처럼 2^N으로 생각하기
+   - ✓ ROLLUP(A,B) = 3개 (N+1)
+   - ✗ ROLLUP(A,B) = 4개 (2^2)
+
+2. ROLLUP(부서, 직급)에서 직급 기준 소계가 나올 것으로 기대하기
+   - ✗ 직급 소계는 없다!
+   - CUBE를 써야 나온다
+
+3. GROUPING()을 단순 함수로 생각하기
+   - ✓ ROLLUP/CUBE/GROUPING SETS와 함께 쓰는 판별 함수
+   - ✗ 단독으로 쓰지 않음
+
+4. NULL을 그냥 NULL로 처리하기
+   - 원본 데이터의 NULL vs 소계의 NULL은 다름
+   - GROUPING()으로 구분해야 함
+
+---
+
+## 시험 출제 패턴
+
+### 패턴 1: 그룹 개수 세기 ![star]![star]![star]
+
+**문제 예시:**
+```sql
+SELECT 부서, 직급, SUM(급여)
+FROM 직원
+GROUP BY ROLLUP(부서, 직급);
+```
+"위 쿼리의 SUM(급여) 행이 몇 개 출력되는가?"
+
+**풀이:**
+- ROLLUP(부서, 직급) = 3개 그룹
+- 부서 2개(영업, 개발) × 직급 2개(과장, 대리) = 4개 행
+- 부서별 소계 2개
+- 전체 합 1개
+- **답: 7개 행**
+
+### 패턴 2: CASE + GROUPING ![star]![star]![star]
+
+**문제 예시:**
+```sql
+SELECT 
+    CASE WHEN GROUPING(부서) = 1 THEN '총합' ELSE 부서 END,
+    직급,
+    COUNT(*)
+FROM 직원
+GROUP BY ROLLUP(부서, 직급);
+```
+"GROUPING(부서) = 1인 행은 몇 개인가?"
+
+**풀이:**
+- GROUPING(부서) = 1 → 부서가 소계/합계로 NULL인 행
+- 부서별 소계 2개 + 전체 합 1개
+- **답: 3개 행**
+
+### 패턴 3: ROLLUP vs CUBE 비교 ![star]![star]
+
+**문제 예시:**
+"GROUP BY ROLLUP(A, B)와 GROUP BY CUBE(A, B)의 결과 차이는?"
+
+**답:**
+- ROLLUP: (A,B), (A), () = 3개
+- CUBE: (A,B), (A), (B), () = 4개
+- **차이: (B) 소계 여부**
+
+### 패턴 4: GROUPING SETS 활용 ![star]
+
+**문제 예시:**
+```sql
+GROUP BY GROUPING SETS((부서, 직급), (부서))
+```
+"생성되는 그룹은 몇 개인가?"
+
+**풀이:**
+- (부서, 직급) 조합
+- (부서) 소계
+- 자동 추가: ()
+- **그룹 개수 = 지정한 것 + ()** 
+
+---
+
+## 기출 단골 문제
+
+### 1번 유형: "소계 행만 추출"
+```sql
+SELECT *
+FROM (
+    SELECT 부서, 직급, SUM(급여),
+           GROUPING(부서) gp1,
+           GROUPING(직급) gp2
+    FROM 직원
+    GROUP BY ROLLUP(부서, 직급)
+) t
+WHERE gp1 = 1 OR gp2 = 1;
+```
+→ 부서 소계와 전체 합만 나온다
+
+### 2번 유형: "계층 표시"
+```sql
+SELECT 
+    CASE WHEN GROUPING(부서) = 1 THEN '전사'
+         WHEN GROUPING(직급) = 1 THEN '부서 합계'
+         ELSE 직급
+    END AS 직급_분류,
+    SUM(급여)
+FROM 직원
+GROUP BY ROLLUP(부서, 직급);
+```
+→ 보고서 형식으로 출력
+
+### 3번 유형: "비교 분석"
+```sql
+-- ROLLUP 결과
+SELECT 부서, COUNT(*) FROM 직원 GROUP BY ROLLUP(부서);
+-- vs
+-- CUBE 결과
+SELECT 부서, COUNT(*) FROM 직원 GROUP BY CUBE(부서);
+```
+→ CUBE가 더 많은 조합을 포함
+
+---
+
+## 암기 팁
+
+### 숫자로 기억하기
+- **ROLLUP → 3** (N+1, 부서2개×직급2개+소계1개)
+- **CUBE → 4** (2^2)
+- **GROUPING → 0 or 1** (판별값)
+
+### 단어 연상
+- **ROLLUP** = 롤업 = 계층적으로 굴린다 = 상위로 올라감
+- **CUBE** = 정육면체 = 모든 면이 드러남 = 모든 조합
+- **GROUPING SETS** = 집합 = 원하는 것만 선택
+- **GROUPING()** = 그룹인가 판별 = 0/1 이진값
+
+### 문제 풀이 체크리스트
+1. ROLLUP인가, CUBE인가? → 그룹 개수 확인
+2. GROUPING()이 있는가? → 소계 행 관련
+3. NULL이 나왔는가? → GROUPING()으로 판별 필요
+4. 표시할 그룹이 제한적인가? → GROUPING SETS 활용
+
+---
+
+## 최종 정리표
+
+```
+함수 사용 결정 트리
+
+복수 수준의 소계가 필요한가?
+├─ YES: ROLLUP 또는 CUBE를 써야 함
+│  ├─ 계층 구조가 있는가? (부서 > 직급)
+│  │  └─ YES: ROLLUP(부서, 직급)
+│  └─ 모든 각도를 봐야 하는가?
+│     └─ YES: CUBE(부서, 직급)
+│
+└─ 특정 그룹만 필요한가?
+   └─ YES: GROUPING SETS((부서), (직급))
+
+소계/합계 행을 구분해서 표시해야 하는가?
+└─ YES: GROUPING(컬럼) = 1 사용
+```
+
+---
+
+## 실전 풀이 예
+
+**문제:** 다음 쿼리 결과에서 GROUPING(부서) = 1이고 GROUPING(직급) = 0인 행이 몇 개인가?
+```sql
+SELECT 부서, 직급, COUNT(*),
+       GROUPING(부서), GROUPING(직급)
+FROM 직원
+GROUP BY CUBE(부서, 직급);
+```
+
+**풀이:**
+1. CUBE(부서, 직급)는 (부서, 직급), (부서), (직급), () 4개 그룹
+2. GROUPING(부서) = 1: 부서가 NULL (소계 행)
+3. GROUPING(직급) = 0: 직급이 값을 가짐 (일반 행)
+4. 두 조건을 동시에 만족: **(직급) 소계 행**
+5. 직급이 2개면 2개 행
+
+**답: 2개**
+
+---
+
+## 한 줄 명언
+
+> ROLLUP은 계층을 올라가고, CUBE는 모든 방향을 본다. GROUPING은 어느 행이 소계인지 알려준다.
+
+
 [star]: /assets/images/star.png#blog-star-emoji "star"
 
 
