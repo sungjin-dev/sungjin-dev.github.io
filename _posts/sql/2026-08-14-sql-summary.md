@@ -10,7 +10,6 @@ tags:
   - 스니펫
 toc: true
 toc_sticky: true
-published: false
 ---
 
 # SQLD 핵심 정리
