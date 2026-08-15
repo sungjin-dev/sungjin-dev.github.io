@@ -19,7 +19,7 @@ toc_sticky: true
 
 이 순서 하나로 아래 내용의 절반이 설명된다. 별칭 문제, ROWNUM 함정, 윈도우 함수의 ORDER BY 문제가 전부 여기서 나온다.
 
-```text
+
 <svg viewBox="0 0 680 196" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SQL 논리적 실행 순서와 자주 틀리는 지점">
   <style>
     text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
@@ -73,7 +73,7 @@ toc_sticky: true
   <text x="2" y="164" class="t">윈도우 함수는 SELECT 단계 → OVER 안의 ORDER BY는 출력 순서가 아니다</text>
   <text x="2" y="186" class="t">별칭은 SELECT에서 생성 → WHERE에서는 못 쓰고 ORDER BY에서는 쓸 수 있다</text>
 </svg>
-```
+
 
 ---
 
