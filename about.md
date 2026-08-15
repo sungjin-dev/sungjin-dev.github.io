@@ -24,8 +24,7 @@ header:
 <span class="out">성균관대학교 경제학과 (졸업)
 <span class="cmt"># ── 기술 · 학습 ──────────────────────</span>
 <span class="prompt">$</span> <span class="cmd">ls skills/</span>
-<span class="out">Python/   Java/   Flask/   SQL/
-C/   C++/   JavaScript/   CSS/   Git/</span>
+<span class="out">Python/   Java/   Flask/   SQL/   JavaScript/   Git/</span>
 <span class="prompt">$</span> <span class="cmd">cat learning.log</span>
 <span class="out">[진행중]  Java — JVM 메모리 구조 · 참조 타입 연재
 [완결됨]  Python 정규표현식 시리즈 (전 4편)
