@@ -152,7 +152,7 @@ CASE WHEN comm IS NULL THEN '없음' ELSE '있음' END     → '없음'         
 
 ## 2. 집합 연산자
 
-```text
+
 <svg viewBox="0 0 680 176" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="집합 연산자 네 가지의 결과 영역 비교">
   <style>
     text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
@@ -205,7 +205,7 @@ CASE WHEN comm IS NULL THEN '없음' ELSE '있음' END     → '없음'         
   <text x="425" y="164" class="t" text-anchor="middle">교집합 · 중복 제거</text>
   <text x="595" y="164" class="t" text-anchor="middle">차집합 · 중복 제거</text>
 </svg>
-```
+
 
 | 특징 | UNION | UNION ALL | INTERSECT | MINUS(EXCEPT) |
 | :--- | :---: | :---: | :---: | :---: |
