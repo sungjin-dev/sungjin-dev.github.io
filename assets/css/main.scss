@@ -86,6 +86,15 @@ html[data-theme="dark"] {
   --syn-str: #98C379;
   --syn-comment: #7F848E;
 
+  /* --- 구문 강조 (SQL 전용 — Oracle SQL Developer 스타일) --- */
+  --sql-kw: #5CACFF;
+  --sql-type: #5CACFF;
+  --sql-func: #4FD1C5;
+  --sql-str: #FF8FA3;
+  --sql-num: #E8B04B;
+  --sql-comment: #6FCF7A;
+  --sql-plain: #D7DAE0;
+
   /* --- Tokyo Night 존 --- */
   --tn-card: #24283b;
   --tn-hover: #2b3050;
@@ -146,6 +155,15 @@ html[data-theme="light"] {
   --syn-type: #8C6C13;
   --syn-plain: #383A42;
   --syn-comment: #969183;
+
+  /* --- 구문 강조 (SQL 전용 — Oracle SQL Developer 스타일) --- */
+  --sql-kw: #0000EE;
+  --sql-type: #0000EE;
+  --sql-func: #0E7C7B;
+  --sql-str: #C7254E;
+  --sql-num: #A9690E;
+  --sql-comment: #008000;
+  --sql-plain: #1F2329;
 
   --tn-card: #FFFFFF;
   --tn-hover: #F3F5FA;
@@ -431,6 +449,138 @@ div.highlighter-rouge {
 .page__content .highlight .err {
   color: var(--syn-plain) !important;
   background-color: transparent !important;
+}
+
+/* =================================================
+   6-1. SQL 전용 구문 강조 — Oracle SQL Developer 스타일
+   .language-sql / .language-plsql 블록에서만 위 규칙을 덮어씀
+   ================================================= */
+
+/* 예약어 (SELECT, FROM, WHERE, AND, GROUP BY, BEGIN, END ...) */
+.page__content div.language-sql .highlight .k,
+.page__content div.language-sql .highlight .kd,
+.page__content div.language-sql .highlight .kn,
+.page__content div.language-sql .highlight .kr,
+.page__content div.language-sql .highlight .kp,
+.page__content div.language-sql .highlight .ow,
+.page__content div.language-plsql .highlight .k,
+.page__content div.language-plsql .highlight .kd,
+.page__content div.language-plsql .highlight .kn,
+.page__content div.language-plsql .highlight .kr,
+.page__content div.language-plsql .highlight .kp,
+.page__content div.language-plsql .highlight .ow {
+  color: var(--sql-kw) !important;
+  font-weight: 700 !important;
+}
+
+/* 데이터 타입 (VARCHAR2, NUMBER, DATE, CLOB ...) */
+.page__content div.language-sql .highlight .kt,
+.page__content div.language-plsql .highlight .kt {
+  color: var(--sql-type) !important;
+  font-weight: normal !important;
+}
+
+/* 내장 함수 (COUNT, SUM, TO_CHAR, NVL ...) */
+.page__content div.language-sql .highlight .nb,
+.page__content div.language-sql .highlight .nf,
+.page__content div.language-sql .highlight .fm,
+.page__content div.language-plsql .highlight .nb,
+.page__content div.language-plsql .highlight .nf,
+.page__content div.language-plsql .highlight .fm {
+  color: var(--sql-func) !important;
+  font-weight: normal !important;
+}
+
+/* 문자열 리터럴 ('...') */
+.page__content div.language-sql .highlight .s,
+.page__content div.language-sql .highlight .s1,
+.page__content div.language-sql .highlight .s2,
+.page__content div.language-sql .highlight .sr,
+.page__content div.language-sql .highlight .sb,
+.page__content div.language-sql .highlight .sc,
+.page__content div.language-sql .highlight .sd,
+.page__content div.language-sql .highlight .se,
+.page__content div.language-sql .highlight .sh,
+.page__content div.language-sql .highlight .si,
+.page__content div.language-sql .highlight .sx,
+.page__content div.language-sql .highlight .ss,
+.page__content div.language-plsql .highlight .s,
+.page__content div.language-plsql .highlight .s1,
+.page__content div.language-plsql .highlight .s2,
+.page__content div.language-plsql .highlight .sr,
+.page__content div.language-plsql .highlight .sb,
+.page__content div.language-plsql .highlight .sc,
+.page__content div.language-plsql .highlight .sd,
+.page__content div.language-plsql .highlight .se,
+.page__content div.language-plsql .highlight .sh,
+.page__content div.language-plsql .highlight .si,
+.page__content div.language-plsql .highlight .sx,
+.page__content div.language-plsql .highlight .ss {
+  color: var(--sql-str) !important;
+  font-weight: normal !important;
+}
+
+/* 숫자 리터럴 */
+.page__content div.language-sql .highlight .m,
+.page__content div.language-sql .highlight .mi,
+.page__content div.language-sql .highlight .mf,
+.page__content div.language-sql .highlight .mh,
+.page__content div.language-sql .highlight .mo,
+.page__content div.language-plsql .highlight .m,
+.page__content div.language-plsql .highlight .mi,
+.page__content div.language-plsql .highlight .mf,
+.page__content div.language-plsql .highlight .mh,
+.page__content div.language-plsql .highlight .mo {
+  color: var(--sql-num) !important;
+  font-weight: normal !important;
+}
+
+/* 주석 (-- 한 줄, 여러 줄) */
+.page__content div.language-sql .highlight .c,
+.page__content div.language-sql .highlight .c1,
+.page__content div.language-sql .highlight .cm,
+.page__content div.language-sql .highlight .cp,
+.page__content div.language-sql .highlight .cs,
+.page__content div.language-sql .highlight .ch,
+.page__content div.language-sql .highlight .cpf,
+.page__content div.language-plsql .highlight .c,
+.page__content div.language-plsql .highlight .c1,
+.page__content div.language-plsql .highlight .cm,
+.page__content div.language-plsql .highlight .cp,
+.page__content div.language-plsql .highlight .cs,
+.page__content div.language-plsql .highlight .ch,
+.page__content div.language-plsql .highlight .cpf {
+  color: var(--sql-comment) !important;
+  font-style: normal !important;
+}
+
+/* 식별자(테이블/컬럼명), 연산자, 구두점 — 기본 텍스트 */
+.page__content div.language-sql .highlight .n,
+.page__content div.language-sql .highlight .na,
+.page__content div.language-sql .highlight .nv,
+.page__content div.language-sql .highlight .nn,
+.page__content div.language-sql .highlight .nd,
+.page__content div.language-sql .highlight .nc,
+.page__content div.language-sql .highlight .ne,
+.page__content div.language-sql .highlight .no,
+.page__content div.language-sql .highlight .bp,
+.page__content div.language-sql .highlight .py,
+.page__content div.language-sql .highlight .p,
+.page__content div.language-sql .highlight .o,
+.page__content div.language-plsql .highlight .n,
+.page__content div.language-plsql .highlight .na,
+.page__content div.language-plsql .highlight .nv,
+.page__content div.language-plsql .highlight .nn,
+.page__content div.language-plsql .highlight .nd,
+.page__content div.language-plsql .highlight .nc,
+.page__content div.language-plsql .highlight .ne,
+.page__content div.language-plsql .highlight .no,
+.page__content div.language-plsql .highlight .bp,
+.page__content div.language-plsql .highlight .py,
+.page__content div.language-plsql .highlight .p,
+.page__content div.language-plsql .highlight .o {
+  color: var(--sql-plain) !important;
+  font-weight: normal !important;
 }
 
 /* =================================================
@@ -1655,26 +1805,48 @@ html[data-theme="light"] .about-terminal__body a:hover {
 
 /* =================================================
    19. 본문 ↔ 우측 TOC 완전 분리
+   창을 좁혀도 본문 가로폭이 유지되도록 양쪽 사이드바를
+   고정 px이 아닌 뷰포트 비례(clamp)로 축소시킨다.
+   --side-l : 좌측 프로필 사이드바
+   --side-r : 우측 TOC
+   --side-gap : 본문과 TOC 사이 간격
    ================================================= */
-@media (min-width: 1024px) {
-  .page {
-    width: calc(100% - #{$right-sidebar-width-narrow}) !important;
-    padding-right: calc(#{$right-sidebar-width-narrow} + 28px) !important;
-  }
-  .sidebar__right {
-    width: $right-sidebar-width-narrow;
-    margin-right: calc(-1 * (#{$right-sidebar-width-narrow} + 28px)) !important;
-  }
+:root {
+  --side-l: clamp(150px, 13vw, 220px);
+  --side-r: clamp(160px, 14vw, 220px);
+  --side-gap: clamp(16px, 2vw, 28px);
 }
 
 @media (min-width: 1280px) {
-  .page {
-    width: calc(100% - #{$right-sidebar-width}) !important;
-    padding-right: calc(#{$right-sidebar-width} + 36px) !important;
+  :root {
+    --side-l: clamp(200px, 15vw, #{$right-sidebar-width});
+    --side-r: clamp(220px, 16vw, #{$right-sidebar-width});
+    --side-gap: clamp(24px, 2.4vw, 36px);
   }
+}
+
+@media (min-width: 1024px) {
+  /* 좌측 프로필 사이드바도 함께 비례 축소 */
+  .sidebar {
+    width: calc(var(--side-l) - 1em) !important;
+  }
+
+  .page {
+    width: calc(100% - var(--side-l)) !important;
+    padding-right: calc(var(--side-r) + var(--side-gap)) !important;
+  }
+
   .sidebar__right {
-    width: $right-sidebar-width;
-    margin-right: calc(-1 * (#{$right-sidebar-width} + 36px)) !important;
+    width: var(--side-r) !important;
+    margin-right: calc(-1 * (var(--side-r) + var(--side-gap))) !important;
+  }
+}
+
+/* 중간 폭에서는 본문 좌우 여백도 함께 줄여 가로폭을 더 확보 */
+@media (min-width: 768px) and (max-width: 1439px) {
+  .page__inner-wrap, .archive {
+    padding-left: clamp(16px, 2.2vw, 32px);
+    padding-right: clamp(16px, 2.2vw, 32px);
   }
 }
 
@@ -1732,6 +1904,73 @@ html[data-theme="light"] .about-terminal__body a:hover {
 .sidebar__right .toc__menu li ul li a {
   color: var(--text-muted);
   font-weight: 400;
+}
+
+/* =================================================
+   20-1. 좁은 창에서 TOC 자동 접기
+   본문 가로폭이 위태로워지는 구간(1024~1279px)에서는
+   TOC를 세로 레일로 접고, 호버/포커스 시 본문 위로 펼친다.
+   ================================================= */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  :root {
+    --toc-rail: 44px;   /* 접혔을 때 레일 폭 */
+    --toc-open: 280px;  /* 펼쳤을 때 폭 */
+    --side-r: var(--toc-rail);
+    --side-gap: 14px;
+  }
+
+  .sidebar__right .toc {
+    position: relative;
+    z-index: 60;
+    width: var(--toc-rail);
+    margin-left: 0;
+    transition: width 0.2s ease, margin-left 0.2s ease;
+  }
+
+  /* 접힘: 제목을 세로로 세워 레일 라벨로 사용 */
+  .sidebar__right .toc .nav__title {
+    writing-mode: vertical-rl;
+    padding: 16px 0;
+    margin: 0 auto;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: none;
+    border-left: 2px solid var(--accent);
+    transition: none;
+  }
+
+  .sidebar__right .toc .toc__menu {
+    display: none;
+  }
+
+  /* 펼침 */
+  .sidebar__right .toc:hover,
+  .sidebar__right .toc:focus-within {
+    width: var(--toc-open);
+    margin-left: calc(var(--toc-rail) - var(--toc-open));
+    max-height: 78vh;
+    overflow-y: auto;
+  }
+
+  .sidebar__right .toc:hover .nav__title,
+  .sidebar__right .toc:focus-within .nav__title {
+    writing-mode: horizontal-tb;
+    padding: 10px 14px;
+    margin: 0;
+    border-left: none;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .sidebar__right .toc:hover .toc__menu,
+  .sidebar__right .toc:focus-within .toc__menu {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar__right .toc {
+    transition: none;
+  }
 }
 
 /* =================================================
