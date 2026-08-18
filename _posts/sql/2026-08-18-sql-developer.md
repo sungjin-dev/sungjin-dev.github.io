@@ -1,5 +1,5 @@
 ---
-title: "[SQL]  SQL Developer 환경 삽질기 "
+title: "[SQL]  SQL Developer 환경 삽질기 1편"
 permalink: /sql/
 categories: [SQL]
 tags:
