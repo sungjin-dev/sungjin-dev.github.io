@@ -72,6 +72,7 @@ toc_sticky: true
   <text x="2" y="142" class="t">ROWNUM은 WHERE 단계에서 부여 → 정렬 후 상위 N은 인라인 뷰가 필요</text>
   <text x="2" y="164" class="t">윈도우 함수는 SELECT 단계 → OVER 안의 ORDER BY는 출력 순서가 아니다</text>
   <text x="2" y="186" class="t">별칭은 SELECT에서 생성 → WHERE에서는 못 쓰고 ORDER BY에서는 쓸 수 있다</text>
+  <br>
   <text x="2" y="186" class="t">서브쿼리(인라인 뷰)를 활용하여 별칭을 먼저 생성 → FROM절이 가장 먼저 실행되므로 WHERE에서 사용가능</text>
 </svg>
 
