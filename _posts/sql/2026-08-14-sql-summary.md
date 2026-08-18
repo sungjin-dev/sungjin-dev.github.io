@@ -88,7 +88,7 @@ toc_sticky: true
 | 비교 방법 | `IS NULL` / `IS NOT NULL` 만 사용 |
 | 집계 함수 | NULL은 **무시**하고 계산 |
 
-```text
+```sql
 -- 급여 3명: 100, 200, NULL
 SUM(sal)   → 300
 AVG(sal)   → 150   (300/2, NULL은 분모에서도 빠진다)
@@ -113,7 +113,7 @@ COUNT(*)   → 3     (행 개수 그대로)
 
 ### 1-3. DECODE vs CASE
 
-```text
+```sql
 DECODE(기준값, 조건1, 결과1, 조건2, 결과2, ... , 기본값)
 ```
 
@@ -528,7 +528,7 @@ GROUP BY ROLLUP(deptno);
 
 ## 6. 윈도우 함수
 
-```text
+```sql
 WINDOW_FUNCTION([인자]) OVER ( [PARTITION BY 컬럼] [ORDER BY 절] [WINDOWING 절] )
 ```
 
@@ -695,7 +695,7 @@ OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;   -- 인라인 뷰 없이 상위 3명
 
 ### 7-3. SQL Server — TOP
 
-```text
+```sql
 SELECT TOP (3) [PERCENT] [WITH TIES] ename, sal
 FROM   emp
 ORDER BY sal DESC;
@@ -714,7 +714,7 @@ ORDER BY sal DESC;
 
 ### 8-1. 데이터와 트리 모양
 
-```text
+```sql
 사원번호  이름        상위사원번호
    1     대표이사        NULL
    2     영업팀장         1
@@ -838,7 +838,7 @@ SQL Server  : '홍' +  NULL +  '길동'  →  NULL
 | `m` | 다중 행 모드 |
 | `x` | 공백 무시 |
 
-```text
+```sql
 SELECT REGEXP_INSTR('apple banana cherry', '[a-z]+', 1, 2, 1) FROM dual;
                                             ↑  ↑  ↑
                         시작위치 1 ──────────┘  │  │
@@ -1066,7 +1066,7 @@ CONSTRAINT 제약조건명 CHECK (조건)
 | 한 번에 여러 컬럼 | 괄호로 묶어 **가능** | **불가** (하나씩) |
 | DEFAULT 설정 | `MODIFY`로 가능 | `ALTER COLUMN`으로 **불가** — DEFAULT 제약을 따로 추가 |
 
-```text
+```sql
 -- Oracle
 ALTER TABLE 사원 MODIFY (이름 VARCHAR2(50) NOT NULL);
 
