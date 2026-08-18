@@ -86,14 +86,15 @@ html[data-theme="dark"] {
   --syn-str: #98C379;
   --syn-comment: #7F848E;
 
-  /* --- 구문 강조 (SQL 전용 — Oracle SQL Developer 스타일) --- */
-  --sql-kw: #5CACFF;
-  --sql-type: #5CACFF;
-  --sql-func: #4FD1C5;
-  --sql-str: #FF8FA3;
-  --sql-num: #E8B04B;
-  --sql-comment: #6FCF7A;
-  --sql-plain: #D7DAE0;
+  /* --- 구문 강조 (SQL 전용 — Oracle SQL Developer 팔레트) --- */
+  /* 라이트의 오라클 원색을 hue는 유지하고 명도만 올린 다크 대응쌍 */
+  --sql-kw: #8AB4FF;       /* ← #0000FF */
+  --sql-type: #8AB4FF;
+  --sql-func: #DD8CDD;     /* ← #990099 */
+  --sql-str: #F2708A;      /* ← #CC0033 */
+  --sql-num: #F06CA8;      /* ← #CC0066 */
+  --sql-comment: #4FBF52;  /* ← #008000 */
+  --sql-plain: #D7DAE0;    /* ← #000000 */
 
   /* --- Tokyo Night 존 --- */
   --tn-card: #24283b;
@@ -156,14 +157,14 @@ html[data-theme="light"] {
   --syn-plain: #383A42;
   --syn-comment: #969183;
 
-  /* --- 구문 강조 (SQL 전용 — Oracle SQL Developer 스타일) --- */
-  --sql-kw: #0000EE;
-  --sql-type: #0000EE;
-  --sql-func: #0E7C7B;
-  --sql-str: #C7254E;
-  --sql-num: #A9690E;
-  --sql-comment: #008000;
-  --sql-plain: #1F2329;
+  /* --- 구문 강조 (SQL 전용 — Oracle SQL Developer 팔레트) --- */
+  --sql-kw: #0000FF;       /* 예약어 */
+  --sql-type: #0000FF;     /* 데이터 타입 */
+  --sql-func: #990099;     /* 내장 함수 */
+  --sql-str: #CC0033;      /* 문자열 리터럴 */
+  --sql-num: #CC0066;      /* 숫자 리터럴 */
+  --sql-comment: #008000;  /* 주석 */
+  --sql-plain: #000000;    /* 식별자 / 컬럼 / 테이블명 */
 
   --tn-card: #FFFFFF;
   --tn-hover: #F3F5FA;
@@ -456,6 +457,16 @@ div.highlighter-rouge {
    .language-sql / .language-plsql 블록에서만 위 규칙을 덮어씀
    ================================================= */
 
+/* 블록 기본 텍스트색 — 토큰으로 감싸이지 않은 부분까지 통일 */
+.page__content div.language-sql .highlight,
+.page__content div.language-sql .highlight pre,
+.page__content div.language-sql .highlight code,
+.page__content div.language-plsql .highlight,
+.page__content div.language-plsql .highlight pre,
+.page__content div.language-plsql .highlight code {
+  color: var(--sql-plain) !important;
+}
+
 /* 예약어 (SELECT, FROM, WHERE, AND, GROUP BY, BEGIN, END ...) */
 .page__content div.language-sql .highlight .k,
 .page__content div.language-sql .highlight .kd,
@@ -567,6 +578,7 @@ div.highlighter-rouge {
 .page__content div.language-sql .highlight .py,
 .page__content div.language-sql .highlight .p,
 .page__content div.language-sql .highlight .o,
+.page__content div.language-sql .highlight .err,
 .page__content div.language-plsql .highlight .n,
 .page__content div.language-plsql .highlight .na,
 .page__content div.language-plsql .highlight .nv,
@@ -578,7 +590,8 @@ div.highlighter-rouge {
 .page__content div.language-plsql .highlight .bp,
 .page__content div.language-plsql .highlight .py,
 .page__content div.language-plsql .highlight .p,
-.page__content div.language-plsql .highlight .o {
+.page__content div.language-plsql .highlight .o,
+.page__content div.language-plsql .highlight .err {
   color: var(--sql-plain) !important;
   font-weight: normal !important;
 }
