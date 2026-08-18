@@ -100,6 +100,8 @@ COUNT(*)   → 3     (행 개수 그대로)
 ■ `AVG`는 NULL을 0으로 치지 않는다. 0으로 보고 싶으면 `AVG(NVL(sal,0))`.<br>
 ■ `COUNT(NULL)`은 NULL만 세라는 뜻인데 NULL은 집계 대상이 아니므로 **항상 0**이다.
 
+<br>
+
 ### 1-2. NULL 관련 함수
 
 | 함수 | DB | 의미 | 예시 |
@@ -111,6 +113,8 @@ COUNT(*)   → 3     (행 개수 그대로)
 | `NULLIF(A, B)` | 공통 | 두 값이 **같으면 NULL**, 다르면 A | `NULLIF(sal, 0)` → 0이면 NULL |
 
 ○ `NULLIF`는 "0으로 나누기" 방지에 자주 쓴다. `a / NULLIF(b, 0)` → b가 0이면 에러 대신 NULL.
+
+<br>
 
 ### 1-3. DECODE vs CASE
 
@@ -502,11 +506,15 @@ WHERE  A.관리자ID = B.사원ID;
 ○ 중복을 제거하려면 값을 비교해야 하므로 정렬이 따라온다. 즉 **UNION ALL만 정렬이 없어서 빠르다.** <br>
 ○ MINUS는 Oracle, EXCEPT는 SQL Server 용어다.
 
+<br>
+
 ### 공통 규칙
 
 - 각 SELECT의 **컬럼 개수와 자료형이 순서대로 일치**해야 한다. 컬럼 이름은 달라도 된다.
 - 결과 컬럼명은 **첫 번째 SELECT문 기준**으로 정해진다.
 - `ORDER BY`는 맨 마지막에 딱 한 번만 쓸 수 있다.
+
+<br>
 
 ### 우선순위
 
@@ -518,6 +526,8 @@ WHERE  A.관리자ID = B.사원ID;
 ---
 
 ## 5. 그룹 함수 (ROLLUP · CUBE · GROUPING SETS)
+
+<br>
 
 ### 5-1. 만들어지는 그룹 개수
 
@@ -552,6 +562,8 @@ SELECT NULL, NULL,  SUM(금액) FROM 판매;                      -- 전체 합�
 
 ○ 마지막 줄처럼 GROUP BY를 아예 쓰지 않고 집계 함수만 쓰면 `GROUP BY ()`가 자동 적용되어 전체 한 행이 나온다. 즉 ROLLUP의 맨 마지막 단계와 같은 상태다.
 
+<br>
+
 ### 5-2. 컬럼 순서
 
 | 구문 | 컬럼 순서가 결과에 영향? |
@@ -559,6 +571,8 @@ SELECT NULL, NULL,  SUM(금액) FROM 판매;                      -- 전체 합�
 | 일반 `GROUP BY A, B` | **없음** (그룹 결과 집합 동일) |
 | `ROLLUP(A, B)` | **있음** — 오른쪽부터 떼므로 A, B를 바꾸면 소계 종류가 달라진다 |
 | `CUBE(A, B)` | 없음 (모든 조합을 만들므로 결과 집합 동일) |
+
+<br>
 
 ### 5-3. GROUPING 함수
 
@@ -595,6 +609,8 @@ WINDOW_FUNCTION([인자]) OVER ( [PARTITION BY 컬럼] [ORDER BY 절] [WINDOWING
 - **반드시 `OVER()` 와 함께** 쓴다.
 - `PARTITION BY` = 그룹을 나눈다(그룹 함수의 GROUP BY와 비슷하지만 **행이 줄어들지 않는다**).
 - ■ `OVER` 안의 `ORDER BY`는 **계산 순서**를 정할 뿐 출력 순서를 보장하지 않는다. 화면 정렬은 쿼리 맨 끝의 `ORDER BY`로 따로 해야 한다.
+
+<br>
 
 ### 6-1. PARTITION BY와 GROUP BY의 차이
 
@@ -653,6 +669,8 @@ WINDOW_FUNCTION([인자]) OVER ( [PARTITION BY 컬럼] [ORDER BY 절] [WINDOWING
   <text x="452" y="145" class="t">상세는 사라진다</text>
 </svg>
 
+<br>
+
 ### 6-2. 순위 함수 세 가지
 
 | 이름 | 점수 | RANK() | DENSE_RANK() | ROW_NUMBER() |
@@ -668,6 +686,8 @@ WINDOW_FUNCTION([인자]) OVER ( [PARTITION BY 컬럼] [ORDER BY 절] [WINDOWING
 | `DENSE_RANK()` | 허용 | 건너뛰지 않음 (1,1,2) |
 | `ROW_NUMBER()` | 없음 | 무조건 고유값 (1,2,3) |
 
+<br>
+
 ### 6-3. 그룹별 1등 뽑기 (실전 패턴)
 
 ```sql
@@ -679,6 +699,8 @@ WHERE rn = 1;
 ```
 
 ○ 공동 1등까지 모두 필요하면 `ROW_NUMBER` 대신 `RANK`를 쓴다.
+
+<br>
 
 ### 6-4. 그 밖의 윈도우 함수
 
@@ -692,6 +714,8 @@ WHERE rn = 1;
 
 ○ `LAG`와 `LEAD`는 세 번째 인자로 **없을 때 쓸 값**을 지정할 수 있다. `LAG(컬럼, 오프셋, 디폴트)` 형태이고, 생략하면 NULL이 들어온다. 첫 행의 증감을 0으로 보이게 하려면 이 인자를 쓰는 것이 좋다.<br>
 ○ `CUME_DIST`는 **현재 값보다 작거나 같은 행의 수 ÷ 전체 행 수**다. 정렬 기준의 마지막 행은 항상 1이 된다.
+
+<br>
 
 ### 6-5. WINDOWING 절
 
@@ -737,6 +761,8 @@ FROM ( SELECT * FROM emp ORDER BY sal DESC )
 WHERE ROWNUM <= 3;
 ```
 
+<br>
+
 ### 7-2. Oracle 12c 이상 — FETCH
 
 ```sql
@@ -752,6 +778,8 @@ SELECT ename, sal FROM emp
 ORDER BY sal DESC
 OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;   -- 인라인 뷰 없이 상위 3명
 ```
+
+<br>
 
 ### 7-3. SQL Server — TOP
 
@@ -787,6 +815,8 @@ ORDER BY sal DESC;
  └─ [3] 개발팀장          LEVEL 2   ISLEAF = 1
 ```
 
+<br>
+
 ### 8-2. 기본 구문
 
 ```sql
@@ -799,6 +829,8 @@ ORDER SIBLINGS BY 이름;                  -- 같은 부모를 둔 형제끼리�
 
 ○ 실행 순서: `START WITH` → `CONNECT BY`(전개) → `WHERE`(전개가 끝난 결과를 필터). 즉 WHERE로 중간 노드를 빼도 그 아래 자식은 이미 전개된 뒤라 남는다.
 
+<br>
+
 ### 8-3. 전개 방향
 
 `PRIOR`가 붙은 쪽이 **이전 행(방금 읽은 행)** 이다.
@@ -809,6 +841,8 @@ ORDER SIBLINGS BY 이름;                  -- 같은 부모를 둔 형제끼리�
 | `자식키 = PRIOR 부모참조컬럼` | **역방향** (자식 → 부모) | `메뉴ID = PRIOR 상위메뉴ID` |
 
 ■ 헷갈리면 이렇게 본다. PRIOR가 **PK 쪽**에 붙으면 아래로(순방향), **FK 쪽**에 붙으면 위로(역방향) 간다.
+
+<br>
 
 ### 8-4. 계층 관련 키워드
 
@@ -824,6 +858,8 @@ ORDER SIBLINGS BY 이름;                  -- 같은 부모를 둔 형제끼리�
 ```sql
 SYS_CONNECT_BY_PATH(이름, '/')  →  /대표이사/영업팀장/사원A
 ```
+
+<br>
 
 ### 8-5. START WITH vs CONNECT_BY_ROOT
 
@@ -842,6 +878,8 @@ CONNECT BY PRIOR 사원번호 = 상위사원번호;
 
 ■ `LEVEL`은 절대적인 깊이가 아니라 **탐색을 시작한 지점 기준의 상대적 깊이**다. `START WITH`로 지정한 행이 무조건 LEVEL 1이 되므로, 중간 노드에서 시작하면 그 노드가 1이 된다.
 ■ `START WITH`를 생략하면 테이블의 **모든 행이 각각 시작점**이 되어 전부 LEVEL 1에서 출발한다. 즉 계층 전체가 행마다 한 번씩 전개된다.
+
+<br>
 
 ### 8-6. Oracle vs SQL Server
 
@@ -871,12 +909,16 @@ Oracle      : '홍' || NULL || '길동'  →  '홍길동'
 SQL Server  : '홍' +  NULL +  '길동'  →  NULL
 ```
 
+<br>
+
 ### 9-2. LIKE
 
 - 와일드카드: `%`(0자 이상), `_`(정확히 1자)
 - ■ Oracle의 `LIKE`는 **대소문자를 구분한다.** 구분 없이 찾으려면 `WHERE LOWER(컬럼) LIKE 'e%'`.
 - ○ SQL Server는 기본 콜레이션이 대소문자 구분 없음(CI)인 경우가 많아 결과가 다를 수 있다.
 - 와일드카드 자체를 찾으려면 `LIKE '100\%' ESCAPE '\'`.
+
+<br>
 
 ### 9-3. 정규 표현식 함수
 
@@ -908,6 +950,8 @@ SELECT REGEXP_INSTR('apple banana cherry', '[a-z]+', 1, 2, 1) FROM dual;
 -- 'banana'는 7~12번째 → 결과 13
 ```
 
+<br>
+
 ### 9-4. 문자 클래스와 수량사
 
 대괄호 표기와 POSIX 표기는 서로 대응된다. 시험에서는 같은 조건을 두 표기로 바꿔 놓고 묻는 경우가 많다.
@@ -934,6 +978,8 @@ SELECT REGEXP_INSTR('apple banana cherry', '[a-z]+', 1, 2, 1) FROM dual;
 ■ 수량사는 항상 **바로 앞의 한 문자(또는 그룹)** 에만 적용된다.
 ○ 패턴이 `'.'` 하나면 아무 문자 한 개만 있어도 매칭되므로 `REGEXP_LIKE(이름, '.')`은 사실상 NULL이 아닌 모든 행을 출력한다.
 
+<br>
+
 ### 9-5. 탐욕적 vs 비탐욕적
 
 | 구분 | 표기 | 동작 |
@@ -946,6 +992,7 @@ SELECT REGEXP_INSTR('apple banana cherry', '[a-z]+', 1, 2, 1) FROM dual;
 '<.*>'   →  <a><b>    (끝까지 먹는다)
 '<.*?>'  →  <a>       (최소한만 먹는다)
 ```
+<br>
 
 ### 9-6. 위치를 반환하는 함수 — INSTR
 
@@ -968,6 +1015,8 @@ SELECT * FROM 판매
 PIVOT ( SUM(금액) FOR 분기 IN ('1Q' AS Q1, '2Q' AS Q2) );
 ```
 
+<br>
+
 ### 10-2. UNPIVOT — 열을 행으로
 
 ```sql
@@ -979,6 +1028,8 @@ UNPIVOT ( 금액 FOR 분기 IN (Q1 AS '1분기', Q2 AS '2분기') );
 
 ○ 집계 함수에 별칭을 주면 결과 컬럼명은 **`값_별칭`** 형태로 붙는다. `SUM(매출액) AS 매출합계`에 분기 값이 `2022`라면 컬럼명은 `2022_매출합계`가 된다.
 ○ UNPIVOT은 가로로 퍼진 컬럼을 세로로 내리는 정규화 작업이라 **집계 함수가 필요 없다.**
+
+<br>
 
 ### 10-3. PIVOT 절이 없는 환경에서는 CASE로
 
@@ -1007,6 +1058,8 @@ GROUP BY 지역;
 | 테이블 구조 | 남음 | 남음 | **사라짐** |
 | 속도 | 느림 | 빠름 | 빠름 |
 
+<br>
+
 ### 11-2. 여러 건 넣기와 식별자
 
 ```sql
@@ -1016,6 +1069,8 @@ SELECT 사원번호, 이름 FROM 사원 WHERE 부서번호 = 10;
 ```
 
 ■ 식별자 역할을 하는 컬럼에는 값이 **반드시** 있어야 한다. 즉 기본키에는 NULL을 넣을 수 없다.
+
+<br>
 
 ### 11-3. MERGE — 있으면 UPDATE, 없으면 INSERT
 
@@ -1048,6 +1103,8 @@ WHEN NOT MATCHED THEN
 ■ 같은 세션(트랜잭션) 안에서는 `COMMIT`을 하지 않아도 **내가 방금 한 DML 결과가 내 SELECT에는 바로 보인다.** 다른 세션에서 안 보일 뿐이다.
 ■ DDL을 실행하면 앞선 DML이 **자동 커밋**된다.
 
+<br>
+
 ### 12-2. Oracle과 SQL Server의 기본값이 다르다
 
 | 구분 | Oracle | SQL Server |
@@ -1063,6 +1120,8 @@ WHEN NOT MATCHED THEN
 | DDL | 자동 COMMIT | 자동 COMMIT |
 
 ■ SQL Server에서 `BEGIN TRANSACTION`을 실행하면 그 구간은 AUTO COMMIT이 FALSE가 되고, 이 안에서는 **DDL까지 롤백**할 수 있다. Oracle에서는 DDL이 곧 커밋이므로 되돌릴 수 없다. 두 DBMS의 가장 큰 차이가 여기다.
+
+<br>
 
 ### 12-3. 고립성 수준
 
@@ -1106,6 +1165,8 @@ WHEN NOT MATCHED THEN
 CONSTRAINT 제약조건명 CHECK (조건)
 ```
 
+<br>
+
 ### 13-2. 외래키와 부모 삭제 옵션
 
 외래키는 참조 무결성을 담당한다. 중복도 NULL도 허용하며, 부모가 삭제될 때의 동작을 옵션으로 지정한다.
@@ -1117,6 +1178,8 @@ CONSTRAINT 제약조건명 CHECK (조건)
 | **옵션 생략** | 삭제 자체를 거부 (RESTRICT / NO ACTION) |
 
 ■ 아무 옵션도 주지 않으면 부모 행이 지워지지 않는다. 즉 기본값은 "그냥 막는다"다.
+
+<br>
 
 ### 13-3. ALTER — DBMS별 차이
 
@@ -1175,6 +1238,8 @@ REVOKE 권한 ON 객체 FROM 사용자;
 
 ■ 옵션을 생략하면 **부여받은 권한을 남에게 다시 줄 수 없다.**
 
+<br>
+
 ### 롤(ROLE)
 
 권한을 묶어놓은 꾸러미다. 사용자마다 권한을 일일이 주는 수고를 덜어준다.
@@ -1207,6 +1272,8 @@ REVOKE CONNECT FROM 유저;
 
 ○ 제약조건 다섯 가지의 중복·NULL 허용 여부는 13-1 표로 옮겼다. 무결성은 "무엇을 지키려는가", 제약조건은 "어떻게 지키는가"로 짝지어 보면 된다.
 
+<br>
+
 ### 16-2. 식별자
 
 | 분류 기준 | 종류 |
@@ -1219,6 +1286,8 @@ REVOKE CONNECT FROM 유저;
 ■ 본질식별자든 인조식별자든 식별자인 이상 **중복·NULL은 허용되지 않는다.**
 ■ 다만 인조식별자(시퀀스 등)는 시스템이 값을 자동 부여하므로, **내용이 똑같은 중복 레코드가 들어갈 수 있다.** 그래서 별도의 중복 방지 로직(UNIQUE 제약 등)이 필요하다.
 
+<br>
+
 ### 16-3. 엔터티 / 속성 분류
 
 | 대상 | 기준 | 종류 |
@@ -1227,6 +1296,8 @@ REVOKE CONNECT FROM 유저;
 | 엔터티 | 발생 시점 | 기본(키) / 중심 / 행위 |
 | **속성** | 특성 | **기본 / 설계 / 파생** |
 | 속성 | 구성 방식 | PK / FK / 일반 |
+
+<br>
 
 ### 16-4. 관계 대수
 
@@ -1245,6 +1316,8 @@ REVOKE CONNECT FROM 유저;
 | PRODUCT | × | CROSS JOIN |
 
 ■ σ는 **행**, π는 **열**이다. 헷갈리기 쉬우니 "SELECT 문의 SELECT 절이 π"로 묶어 외우면 된다.
+
+<br>
 
 ### 16-5. 표기법
 
