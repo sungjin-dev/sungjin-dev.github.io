@@ -596,6 +596,29 @@ div.highlighter-rouge {
   font-weight: normal !important;
 }
 
+/* -------------------------------------------------
+   6-2. Rouge 렉서 보정분 (oracle-sql-highlight.js)
+   Rouge의 sql 렉서가 Oracle 고유 함수/키워드를 놓치는 것을
+   JS가 후처리해 ora-* 클래스를 붙인다. 위 규칙보다 뒤에 와야 함.
+   ------------------------------------------------- */
+.page__content div.language-sql .highlight span.ora-kw,
+.page__content div.language-plsql .highlight span.ora-kw {
+  color: var(--sql-kw) !important;
+  font-weight: 700 !important;
+}
+
+.page__content div.language-sql .highlight span.ora-type,
+.page__content div.language-plsql .highlight span.ora-type {
+  color: var(--sql-type) !important;
+  font-weight: normal !important;
+}
+
+.page__content div.language-sql .highlight span.ora-fn,
+.page__content div.language-plsql .highlight span.ora-fn {
+  color: var(--sql-func) !important;
+  font-weight: normal !important;
+}
+
 /* =================================================
    7. 표 디자인 (+ 강조 셀 유틸 + 스크롤 래퍼)
    ================================================= */
