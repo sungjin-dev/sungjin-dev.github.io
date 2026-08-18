@@ -14,14 +14,6 @@ toc_sticky: true
 
 # SQLD 핵심 정리
 
-쿼리가 틀리는 지점은 대개 문법이 아니었다. **조건을 어디에 뒀는지**, 그리고 **결과 행 수가 어떻게 변하는지**를 확인하지 않아서 생긴 문제였다. 그래서 이 글은 시험 목차 순서가 아니라 행의 개수가 변하는 흐름을 따라 묶었다.
-
-- **행을 만드는 구간** — 조인 · 서브쿼리 · 집합 연산자 (2~4장)
-- **행을 접거나 남기는 구간** — 그룹 함수 · 윈도우 함수 · TOP-N · 계층 질의 (5~8장)
-- **값을 다루는 구간** — 문자열 · 정규 표현식 · PIVOT (9~10장)
-- **데이터를 바꾸고 지키는 구간** — DML · 트랜잭션 · DDL · VIEW · DCL (11~15장)
-
----
 
 ## 0. 먼저 잡고 갈 것 — SQL 논리적 실행 순서
 
@@ -80,6 +72,7 @@ toc_sticky: true
   <text x="2" y="142" class="t">ROWNUM은 WHERE 단계에서 부여 → 정렬 후 상위 N은 인라인 뷰가 필요</text>
   <text x="2" y="164" class="t">윈도우 함수는 SELECT 단계 → OVER 안의 ORDER BY는 출력 순서가 아니다</text>
   <text x="2" y="186" class="t">별칭은 SELECT에서 생성 → WHERE에서는 못 쓰고 ORDER BY에서는 쓸 수 있다</text>
+  <text x="2" y="186" class="t">서브쿼리(인라인 뷰)를 활용하여 별칭을 먼저 생성 → FROM절이 가장 먼저 실행되므로 WHERE에서 사용가능</text>
 </svg>
 
 ---
@@ -103,7 +96,7 @@ COUNT(sal) → 2     (NULL 제외)
 COUNT(*)   → 3     (행 개수 그대로)
 ```
 
-■ `AVG`는 NULL을 0으로 치지 않는다. 0으로 보고 싶으면 `AVG(NVL(sal,0))`.
+■ `AVG`는 NULL을 0으로 치지 않는다. 0으로 보고 싶으면 `AVG(NVL(sal,0))`.<br>
 ■ `COUNT(NULL)`은 NULL만 세라는 뜻인데 NULL은 집계 대상이 아니므로 **항상 0**이다.
 
 ### 1-2. NULL 관련 함수
@@ -124,7 +117,7 @@ COUNT(*)   → 3     (행 개수 그대로)
 DECODE(기준값, 조건1, 결과1, 조건2, 결과2, ... , 기본값)
 ```
 
-```text
+```sql
 -- 부서번호를 한글 이름으로
 SELECT ename, DECODE(deptno, 10, '인사', 20, '개발', '기타') AS dname
 FROM   emp;
@@ -147,7 +140,7 @@ FROM   emp;
 
 ■ **NULL 처리가 다르다.** 시험 단골이다.
 
-```text
+```sql
 DECODE(comm, NULL, '없음', '있음')                    → NULL이면 '없음'  (같다고 판단)
 CASE WHEN comm = NULL THEN '없음' ELSE '있음' END      → 항상 '있음'      (UNKNOWN)
 CASE WHEN comm IS NULL THEN '없음' ELSE '있음' END     → '없음'          (올바른 작성법)
@@ -159,7 +152,7 @@ CASE WHEN comm IS NULL THEN '없음' ELSE '있음' END     → '없음'         
 
 ## 2. 조인
 
-여러 테이블을 다루는 이야기는 조인부터 시작하는 것이 맞다. 조인은 행을 **늘리는** 구문이고, 뒤에 나오는 그룹 함수와 윈도우 함수는 그 늘어난 행을 접거나 계산하는 구문이기 때문이다.
+여러 테이블을 다루는 이야기는 조인부터 시작하는 것이 맞다. 조인은 **행을 늘리는** 구문이고, 뒤에 나오는 그룹 함수와 윈도우 함수는 그 늘어난 행을 접거나 계산하는 구문이기 때문이다.
 
 ### 2-1. 종류 요약
 
@@ -173,9 +166,9 @@ CASE WHEN comm IS NULL THEN '없음' ELSE '있음' END     → '없음'         
 
 ### 2-2. 조인 조건이 결과 행 수를 결정한다
 
-SQL은 FROM 절에 테이블이 둘 이상 들어오면 일단 **만들 수 있는 모든 조합**을 구성한다. 참석자 명단 두 장을 겹쳐 놓고 왼쪽 사람마다 오른쪽 사람 전원을 한 번씩 짝지어 주는 것과 같다. 이걸 조금 유식한 말로 **카티션 곱(Cartesian Product)** 이라고 한다.
+SQL은 FROM 절에 테이블이 둘 이상 들어오면 일단 **만들 수 있는 모든 조합**을 구성한다. 참석자 명단 두 장을 겹쳐 놓고 왼쪽 사람마다 오른쪽 사람 전원을 한 번씩 짝지어 주는 것과 같다. 이걸 **카티션 곱(Cartesian Product)** 이라고 한다.
 
-```text
+```sql
 -- WHERE 조건이 없다 → 조합 가능한 모든 경우의 수
 SELECT *
 FROM   회원, 회원연락처;
@@ -232,7 +225,7 @@ FROM   회원, 회원연락처;
 
 의도적으로 모든 조합이 필요할 때는 ANSI 표준 문법인 `CROSS JOIN`을 쓴다. 의도가 문법에 드러나므로 실수와 구분된다.
 
-```text
+```sql
 SELECT *
 FROM   테이블A CROSS JOIN 테이블B;   -- ON 절을 붙이면 오류
 ```
@@ -241,7 +234,7 @@ FROM   테이블A CROSS JOIN 테이블B;   -- ON 절을 붙이면 오류
 
 `(+)`는 **데이터가 부족해서 NULL을 채워 넣어야 하는 쪽**에 붙인다. 즉 기호가 붙은 쪽이 기준이 아니라, **붙지 않은 쪽이 기준 테이블**이다.
 
-```text
+```sql
 -- 표준 문법
 FROM  부서 d LEFT JOIN 사원 e
       ON d.부서번호 = e.부서번호 AND e.직무 = '영업'
@@ -313,7 +306,7 @@ WHERE d.부서번호 = e.부서번호(+)
 
 공통 컬럼명이 같다면 조인 조건을 다 쓰지 않아도 된다. 다만 편해지는 만큼 제약이 붙는다.
 
-```text
+```sql
 -- USING : 공통 컬럼명만 나열하면 자동 동등조인
 SELECT 회원ID, B.연락처                        -- USING 컬럼에는 접두사·별칭 금지
 FROM   회원 A INNER JOIN 회원연락처 B USING (회원ID);
@@ -339,7 +332,7 @@ FROM   회원 NATURAL JOIN 회원연락처;
 
 하나의 테이블이 서로 다른 역할을 동시에 맡을 때 쓴다. 사원과 관리자가 같은 테이블에 있는 경우가 대표적이다. 이때 **별칭은 선택이 아니라 필수**다. 별칭이 없으면 어느 쪽 행을 가리키는지 구분할 방법이 없다.
 
-```text
+```sql
 SELECT A.사원명 AS 사원, B.사원명 AS 관리자
 FROM   사원 A, 사원 B
 WHERE  A.관리자ID = B.사원ID;
@@ -446,7 +439,7 @@ WHERE  A.관리자ID = B.사원ID;
 | 정렬 발생 | O | **X** | O | O |
 | 성능 | 느림 | **빠름** | 느림 | 느림 |
 
-○ 중복을 제거하려면 값을 비교해야 하므로 정렬이 따라온다. 즉 **UNION ALL만 정렬이 없어서 빠르다.**
+○ 중복을 제거하려면 값을 비교해야 하므로 정렬이 따라온다. 즉 **UNION ALL만 정렬이 없어서 빠르다.** <br>
 ○ MINUS는 Oracle, EXCEPT는 SQL Server 용어다.
 
 ### 공통 규칙
@@ -474,21 +467,21 @@ WHERE  A.관리자ID = B.사원ID;
 | `CUBE(A, B)` | **2ᴺ = 4** | (A,B), (A), (B), () |
 | `GROUPING SETS` | 지정한 만큼 | 내가 적은 조합만 |
 
-```text
+```sql
 ROLLUP(지역, 상품)   :  (지역,상품) → (지역) → ()          오른쪽부터 하나씩 떼어낸다
 CUBE(지역, 상품)     :  (지역,상품)   (지역)   (상품)   ()   가능한 모든 조합
 ```
 
 동일한 표현으로 바꾸면 이렇게 된다.
 
-```text
+```sql
 GROUP BY ROLLUP(A, B)  =  GROUP BY GROUPING SETS((A,B), (A), ())
 GROUP BY CUBE(A, B)    =  GROUP BY GROUPING SETS((A,B), (A), (B), ())
 ```
 
 `ROLLUP`은 결국 GROUP BY 컬럼을 오른쪽부터 하나씩 지워 가며 집계한 결과를 `UNION ALL`로 붙인 것과 같다. 실제로 풀어 쓰면 이렇게 된다.
 
-```text
+```sql
 SELECT 지역, 상품, SUM(금액) FROM 판매 GROUP BY ROLLUP(지역, 상품);
 
 -- 위 한 줄은 아래 세 쿼리를 UNION ALL 한 것과 동일하다
@@ -516,7 +509,7 @@ SELECT NULL, NULL,  SUM(금액) FROM 판매;                      -- 전체 합�
 | **1** | 그 컬럼이 그룹화에 사용되지 않은 행 = **소계/총계 행** |
 | **0** | 그 컬럼이 실제로 그룹화에 사용된 일반 행 |
 
-```text
+```sql
 SELECT DECODE(GROUPING(deptno), 1, '전체합계', deptno) AS 부서,
        SUM(sal)
 FROM   emp
@@ -617,7 +610,7 @@ WINDOW_FUNCTION([인자]) OVER ( [PARTITION BY 컬럼] [ORDER BY 절] [WINDOWING
 
 ### 6-3. 그룹별 1등 뽑기 (실전 패턴)
 
-```text
+```sql
 SELECT *
 FROM ( SELECT 지점, 매출,
               ROW_NUMBER() OVER (PARTITION BY 지점 ORDER BY 매출 DESC) AS rn
@@ -637,12 +630,12 @@ WHERE rn = 1;
 | 행 순서 | `LAG(컬럼, n)`, `LEAD(컬럼, n)` | n행 앞/뒤 값 (증감 계산에 사용) |
 | 집계 | `SUM`, `AVG`, `MAX`, `MIN`, `COUNT` + OVER | 누적합 등 |
 
-○ `LAG`와 `LEAD`는 세 번째 인자로 **없을 때 쓸 값**을 지정할 수 있다. `LAG(컬럼, 오프셋, 디폴트)` 형태이고, 생략하면 NULL이 들어온다. 첫 행의 증감을 0으로 보이게 하려면 이 인자를 쓰는 것이 좋다.
+○ `LAG`와 `LEAD`는 세 번째 인자로 **없을 때 쓸 값**을 지정할 수 있다. `LAG(컬럼, 오프셋, 디폴트)` 형태이고, 생략하면 NULL이 들어온다. 첫 행의 증감을 0으로 보이게 하려면 이 인자를 쓰는 것이 좋다.<br>
 ○ `CUME_DIST`는 **현재 값보다 작거나 같은 행의 수 ÷ 전체 행 수**다. 정렬 기준의 마지막 행은 항상 1이 된다.
 
 ### 6-5. WINDOWING 절
 
-```text
+```sql
 ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW   -- 처음부터 현재 행까지 (누적)
 ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING           -- 앞 1행 ~ 뒤 1행
 RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING  -- 전체
@@ -669,7 +662,7 @@ RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING  -- 전체
 
 ■ **ROWNUM은 WHERE 단계에서 붙고, ORDER BY는 그 뒤에 실행된다.**
 
-```text
+```sql
 SELECT * FROM emp WHERE ROWNUM = 1;    -- 정상 (1건)
 SELECT * FROM emp WHERE ROWNUM = 2;    -- 결과 없음 (!)
 SELECT * FROM emp WHERE ROWNUM <= 3;   -- 정상 (3건)
@@ -677,7 +670,7 @@ SELECT * FROM emp WHERE ROWNUM <= 3;   -- 정상 (3건)
 
 ○ `ROWNUM = 2`가 안 되는 이유: 첫 행이 조건에 안 맞아 버려지면, 다음 행이 **다시 1번**을 받는다. 그래서 영원히 2가 되지 못한다. `>` 나 `= 2` 같은 조건은 쓸 수 없다고 외워두면 된다.
 
-```text
+```sql
 -- 급여 상위 3명 (정렬 먼저, ROWNUM은 나중에)
 SELECT *
 FROM ( SELECT * FROM emp ORDER BY sal DESC )
@@ -686,7 +679,7 @@ WHERE ROWNUM <= 3;
 
 ### 7-2. Oracle 12c 이상 — FETCH
 
-```text
+```sql
 SELECT 컬럼
 FROM   테이블
 ORDER BY 정렬기준
@@ -694,7 +687,7 @@ ORDER BY 정렬기준
 [ FETCH { FIRST | NEXT } m { ROW | ROWS } | p PERCENT ROWS { ONLY | WITH TIES } ];
 ```
 
-```text
+```sql
 SELECT ename, sal FROM emp
 ORDER BY sal DESC
 OFFSET 0 ROWS FETCH FIRST 3 ROWS ONLY;   -- 인라인 뷰 없이 상위 3명
@@ -736,7 +729,7 @@ ORDER BY sal DESC;
 
 ### 8-2. 기본 구문
 
-```text
+```sql
 SELECT LEVEL, 사원번호, 이름
 FROM   사원
 START WITH 상위사원번호 IS NULL          -- 어디서 시작할지 (루트 조건)
@@ -768,7 +761,7 @@ ORDER SIBLINGS BY 이름;                  -- 같은 부모를 둔 형제끼리�
 | `CONNECT_BY_ROOT 컬럼` | 그 행이 **어느 루트에서 뻗어 나왔는지** 루트의 값 |
 | `NOCYCLE` | 순환이 생겨도 에러 없이 멈춤 — 안전하게 쓰려면 붙이는 것이 좋다 |
 
-```text
+```sql
 SYS_CONNECT_BY_PATH(이름, '/')  →  /대표이사/영업팀장/사원A
 ```
 
@@ -777,7 +770,7 @@ SYS_CONNECT_BY_PATH(이름, '/')  →  /대표이사/영업팀장/사원A
 - `START WITH` : **어떤 행이 루트가 될 자격이 있는지** 판단하는 조건. 결과 루트는 1개일 수도 여러 개일 수도 있다.
 - `CONNECT_BY_ROOT` : 결과로 나온 **각 행마다** 그 행이 속한 루트의 값을 붙여주는 연산자.
 
-```text
+```sql
 SELECT 사원번호, 이름, LEVEL,
        CONNECT_BY_ROOT 이름 AS 최상위자
 FROM   사원
@@ -813,7 +806,7 @@ CONNECT BY PRIOR 사원번호 = 상위사원번호;
 | 문자열 표기 | 작은따옴표 `'문자'` | 동일 |
 | 시작 위치 | 1부터 | 1부터 |
 
-```text
+```sql
 Oracle      : '홍' || NULL || '길동'  →  '홍길동'
 SQL Server  : '홍' +  NULL +  '길동'  →  NULL
 ```
@@ -867,7 +860,7 @@ SELECT REGEXP_INSTR('apple banana cherry', '[a-z]+', 1, 2, 1) FROM dual;
 | `[a-zA-Z]` | `[[:alpha:]]` |
 | `[0-9a-zA-Z]` | `[[:alnum:]]` |
 
-```text
+```sql
 ^[a-z0-9]  =  ^[[:lower:][:digit:]]      같은 의미다
 ```
 
@@ -888,7 +881,7 @@ SELECT REGEXP_INSTR('apple banana cherry', '[a-z]+', 1, 2, 1) FROM dual;
 | 탐욕적(greedy) | `*`, `+`, `{n,}` | **가능한 한 길게** 매칭 |
 | 비탐욕적(lazy) | `*?`, `+?`, `{n,}?` | **가능한 한 짧게** 매칭 |
 
-```text
+```sql
 문자열 : <a><b>
 '<.*>'   →  <a><b>    (끝까지 먹는다)
 '<.*?>'  →  <a>       (최소한만 먹는다)
@@ -898,7 +891,7 @@ SELECT REGEXP_INSTR('apple banana cherry', '[a-z]+', 1, 2, 1) FROM dual;
 
 `INSTR`은 정규식 없이 문자열 위치를 찾는 단일행 함수다. 반환 방식을 고르는 `리턴옵션`은 `INSTR`에는 없고 정규식 버전인 `REGEXP_INSTR`에만 있다는 점만 구분해 두면 된다.
 
-```text
+```sql
 INSTR(원본, 찾는문자 [, 시작위치 [, 발생횟수]])
 REGEXP_INSTR(원본, 패턴, 시작위치, 발생순서, 리턴옵션, 옵션)
                                         ↑ 0 = 시작 위치 / 1 = 끝난 다음 위치
@@ -910,14 +903,14 @@ REGEXP_INSTR(원본, 패턴, 시작위치, 발생순서, 리턴옵션, 옵션)
 
 ### 10-1. PIVOT — 행을 열로
 
-```text
+```sql
 SELECT * FROM 판매
 PIVOT ( SUM(금액) FOR 분기 IN ('1Q' AS Q1, '2Q' AS Q2) );
 ```
 
 ### 10-2. UNPIVOT — 열을 행으로
 
-```text
+```sql
 SELECT * FROM 판매요약
 UNPIVOT ( 금액 FOR 분기 IN (Q1 AS '1분기', Q2 AS '2분기') );
 ```
@@ -931,7 +924,7 @@ UNPIVOT ( 금액 FOR 분기 IN (Q1 AS '1분기', Q2 AS '2분기') );
 
 SQL Server 구버전이나 PIVOT을 못 쓰는 상황에서는 `CASE WHEN`과 집계 함수로 같은 결과를 만든다. 조건에 맞는 값만 남기고 나머지는 NULL로 만들어 집계에서 빠지게 하는 방식이다.
 
-```text
+```sql
 SELECT 지역,
        SUM(CASE WHEN 분기 = '1Q' THEN 금액 END) AS Q1,
        SUM(CASE WHEN 분기 = '2Q' THEN 금액 END) AS Q2
@@ -956,7 +949,7 @@ GROUP BY 지역;
 
 ### 11-2. 여러 건 넣기와 식별자
 
-```text
+```sql
 -- 조회 결과를 그대로 밀어 넣는다. 컬럼 개수·자료형이 맞아야 한다
 INSERT INTO 사원백업 (사원번호, 이름)
 SELECT 사원번호, 이름 FROM 사원 WHERE 부서번호 = 10;
@@ -966,7 +959,7 @@ SELECT 사원번호, 이름 FROM 사원 WHERE 부서번호 = 10;
 
 ### 11-3. MERGE — 있으면 UPDATE, 없으면 INSERT
 
-```text
+```sql
 MERGE INTO 타겟테이블 T             -- 병합을 받는 쪽
 USING 소스테이블 S                  -- 병합할 데이터
    ON (T.ID = S.ID)                 -- 짝을 맞추는 조건
@@ -1049,7 +1042,7 @@ WHEN NOT MATCHED THEN
 | `CHECK` | 가능 | 가능 | 조건식으로 도메인 제한 |
 | `FOREIGN KEY` | 가능 | 가능 | 참조 무결성 |
 
-```text
+```sql
 CONSTRAINT 제약조건명 CHECK (조건)
 ```
 
@@ -1088,7 +1081,7 @@ ALTER TABLE 사원 ADD CONSTRAINT DF_사원_이름 DEFAULT '미정' FOR 이름;
 
 VIEW는 데이터를 복사해 두지 않는다. 조회 SQL 문장만 데이터 딕셔너리에 저장해 두고, 호출될 때 그 쿼리를 대신 실행한다. 자주 쓰는 검색 조건을 즐겨찾기로 저장해 둔 것과 같다. 링크만 있고 내용은 원본에 있는 셈이다. 이걸 조금 유식한 말로 **가상 테이블**이라고 한다.
 
-```text
+```sql
 CREATE VIEW V_영업사원 AS
 SELECT 사원번호, 이름 FROM 사원 WHERE 부서번호 = 10;
 ```
@@ -1106,7 +1099,7 @@ SELECT 사원번호, 이름 FROM 사원 WHERE 부서번호 = 10;
 
 ## 15. DCL — 권한
 
-```text
+```sql
 GRANT 권한 ON 객체 TO 사용자 [WITH GRANT OPTION];
 REVOKE 권한 ON 객체 FROM 사용자;
 ```
@@ -1132,7 +1125,7 @@ REVOKE 권한 ON 객체 FROM 사용자;
 | `RESOURCE` | 테이블 등 자원 **생성** 권한 |
 | `DBA` | 전체 관리 권한 |
 
-```text
+```sql
 GRANT CONNECT, RESOURCE TO 유저;
 REVOKE CONNECT FROM 유저;
 ```
