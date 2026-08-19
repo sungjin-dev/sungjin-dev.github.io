@@ -1,7 +1,6 @@
 ---
 title: "[SQL] IntelliJ로 Oracle, Python까지 연동하기 2편"
-permalink: /sql/
-categories: [SQL]
+categories: [sql]
 tags:
   - IntelliJ
   - Ultimate
