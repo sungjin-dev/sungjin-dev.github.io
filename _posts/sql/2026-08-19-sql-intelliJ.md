@@ -9,6 +9,7 @@ tags:
 toc: true
 toc_sticky: true
 mermaid: true
+order: 16
 ---
 
 1편에서는 SQL Developer의 흐린 글씨와 한글 깨짐을 잡다가 결국 IntelliJ로 갈아탔다. 
