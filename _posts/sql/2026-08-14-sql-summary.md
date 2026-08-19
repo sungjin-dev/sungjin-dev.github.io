@@ -2,7 +2,7 @@
 title: "[SQLD] SQL 핵심 정리 — 실행 순서부터 제약조건까지"
 excerpt: "행이 늘어나는 구간, 접히는 구간, 바뀌는 구간으로 나눠 다시 정리"
 categories: [sql]
-order: 12
+order: 15
 tags:
   - 조인
   - 윈도우함수
