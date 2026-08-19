@@ -1,7 +1,6 @@
 ---
 title: "[SQL]  SQL Developer 환경 삽질기 1편"
-permalink: /sql/
-categories: [SQL]
+categories: [sql]
 tags:
   - 오라클
   - D2Coding
