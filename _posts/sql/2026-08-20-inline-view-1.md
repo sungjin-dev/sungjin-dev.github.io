@@ -10,7 +10,7 @@ mermaid: true
 order: 19
 ---
 
-# FROM절 서브쿼리는 왜 메인쿼리 칼럼을 못 볼까 — static과 instance로 읽는 SQL 스코프
+# static과 instance로 읽는 SQL 스코프
 
 SQL을 쓰다 보면 납득이 잘 안 가는 에러를 만난다. 같은 조건인데 어떤 자리에 쓰면 되고 어떤 자리에 쓰면 안 된다. 이걸 "SQL 문법이 원래 그래"로 넘기면 다음에 또 막힌다. 그런데 이 규칙은 사실 자바의 static 제약과 거의 같은 이야기다.
 
