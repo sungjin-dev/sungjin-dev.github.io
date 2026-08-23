@@ -24,8 +24,10 @@ sidebar_category:
       - title: SQL
         url: /sql/
         children:
-          - title: 오답노트
+          - title: 오답노트 1권
             url: /sql/wrong-note-part1/
+          - title: 오답노트 2권
+            url: /sql/wrong-note-part2/
       - title: 정보처리기사
         url: /정처기/
         children:
