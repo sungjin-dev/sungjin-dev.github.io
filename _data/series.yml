@@ -20,9 +20,15 @@ list:
     url: "/sql/"               
     accent: "var(--tn-purple)"
 
-  - title: "정처기 필기 대비 1"
+  - title: "정처기 필기 대비"
     meta: "시리즈"
-    desc: "소프트웨어 설계와 개발 핵심 정리."
+    desc: "4과목 정복하기"
+    url: "/정처기/"                 
+    accent: "var(--tn-blue)"
+    
+  - title: "정처기 실기 대비"
+    meta: "시리즈"
+    desc: "C,JAVA,PYTHON 기출"
     url: "/정처기/"                 
     accent: "var(--tn-blue)"
 
@@ -56,6 +62,7 @@ chips:
   - { label: "JavaScript", url: "/javascript/" }  
   - { label: "CSS", url: "/css/" }
   - { label: "정처기", url: "/정처기/" }
+  - { label: "정처기-실기", url: "/정처기-실기/" }
   - { label: "SQL", url: "/sql/" }         
   - { label: "Git", url: "/git/" }
   - { label: "Yolo", url: "/yolo/" }
