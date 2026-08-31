@@ -29,7 +29,7 @@ list:
   - title: "정처기 실기 대비"
     meta: "시리즈"
     desc: "C,JAVA,PYTHON 기출"
-    url: "/정처기/"                 
+    url: "/정처기-실기/"                 
     accent: "var(--tn-blue)"
 
   - title: "YOLO 분석 전체보기"
