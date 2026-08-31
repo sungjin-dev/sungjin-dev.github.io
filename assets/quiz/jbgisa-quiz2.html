@@ -1,0 +1,3012 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>정보처리기사 실기 · 프로그래밍 언어 활용 코드 문제</title>
+<style>
+  :root{
+    --paper:#ffffff;
+    --ink:#16202b;
+    --muted:#616b78;
+    --rule:#dde2e8;
+    --code-bg:#f5f7f9;
+    --ok:#1c6b48;
+    --ok-bg:#eaf4ef;
+    --bad:#a63a2a;
+    --bad-bg:#fbeeeb;
+    --mark:#24506e;
+    --sans:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+    --mono:'JetBrains Mono','D2Coding','SFMono-Regular',Consolas,'Nanum Gothic Coding',monospace;
+    --hl-bg:#e4eef7;
+    --hl-ink:#14486d;
+    --hl-line:#c2d8e9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#12161b; --ink:#e6eaef; --muted:#9aa5b1; --rule:#2b323a;
+      --code-bg:#181d23; --ok:#63c295; --ok-bg:#16261f; --bad:#e08977; --bad-bg:#2a1b18;
+      --mark:#8fb8d6;
+      --hl-bg:#1d3040; --hl-ink:#bcdcf5; --hl-line:#2f4b60;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.75;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:28px 18px 80px}
+
+  /* ── 답안지 머리글 ── */
+  header{
+    border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:8px;
+  }
+  header h1{font-size:22px; font-weight:700; margin:0 0 4px; letter-spacing:-.01em}
+  header p{margin:0; color:var(--muted); font-size:15px}
+
+  .scorebar{
+    position:sticky; top:0; z-index:5; background:var(--paper);
+    display:flex; align-items:center; gap:12px;
+    padding:10px 0 12px; border-bottom:1px solid var(--rule); margin-bottom:26px;
+    font-size:14.5px; color:var(--muted);
+  }
+  .track{flex:1; height:4px; background:var(--rule); border-radius:2px; overflow:hidden}
+  .track i{display:block; height:100%; width:0; background:var(--mark); transition:width .25s ease}
+  .scorebar b{color:var(--ink); font-variant-numeric:tabular-nums}
+
+  /* ── 단원 필터 ── */
+  .filters{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 8px}
+  #filters-source{margin-top:-8px}
+  #filters-unit{margin-bottom:4px}
+  .chip{
+    font-family:inherit; font-size:13.5px; cursor:pointer;
+    background:transparent; color:var(--muted);
+    border:1px solid var(--rule); border-radius:14px; padding:3px 11px;
+  }
+  .chip[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+
+  /* ── 문항 ── */
+  .q{padding:22px 0 26px; border-bottom:1px solid var(--rule)}
+  .qhead{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px}
+  .qno{font-family:var(--mono); font-size:14.5px; color:var(--mark); font-weight:700}
+  .qtag{font-size:13.5px; color:var(--muted)}
+  .qtag span{color:var(--ink)}
+  .badge{
+    font-size:12px; padding:1px 8px; border-radius:10px;
+    border:1px solid var(--rule); color:var(--muted);
+  }
+  .badge.past{border-color:var(--mark); color:var(--mark)}
+  .qtext{margin:0 0 14px; font-size:16px}
+
+  pre.code{
+    margin:0 0 14px; background:var(--code-bg); border:1px solid var(--rule);
+    border-radius:6px; padding:18px 20px 18px 0; overflow-x:auto;
+    font-family:var(--mono); font-size:14px; line-height:1.85; tab-size:4;
+  }
+  pre.code .ln{
+    display:inline-block; width:46px; padding-right:16px; margin-right:16px;
+    text-align:right; color:var(--muted); opacity:.65; border-right:1px solid var(--rule);
+    user-select:none;
+  }
+  .stdin{
+    margin:0 0 14px; font-size:14px; color:var(--muted);
+    display:flex; gap:8px; align-items:flex-start;
+  }
+  .stdin code{font-family:var(--mono); font-size:13.5px; color:var(--ink); background:var(--code-bg);
+    border:1px solid var(--rule); border-radius:3px; padding:1px 6px}
+
+  /* ── 답안란 ── */
+  .answer{position:relative}
+  .answer label{display:block; font-size:14px; color:var(--muted); margin-bottom:6px}
+  textarea{
+    width:100%; min-height:72px; resize:vertical;
+    font-family:var(--mono); font-size:15px; line-height:1.8; color:var(--ink);
+    background:transparent; border:0; border-bottom:1px solid var(--ink);
+    padding:6px 2px; outline:none; border-radius:0;
+  }
+  textarea:focus{border-bottom-width:2px; padding-bottom:5px}
+  textarea:disabled{color:var(--muted)}
+  .hintline{font-size:13.5px; color:var(--muted); margin-top:6px}
+
+  .btns{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
+  button{
+    font-family:inherit; font-size:14.5px; cursor:pointer;
+    border:1px solid var(--ink); background:var(--ink); color:var(--paper);
+    padding:7px 17px; border-radius:4px;
+  }
+  button.ghost{background:transparent; color:var(--ink); border-color:var(--rule)}
+  button:focus-visible{outline:2px solid var(--mark); outline-offset:2px}
+  button:disabled{opacity:.45; cursor:default}
+
+  /* ── 개념 ── */
+  .concept{
+    margin-top:12px; background:var(--code-bg); border:1px solid var(--rule);
+    border-radius:6px; padding:18px 20px; font-size:15px; line-height:1.8;
+  }
+  .concept h4{margin:0 0 10px; font-size:15px; font-weight:700; color:var(--mark)}
+  .concept p{margin:0 0 8px}
+  .concept p:last-child{margin-bottom:0}
+  .concept ul{margin:0 0 10px; padding-left:20px}
+  .concept li{margin:6px 0}
+  .concept code, .explain code{
+    font-family:var(--mono); font-size:13.5px; font-weight:500;
+    background:var(--hl-bg); color:var(--hl-ink);
+    border:1px solid var(--hl-line); border-radius:4px;
+    padding:2px 6px; white-space:nowrap;
+  }
+
+  /* ── 메모 ── */
+  .memo{margin-top:12px; border-left:2px solid var(--mark); padding:8px 0 4px 12px; border-radius:0}
+  .memo label{display:block; font-size:13.5px; color:var(--muted); margin-bottom:4px}
+  .memo textarea{min-height:60px; font-family:var(--sans); font-size:15px; border-bottom:1px dashed var(--rule)}
+  button.has{border-color:var(--mark); color:var(--mark)}
+
+  /* ── 채점 결과 ── */
+  .verdict{margin-top:14px; border-radius:6px; padding:14px 16px; font-size:15px; display:none}
+  .verdict.show{display:block}
+  .verdict.ok{background:var(--ok-bg); border-left:3px solid var(--ok)}
+  .verdict.bad{background:var(--bad-bg); border-left:3px solid var(--bad)}
+  .verdict .mark{font-weight:700; margin-right:6px}
+  .verdict.ok .mark{color:var(--ok)}
+  .verdict.bad .mark{color:var(--bad)}
+  .correct{
+    margin:10px 0 0; font-family:var(--mono); font-size:14px; line-height:1.8; white-space:pre-wrap;
+    background:var(--paper); border:1px solid var(--rule); border-radius:4px; padding:12px 14px;
+  }
+  .explain{margin:14px 0 0; font-size:15px; line-height:1.8}
+  .explain ol{margin:6px 0 0; padding-left:20px}
+  .explain li{margin:5px 0}
+
+
+  footer{margin-top:28px; display:flex; flex-direction:column; gap:12px; align-items:flex-start}
+  footer .total{font-size:15px; color:var(--muted)}
+  footer .total b{color:var(--ink); font-size:19px; font-variant-numeric:tabular-nums}
+  footer .btns{margin-top:0}
+  #wrongonly[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .exportbox{width:100%; border-top:1px solid var(--rule); padding-top:14px}
+  .exportbox p{margin:0 0 8px; font-size:14px; color:var(--muted)}
+  .exportbox code{font-family:var(--mono); font-size:13.5px; color:var(--ink)}
+  .exportbox pre{
+    margin:0 0 10px; background:var(--code-bg); border:1px solid var(--rule); border-radius:4px;
+    padding:10px 12px; overflow-x:auto; white-space:pre-wrap; word-break:break-all;
+    font-family:var(--mono); font-size:13.5px; line-height:1.75;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>프로그래밍 언어 활용 · 코드 해석 연습</h1>
+    <p>코드를 읽고 출력 결과를 직접 적어 본다. 줄바꿈과 공백은 자동으로 정규화되니 형태보다 값에 집중하면 된다.</p>
+  </header>
+
+  <div class="scorebar">
+    <span>진행 <b id="done">0</b>/<b id="total">0</b></span>
+    <div class="track"><i id="bar"></i></div>
+    <span>정답 <b id="hit">0</b></span>
+  </div>
+
+  <div class="filters" id="filters-source"></div>
+  <div class="filters" id="filters-lang"></div>
+  <div class="filters" id="filters-unit"></div>
+
+  <main id="list"></main>
+
+  <footer>
+    <div class="total" id="scoreline">아직 채점한 문항이 없다</div>
+    <div class="btns">
+      <button class="ghost" id="wrongonly" aria-pressed="false">오답만 보기</button>
+      <button class="ghost" id="retrywrong">오답 다시 풀기</button>
+      <button class="ghost" id="export">메모 내보내기</button>
+      <button class="ghost" id="reset">전체 다시 풀기</button>
+    </div>
+    <div class="exportbox" id="exportbox" hidden>
+      <p>아래 블록을 복사해 파일 안의 <code>const NOTES = { ... }</code> 자리에 통째로 바꿔 넣는다.</p>
+      <pre id="exportcode"></pre>
+      <button class="ghost" id="copy">복사</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────
+   1) 문제 데이터 — UI와 완전히 분리된 순수 데이터
+      문항을 추가할 때는 이 배열에만 손대면 된다.
+   ───────────────────────────────────────────── */
+const PROBLEMS = [
+  {
+    id: "310-c-1",
+    source: "기출",
+    unit: "310 데이터 입출력",
+    lang: "C",
+    prompt: "다음 C 코드에 <code>3 4</code>를 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "3 4",
+    code:
+`#include <stdio.h>
+main()
+{
+	int i, j, k;
+	scanf("%d %d", &i, &j);
+	k = i + j;
+	printf("%d\\n", k);
+}`,
+    answers: ["7"],
+    hint: "scanf의 서식 문자열에 있는 공백은 입력의 공백·개행을 건너뛰라는 뜻이다.",
+    explain:
+`<code>scanf("%d %d", &i, &j)</code>가 3과 4를 각각 i, j에 담고 k에 합을 저장한다.
+<code>printf("%d\\n", k)</code>는 7을 찍고 줄을 바꾼다. 마지막 개행은 눈에 보이지 않으므로 답안에는 7만 적으면 된다.`
+  },
+  {
+    id: "310-c-2",
+    source: "기출",
+    unit: "310 데이터 입출력",
+    lang: "C",
+    prompt: "다음 C 코드에 <code>10#10</code>을 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "10#10",
+    code:
+`#include <stdio.h>
+main() {
+	int i, j;
+	scanf("%o#%x", &i, &j);
+	printf("%d %d", i, j);
+}`,
+    answers: ["8 16"],
+    hint: "%o와 %x가 입력을 몇 진수로 해석하는지 떠올려 본다.",
+    explain:
+`서식 문자열의 <code>#</code>는 변환 지정자가 아니라 그냥 글자다. 입력에 있는 <code>#</code>와 그대로 짝을 맞추는 구분자 역할만 한다.
+<ol>
+<li><code>%o</code>는 앞의 <code>10</code>을 8진수로 읽는다 → 8</li>
+<li><code>%x</code>는 뒤의 <code>10</code>을 16진수로 읽는다 → 16</li>
+<li><code>%d</code>로 출력하므로 둘 다 10진수로 바뀌어 <code>8 16</code>이 찍힌다</li>
+</ol>
+즉, 읽을 때의 진법과 쓸 때의 진법이 다르면 값이 그대로 유지되지 않는다.`
+  },
+  {
+    id: "311-java-1",
+    source: "기출",
+    unit: "311 데이터 입출력",
+    lang: "Java",
+    prompt: "다음 Java 코드에 <code>3</code>과 <code>5</code>를 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "3 5",
+    code:
+`import java.util.Scanner;
+
+public class Test {
+	public static void main(String args[]) {
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		System.out.printf("%d", a + b);
+		scan.close();
+	}
+}`,
+    answers: ["8"],
+    hint: "nextInt()는 공백과 개행을 구분자로 보고 정수 하나씩만 끊어 읽는다.",
+    explain:
+`<code>nextInt()</code>가 두 번 호출되면서 3과 5를 차례로 읽는다. <code>printf("%d", a + b)</code>는 개행 없이 8만 출력한다.
+<code>scan.close()</code>는 자원을 닫는 코드라 출력에는 영향이 없다.`
+  },
+  {
+    id: "311-java-2",
+    source: "기출",
+    unit: "311 데이터 입출력",
+    lang: "Java",
+    prompt: "다음 Java 코드에 <code>10</code>을 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "10",
+    code:
+`import java.util.Scanner;
+public class Test
+{
+	public static void main(String[] args)
+	{
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		System.out.printf("a * 3 = %d\\n", a * 3);
+		System.out.println("a / 2 = " + (a / 2));
+		System.out.print("a - 1 = " + (a - 1));
+		scan.close();
+	}
+}`,
+    answers: ["a * 3 = 30\na / 2 = 5\na - 1 = 9"],
+    hint: "정수끼리의 나눗셈에서 소수점 아래가 어떻게 되는지 확인한다.",
+    explain:
+`<ol>
+<li><code>a * 3</code> → 30</li>
+<li><code>a / 2</code>는 int끼리의 연산이라 결과도 int다. 5.0이 아니라 <b>5</b>다</li>
+<li><code>a - 1</code> → 9</li>
+</ol>
+<code>printf</code>의 <code>\\n</code>과 <code>println</code>이 각각 줄을 바꾸므로 세 줄로 출력된다. 마지막은 <code>print</code>라 줄바꿈이 없다.`
+  },
+  {
+    id: "316-c-1",
+    source: "기출",
+    unit: "316 연산자 우선순위",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+int main() {
+	int x = 7, y = 4, z;
+	z = y % 3 < 3 ? 2 : 1;
+	z = z & z >> 1;
+	z = x > 5 && z <= 3 ? z * x : z / x;
+	printf("%d", z);
+	return 0;
+}`,
+    answers: ["0"],
+    hint: "시프트 연산자와 비트 AND 중 어느 쪽이 먼저 계산되는지가 갈림길이다.",
+    explain:
+`<ol>
+<li><code>y % 3</code>은 1이고 <code>1 &lt; 3</code>은 참이므로 z는 2가 된다</li>
+<li><code>z &amp; z &gt;&gt; 1</code>에서 시프트가 비트 AND보다 우선순위가 높다. 즉 <code>z &amp; (z &gt;&gt; 1)</code>이므로 <code>2 &amp; 1</code> = <code>10₂ &amp; 01₂</code> = 0</li>
+<li><code>x &gt; 5</code>도 참, <code>z &lt;= 3</code>도 참이라 <code>z * x</code>가 선택되어 <code>0 * 7</code> = 0</li>
+</ol>
+물론 <code>(z &amp; z) &gt;&gt; 1</code>로 읽고 싶어질 수 있다. 하지만 그렇게 계산하면 z가 1이 되어 최종 결과가 7로 어긋난다. 이런 문제는 손으로 괄호를 먼저 쳐 놓고 푸는 것이 좋다.`
+  },
+  {
+    id: "317-c-1",
+    source: "기출",
+    unit: "317 제어문",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	int c = 1;
+	switch (3) {
+	case 1: c += 3;
+	case 2: c++;
+	case 3: c = 0;
+	case 4: c += 3;
+	case 5: c -= 10;
+	default: c--;
+	}
+	printf("%d", c);
+}`,
+    answers: ["-8"],
+    hint: "break가 하나도 없다는 점에 주목한다.",
+    explain:
+`<code>switch (3)</code>이므로 <code>case 3</code>에서 시작한다. break가 없어 아래 case들이 조건 검사 없이 줄줄이 실행된다. 이걸 폴스루(fall-through)라고 한다.
+<ol>
+<li><code>case 3</code> → c = 0</li>
+<li><code>case 4</code> → c = 3</li>
+<li><code>case 5</code> → c = -7</li>
+<li><code>default</code> → c = -8</li>
+</ol>
+초기값 1은 <code>case 3</code>에서 덮어써지므로 아무 영향이 없다.`
+  },
+  {
+    id: "317-c-2",
+    source: "기출",
+    unit: "317 제어문",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+int main(void) {
+	char str[] = "REPUBLICOFKOREA";
+	int a = 0;
+	while (str[a] != '\\0')
+		++a;
+	putchar(str[a-2]);
+	return 0;
+}`,
+    answers: ["E"],
+    hint: "반복이 끝난 시점에 a가 가리키는 곳은 마지막 글자가 아니다.",
+    explain:
+`while문은 널 문자를 만날 때까지 a를 늘리므로, 끝나고 나면 a는 문자열 길이인 15가 된다. 즉 a는 마지막 글자 다음 칸을 가리킨다.
+<code>str[14]</code>가 'A', <code>str[13]</code>이 'E'이므로 <code>str[a-2]</code>는 <b>E</b>다.
+길이를 세는 반복문 뒤에서 인덱스를 쓸 때는 한 칸 밀린다는 점을 항상 확인하는 것이 좋다.`
+  },
+  {
+    id: "317-c-3",
+    source: "기출",
+    unit: "317 제어문",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	int score[] = { 86, 53, 95, 76, 61 };
+	char grade;
+	char str[] = "Rank";
+	for (int i = 0; i < 5; i++) {
+		switch (score[i] / 10) {
+		case 10:
+		case 9:
+			grade = 'A';
+			break;
+		case 8:
+			grade = 'B';
+			break;
+		case 7:
+			grade = 'C';
+			break;
+		default: grade = 'F';
+		}
+		if (grade != 'F')
+			printf("%d is %c %s\\n", i + 1, grade, str);
+	}
+}`,
+    answers: ["1 is B Rank\n3 is A Rank\n4 is C Rank"],
+    hint: "F 등급은 출력되지 않는다. 그리고 출력되는 번호는 인덱스가 아니라 i+1이다.",
+    explain:
+`점수를 10으로 나눈 몫으로 등급을 정한다. 86→8(B), 53→5(default F), 95→9(A), 76→7(C), 61→6(default F)이다.
+<code>if (grade != 'F')</code> 때문에 두 번째와 다섯 번째는 걸러지고, 출력 번호는 <code>i + 1</code>이므로 1, 3, 4가 찍힌다.`
+  },
+  {
+    id: "318-java-1",
+    source: "기출",
+    unit: "318 제어문",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Test {
+	public static void main(String[] args) {
+		int j, i;
+		for (j = 0, i = 0; i <= 5; i++) {
+			j += i;
+			System.out.print(i);
+			if (i == 5) {
+				System.out.print("=");
+				System.out.print(j);
+			}
+			else
+				System.out.print("+");
+		}
+	}
+}`,
+    answers: ["0+1+2+3+4+5=15"],
+    hint: "print는 줄을 바꾸지 않으므로 모든 출력이 한 줄로 이어 붙는다.",
+    explain:
+`i가 0부터 5까지 돌면서 자기 값을 찍고, 마지막 회차가 아니면 <code>+</code>를 덧붙인다. i가 5일 때는 <code>=</code>와 누적합 j를 찍는다.
+j는 0+1+2+3+4+5 = 15이므로 최종 출력은 한 줄짜리 수식이 된다.`
+  },
+  {
+    id: "318-java-2",
+    source: "기출",
+    unit: "318 제어문",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Test {
+	public static void main(String[] args) {
+		int r = 0;
+		for (int i = 1; i < 999; i++) {
+			if (i % 3 == 0 && i % 2 == 0)
+				r = i;
+		}
+		System.out.print(r);
+	}
+}`,
+    answers: ["996"],
+    hint: "r에는 조건을 만족한 값이 계속 덮어써진다. 결국 남는 건 마지막 값 하나다.",
+    explain:
+`3으로도 나누어떨어지고 2로도 나누어떨어진다는 건 6의 배수라는 뜻이다. r은 break 없이 계속 덮어써지므로 마지막으로 조건을 통과한 값만 남는다.
+i는 998까지 도는데 그 이하의 가장 큰 6의 배수는 <b>996</b>이다.`
+  },
+  {
+    id: "318-java-3",
+    source: "기출",
+    unit: "318 제어문",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Test {
+	public static void main(String[] args) {
+		String str = "agile";
+		int x[] = { 1, 2, 3, 4, 5 };
+		char y[] = new char[5];
+		int i = 0;
+		while (i < str.length()) {
+			y[i] = str.charAt(i);
+			i++;
+		}
+		for (int p : x) {
+			i--;
+			System.out.print(y[i]);
+			System.out.print(p + " ");
+		}
+	}
+}`,
+    answers: ["e1 l2 i3 g4 a5"],
+    hint: "while문이 끝난 뒤 i의 값이 얼마인지부터 확인한다. 그 값이 두 번째 반복문의 시작점이 된다.",
+    explain:
+`while문이 끝나면 y에는 'a','g','i','l','e'가 담기고 i는 5가 된다. 향상된 for문은 x의 값을 1부터 꺼내지만, 그때마다 <code>i--</code>가 먼저 실행되므로 y는 뒤에서부터 읽힌다.
+<ol>
+<li>p=1일 때 i는 4 → <code>y[4]</code>는 'e' → <code>e1&nbsp;</code></li>
+<li>p=2일 때 i는 3 → 'l' → <code>l2&nbsp;</code></li>
+<li>이런 식으로 이어져 <code>i3&nbsp;</code>, <code>g4&nbsp;</code>, <code>a5&nbsp;</code></li>
+</ol>
+즉, 문자는 역순으로 숫자는 정순으로 짝지어져 출력된다.`
+  },
+  {
+    id: "319-java-1",
+    source: "기출",
+    unit: "319 break와 continue",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Test{
+	public static void main(String[] args){
+		int a = 0, sum = 0;
+		while (a < 10) {
+			a++;
+			if (a % 2 == 1)
+				continue;
+			sum += a;
+		}
+		System.out.println(sum);
+	}
+}`,
+    answers: ["30"],
+    hint: "continue를 만나면 그 아래 문장은 건너뛰고 조건 검사로 돌아간다.",
+    explain:
+`<code>a++</code>가 조건 검사보다 먼저 오므로 a는 1부터 10까지 값을 갖는다. 홀수일 때는 <code>continue</code>가 <code>sum += a</code>를 건너뛰므로 짝수만 더해진다.
+2+4+6+8+10 = <b>30</b>이다. a가 10이 된 회차까지 더해진다는 점을 놓치기 쉽다.`
+  },
+  {
+    id: "319-c-1",
+    source: "기출",
+    unit: "319 break와 continue",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	int input = 101110;
+	int di = 1;
+	int sum = 0;
+	while (1) {
+		if (input == 0) break;
+		sum = sum + (input % 10) * di;
+		di = di * 2;
+		input = input / 10;
+	}
+	printf("%d", sum);
+}`,
+    answers: ["46"],
+    hint: "di가 1, 2, 4, 8...로 커진다. 자릿수마다 곱해지는 값이 무엇을 뜻하는지 생각해 본다.",
+    explain:
+`<code>input % 10</code>으로 끝자리를 떼어내고 <code>input / 10</code>으로 한 칸씩 밀어낸다. 이때 곱해지는 di가 2의 거듭제곱이므로, 결국 101110을 2진수로 읽어 10진수로 바꾸는 코드다.
+오른쪽 자리부터 0×1 + 1×2 + 1×4 + 1×8 + 0×16 + 1×32 = <b>46</b>이다.
+<code>while (1)</code>은 그 자체로는 끝나지 않는 반복이고, 탈출은 오직 <code>break</code>가 담당한다.`
+  },
+  {
+    id: "320-c-1",
+    source: "기출",
+    unit: "320 포인터",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+int main() {
+	int a = 50;
+	int *b = &a;
+	*b = *b + 20;
+	printf("%d, %d\\n", a, *b);
+	char *s;
+	s = "gilbut";
+	for (int i = 0; i < 6; i += 2) {
+		printf("%c, ", s[i]);
+		printf("%c, ", *(s + i));
+		printf("%s\\n", s + i);
+	}
+}`,
+    answers: ["70, 70\ng, g, gilbut\nl, l, lbut\nu, u, ut"],
+    hint: "%c는 글자 하나, %s는 그 위치부터 끝까지의 문자열이다.",
+    explain:
+`b가 a를 가리키므로 <code>*b</code>를 바꾸면 a도 같이 바뀐다. 그래서 첫 줄은 <code>70, 70</code>이다.
+<code>s[i]</code>와 <code>*(s + i)</code>는 표기만 다를 뿐 같은 뜻이라 늘 같은 글자가 나온다. 반면 <code>%s</code>에 <code>s + i</code>를 넘기면 그 위치부터 널 문자까지를 통째로 출력한다.
+<ol>
+<li>i=0 → g, g, gilbut</li>
+<li>i=2 → l, l, lbut</li>
+<li>i=4 → u, u, ut</li>
+</ol>`
+  },
+  {
+    id: "320-c-2",
+    source: "기출",
+    unit: "320 포인터",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+int main() {
+	int ary[3];
+	int s = 0;
+	*(ary + 0) = 1;
+	ary[1] = *(ary + 0) + 2;
+	ary[2] = *ary + 3;
+	for (int i = 0; i < 3; i++)
+		s = s + ary[i];
+	printf("%d", s);
+}`,
+    answers: ["8"],
+    hint: "<code>*ary</code>는 <code>ary[0]</code>과 같은 곳을 가리킨다.",
+    explain:
+`<code>*(ary + 0)</code>, <code>*ary</code>, <code>ary[0]</code>은 모두 같은 칸이다. 표기가 셋으로 갈려 있을 뿐이다.
+<ol>
+<li>ary[0] = 1</li>
+<li>ary[1] = 1 + 2 = 3</li>
+<li>ary[2] = 1 + 3 = 4</li>
+</ol>
+합은 1 + 3 + 4 = <b>8</b>이다. ary[2]를 계산할 때 ary[1]이 아니라 ary[0]을 쓴다는 점이 함정이다.`
+  },
+  {
+    id: "320-c-3",
+    source: "기출",
+    unit: "320 포인터",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	char* a = "qwer";
+	char* b = "qwtety";
+	for (int i = 0; a[i] != '\\0'; i++)
+		for (int j = 0; b[j] != '\\0'; j++)
+			if (a[i] == b[j])
+				printf("%c", a[i]);
+}`,
+    answers: ["qwe"],
+    hint: "안쪽 반복문은 일치하는 글자를 찾아도 멈추지 않는다. b에 같은 글자가 두 번 있으면 어떻게 될지 확인한다.",
+    explain:
+`a의 글자를 하나씩 꺼내 b 전체와 대조하고, 일치할 때마다 출력한다.
+<ol>
+<li>q → b의 첫 글자와 일치 → q</li>
+<li>w → 일치 → w</li>
+<li>e → 일치 → e</li>
+<li>r → b에 없으므로 아무것도 출력하지 않는다</li>
+</ol>
+b에 t가 두 번 있지만 a에는 t가 없어 중복 출력은 일어나지 않는다. 즉 결과는 <b>qwe</b>다.`
+  },
+  {
+    id: "321-c-1",
+    source: "기출",
+    unit: "321 구조체",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	struct insa {
+		char name[10];
+		int age;
+	} a[] = { "Kim", 28, "Lee", 38, "Park", 42, "Choi", 31 };
+	struct insa* p;
+	p = a;
+	p++;
+	printf("%s\\n", p->name);
+	printf("%d\\n", p->age);
+}`,
+    answers: ["Lee\n38"],
+    hint: "구조체 포인터의 ++는 1바이트가 아니라 구조체 하나만큼 건너뛴다.",
+    explain:
+`초기화 값이 두 개씩 짝지어져 a[0]은 Kim/28, a[1]은 Lee/38이 된다.
+<code>p = a</code>는 a[0]을 가리키고, <code>p++</code>는 구조체 크기만큼 주소를 옮겨 a[1]을 가리킨다. 따라서 <code>p-&gt;name</code>은 Lee, <code>p-&gt;age</code>는 38이다.`
+  },
+  {
+    id: "321-c-2",
+    source: "기출",
+    unit: "321 구조체",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+struct A {
+	int n;
+	int g;
+};
+main() {
+	struct A st[2];
+	for (int i = 0; i < 2; i++) {
+		st[i].n = i;
+		st[i].g = i + 1;
+	}
+	printf("%d", st[0].n + st[1].g);
+}`,
+    answers: ["2"],
+    hint: "반복문이 채운 값을 표로 적어 놓고 필요한 두 칸만 꺼내면 된다.",
+    explain:
+`반복문이 st[0]에는 n=0, g=1을, st[1]에는 n=1, g=2를 넣는다.
+출력하는 값은 <code>st[0].n + st[1].g</code>이므로 0 + 2 = <b>2</b>다. 인덱스와 멤버 이름을 헷갈리지 않도록 값을 먼저 적어 두는 것이 좋다.`
+  },
+  {
+    id: "321-c-3",
+    source: "기출",
+    unit: "321 구조체",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+struct jsu {
+	char nae[12];
+	int os, db, hab, hhab;
+};
+int main() {
+	struct jsu st[3] = { {"데이터1", 95, 88}, {"데이터2", 84, 91},
+						{"데이터3", 86, 75} };
+	struct jsu* p;
+	p = &st[0];
+	(p + 1)->hab = (p + 1)->os + (p + 2)->db;
+	(p + 1)->hhab = (p + 1)->hab + p->os + p->db;
+	printf("%d", (p + 1)->hab + (p + 1)->hhab);
+}`,
+    answers: ["501"],
+    hint: "초기화 값이 os와 db까지만 주어졌다. 나머지 멤버의 초기값이 무엇인지 생각해 본다.",
+    explain:
+`p는 st[0]을 가리키므로 <code>p + 1</code>은 st[1], <code>p + 2</code>는 st[2]다.
+<ol>
+<li>st[1].hab = st[1].os + st[2].db = 84 + 75 = 159</li>
+<li>st[1].hhab = 159 + st[0].os + st[0].db = 159 + 95 + 88 = 342</li>
+<li>출력은 159 + 342 = <b>501</b></li>
+</ol>
+물론 hab과 hhab에 초기값이 없어 보여 불안할 수 있다. 하지만 일부만 초기화된 배열의 나머지 멤버는 0으로 채워지고, 여기서는 계산 전에 값을 덮어쓰므로 결과에 영향이 없다.`
+  },
+  {
+    id: "322-c-1",
+    source: "기출",
+    unit: "322 사용자 정의 함수",
+    lang: "C",
+    prompt: "다음 C 코드에서 <code>Usort()</code> 실행이 끝난 뒤 배열 a의 내용을 순서대로 쓰시오.",
+    code:
+`#include <stdio.h>
+void swap(int* a, int idx1, int idx2) {
+	int t = a[idx1];
+	a[idx1] = a[idx2];
+	a[idx2] = t;
+}
+
+void Usort(int* a, int len) {
+	for (int i = 0; i < len - 1; i++)
+		for (int j = 0; j < len - 1 - i; j++)
+			if (a[j] > a[j + 1])
+				swap(a, j, j + 1);
+}
+
+main() {
+	int a[] = { 85, 75, 50, 100, 95 };
+	int nx = 5;
+	Usort(a, nx);
+}`,
+    answers: ["50, 75, 85, 95, 100", "50 75 85 95 100"],
+    hint: "이웃한 두 값을 비교해 큰 쪽을 뒤로 넘긴다. 어떤 정렬 알고리즘인지 떠올리면 결과는 바로 나온다.",
+    explain:
+`이웃한 두 원소를 비교해 순서가 어긋나면 자리를 바꾸고, 한 회전이 끝날 때마다 가장 큰 값이 맨 뒤에 고정된다. 버블 정렬이다.
+안쪽 조건이 <code>len - 1 - i</code>인 이유도 이미 확정된 뒤쪽을 다시 비교하지 않기 위해서다. 결과는 오름차순인 <b>50, 75, 85, 95, 100</b>이다.
+배열은 포인터로 넘어가므로 swap이 바꾼 값이 main의 a에 그대로 반영된다는 점이 이 문제의 핵심이다.`
+  },
+  {
+    id: "322-c-2",
+    source: "기출",
+    unit: "322 사용자 정의 함수",
+    lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+int factorial(int n);
+main() {
+	int (*pf)(int);
+	pf = factorial;
+	printf("%d", pf(3));
+}
+int factorial(int n) {
+	if (n <= 1)
+		return 1;
+	else
+		return n * factorial(n - 1);
+}`,
+    answers: ["6"],
+    hint: "<code>pf</code>는 값을 담는 변수가 아니라 함수를 가리키는 변수다.",
+    explain:
+`<code>int (*pf)(int)</code>는 정수를 받아 정수를 돌려주는 함수를 가리키는 포인터다. <code>pf = factorial</code>로 주소를 담았으니 <code>pf(3)</code>은 <code>factorial(3)</code>과 완전히 같다.
+재귀는 3 × 2 × 1 순서로 풀려 <b>6</b>이 된다. 괄호 위치가 <code>int *pf(int)</code>였다면 포인터를 반환하는 함수 선언이 되어 뜻이 달라지므로, 괄호를 먼저 확인하는 것이 좋다.`
+  },
+  {
+    id: "322-c-3",
+    source: "기출",
+    unit: "322 사용자 정의 함수",
+    lang: "C",
+    prompt: "다음 C 코드에 <code>5</code>를 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "5",
+    code:
+`#include <stdio.h>
+int func(int a) {
+	if (a <= 1) return 1;
+	return a * func(a - 1);
+}
+
+int main() {
+	int a;
+	scanf("%d", &a);
+	printf("%d", func(a));
+}`,
+    answers: ["120"],
+    hint: "재귀 함수는 종료 조건부터 확인하고, 거꾸로 되짚어 올라오며 곱한다.",
+    explain:
+`<code>a &lt;= 1</code>일 때 1을 돌려주는 것이 종료 조건이다. func(5)는 5 × func(4)로 넘어가고, 이 과정이 func(1)까지 내려간 뒤 되짚어 올라오며 곱해진다.
+5 × 4 × 3 × 2 × 1 = <b>120</b>이다. 즉 팩토리얼을 재귀로 구현한 전형적인 형태다.`
+  },
+  {
+    id: "323-java-1",
+    source: "기출",
+    unit: "323 Java의 클래스",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class ClassA {
+	int a = 10;
+	int funcAdd(int x, int y) {
+		return x + y + a;
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		int x = 3, y = 6, r;
+		ClassA cal = new ClassA();
+		r = cal.funcAdd(x, y);
+		System.out.print(r);
+	}
+}`,
+    answers: ["19"],
+    hint: "메소드가 더하는 값은 두 개가 아니라 세 개다.",
+    explain:
+`<code>funcAdd</code>는 매개변수 x, y에 클래스의 멤버 변수 a까지 더한다. a는 객체가 만들어질 때 10으로 초기화되어 있다.
+3 + 6 + 10 = <b>19</b>다.`
+  },
+  {
+    id: "323-java-2",
+    source: "기출",
+    unit: "323 Java의 클래스",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class A {
+	int a;
+	int b;
+}
+public class Test {
+	static void func1(A m) {
+		m.a *= 10;
+	}
+	static void func2(A m) {
+		m.a += m.b;
+	}
+	public static void main(String args[]) {
+		A m = new A();
+		m.a = 100;
+		func1(m);
+		m.b = m.a;
+		func2(m);
+		System.out.printf("%d", m.a);
+	}
+}`,
+    answers: ["2000"],
+    hint: "객체를 넘기면 주소가 넘어간다. 메소드 안에서 바꾼 값이 밖에도 남는지 확인한다.",
+    explain:
+`객체는 참조로 전달되므로 메소드가 바꾼 값이 호출한 쪽에도 그대로 남는다.
+<ol>
+<li>m.a = 100</li>
+<li>func1 → m.a = 1000</li>
+<li>m.b = m.a → 1000</li>
+<li>func2 → m.a = 1000 + 1000 = 2000</li>
+</ol>
+물론 기본형 변수였다면 값만 복사되어 원본이 그대로였을 것이다. 하지만 여기서는 참조가 넘어가므로 결과가 <b>2000</b>이 된다.`
+  },
+  {
+    id: "323-java-3",
+    source: "기출",
+    unit: "323 Java의 클래스",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class Static {
+	public int a = 20;
+	static int b = 0;
+}
+
+public class Test {
+	public static void main(String[] args) {
+		int a = 10;
+		Static.b = a;
+		Static st = new Static();
+		System.out.println(Static.b++);
+		System.out.println(st.b);
+		System.out.println(a);
+		System.out.print(st.a);
+	}
+}`,
+    answers: ["10\n11\n10\n20"],
+    hint: "후위 증가 연산자는 출력한 다음에 값을 올린다. 그리고 static 변수는 객체를 거쳐도 같은 저장 공간이다.",
+    explain:
+`<ol>
+<li><code>Static.b</code>에 10이 들어간다</li>
+<li><code>b++</code>는 후위 증가라 <b>10</b>을 먼저 출력하고 나서 11이 된다</li>
+<li><code>st.b</code>는 객체를 통해 접근했을 뿐 같은 static 변수이므로 <b>11</b></li>
+<li>main의 지역 변수 a는 영향을 받지 않아 <b>10</b></li>
+<li>인스턴스 변수 <code>st.a</code>는 <b>20</b></li>
+</ol>
+즉, static 변수는 클래스마다 하나만 존재하고 지역 변수와는 아무 관계가 없다.`
+  },
+  {
+    id: "324-java-1",
+    source: "기출",
+    unit: "324 상속과 오버라이딩",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class A {
+	int a;
+	public A(int a) { this.a = a; }
+	void display() { System.out.println("a=" + a); }
+}
+class B extends A {
+	public B(int a) {
+		super(a);
+		super.display();
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		B obj = new B(10);
+	}
+}`,
+    answers: ["a=10"],
+    hint: "main에는 출력문이 없다. 그렇다면 출력은 어디서 일어나는지 찾아본다.",
+    explain:
+`<code>new B(10)</code>이 B의 생성자를 부르고, 생성자 안의 <code>super(a)</code>가 부모 생성자를 호출해 a에 10을 넣는다. 이어서 <code>super.display()</code>가 부모의 메소드를 실행한다.
+따라서 객체를 만드는 것만으로 <b>a=10</b>이 출력된다.`
+  },
+  {
+    id: "324-java-2",
+    source: "기출",
+    unit: "324 상속과 오버라이딩",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Main {
+	public static class Parent {
+		public int x(int i) { return i + 2; }
+		public static String id() { return "P"; }
+	}
+	public static class Child extends Parent {
+		public int x(int i) { return i + 3; }
+		public String x(String s) { return s + "R"; }
+		public static String id() { return "C"; }
+	}
+	public static void main(String[] args) {
+		Parent ref = new Child();
+		System.out.println(ref.x(2) + ref.id());
+	}
+}`,
+    answers: ["5P"],
+    hint: "인스턴스 메소드와 static 메소드는 어느 쪽을 기준으로 호출 대상이 정해지는지가 서로 다르다.",
+    explain:
+`인스턴스 메소드는 실제 객체의 것이 불린다. 참조 변수는 Parent 타입이지만 객체는 Child이므로 <code>ref.x(2)</code>는 Child의 것을 타고 2 + 3 = 5가 된다.
+반면 static 메소드는 오버라이딩 대상이 아니라 참조 변수의 타입으로 결정된다. 그래서 <code>ref.id()</code>는 Parent의 <b>P</b>다.
+정수 5와 문자열 "P"를 <code>+</code>로 이으면 문자열이 되므로 결과는 <b>5P</b>다.`
+  },
+  {
+    id: "326-java-1",
+    source: "기출",
+    unit: "326 추상 클래스",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`abstract class Animal {
+	String a = " is animal";
+	abstract void look();
+	void show() {
+		System.out.println("Zoo");
+	}
+}
+class Chicken extends Animal {
+	Chicken() {
+		look();
+	}
+	void look() {
+		System.out.println("Chicken" + a);
+	}
+	void display() {
+		System.out.println("two wings");
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		Animal a = new Chicken();
+		a.show();
+	}
+}`,
+    answers: ["Chicken is animal\nZoo"],
+    hint: "출력은 두 줄이다. 생성자에서 부르는 메소드도 출력에 포함된다.",
+    explain:
+`<code>new Chicken()</code>이 생성자를 실행하고, 생성자가 <code>look()</code>을 불러 첫 줄이 찍힌다. a에 담긴 문자열이 공백으로 시작하므로 <code>Chicken is animal</code>로 붙는다.
+그다음 <code>a.show()</code>가 부모에게서 물려받은 메소드를 실행해 <code>Zoo</code>가 찍힌다.
+<code>display()</code>는 Animal에 없는 메소드라 Animal 타입 참조로는 부를 수 없고, 여기서는 호출도 되지 않는다.`
+  },
+  {
+    id: "326-java-2",
+    source: "기출",
+    unit: "326 추상 클래스",
+    lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`abstract class Vehicle {
+	String name;
+	abstract public String getName(String val);
+	public String getName() {
+		return "Vehicle name : " + name;
+	}
+}
+class Car extends Vehicle {
+	private String name;
+	public Car(String val) {
+		name = super.name = val;
+	}
+	public String getName(String val) {
+		return "Car name : " + val;
+	}
+	public String getName(byte[] val) {
+		return "Car name : " + val;
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		Vehicle obj = new Car("Spark");
+		System.out.print(obj.getName());
+	}
+}`,
+    answers: ["Vehicle name : Spark"],
+    hint: "호출한 쪽은 인수를 넘기지 않았다. 같은 이름의 메소드가 셋이나 있으니 매개변수부터 맞춰 본다.",
+    explain:
+`<code>obj.getName()</code>은 인수가 없으므로 Vehicle의 <code>getName()</code>이 불린다. Car의 두 메소드는 각각 String과 byte 배열을 받는 오버로딩이라 대상이 아니다.
+생성자의 <code>name = super.name = val</code>은 부모의 name과 자식의 name 양쪽에 "Spark"를 넣는다. Vehicle의 메소드가 읽는 것은 부모 쪽 name이므로 <b>Vehicle name : Spark</b>가 출력된다.
+물론 Car에도 같은 이름의 필드가 있어 헷갈리기 쉽다. 하지만 필드는 오버라이딩되지 않고 각자 따로 존재한다는 점을 기억하는 것이 좋다.`
+  },
+  {
+    id: "327-py-1",
+    source: "기출",
+    unit: "327 Python의 활용",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`a = ['Seoul', 'Kyeonggi', 'Incheon', 'Daejeon', 'Daegu', 'Pusan']
+str01 = 'S'
+for i in a:
+	str01 = str01 + i[1]
+print(str01)`,
+    answers: ["Seynaau"],
+    hint: "<code>i[1]</code>은 첫 글자가 아니라 두 번째 글자다.",
+    explain:
+`반복 변수 i에는 문자열이 통째로 들어오고, <code>i[1]</code>은 인덱스 1의 글자, 즉 두 번째 글자다.
+Seoul→e, Kyeonggi→y, Incheon→n, Daejeon→a, Daegu→a, Pusan→u가 차례로 붙는다.
+시작값 'S'에 이어 붙여 <b>Seynaau</b>가 된다. 인덱스가 0부터 시작한다는 점만 놓치지 않으면 되는 문제다.`
+  },
+  {
+    id: "327-py-2",
+    source: "기출",
+    unit: "327 Python의 활용",
+    lang: "Python",
+    prompt: "다음 Python 코드에 <code>python-java</code>를 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "python-java",
+    code:
+`x, y = input('입력 :').split('-')
+a = [ 'abc123', 'def456', 'ghi789' ]
+a.append(x)
+a.append(y)
+a.remove('def456')
+print(a[1][-3:], a[2][:-3], sep = ',')
+for i in range(3, 6):
+	print(i, end = ' ')`,
+    answers: ["789,pyt\n3 4 5"],
+    hint: "remove가 실행된 뒤 리스트의 인덱스가 한 칸씩 당겨진다는 점부터 확인한다.",
+    explain:
+`<code>split('-')</code>이 입력을 나눠 x는 python, y는 java가 된다. 두 값을 덧붙인 뒤 def456을 지우면 리스트는 <code>['abc123', 'ghi789', 'python', 'java']</code>가 된다.
+<ol>
+<li><code>a[1][-3:]</code> → ghi789의 뒤 세 글자 → 789</li>
+<li><code>a[2][:-3]</code> → python에서 뒤 세 글자를 뺀 것 → pyt</li>
+<li><code>sep = ','</code>이므로 두 값이 쉼표로 이어진다</li>
+</ol>
+마지막 반복문은 <code>end = ' '</code> 때문에 줄바꿈 없이 <code>3 4 5&nbsp;</code>로 이어 출력된다.`
+  },
+  {
+    id: "328-py-1",
+    source: "기출",
+    unit: "328 Python의 활용2",
+    lang: "Python",
+    prompt: "다음 Python 코드가 출력하는 세 줄을 과일명 알파벳순으로 정렬해 쓰시오.",
+    code:
+`a = {'apple', 'lemon', 'banana'}
+a.update( {'kiwi', 'banana'} )
+a.remove('lemon')
+a.add('apple')
+for i in a:
+	print("과일명 : %s" % i)`,
+    answers: ["과일명 : apple\n과일명 : banana\n과일명 : kiwi"],
+    hint: "집합에는 같은 값이 두 번 들어가지 않는다.",
+    explain:
+`집합은 중복을 허용하지 않는다. update로 kiwi와 banana를 더해도 banana는 이미 있으므로 늘지 않고, 마지막 <code>add('apple')</code>도 아무 변화를 주지 않는다.
+lemon만 빠져 남는 원소는 apple, banana, kiwi 세 개다.
+물론 집합은 순서를 보장하지 않아 실제 출력 순서는 실행할 때마다 달라질 수 있다. 하지만 시험에서는 원소 구성이 답이므로 순서를 정해 적으면 된다.`
+  },
+  {
+    id: "328-py-2",
+    source: "기출",
+    unit: "328 Python의 활용2",
+    lang: "Python",
+    prompt: "다음 Python 코드 실행 후 집합 asia의 원소를 가나다순으로 쉼표로 구분해 쓰시오.",
+    code:
+`asia = {'한국', '중국', '일본'}
+asia.add('베트남')
+asia.add('중국')
+asia.remove('일본')
+asia.update({'한국', '홍콩', '태국'})
+print(asia)`,
+    answers: ["베트남, 중국, 태국, 한국, 홍콩", "베트남,중국,태국,한국,홍콩"],
+    hint: "add는 하나씩, update는 여러 개를 한 번에 넣는다. 둘 다 중복은 무시된다.",
+    explain:
+`<ol>
+<li>베트남 추가 → 한국, 중국, 일본, 베트남</li>
+<li>중국은 이미 있어 변화 없음</li>
+<li>일본 제거</li>
+<li>update로 한국, 홍콩, 태국을 한꺼번에 추가 → 한국은 중복이라 무시</li>
+</ol>
+남는 원소는 <b>베트남, 중국, 태국, 한국, 홍콩</b> 다섯 개다. add는 원소 하나를, update는 다른 집합을 통째로 합친다는 차이를 기억하는 것이 좋다.`
+  },
+  {
+    id: "328-py-3",
+    source: "기출",
+    unit: "328 Python의 활용2",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`a = "REMEMBER NOVEMBER"
+b = a[0:3] + a[12:16]
+c = "R AND %s" % "STR"
+print(b + c)`,
+    answers: ["REMEMBER AND STR"],
+    hint: "슬라이싱의 끝 인덱스는 포함되지 않는다. 공백도 한 글자로 센다.",
+    explain:
+`문자열을 인덱스로 적어 보면 공백이 8번, N이 9번 자리다.
+<ol>
+<li><code>a[0:3]</code> → REM (3번은 제외)</li>
+<li><code>a[12:16]</code> → 12번부터 15번까지 → EMBE</li>
+<li><code>%s</code> 자리에 STR이 들어가 c는 <code>R AND STR</code></li>
+</ol>
+이어 붙이면 <b>REMEMBER AND STR</b>이 된다. 앞의 REMEMBE와 c의 첫 글자 R이 만나 단어가 완성되는 것이 이 문제의 노림수다.`
+  },
+  {
+    id: "329-py-1",
+    source: "기출",
+    unit: "329 람다 식",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`a = [1, 2, 3, 4, 5]
+a = list(map(lambda num : num + 100, a))
+print(a)`,
+    answers: ["[101, 102, 103, 104, 105]"],
+    hint: "리스트를 그대로 출력하면 대괄호와 쉼표까지 함께 찍힌다.",
+    explain:
+`<code>map</code>은 리스트의 원소를 하나씩 람다에 넣어 결과를 모은다. 여기서는 각 값에 100을 더한다.
+<code>print</code>에 리스트를 그대로 넘겼으므로 대괄호와 쉼표가 포함된 <b>[101, 102, 103, 104, 105]</b> 형태로 출력된다. 쉼표 뒤 공백까지 답에 포함된다는 점을 놓치기 쉽다.`
+  },
+  {
+    id: "330-py-1",
+    source: "기출",
+    unit: "330 Python의 클래스",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`class Cls:
+	x, y = 10, 20
+	def chg(self):
+		temp = self.x
+		self.x = self.y
+		self.y = temp
+a = Cls()
+print(a.x, a.y)
+a.chg()
+print(a.x, a.y)`,
+    answers: ["10 20\n20 10"],
+    hint: "print에 값을 쉼표로 나열하면 사이에 공백이 하나 들어간다.",
+    explain:
+`첫 출력은 클래스에 정의된 초기값 그대로 <code>10 20</code>이다.
+<code>chg()</code>는 temp를 거쳐 두 값을 맞바꾸는 전형적인 교환 코드이므로 두 번째 출력은 <code>20 10</code>이다.
+temp 없이 <code>self.x = self.y</code>부터 실행했다면 원래 x 값이 사라져 둘 다 20이 됐을 것이다.`
+  },
+  {
+    id: "330-py-2",
+    source: "기출",
+    unit: "330 Python의 클래스",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`class FourCal:
+	def setdata(sel, fir, sec):
+		sel.fir = fir
+		sel.sec = sec
+	def add(sel):
+		result = sel.fir + sel.sec
+		return result
+a = FourCal()
+a.setdata(4, 2)
+print(a.add())`,
+    answers: ["6"],
+    hint: "메소드의 첫 매개변수는 호출할 때 넘기지 않아도 자동으로 채워진다.",
+    explain:
+`첫 매개변수 이름이 self가 아니라 sel이지만 역할은 같다. 이름이 무엇이든 첫 자리에는 객체 자신이 들어간다.
+따라서 <code>a.setdata(4, 2)</code>는 fir에 4, sec에 2를 넣고, <code>add()</code>는 둘을 더해 <b>6</b>을 돌려준다.`
+  },
+  {
+    id: "331-py-1",
+    source: "기출",
+    unit: "331 클래스 없는 메소드",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`def calc(x, y):
+	x *= 3
+	y /= 3
+	print(x, y)
+	return x
+
+a, b = 3, 12
+a = calc(a, b)
+print(a, b)`,
+    answers: ["9 4.0\n9 12"],
+    hint: "<code>/</code> 연산의 결과 자료형이 무엇인지 확인한다. 그리고 함수 안에서 바꾼 값이 밖에도 남는지 생각해 본다.",
+    explain:
+`<code>x *= 3</code>으로 9, <code>y /= 3</code>으로 4.0이 된다. 파이썬에서 <code>/</code>는 나누어떨어져도 실수를 돌려주므로 4가 아니라 <b>4.0</b>이다.
+함수 안에서 바뀐 값은 밖의 a, b에 영향을 주지 않는다. 다만 a는 반환값을 다시 대입받아 9가 되고, b는 12 그대로다.`
+  },
+  {
+    id: "331-py-2",
+    source: "기출",
+    unit: "331 클래스 없는 메소드",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`def func(num1, num2 = 2):
+	print('a =', num1, 'b =', num2)
+func(20)`,
+    answers: ["a = 20 b = 2"],
+    hint: "인수를 하나만 넘겼는데 매개변수는 둘이다. 나머지 하나는 어디서 오는지 본다.",
+    explain:
+`<code>num2 = 2</code>는 기본값이다. 호출할 때 값을 넘기지 않으면 이 값이 쓰인다.
+<code>print</code>에 쉼표로 나열된 항목 사이에는 공백이 하나씩 들어가므로 <code>a = 20 b = 2</code>가 된다. 문자열 안의 <code>=</code> 뒤 공백과 print가 넣는 공백을 헷갈리지 않는 것이 좋다.`
+  },
+  {
+    id: "332-py-1",
+    source: "기출",
+    unit: "332 Python Range",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`a = 100
+result = 0
+for i in range(1,3):
+	result = a >> i
+	result = result + 1
+print(result)`,
+    answers: ["26"],
+    hint: "result에 누적되는 것이 아니라 매번 새로 대입된다. 그리고 range(1,3)은 3을 포함하지 않는다.",
+    explain:
+`<code>range(1, 3)</code>은 1과 2만 돌린다. 그리고 <code>result = a >> i</code>가 누적이 아니라 대입이므로 앞 회차의 값은 남지 않는다.
+<ol>
+<li>i=1 → 100을 오른쪽으로 1비트 이동 → 50, 여기에 1을 더해 51</li>
+<li>i=2 → 100을 2비트 이동 → 25, 여기에 1을 더해 26</li>
+</ol>
+마지막 값만 남으므로 답은 <b>26</b>이다. 오른쪽 시프트는 2로 나눈 몫과 같다고 보면 계산이 빠르다.`
+  },
+  {
+    id: "333-py-1",
+    source: "기출",
+    unit: "333 Python 슬라이스",
+    lang: "Python",
+    prompt: "다음 Python 코드에 <code>Alphabet</code>을 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "Alphabet",
+    code:
+`String = input("7문자 이상 문자열을 입력하시오 :")
+m = String[0:3]+String[-3:]
+print(m)`,
+    answers: ["Alpbet"],
+    hint: "음수 인덱스는 뒤에서부터 센다. <code>[-3:]</code>은 마지막 세 글자다.",
+    explain:
+`<code>String[0:3]</code>은 앞에서 세 글자인 Alp다. 끝 인덱스 3은 포함되지 않는다.
+<code>String[-3:]</code>은 뒤에서 세 번째부터 끝까지이므로 bet다.
+이어 붙여 <b>Alpbet</b>이 된다. 앞뒤 세 글자만 남기고 가운데를 잘라내는 전형적인 슬라이싱 문제다.`
+  },
+  {
+    id: "335-py-1",
+    source: "기출",
+    unit: "335 세트·딕셔너리 메소드",
+    lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`lst = [1,2,3]
+dst = {i : i* 2 for i in lst}
+s = set(dst.values())
+lst[0] = 99
+dst[2] = 7
+s.add(99)
+print(len(s & set(dst.values())))`,
+    answers: ["2"],
+    hint: "<code>&</code>는 두 집합에 모두 들어 있는 원소만 남긴다. 그리고 s는 dst를 계속 따라다니지 않는다.",
+    explain:
+`딕셔너리 컴프리헨션이 <code>{1:2, 2:4, 3:6}</code>을 만들고, s는 그 시점의 값들을 복사해 <code>{2, 4, 6}</code>이 된다. 이후 <code>lst[0] = 99</code>로 리스트를 고쳐도 이미 만들어진 dst는 바뀌지 않는다.
+<ol>
+<li>dst[2] = 7 → dst의 값들은 {2, 7, 6}</li>
+<li>s.add(99) → s는 {2, 4, 6, 99}</li>
+<li>교집합은 {2, 6} → 원소가 두 개</li>
+</ol>
+즉, s는 값을 복사한 별개의 집합이라 dst의 변경이 반영되지 않는다는 점이 답을 가른다.`
+  },
+  {
+    id: "e01", source: "예상", unit: "340 비교 연산과 참·거짓", lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`x, y = 100, 200
+print(x==y)`,
+    answers: ["False"],
+    hint: "파이썬에서 참과 거짓을 나타내는 값의 표기를 떠올려 본다.",
+    explain:
+`<code>=</code>는 대입, <code>==</code>는 값이 같은지 묻는 비교다. 100과 200은 다르므로 결과는 거짓이다.
+파이썬의 거짓은 <b>False</b>로, 첫 글자가 대문자다. Java의 <code>false</code>와 표기가 다르니 답안에 그대로 적어야 한다.`
+  },
+  {
+    id: "e02", source: "예상", unit: "324 상속과 오버라이딩", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class Parent {
+	void show() { System.out.println("parent"); }
+}
+class Child extends Parent {
+	void show() { System.out.println("child"); }
+}
+public class Test {
+	public static void main(String[] args) {
+		Parent pa = new Child();
+		pa.show();
+	}
+}`,
+    answers: ["child"],
+    hint: "참조 변수의 타입과 실제 객체의 타입이 다르다. 메소드는 어느 쪽을 따라가는지 확인한다.",
+    explain:
+`부모 타입 변수에 자식 객체를 담는 업캐스팅이다. 이때 오버라이딩된 인스턴스 메소드는 <b>실제 객체</b>의 것이 실행된다.
+따라서 Parent가 아니라 Child의 <code>show()</code>가 불려 <b>child</b>가 출력된다. 상속 문제의 가장 기본 형태이니 반드시 맞혀야 한다.`
+  },
+  {
+    id: "e03", source: "예상", unit: "349 파이썬 중첩 자료구조", lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`lol = [[1, 2, 3], [4, 5], [6, 7, 8, 9]]
+print(lol[0])
+print(lol[2][1])
+for sub in lol:
+	for item in sub:
+		print(item, end=' ')
+	print()`,
+    answers: ["[1, 2, 3]\n7\n1 2 3\n4 5\n6 7 8 9"],
+    hint: "인덱스를 하나만 쓰면 안쪽 리스트가 통째로 나온다. 두 개를 쓰면 그 안의 원소가 나온다.",
+    explain:
+`<ol>
+<li><code>lol[0]</code>은 리스트 자체라 대괄호까지 함께 출력된다</li>
+<li><code>lol[2][1]</code>은 세 번째 리스트의 두 번째 값이므로 7</li>
+<li>이중 반복문은 안쪽 리스트를 하나씩 풀어 공백으로 이어 출력하고, 안쪽 반복이 끝날 때마다 <code>print()</code>가 줄을 바꾼다</li>
+</ol>
+안쪽 리스트의 길이가 제각각이어도 <code>for sub in lol</code> 방식은 그대로 동작한다.`
+  },
+  {
+    id: "e04", source: "예상", unit: "324 상속과 오버라이딩", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class Parent {
+	int compute(int num) {
+		if(num <= 1) return num;
+		return compute(num - 1) + compute(num - 2);
+	}
+}
+class Child extends Parent {
+	int compute(int num) {
+		if(num <= 1) return num;
+		return compute(num - 1) + compute(num - 3);
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		Parent obj = new Child();
+		System.out.print(obj.compute(4));
+	}
+}`,
+    answers: ["1"],
+    hint: "재귀 안에서 다시 부르는 compute도 오버라이딩된 쪽이다. 부모 코드는 한 번도 실행되지 않는다.",
+    explain:
+`객체가 Child이므로 <code>compute</code>는 처음부터 끝까지 자식 것만 실행된다. 재귀 호출도 마찬가지다.
+<ul>
+<li>compute(4) = compute(3) + compute(1)</li>
+<li>compute(3) = compute(2) + compute(0) = (compute(1) + compute(-1)) + 0</li>
+<li>1 이하는 그대로 반환하므로 compute(1)=1, compute(0)=0, compute(-1)=-1</li>
+</ul>
+정리하면 compute(2) = 1 + (-1) = 0, compute(3) = 0 + 0 = 0, compute(4) = 0 + 1 = <b>1</b>이다.
+물론 부모 코드가 피보나치처럼 보여 헷갈리기 쉽다. 하지만 실행되는 것은 <code>num - 3</code> 쪽이다.`
+  },
+  {
+    id: "e05", source: "예상", unit: "320 포인터", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+#include <stdlib.h>
+void set(int** arr, int* data, int rows, int cols) {
+	for (int i = 0; i < rows * cols; ++i) {
+		arr[((i + 1) / rows) % rows][(i + 1) % cols] = data[i];
+	}
+}
+int main() {
+	int rows = 3, cols = 3, sum = 0;
+	int data[] = {5, 2, 7, 4, 1, 8, 3, 6, 9};
+	int** arr; arr = (int**) malloc(sizeof(int*) * rows);
+	for (int i = 0; i < cols; i++) {
+		arr[i] = (int*) malloc(sizeof(int) * cols);
+	}
+	set(arr, data, rows, cols);
+	for (int i = 0; i < rows * cols; i++) {
+		sum += arr[i / rows][i % cols] * (i % 2 == 0 ? 1 : -1);
+	}
+	for(int i = 0; i < rows; i++) {
+		free(arr[i]);
+	}
+	free(arr);
+	printf("%d", sum);
+}`,
+    answers: ["13"],
+    hint: "i를 0부터 8까지 넣어 행과 열이 어디로 가는지 표로 적는다. 값이 덮어써지는 칸도 생긴다.",
+    explain:
+`<code>set</code>은 <code>(i+1)/3 % 3</code>을 행으로, <code>(i+1)%3</code>을 열로 써서 data를 흩뿌린다. 0번 칸에는 아무것도 안 들어가고 일부 칸은 두 번 덮어써진다.
+채워진 배열은 아래와 같다.
+<ul>
+<li>1행: 6, 5, 2</li>
+<li>2행: 9, 4, 1</li>
+<li>3행: 0(미할당), 3, 8</li>
+</ul>
+합산은 짝수 번째에 <code>+</code>, 홀수 번째에 <code>-</code>를 붙여 6-5+2-9+4-1+0-3+8 = <b>13</b>이 된다.
+이중 포인터는 <code>arr[행][열]</code> 형태로 접근한다는 점만 잡으면 나머지는 계산 문제다.`
+  },
+  {
+    id: "e06", source: "예상", unit: "343 자료구조 구현", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+#include <stdlib.h>
+typedef struct Data {
+	int value; struct Data *next;
+} Data;
+
+Data* insert(Data* head, int value) {
+	Data* new_node = (Data*)malloc(sizeof(Data));
+	new_node -> value = value; new_node -> next = head; return new_node;
+}
+
+Data* reconnect(Data* head, int value) {
+	if (head == NULL || head -> value == value) return head;
+	Data *prev = NULL, *curr = head;
+	while (curr != NULL && curr -> value != value) {
+		prev = curr; curr = curr -> next;
+	}
+	if (curr != NULL && prev != NULL) {
+		prev -> next = curr -> next; curr -> next = head; head = curr;
+	}
+	return head;
+}
+
+int main() {
+	Data *head = NULL, *curr;
+	for (int i = 1; i <= 5; i++)
+		head = insert(head, i);
+	head = reconnect(head, 3);
+	for (curr = head; curr != NULL; curr = curr -> next)
+		printf("%d", curr->value);
+	return 0;
+}`,
+    answers: ["35421"],
+    hint: "insert는 새 노드를 항상 맨 앞에 붙인다. 1부터 5까지 넣으면 순서가 어떻게 되는지부터 적는다.",
+    explain:
+`<code>insert</code>는 새 노드의 next를 기존 head로 두고 자신이 head가 되는 앞쪽 삽입이다. 1~5를 차례로 넣으면 목록은 <b>5 4 3 2 1</b> 순이 된다.
+<code>reconnect(head, 3)</code>은 값이 3인 노드를 찾아 원래 자리에서 떼어내고 맨 앞으로 옮긴다.
+<ul>
+<li><code>prev->next = curr->next</code>로 3을 목록에서 분리</li>
+<li><code>curr->next = head</code>로 3을 기존 맨 앞에 연결</li>
+<li><code>head = curr</code>로 3이 새 시작점이 됨</li>
+</ul>
+결과는 <b>35421</b>이다. 연결 리스트 문제는 화살표를 그려 가며 따라가는 편이 확실하다.`
+  },
+  {
+    id: "e07", source: "예상", unit: "316 연산자 우선순위", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Test {
+	public static void main(String[] args) {
+		System.out.print(Test.check(1));
+	}
+	static String check(int num){
+		return (num >= 0) ? "positive" : "negative";
+	}
+}`,
+    answers: ["positive"],
+    hint: "삼항 연산자는 조건이 참이면 앞의 값, 거짓이면 뒤의 값을 돌려준다.",
+    explain:
+`<code>1 &gt;= 0</code>이 참이므로 물음표 뒤의 첫 번째 값이 선택된다.
+<code>static</code> 메소드라 객체를 만들지 않고 <code>클래스명.메소드()</code>로 바로 부를 수 있다. 답은 <b>positive</b>다.`
+  },
+  {
+    id: "e08", source: "예상", unit: "316 연산자 우선순위", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+#include <stdlib.h>
+
+main(int argc, char *argv[]) {
+	int v1 = 0;
+	int v2 = 35;
+	int v3 = 29;
+	if (v1 > v2 ? v2 : v1)
+		v2 = v2 << 2;
+	else
+		v3 = v3 << 2;
+	printf("%d", v2 + v3);
+	return 0;
+}`,
+    answers: ["151"],
+    hint: "if의 조건 자리에 비교식이 아니라 삼항 연산자가 통째로 들어가 있다. 그 결과값이 조건이 된다.",
+    explain:
+`<code>v1 &gt; v2</code>는 <code>0 &gt; 35</code>이므로 거짓이고, 삼항 연산자는 뒤쪽 값인 <code>v1</code>, 즉 0을 돌려준다.
+C에서 0은 거짓이므로 else가 실행되어 <code>v3 = 29 &lt;&lt; 2</code>가 된다. 왼쪽 시프트 2칸은 4배이므로 116이다.
+따라서 <code>v2 + v3</code>는 35 + 116 = <b>151</b>이다.`
+  },
+  {
+    id: "e09", source: "예상", unit: "316 연산자 우선순위", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+
+main() {
+	int m = 4620;
+	int a = m / 1000;
+	int b = m % 1000 / 500;
+	int c = m % 500 / 100;
+	int d = m % 100 / 10;
+	printf("1000원의 개수 : %d\\n", a);
+	printf("500원의 개수 : %d\\n", b);
+	printf("100원의 개수 : %d\\n", c);
+	printf("10원의 개수 : %d\\n", d);
+}`,
+    answers: ["1000원의 개수 : 4\n500원의 개수 : 1\n100원의 개수 : 1\n10원의 개수 : 2"],
+    hint: "나머지로 남은 금액을 구하고, 나눗셈으로 개수를 구한다. 두 연산의 우선순위는 같아 왼쪽부터 계산된다.",
+    explain:
+`거스름돈을 큰 단위부터 세는 전형적인 코드다.
+<ol>
+<li>4620 / 1000 = 4장, 남은 돈 620</li>
+<li>620 / 500 = 1개, 남은 돈 120</li>
+<li>120 / 100 = 1개, 남은 돈 20</li>
+<li>20 / 10 = 2개</li>
+</ol>
+<code>m % 1000 / 500</code>에서 <code>%</code>와 <code>/</code>는 우선순위가 같아 왼쪽부터 순서대로 계산된다. 즉 <code>(m % 1000) / 500</code>이다.`
+  },
+  {
+    id: "e10", source: "예상", unit: "348 문자 처리 함수", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+	char *p = "It is 8";
+	char result[100];
+	int i;
+	for(i = 0; p[i] != '\\0'; i++) {
+		if(isupper(p[i]))
+			result[i] = (p[i] - 'A'+ 5) % 25 + 'A';
+		else if(islower(p[i]))
+			result[i] = (p[i] - 'a'+ 10) % 26 + 'a';
+		else if(isdigit(p[i]))
+			result[i] = (p[i] - '0'+ 3) % 10 + '0';
+		else if(!(isupper(p[i]) || islower(p[i]) || isdigit(p[i])))
+			result[i] = p[i];
+	}
+	result[i] = '\\0';
+	printf("변환된 문자열 : %s\\n", result);
+	return 0;
+}`,
+    answers: ["변환된 문자열 : Nd sc 1"],
+    hint: "글자에서 'A'나 'a'를 빼면 알파벳 순번(0부터)이 나온다. 거기에 값을 더하고 나머지를 구한 뒤 다시 더해 글자로 되돌린다.",
+    explain:
+`글자를 순번으로 바꿔 밀어낸 뒤 다시 글자로 되돌리는 암호 코드다. 원문은 <code>It is 8</code>이다.
+<ul>
+<li>I는 대문자, 순번 8. (8+5)%25 = 13 → <b>N</b></li>
+<li>t는 소문자, 순번 19. (19+10)%26 = 3 → <b>d</b></li>
+<li>공백은 어디에도 해당하지 않아 그대로</li>
+<li>i는 순번 8. (8+10)%26 = 18 → <b>s</b></li>
+<li>s는 순번 18. (18+10)%26 = 2 → <b>c</b></li>
+<li>8은 숫자, (8+3)%10 = 1 → <b>1</b></li>
+</ul>
+대문자만 <code>% 25</code>인 것이 눈에 걸리지만 여기서는 결과에 영향이 없다. 최종 출력은 <b>변환된 문자열 : Nd sc 1</b>이다.`
+  },
+  {
+    id: "e11", source: "예상", unit: "317 제어문", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	int n[] = { 5, 4, 3, 2, 1 };
+	for (int i = 0; i < 5; i++)
+		printf("%d", n[(i+1)%5]);
+}`,
+    answers: ["43215"],
+    hint: "인덱스가 5가 되는 순간 나머지 연산 때문에 0으로 돌아온다.",
+    explain:
+`인덱스가 <code>(i+1)%5</code>이므로 1, 2, 3, 4, 0 순서로 돌아간다. 마지막에 한 바퀴 돌아 처음으로 돌아오는 것이 핵심이다.
+배열 값이 5, 4, 3, 2, 1이므로 출력은 <b>43215</b>가 된다. <code>%</code>로 인덱스를 순환시키는 방식은 큐나 원형 배열에서 자주 쓰인다.`
+  },
+  {
+    id: "e12", source: "예상", unit: "317 제어문", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	int n[] = { 73, 95, 82 };
+	int sum = 0;
+	for (int i = 0; i < 3; i++)
+		sum += n[i];
+	switch (sum / 30) {
+		case 10:
+		case 9: printf("A");
+		case 8: printf("B");
+		case 7:
+		case 6: printf("C");
+		default: printf("D");
+	}
+}`,
+    answers: ["BCD"],
+    hint: "합을 30으로 나눈 몫부터 구한다. 그리고 break가 하나도 없다.",
+    explain:
+`합은 73 + 95 + 82 = 250이고, <code>250 / 30</code>은 정수 나눗셈이라 몫이 8이다.
+<code>case 8</code>부터 시작하는데 break가 없어 아래로 계속 흘러내린다.
+<ol>
+<li>case 8 → B</li>
+<li>case 7은 출력문 없이 통과, case 6 → C</li>
+<li>default → D</li>
+</ol>
+따라서 <b>BCD</b>다. case 9와 A는 아예 지나치지 않는다.`
+  },
+  {
+    id: "e13", source: "예상", unit: "344 알고리즘 활용", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	int E[] = { 64, 25, 12, 22, 11 };
+	int n = sizeof(E) / sizeof(E[0]);
+	int i = 0;
+	do {
+		int j = i + 1;
+		do {
+			if (E[i] > E[j]) {
+				int tmp = E[i];
+				E[i] = E[j];
+				E[j] = tmp;
+			}
+			j++;
+		} while (j < n);
+		i++;
+	} while (i < n - 1);
+	for (int i = 0; i <= 4; i++)
+		printf("%d ", E[i]);
+}`,
+    answers: ["11 12 22 25 64"],
+    hint: "기준 자리 하나를 잡고 그 뒤 전체와 비교해 작은 값을 끌어온다. 어떤 정렬인지 알아채면 결과는 바로 나온다.",
+    explain:
+`바깥 반복이 기준 위치 i를 정하고, 안쪽 반복이 그 뒤쪽 전체와 비교해 더 작은 값을 i 자리로 끌어온다. 선택 정렬의 교환형 구현이다.
+결과는 오름차순이므로 <b>11 12 22 25 64</b>다.
+<code>sizeof(E) / sizeof(E[0])</code>은 배열 전체 크기를 원소 하나의 크기로 나눠 원소 개수를 구하는 관용적 표현이다.`
+  },
+  {
+    id: "e14", source: "예상", unit: "344 알고리즘 활용", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	int c = 0;
+	for (int i = 1; i <= 2023; i++)
+		if (i % 4 == 0)
+			c++;
+	printf("%d", c);
+}`,
+    answers: ["505"],
+    hint: "1부터 N까지 중 4의 배수 개수는 N을 4로 나눈 몫이다.",
+    explain:
+`4로 나눈 나머지가 0인 수, 즉 4의 배수를 센다. 1부터 2023까지의 4의 배수 개수는 <code>2023 / 4</code>의 몫이다.
+4 × 505 = 2020이고 4 × 506 = 2024는 범위를 넘으므로 답은 <b>505</b>다.
+반복문을 일일이 돌리지 않고 나눗셈으로 바로 구하는 것이 시험장에서 빠르다.`
+  },
+  {
+    id: "e15", source: "예상", unit: "320 포인터", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+main() {
+	char* p = "KOREA";
+	printf("1. %s\\n", p);
+	printf("2. %s\\n", p + 1);
+	printf("3. %c\\n", *p);
+	printf("4. %c\\n", *(p + 3));
+	printf("5. %c\\n", *p + 4);
+}`,
+    answers: ["1. KOREA\n2. OREA\n3. K\n4. E\n5. O"],
+    hint: "<code>*(p + 3)</code>과 <code>*p + 4</code>는 괄호 위치가 달라 뜻이 전혀 다르다.",
+    explain:
+`포인터 표기의 차이를 한 번에 묻는 문제다.
+<ol>
+<li><code>%s</code>에 p → 시작부터 끝까지 KOREA</li>
+<li><code>p + 1</code>은 한 칸 뒤 주소 → OREA</li>
+<li><code>*p</code>는 첫 글자 → K</li>
+<li><code>*(p + 3)</code>은 네 번째 글자 → E</li>
+<li><code>*p + 4</code>는 <b>글자에 4를 더한 것</b>이다. K의 코드값에 4를 더하면 O</li>
+</ol>
+즉 4번은 주소를 옮긴 것이고 5번은 값을 더한 것이다. 이 둘을 구분하는 것이 이 문제의 전부다.`
+  },
+  {
+    id: "e16", source: "예상", unit: "321 구조체", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+struct Test {
+	int i;
+	const char *g;
+};
+
+int main() {
+	struct Test test[] = {{1, "AB"}, {2, "DC"}, {3, "EB"}};
+	struct Test *p = &test[1];
+	printf("%s", p->g + (p->i - 1));
+	return 0;
+}`,
+    answers: ["C"],
+    hint: "문자열 포인터에 정수를 더하면 시작 위치가 그만큼 밀린다.",
+    explain:
+`<code>p</code>는 test[1]을 가리키므로 <code>p-&gt;i</code>는 2, <code>p-&gt;g</code>는 "DC"의 시작 주소다.
+<code>p-&gt;g + (2 - 1)</code>은 한 칸 뒤를 가리키므로 "DC"의 두 번째 글자부터가 된다.
+<code>%s</code>는 그 위치부터 끝까지 출력하므로 결과는 <b>C</b>다. 한 글자지만 <code>%c</code>가 아니라 <code>%s</code>로 출력된 문자열이다.`
+  },
+  {
+    id: "e17", source: "예상", unit: "322 사용자 정의 함수", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+#include <string.h>
+
+void inverse(char *str, int len) {
+	for(int i = 0, j = len - 1; i < j; i++, j--) {
+		char ch = str[i];
+		str[i] = str[j];
+		str[j] = ch;
+	}
+}
+
+int main() {
+	char str[100] = "ABCDEFGH";
+	int len = strlen(str);
+	inverse(str, len);
+	for(int i = 1; i < len; i += 2) {
+		printf("%c", str[i]);
+	}
+	return 0;
+}`,
+    answers: ["GECA"],
+    hint: "뒤집은 문자열을 먼저 적어 놓고 나서 홀수 번째 인덱스를 골라낸다.",
+    explain:
+`<code>inverse</code>는 양 끝에서 안쪽으로 좁혀 오며 자리를 맞바꾼다. 배열을 주소로 넘겼기 때문에 main의 str이 실제로 뒤집힌다.
+뒤집힌 문자열은 <code>HGFEDCBA</code>다. 여기서 인덱스 1, 3, 5, 7을 뽑으면 G, E, C, A다.
+따라서 출력은 <b>GECA</b>다. 뒤집기를 건너뛰고 원래 문자열에서 고르면 BDFH가 나오니 순서를 지켜야 한다.`
+  },
+  {
+    id: "e18", source: "예상", unit: "322 사용자 정의 함수", lang: "C",
+    prompt: "다음 C 코드에 <code>홍길동</code>, <code>김철수</code>, <code>이영희</code>를 차례로 입력했을 때 마지막 세 줄의 출력 결과를 쓰시오.",
+    stdin: "홍길동 → 김철수 → 이영희",
+    code:
+`#include <stdio.h>
+char n[30];
+char* getname() {
+	printf("이름 입력 : ");
+	gets(n);
+	return n;
+}
+
+main() {
+	char* n1 = getname();
+	char* n2 = getname();
+	char* n3 = getname();
+	printf("%s\\n", n1);
+	printf("%s\\n", n2);
+	printf("%s\\n", n3);
+}`,
+    answers: ["이영희\n이영희\n이영희"],
+    hint: "세 포인터가 각각 다른 곳을 가리키는지, 아니면 같은 곳을 가리키는지 확인한다.",
+    explain:
+`<code>n</code>은 전역 배열 하나뿐이다. <code>getname()</code>은 매번 그 배열에 입력을 덮어쓰고 <b>같은 주소</b>를 돌려준다.
+따라서 n1, n2, n3는 서로 다른 이름을 담은 것이 아니라 모두 같은 곳을 가리킨다. 마지막에 입력한 값만 남아 세 줄 모두 <b>이영희</b>가 출력된다.
+값을 따로 보관하려면 함수 안에서 배열을 새로 할당하거나 <code>strcpy</code>로 복사해야 한다.`
+  },
+  {
+    id: "e19", source: "예상", unit: "344 알고리즘 활용", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+int isPerfectNum(int num) {
+	int sum = 0;
+	for (int i = 1; i < num; i++) {
+		if (num % i == 0)
+			sum += i;
+	}
+	if (num == sum) return 1;
+	else return 0;
+}
+
+main() {
+	int r = 0;
+	for (int i = 1; i <= 100; i++)
+		if (isPerfectNum(i))
+			r += i;
+	printf("%d", r);
+}`,
+    answers: ["34"],
+    hint: "자기 자신을 뺀 약수의 합이 자기 자신과 같은 수를 찾는다. 100 이하에는 두 개뿐이다.",
+    explain:
+`<code>isPerfectNum</code>은 자기 자신을 제외한 약수의 합이 자신과 같은지 판별한다. 이런 수를 완전수라고 한다.
+100 이하의 완전수는 6(1+2+3)과 28(1+2+4+7+14) 둘뿐이다. 둘을 더하면 <b>34</b>다.
+반복 조건이 <code>i &lt; num</code>이라 자기 자신은 약수 합에서 빠진다는 점이 이 판별의 핵심이다.`
+  },
+  {
+    id: "e20", source: "예상", unit: "342 문자열 클래스", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Test {
+	public static void main(String[] args) {
+		String str1 = "Programming";
+		String str2 = "Programming";
+		String str3 = new String("Programming");
+		System.out.println(str1==str2);
+		System.out.println(str1==str3);
+		System.out.println(str1.equals(str3));
+		System.out.println(str2.equals(str3));
+	}
+}`,
+    answers: ["true\nfalse\ntrue\ntrue"],
+    hint: "<code>==</code>는 주소를 비교하고 <code>equals</code>는 내용을 비교한다. <code>new</code>가 붙으면 어떻게 되는지 생각해 본다.",
+    explain:
+`따옴표로 만든 문자열은 상수 풀에 저장되어 같은 값이면 <b>같은 객체를 함께 쓴다</b>. 그래서 str1과 str2는 주소까지 같다.
+반면 <code>new String(...)</code>은 내용이 같아도 새 객체를 따로 만든다. 그래서 str1과 str3는 주소가 다르다.
+<ol>
+<li><code>str1==str2</code> → true</li>
+<li><code>str1==str3</code> → false</li>
+<li><code>equals</code>는 내용만 보므로 나머지 둘은 true</li>
+</ol>
+Java에서 문자열 비교에 <code>==</code>를 쓰면 안 되는 이유가 여기에 있다.`
+  },
+  {
+    id: "e21", source: "예상", unit: "324 상속과 오버라이딩", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class SuperObject {
+	public void draw() {
+		System.out.println("A");
+		draw();
+	}
+	public void paint() {
+		System.out.print('B');
+		draw();
+	}
+}
+class SubObject extends SuperObject {
+	public void paint() {
+		super.paint();
+		System.out.print('C');
+		draw();
+	}
+	public void draw() {
+		System.out.print('D');
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		SuperObject a = new SubObject();
+		a.paint();
+		a.draw();
+	}
+}`,
+    answers: ["BDCDD"],
+    hint: "부모의 draw가 자기 자신을 다시 부르지만 무한 루프에 빠지지 않는다. 실제로 실행되는 draw가 무엇인지 확인한다.",
+    explain:
+`객체가 SubObject이므로 <code>draw()</code>는 어디서 불리든 자식 것이 실행된다. 부모의 draw는 한 번도 실행되지 않아 "A"도, 무한 재귀도 일어나지 않는다.
+<ol>
+<li><code>a.paint()</code> → 자식 paint 실행</li>
+<li><code>super.paint()</code> → 'B' 출력 후 draw() → 자식 draw → 'D'</li>
+<li>이어서 'C' 출력, 다시 draw() → 'D'</li>
+<li><code>a.draw()</code> → 'D'</li>
+</ol>
+따라서 <b>BDCDD</b>다. 부모 메소드 안에서 부른 메소드도 오버라이딩 대상이라는 점이 이 문제의 핵심이다.`
+  },
+  {
+    id: "e22", source: "예상", unit: "347 디자인 패턴", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class Connection {
+	private static Connection _inst = null;
+	private int count = 0;
+	public static Connection get() {
+		if(_inst == null) {
+			_inst = new Connection();
+			return _inst;
+		}
+		return _inst;
+	}
+	public void count() { count++; }
+	public int getCount() { return count; }
+}
+public class Test {
+	public static void main(String[] args) {
+		Connection conn1 = Connection.get();
+		conn1.count();
+		Connection conn2 = Connection.get();
+		conn2.count();
+		Connection conn3 = Connection.get();
+		conn3.count();
+		conn1.count();
+		System.out.print(conn1.getCount());
+	}
+}`,
+    answers: ["4"],
+    hint: "<code>get()</code>이 객체를 몇 개나 만드는지부터 확인한다.",
+    explain:
+`<code>_inst</code>가 <code>static</code>이라 클래스에 하나뿐이다. <code>get()</code>은 처음 호출될 때만 객체를 만들고 이후에는 같은 객체를 돌려준다. 이런 구조를 싱글톤 패턴이라고 한다.
+따라서 conn1, conn2, conn3는 이름만 다를 뿐 <b>같은 객체</b>다. <code>count()</code>가 네 번 불렸으므로 결과는 <b>4</b>다.
+객체가 셋이라고 보면 답을 1이나 2로 적게 되니 주의해야 한다.`
+  },
+  {
+    id: "e23", source: "예상", unit: "324 상속과 오버라이딩", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class P {
+	public int calc(int n) {
+		if (n <= 1) return n;
+		return calc(n - 1) + calc(n - 2);
+	}
+}
+class C extends P {
+	public int calc(int n) {
+		if (n <= 1) return n;
+		return calc(n - 1) + calc(n - 3);
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		P obj = new C();
+		System.out.print(obj.calc(7));
+	}
+}`,
+    answers: ["2"],
+    hint: "작은 값부터 표로 정리해 올라가면 계산이 빠르다. 음수도 그대로 반환된다는 점을 놓치지 않는다.",
+    explain:
+`실행되는 것은 자식의 <code>calc(n-1) + calc(n-3)</code>뿐이다. 1 이하는 값을 그대로 돌려주므로 음수도 그대로 나온다.
+작은 값부터 정리하면 이렇게 된다.
+<ul>
+<li>calc(1)=1, calc(0)=0, calc(-1)=-1, calc(-2)=-2</li>
+<li>calc(2) = calc(1) + calc(-1) = 0</li>
+<li>calc(3) = calc(2) + calc(0) = 0</li>
+<li>calc(4) = calc(3) + calc(1) = 1</li>
+<li>calc(5) = calc(4) + calc(2) = 1</li>
+<li>calc(6) = calc(5) + calc(3) = 1</li>
+<li>calc(7) = calc(6) + calc(4) = <b>2</b></li>
+</ul>
+재귀 문제는 이렇게 작은 값부터 표를 만들어 올라가는 것이 안전하다.`
+  },
+  {
+    id: "e24", source: "예상", unit: "327 Python의 활용", lang: "Python",
+    prompt: "다음 Python 코드에 <code>10 20</code>을 입력했을 때 출력되는 두 줄을 쓰시오. (입력 안내 문구는 제외한다)",
+    stdin: "10 20",
+    code:
+`x, y = input("x, y의 값을 공백으로 구분하여 입력 : ").split(' ')
+print("x의 값 :", x)
+print("y의 값 :", y)`,
+    answers: ["x의 값 : 10\ny의 값 : 20"],
+    hint: "print에 값을 쉼표로 나열하면 사이에 공백이 하나 들어간다.",
+    explain:
+`<code>split(' ')</code>이 입력을 공백 기준으로 잘라 x와 y에 나눠 담는다. 이렇게 한 번에 여러 변수에 담는 것을 언패킹이라고 한다.
+<code>print("x의 값 :", x)</code>는 문자열 뒤에 이미 공백이 있고 쉼표가 공백을 하나 더 넣으므로, 콜론과 값 사이가 한 칸 띄어진다.
+입력받은 값은 문자열이라 계산에 쓰려면 <code>int()</code>로 바꿔야 한다.`
+  },
+  {
+    id: "e25", source: "예상", unit: "333 Python 슬라이스", lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`a = "engineer information programming"
+b = a[:3]
+c = a[4:6]
+d = a[29:]
+e = b + c + d
+print(e)`,
+    answers: ["engneing"],
+    hint: "인덱스를 글자 위에 적어 놓고 센다. 공백도 한 글자다.",
+    explain:
+`문자열의 길이는 32이고 공백도 한 글자로 센다.
+<ol>
+<li><code>a[:3]</code> → 앞 세 글자 <b>eng</b></li>
+<li><code>a[4:6]</code> → 4, 5번 글자 <b>ne</b></li>
+<li><code>a[29:]</code> → 29번부터 끝까지 <b>ing</b></li>
+</ol>
+이어 붙이면 <b>engneing</b>이다. 끝 인덱스는 포함되지 않는다는 규칙만 지키면 된다.`
+  },
+  {
+    id: "e26", source: "예상", unit: "319 break와 continue", lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`i, hap = 0, 0
+while 1:
+	i += 1
+	hap += i
+	if i >= 100:
+		break
+print(hap)`,
+    answers: ["5050"],
+    hint: "1부터 100까지의 합이다. 공식으로 바로 구할 수 있다.",
+    explain:
+`<code>while 1</code>은 조건이 항상 참이라 끝나지 않는 반복이고, <code>break</code>가 유일한 탈출구다.
+i가 100이 된 회차에도 <code>hap += i</code>가 먼저 실행되고 나서 break가 걸리므로 100까지 더해진다.
+1부터 100까지의 합은 100 × 101 ÷ 2 = <b>5050</b>이다.`
+  },
+  {
+    id: "e27", source: "예상", unit: "341 2차원 배열", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Test {
+	public static void main(String[] args) {
+		int ary[][] = new int[3][5];
+		int n = 1;
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 5; j++) {
+				ary[i][j] = j * 3 + i + 1;
+				System.out.print(ary[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+}`,
+    answers: ["1 4 7 10 13\n2 5 8 11 14\n3 6 9 12 15"],
+    hint: "값을 정하는 식에서 열 번호 j에 3이 곱해진다. 한 줄 안에서 값이 몇씩 늘어나는지 보면 빠르다.",
+    explain:
+`<code>ary[i][j] = j * 3 + i + 1</code>이므로 같은 행에서 j가 1 늘 때마다 값은 3씩 커지고, 행이 바뀌면 시작값이 1씩 커진다.
+<ul>
+<li>0행: 1, 4, 7, 10, 13</li>
+<li>1행: 2, 5, 8, 11, 14</li>
+<li>2행: 3, 6, 9, 12, 15</li>
+</ul>
+숫자를 세로로 채워 넣은 모양이 된다. <code>new int[3][5]</code>는 3행 5열이라는 점도 같이 확인해야 한다.`
+  },
+  {
+    id: "e28", source: "예상", unit: "322 사용자 정의 함수", lang: "C",
+    prompt: "다음 C 코드에 <code>5</code>를 입력했을 때 출력 결과를 쓰시오.",
+    stdin: "5",
+    code:
+`#include <stdio.h>
+int func(int a) {
+	if (a <= 1) return 1;
+	return a * func(a - 1);
+}
+int main() {
+	int a;
+	scanf("%d", &a);
+	printf("%d", func(a));
+}`,
+    answers: ["120"],
+    hint: "종료 조건까지 내려간 뒤 되짚어 올라오며 곱한다.",
+    explain:
+`팩토리얼을 재귀로 구현한 코드다. func(5)는 5 × func(4)로 넘어가고 func(1)에서 멈춘 뒤 되짚어 올라온다.
+5 × 4 × 3 × 2 × 1 = <b>120</b>이다.
+종료 조건이 <code>a &lt;= 1</code>이라 0이나 음수를 넣어도 1이 나온다는 점도 함께 봐 두면 좋다.`
+  },
+  {
+    id: "e29", source: "예상", unit: "343 자료구조 구현", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+#define MAX_SIZE 10
+
+int isWhat[MAX_SIZE];
+int point = -1;
+
+int isEmpty() {
+	if (point == -1) return 1;
+	return 0;
+}
+int isFull() {
+	if (point == 10) return 1;
+	return 0;
+}
+void into(int num) {
+	if (isFull() == 1) printf("Full");
+	else isWhat[++point] = num;
+}
+int take() {
+	if (isEmpty() == 1) printf("Empty");
+	else return isWhat[point--];
+	return 0;
+}
+
+main() {
+	into(5); into(2);
+	while (!isEmpty()) {
+		printf("%d", take());
+		into(4); into(1); printf("%d", take());
+		into(3); printf("%d", take()); printf("%d", take());
+		into(6); printf("%d", take()); printf("%d", take());
+	}
+}`,
+    answers: ["213465"],
+    hint: "나중에 넣은 것이 먼저 나온다. 스택 내용을 한 줄마다 적어 가며 따라간다.",
+    explain:
+`<code>into</code>는 push, <code>take</code>는 pop이다. 나중에 넣은 값이 먼저 나오는 스택 구조다.
+<ol>
+<li>5, 2를 넣어 스택은 [5, 2]</li>
+<li>take → <b>2</b> 출력, [5]</li>
+<li>4, 1을 넣고 take → <b>1</b> 출력, [5, 4]</li>
+<li>3을 넣고 take → <b>3</b>, 다시 take → <b>4</b>, [5]</li>
+<li>6을 넣고 take → <b>6</b>, 다시 take → <b>5</b>, 스택이 빔</li>
+</ol>
+스택이 비었으므로 반복이 끝난다. 출력은 <b>213465</b>다.`
+  },
+  {
+    id: "e30", source: "예상", unit: "344 알고리즘 활용", lang: "C",
+    prompt: "다음 C 코드의 출력 결과를 쓰시오.",
+    code:
+`#include <stdio.h>
+int isPrime(int number) {
+	for (int i = 2; i < number; i++)
+		if (number % i == 0) return 0;
+	return 1;
+}
+
+int main() {
+	int number = 13195;
+	int max_div = 0;
+	for (int i = 2; i < number; i++)
+		if (isPrime(i) == 1 && number % i == 0) max_div = i;
+	printf("%d", max_div);
+}`,
+    answers: ["29"],
+    hint: "13195를 소인수분해한다. 그중 가장 큰 값이 답이다.",
+    explain:
+`<code>isPrime</code>은 2부터 자기 직전까지 나눠 보며 나누어떨어지면 소수가 아니라고 판정한다.
+main은 소수이면서 13195를 나누어떨어뜨리는 값을 찾을 때마다 <code>max_div</code>에 덮어쓰므로 <b>가장 큰 소인수</b>가 남는다.
+13195 = 5 × 7 × 13 × 29이므로 답은 <b>29</b>다.`
+  },
+  {
+    id: "e31", source: "예상", unit: "345 스레드", lang: "Java",
+    prompt: "다음 Java 코드는 여러 줄을 출력한다. 출력되는 <b>마지막 한 줄</b>을 쓰시오.",
+    code:
+`class Car implements Runnable {
+	int a;
+	public void run() {
+		try {
+			while(++a < 100) {
+				System.out.println("miles traveled : " + a);
+				Thread.sleep(100);
+			}
+		} catch(Exception E) { }
+	}
+}
+
+public class Test {
+	public static void main(String args[]) {
+		Thread t1 = new Thread(new Car());
+		t1.start();
+	}
+}`,
+    answers: ["miles traveled : 99"],
+    hint: "전위 증가라 조건 검사 전에 값이 먼저 오른다. 조건이 거짓이 되는 순간의 값을 확인한다.",
+    explain:
+`<code>Runnable</code>을 구현한 클래스를 Thread에 넘기고 <code>start()</code>를 부르면 <code>run()</code>이 실행된다. <code>run()</code>을 직접 부르면 스레드가 아니라 일반 메소드 호출이 된다는 점이 자주 출제된다.
+<code>++a</code>는 전위 증가라 값을 먼저 올리고 나서 비교한다. a가 99일 때까지는 조건이 참이라 출력되고, 100이 되는 순간 조건이 거짓이 되어 멈춘다.
+따라서 1부터 99까지 99줄이 출력되고 마지막 줄은 <b>miles traveled : 99</b>다.`
+  },
+  {
+    id: "e32", source: "예상", unit: "341 2차원 배열", lang: "C",
+    prompt: "다음 C 코드 실행 후 <code>mines</code> 배열의 내용을 4행으로 쓰시오. (한 행 안의 값은 공백으로 구분한다)",
+    code:
+`#include <stdio.h>
+main() {
+	int field[4][4] = { {0,1,0,1}, {0,0,0,1}, {1,1,1,0}, {0,1,1,1} };
+	int mines[4][4] = { {0,0,0,0}, {0,0,0,0}, {0,0,0,0}, {0,0,0,0} };
+	int w = 4, h = 4;
+	for (int y = 0; y < h; y++) {
+		for (int x = 0; x < w; x++) {
+			if (field[y][x] == 0) continue;
+			for (int j = y - 1; j <= y + 1; j++) {
+				for (int i = x - 1; i <= x + 1; i++) {
+					if (chkover(w, h, j, i) == 1)
+						mines[j][i] += 1;
+				}
+			}
+		}
+	}
+}
+
+int chkover(int w, int h, int j, int i) {
+	if (i >= 0 && i < w && j >= 0 && j < h) return 1;
+	return 0;
+}`,
+    answers: ["1 1 3 2\n3 4 5 3\n3 5 6 4\n3 5 5 3"],
+    hint: "지뢰가 있는 칸마다 자기 자신을 포함한 3×3 범위에 1씩 더한다. 격자를 그려 놓고 하나씩 세는 편이 빠르다.",
+    explain:
+`지뢰찾기의 숫자 계산 코드다. <code>field</code>의 값이 1인 칸을 만나면 그 칸을 중심으로 한 3×3 범위의 <code>mines</code>를 1씩 올린다.
+<code>chkover</code>는 격자 밖으로 나가는지 검사해 배열 범위를 벗어난 접근을 막는다. 이 검사가 없으면 잘못된 메모리를 건드리게 된다.
+자기 자신도 3×3에 포함되므로 지뢰 칸의 값도 함께 올라간다는 점이 함정이다. 최종 결과는 아래와 같다.
+<ul>
+<li>1행: 1 1 3 2</li>
+<li>2행: 3 4 5 3</li>
+<li>3행: 3 5 6 4</li>
+<li>4행: 3 5 5 3</li>
+</ul>`
+  },
+  {
+    id: "e33", source: "예상", unit: "323 Java의 클래스", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`public class Main {
+	public static class BO {
+		public int v;
+		public BO(int v) { this.v = v; }
+	}
+	public static void main(String[] args) {
+		BO a = new BO(1);
+		BO b = new BO(2);
+		BO c = new BO(3);
+		BO[] arr = {a, b, c};
+		BO t = arr[0];
+		arr[0] = arr[2];
+		arr[2] = t;
+		arr[1].v = arr[0].v;
+		System.out.println(a.v + "a" + b.v + "b" + c.v);
+	}
+}`,
+    answers: ["1a3b3"],
+    hint: "배열에 담긴 것은 객체 자체가 아니라 객체를 가리키는 참조다. 배열 순서를 바꿔도 a, b, c가 가리키는 객체는 그대로다.",
+    explain:
+`배열 원소를 맞바꾸면 <b>배열 칸이 가리키는 대상</b>만 바뀐다. 변수 a, b, c는 여전히 처음 만든 객체를 가리킨다.
+교환 후 arr[0]은 c가 가리키던 객체(v=3), arr[1]은 b의 객체(v=2), arr[2]는 a의 객체(v=1)를 가리킨다.
+<code>arr[1].v = arr[0].v</code>는 b의 객체 값을 3으로 바꾼다. 따라서 a.v는 1, b.v는 3, c.v는 3이 되어 <b>1a3b3</b>이 출력된다.
+정수와 문자열을 <code>+</code>로 이으면 전부 문자열로 이어 붙는다.`
+  },
+  {
+    id: "e34", source: "예상", unit: "349 파이썬 중첩 자료구조", lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`class Node:
+	def __init__(self, value):
+		self.value = value
+		self.children = []
+def tree(li):
+	nodes = [Node(i) for i in li]
+	for i in range(1, len(li)):
+		nodes[(i - 1) // 2].children.append(nodes[i])
+		return nodes[0]
+def calc(node, level=0):
+	if node is None:
+		return 0
+	return (node.value if level % 2 == 1 else 0) + sum(calc(n, level + 1) for n in node.children)
+li = [3, 5, 8, 12, 15, 18, 21]
+root = tree(li)
+print(calc(root))`,
+    answers: ["5"],
+    hint: "<code>tree</code> 함수의 return이 반복문 안쪽에 들어가 있다. 반복이 몇 번 돌고 끝나는지 확인한다.",
+    explain:
+`핵심은 들여쓰기다. <code>return nodes[0]</code>이 for문 <b>안쪽</b>에 있어서 첫 회차가 끝나는 즉시 함수가 종료된다.
+따라서 트리는 완성되지 않고 노드 0에 노드 1만 붙은 상태로 반환된다. 즉 3 아래에 5 하나만 달린 모양이다.
+<code>calc</code>는 홀수 레벨의 값만 더한다. 루트는 레벨 0이라 0으로 치고, 자식 5는 레벨 1이라 그대로 더해진다.
+결과는 <b>5</b>다. 나머지 8, 12, 15, 18, 21은 트리에 연결되지도 않았다.`
+  },
+  {
+    id: "e35", source: "예상", unit: "346 열거형과 제네릭", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`enum Tri {
+	A("A"), B("AB"), C("ABC");
+	private String code;
+	Tri(String code) {
+		this.code = code;
+	}
+	public String code() {
+		return code;
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		Tri t = Tri.values()[Tri.A.name().length()];
+		System.out.print(t.code());
+	}
+}`,
+    answers: ["AB"],
+    hint: "<code>name()</code>은 상수의 이름을 문자열로 돌려준다. 그 길이가 곧 배열 인덱스가 된다.",
+    explain:
+`<code>values()</code>는 열거형 상수를 선언 순서대로 담은 배열을 돌려준다. 즉 인덱스 0이 A, 1이 B, 2가 C다.
+<code>Tri.A.name()</code>은 상수 이름인 "A"이고 길이는 1이다. 따라서 <code>values()[1]</code>은 B다.
+B의 code 값은 "AB"이므로 출력은 <b>AB</b>다. 상수 이름과 괄호 안의 값이 다르다는 점을 구분해야 한다.`
+  },
+  {
+    id: "e38", source: "예상", unit: "331 클래스 없는 메소드", lang: "Python",
+    prompt: "다음 Python 코드의 출력 결과를 쓰시오.",
+    code:
+`def cnt(str, p):
+	result = 0;
+	for i in range(len(str)):
+		sub = str[i:i+len(p)]
+		if sub == p:
+			result += 1
+		return result
+str = "abdcabcabca"
+p1 = "ca"
+p2 = "ab"
+print(f'ab{cnt(str, p1)} ca{cnt(str, p2)}')`,
+    answers: ["ab0 ca1"],
+    hint: "함수 안의 return 위치를 보고, f-string 안의 이름표와 실제 인수가 짝이 맞는지 확인한다.",
+    explain:
+`함정이 두 겹이다.
+첫째, <code>return result</code>가 for문 <b>안쪽</b>에 있어 반복이 첫 회차에서 끝난다. 즉 i=0일 때 잘라 낸 두 글자만 비교하고 바로 반환한다.
+문자열은 <code>abdcabcabca</code>이므로 <code>str[0:2]</code>는 "ab"다.
+<ul>
+<li><code>cnt(str, "ca")</code> → "ab"와 다르므로 <b>0</b></li>
+<li><code>cnt(str, "ab")</code> → 일치하므로 <b>1</b></li>
+</ul>
+둘째, 출력 문자열의 이름표가 뒤바뀌어 있다. <code>ab</code> 뒤에는 "ca"를 센 값이, <code>ca</code> 뒤에는 "ab"를 센 값이 들어간다.
+따라서 결과는 <b>ab0 ca1</b>이다.`
+  },
+  {
+    id: "e39", source: "예상", unit: "346 열거형과 제네릭", lang: "Java",
+    prompt: "다음 Java 코드의 출력 결과를 쓰시오.",
+    code:
+`class Printer {
+	void print(Integer a) {
+		System.out.print("A" + a);
+	}
+	void print(Object a) {
+		System.out.print("B" + a);
+	}
+	void print(Number a) {
+		System.out.print("C" + a);
+	}
+}
+
+public class Main {
+	public static void main(String[] args) {
+		new Collection<>(0).print();
+	}
+	public static class Collection<T> {
+		T value;
+		public Collection(T t) {
+			value = t;
+		}
+		public void print() {
+			new Printer().print(value);
+		}
+	}
+}`,
+    answers: ["B0"],
+    hint: "<code>value</code>의 자료형은 무엇으로 선언되어 있는지 본다. 실제로 담긴 값이 아니라 선언된 타입이 기준이다.",
+    explain:
+`오버로딩된 메소드 중 어느 것을 부를지는 <b>컴파일 시점의 타입</b>으로 정해진다. 실행 중의 실제 값이 아니다.
+<code>Collection&lt;T&gt;</code>의 <code>value</code>는 타입 제한이 없는 제네릭이라 컴파일 과정에서 Object로 취급된다. 이를 타입 소거라고 한다.
+따라서 <code>print(Object a)</code>가 선택되어 <b>B0</b>이 출력된다. 값이 0이니 Integer 쪽이 불릴 것 같지만 그렇지 않다.`
+  }
+];
+
+/* ─────────────────────────────────────────────
+   1-2) 내 메모 — 공부하다 얻은 내용을 문항 id로 붙인다
+        브라우저에서 적은 뒤 "메모 내보내기"로 뽑아
+        아래 객체에 붙여넣으면 다음에 열 때도 남는다
+   ───────────────────────────────────────────── */
+const NOTES = {
+  // "316-c-1": "시프트가 & 보다 먼저. 시험장에서 괄호부터 치자.",
+};
+
+/* ─────────────────────────────────────────────
+   1-3) 단원 개념 — 문항의 unit 값으로 연결된다
+        특정 문항만 다른 내용을 붙이려면
+        그 문항 객체에 concept 속성을 직접 넣으면 된다
+   ───────────────────────────────────────────── */
+const CONCEPTS = {
+"340 비교 연산과 참·거짓": `
+<p>비교 연산의 결과는 참 또는 거짓이고, 언어마다 표기가 다르다.</p>
+<ul>
+<li>파이썬은 <code>True</code>, <code>False</code>로 첫 글자가 대문자다. C와 Java는 <code>true</code>, <code>false</code>로 소문자다</li>
+<li>C에는 원래 참·거짓 자료형이 없어 0이 거짓, 0이 아닌 모든 값이 참이다</li>
+<li><code>=</code>는 대입, <code>==</code>는 비교다. 조건식에 <code>=</code>를 쓰면 값이 대입되고 그 값이 조건이 된다</li>
+<li>파이썬은 <code>1 &lt; x &lt; 10</code>처럼 이어 쓰는 비교가 되지만 C와 Java는 안 된다</li>
+</ul>
+<p>답을 적을 때 대소문자까지 그대로 옮겨야 한다. <code>false</code>와 <code>False</code>는 다른 답으로 처리된다.</p>`,
+
+"341 2차원 배열": `
+<p>2차원 배열은 행과 열로 이루어진 표다. 선언 순서와 접근 순서가 모두 [행][열]이다.</p>
+<ul>
+<li><code>int a[3][5]</code>는 3행 5열이다. 행이 앞, 열이 뒤라는 순서를 헷갈리지 않아야 한다</li>
+<li>값을 정하는 식에 행 번호와 열 번호가 섞여 나오면, 한 행을 먼저 채워 보고 규칙을 찾는 편이 빠르다</li>
+<li>바깥 반복문이 행, 안쪽 반복문이 열을 도는 것이 보통이다. 안쪽 반복이 끝날 때마다 줄을 바꾼다</li>
+<li>인접한 여덟 칸을 훑을 때는 <code>y-1 ~ y+1</code>, <code>x-1 ~ x+1</code>로 3×3을 돌리고 격자 밖인지 따로 검사한다</li>
+</ul>
+<p>범위 검사 없이 <code>-1</code> 인덱스에 접근하면 엉뚱한 메모리를 건드린다. 검사 함수가 붙어 있으면 그 역할을 먼저 확인한다.</p>`,
+
+"342 문자열 클래스": `
+<p>Java의 문자열은 기본형이 아니라 객체다. 그래서 비교 방법이 두 가지로 갈린다.</p>
+<ul>
+<li><code>==</code>는 <b>주소</b>가 같은지 본다. <code>equals()</code>는 <b>내용</b>이 같은지 본다</li>
+<li>따옴표로 만든 문자열은 상수 풀에 저장되어, 값이 같으면 같은 객체를 함께 쓴다</li>
+<li><code>new String("...")</code>은 내용이 같아도 <b>새 객체</b>를 만든다. 그래서 <code>==</code> 비교가 거짓이 된다</li>
+<li>문자열은 한 번 만들면 내용을 바꿀 수 없다. <code>+</code>로 이으면 새 문자열이 만들어진다</li>
+</ul>
+<p>정리하면 문자열 비교에는 <code>equals()</code>를 쓰는 것이 원칙이다. <code>==</code>가 참이 되는 경우와 아닌 경우를 구분하는 문제가 자주 나온다.</p>`,
+
+"343 자료구조 구현": `
+<p>연결 리스트와 스택은 C의 포인터로 구현되어 자주 출제된다.</p>
+<ul>
+<li>연결 리스트의 노드는 값과 다음 노드의 주소를 함께 가진다. 앞쪽 삽입은 <code>새노드-&gt;next = head</code> 뒤 <code>head = 새노드</code> 순서다</li>
+<li>노드를 옮길 때는 앞 노드의 next를 이어 붙여 끊긴 곳을 메워야 한다. <code>prev</code>와 <code>curr</code> 두 포인터를 같이 쓰는 이유가 여기에 있다</li>
+<li>스택은 나중에 넣은 것이 먼저 나온다. push는 <code>arr[++top]</code>, pop은 <code>arr[top--]</code> 형태가 관용적이다</li>
+<li><code>++top</code>은 올리고 나서 쓰고, <code>top--</code>은 쓰고 나서 내린다. 이 순서가 어긋나면 값이 한 칸씩 밀린다</li>
+</ul>
+<p>이런 문제는 머릿속으로 풀지 말고 노드 그림이나 스택 상태를 한 줄씩 적어 가며 따라가는 것이 좋다.</p>`,
+
+"344 알고리즘 활용": `
+<p>정렬과 판별 알고리즘은 코드 모양만 보고 무엇인지 알아채면 답이 바로 나온다.</p>
+<ul>
+<li>이웃한 두 칸을 비교해 큰 값을 뒤로 넘기면 <b>버블 정렬</b>, 기준 자리를 잡고 그 뒤 전체와 비교하면 <b>선택 정렬</b>이다. 어느 쪽이든 결과는 오름차순이다</li>
+<li>소수 판별은 2부터 자기 직전까지 나눠 보며 나누어떨어지면 소수가 아니다</li>
+<li>완전수는 자기 자신을 뺀 약수의 합이 자신과 같은 수다. 100 이하에는 6과 28 둘뿐이다</li>
+<li>배수의 개수는 반복문을 돌리지 않고 나눗셈의 몫으로 바로 구할 수 있다</li>
+<li><code>sizeof(배열) / sizeof(배열[0])</code>은 원소 개수를 구하는 관용적 표현이다</li>
+</ul>
+<p>결과를 묻는 문제라면 알고리즘 이름만 알아채도 끝난다. 과정을 다 따라갈 필요는 없다.</p>`,
+
+"345 스레드": `
+<p>스레드는 여러 작업을 동시에 실행하기 위한 흐름이다. 만드는 방법이 두 가지다.</p>
+<ul>
+<li><code>Thread</code>를 상속받거나, <code>Runnable</code>을 구현한 뒤 Thread에 넘긴다</li>
+<li>실행할 내용은 <code>run()</code>에 적지만, 시작은 반드시 <code>start()</code>로 한다</li>
+<li><code>run()</code>을 직접 부르면 새 흐름이 생기지 않고 그냥 일반 메소드 호출이 된다. 시험에서 가장 자주 묻는 지점이다</li>
+<li><code>Thread.sleep()</code>은 예외를 던질 수 있어 <code>try-catch</code>로 감싸야 한다</li>
+</ul>
+<p>출력 줄 수를 묻는 문제는 결국 반복 조건 문제다. <code>++a</code>는 값을 올린 뒤 비교하므로 마지막 값이 하나 어긋나기 쉽다.</p>`,
+
+"346 열거형과 제네릭": `
+<p>열거형은 정해진 상수 묶음이고, 제네릭은 자료형을 나중에 정하는 문법이다.</p>
+<ul>
+<li><code>enum</code>의 상수는 선언 순서대로 번호가 매겨진다. <code>values()</code>는 그 순서의 배열, <code>name()</code>은 상수 이름, <code>ordinal()</code>은 순번을 돌려준다</li>
+<li>상수 이름과 괄호 안에 넘긴 값은 별개다. <code>A("AB")</code>에서 이름은 A, 값은 AB다</li>
+<li>제네릭 <code>&lt;T&gt;</code>는 컴파일 과정에서 사라지고 Object로 취급된다. 이를 타입 소거라고 한다</li>
+<li>오버로딩된 메소드 중 무엇이 불릴지는 <b>컴파일 시점의 타입</b>으로 정해진다. 실행 중의 실제 값이 아니다</li>
+</ul>
+<p>오버라이딩은 실제 객체를 따라가고 오버로딩은 선언된 타입을 따라간다. 이 차이가 답을 가른다.</p>`,
+
+"347 디자인 패턴": `
+<p>코드에서 패턴 이름을 알아채는 문제가 나온다. 실기에서는 싱글톤이 압도적으로 자주 출제된다.</p>
+<ul>
+<li><b>싱글톤</b>은 객체를 하나만 만들어 공유한다. <code>private static</code> 변수에 담아 두고, <code>get()</code>이 없을 때만 만들어 돌려주는 형태다</li>
+<li>생성자를 여러 번 부른 것처럼 보여도 실제 객체는 하나다. 그래서 어느 변수로 값을 바꿔도 전부 함께 바뀐다</li>
+<li>객체 생성을 다른 클래스에 맡기면 <b>팩토리 메소드</b>, 상태 변화를 여러 객체에 알리면 <b>옵서버</b> 패턴이다</li>
+</ul>
+<p>변수 이름이 conn1, conn2처럼 여러 개라고 객체도 여러 개라고 보면 틀린다. <code>static</code> 키워드가 붙어 있는지부터 확인하는 것이 좋다.</p>`,
+
+"348 문자 처리 함수": `
+<p>문자는 내부적으로 숫자다. 그래서 문자에 산술 연산을 할 수 있다.</p>
+<ul>
+<li><code>ctype.h</code>의 판별 함수: <code>isupper</code> 대문자 · <code>islower</code> 소문자 · <code>isdigit</code> 숫자 · <code>isalpha</code> 영문자</li>
+<li><code>p[i] - 'A'</code>는 대문자의 순번(A는 0)이 되고, <code>p[i] - '0'</code>은 숫자 문자를 실제 숫자로 바꾼다</li>
+<li>계산한 순번에 다시 <code>+ 'A'</code>나 <code>+ '0'</code>을 하면 문자로 되돌아온다</li>
+<li>중간에 <code>% 26</code>이나 <code>% 10</code>을 넣으면 범위를 넘을 때 처음으로 돌아온다</li>
+</ul>
+<p>암호화 문제는 이 세 단계(빼기 → 계산 → 더하기)의 반복이다. 글자마다 표를 그려 순번을 적어 두면 실수가 없다.</p>`,
+
+"349 파이썬 중첩 자료구조": `
+<p>리스트 안에 리스트나 객체를 담아 트리, 표 같은 구조를 만든다.</p>
+<ul>
+<li><code>lol[0]</code>은 안쪽 리스트 전체, <code>lol[0][1]</code>은 그 안의 원소다. 리스트를 그대로 출력하면 대괄호와 쉼표가 함께 나온다</li>
+<li>이중 반복문으로 풀어낼 때 안쪽 리스트의 길이가 제각각이어도 <code>for sub in lol</code> 방식은 그대로 동작한다</li>
+<li>완전 이진 트리를 리스트로 표현하면 i번 노드의 부모는 <code>(i - 1) // 2</code>다</li>
+<li>파이썬은 들여쓰기가 곧 블록이다. <code>return</code>이 반복문 안쪽에 한 칸 더 들어가 있으면 첫 회차에 함수가 끝난다</li>
+</ul>
+<p>들여쓰기 함정이 자주 나온다. 코드가 길면 <code>return</code>과 <code>break</code>가 어느 블록에 속하는지부터 확인하는 것이 좋다.</p>`,
+"310 데이터 입출력": `
+<p>C의 입출력은 서식 문자로 자료형과 진법을 지정한다. 읽을 때와 쓸 때의 서식이 다르면 값 자체가 달라진다.</p>
+<ul>
+<li><code>%d</code> 10진 정수 · <code>%o</code> 8진 · <code>%x</code> 16진 · <code>%f</code> 실수 · <code>%c</code> 문자 · <code>%s</code> 문자열</li>
+<li><code>scanf</code>는 값을 넣을 주소가 필요해 변수 앞에 <code>&amp;</code>를 붙인다. 다만 배열 이름은 그 자체가 주소라 붙이지 않는다</li>
+<li>서식 문자열에 섞인 일반 문자(<code>#</code>, <code>-</code> 등)는 입력에 그대로 있어야 짝이 맞는다</li>
+<li>출력 폭은 <code>%5d</code>(오른쪽 정렬), <code>%-5d</code>(왼쪽 정렬), <code>%.2f</code>(소수점 둘째 자리)로 조절한다</li>
+</ul>
+<p>시험에서는 <code>%o</code>와 <code>%x</code>로 읽어 <code>%d</code>로 출력하는 형태가 반복된다. 진법 변환을 손으로 할 수 있어야 한다.</p>`,
+
+"311 데이터 입출력": `
+<p>Java의 입력은 Scanner, 출력은 세 메소드의 줄바꿈 차이가 핵심이다.</p>
+<ul>
+<li><code>nextInt()</code>는 공백과 개행을 건너뛰고 정수 하나만 읽는다. <code>nextLine()</code>은 줄 전체를 읽는다</li>
+<li><code>print</code>는 줄바꿈 없음 · <code>println</code>은 출력 후 줄바꿈 · <code>printf</code>는 서식대로 출력하고 줄바꿈 없음</li>
+<li><code>printf</code>의 서식 문자는 C와 같다. 줄바꿈은 <code>\\n</code> 또는 <code>%n</code></li>
+<li>정수끼리의 <code>/</code>는 몫만 남는다. <code>10 / 4</code>는 2.5가 아니라 2다</li>
+</ul>
+<p>출력이 몇 줄인지 세는 문제가 자주 나온다. 마지막이 <code>print</code>면 줄바꿈이 없다는 점까지 답에 반영해야 한다.</p>`,
+
+"316 연산자 우선순위": `
+<p>우선순위는 높은 것부터 낮은 순으로 이렇게 묶어 외우면 실수가 준다.</p>
+<ul>
+<li>단항(<code>!</code> <code>~</code> <code>++</code> <code>--</code>) → 산술(<code>* / %</code> → <code>+ -</code>) → 시프트(<code>&lt;&lt; &gt;&gt;</code>) → 관계(<code>&lt; &gt; &lt;= &gt;=</code> → <code>== !=</code>) → 비트(<code>&amp;</code> → <code>^</code> → <code>|</code>) → 논리(<code>&amp;&amp;</code> → <code>||</code>) → 삼항 → 대입</li>
+<li>가장 잘 걸리는 함정이 <b>시프트가 비트 연산보다 먼저</b>라는 점이다. <code>z &amp; z &gt;&gt; 1</code>은 <code>z &amp; (z &gt;&gt; 1)</code>이다</li>
+<li>비트 연산은 2진수로 바꿔서 자리마다 계산한다. <code>&amp;</code>는 둘 다 1일 때, <code>|</code>는 하나라도 1일 때, <code>^</code>는 서로 다를 때 1</li>
+<li><code>&gt;&gt; 1</code>은 2로 나눈 몫, <code>&lt;&lt; 1</code>은 2배와 같다</li>
+</ul>
+<p>대입은 오른쪽에서 왼쪽으로 결합한다. 삼항 연산자가 중첩되면 뒤쪽부터 묶인다.</p>`,
+
+"317 제어문": `
+<p>C의 분기와 반복에서 출제 비중이 가장 높은 것은 switch의 폴스루다.</p>
+<ul>
+<li><code>switch</code>의 조건에는 정수와 문자만 올 수 있다. 실수와 문자열은 불가</li>
+<li><code>break</code>가 없으면 일치한 case부터 아래 case들이 <b>조건 검사 없이 그대로 실행</b>된다. 이를 폴스루라고 한다</li>
+<li><code>default</code>는 어디에 두어도 되고, 폴스루로 도달할 수도 있다</li>
+<li><code>while</code>은 조건을 먼저 검사하고, <code>do-while</code>은 최소 한 번은 실행한다</li>
+<li>문자열은 끝에 널 문자 <code>'\\0'</code>가 붙는다. 길이를 세는 반복문이 끝나면 인덱스는 마지막 글자보다 한 칸 뒤에 있다</li>
+</ul>
+<p>case가 값 없이 붙어 있는 형태(<code>case 10: case 9:</code>)는 두 값을 같은 처리로 묶는 관용적 표현이다.</p>`,
+
+"318 제어문": `
+<p>Java의 반복문은 형태가 두 가지이고, 배열을 다루는 방식이 다르다.</p>
+<ul>
+<li>일반 <code>for</code>는 초기식, 조건식, 증감식 세 부분이며 <code>for (j = 0, i = 0; ...)</code>처럼 쉼표로 여러 개를 둘 수 있다</li>
+<li>향상된 for(<code>for (int p : x)</code>)는 배열의 <b>값</b>을 순서대로 꺼내며 인덱스를 쓰지 않는다</li>
+<li>배열 길이는 <code>배열.length</code>(괄호 없음), 문자열 길이는 <code>문자열.length()</code>(괄호 있음)</li>
+<li><code>charAt(i)</code>는 문자열에서 i번째 글자를 꺼낸다</li>
+</ul>
+<p>반복문 밖에서 선언한 변수는 반복이 끝난 뒤에도 값이 남는다. 그 값이 다음 반복문의 시작점이 되는 문제가 자주 나온다.</p>`,
+
+"319 break와 continue": `
+<p>두 명령은 반복문의 흐름을 바꾸지만 방향이 다르다.</p>
+<ul>
+<li><code>break</code>는 반복문을 즉시 빠져나온다. switch 안에서는 switch를 빠져나온다</li>
+<li><code>continue</code>는 아래 문장을 건너뛰고 조건 검사로 돌아간다. 반복이 끝나지는 않는다</li>
+<li>중첩된 반복문에서는 자기가 속한 <b>가장 안쪽 하나</b>에만 적용된다</li>
+<li><code>while (1)</code>이나 <code>while (true)</code>는 그 자체로 끝나지 않는 반복이고, 탈출은 오직 <code>break</code>가 담당한다</li>
+</ul>
+<p><code>continue</code> 문제는 증감식의 위치가 관건이다. 증감이 continue보다 뒤에 있으면 값이 갱신되지 않아 무한 루프가 된다.</p>`,
+
+"320 포인터": `
+<p>포인터는 값이 아니라 주소를 담는 변수다. 표기가 여러 가지라 같은 뜻을 알아보는 것이 핵심이다.</p>
+<ul>
+<li><code>&amp;a</code>는 a의 주소, <code>*p</code>는 p가 가리키는 곳의 값</li>
+<li>배열 이름은 첫 원소의 주소다. 따라서 <code>a[i]</code>, <code>*(a + i)</code>, <code>*a</code>(i가 0일 때)는 모두 같은 칸을 가리킨다</li>
+<li>포인터에 1을 더하면 1바이트가 아니라 <b>가리키는 자료형 크기</b>만큼 이동한다</li>
+<li><code>char *s = "abc"</code>에서 s는 문자열의 시작 주소다. <code>%s</code>에 <code>s + i</code>를 넘기면 그 위치부터 끝까지 출력된다</li>
+<li>포인터가 가리키는 값을 바꾸면 원본 변수도 함께 바뀐다</li>
+</ul>
+<p>같은 값을 세 가지 표기로 섞어 쓰는 문제가 많으니, 문제를 풀 때 배열 그림을 그려 두는 편이 빠르다.</p>`,
+
+"321 구조체": `
+<p>구조체는 자료형이 다른 값을 하나로 묶는 사용자 정의 자료형이다.</p>
+<ul>
+<li>멤버 접근은 변수면 <code>.</code>, 포인터면 <code>-&gt;</code>를 쓴다. <code>p-&gt;a</code>는 <code>(*p).a</code>와 같다</li>
+<li>구조체 배열의 초기화 값은 멤버 순서대로 차례차례 채워진다</li>
+<li>일부 멤버만 초기화하면 나머지는 <b>0으로 채워진다</b></li>
+<li>구조체 포인터에 <code>+1</code>을 하면 구조체 하나만큼 건너뛴다. 즉 <code>p + 1</code>은 다음 배열 원소다</li>
+</ul>
+<p><code>(p + 1)-&gt;os</code>처럼 괄호가 붙은 형태가 자주 나온다. <code>p + 1</code>이 몇 번째 원소인지 먼저 적어 두고 계산하면 헷갈리지 않는다.</p>`,
+
+"322 사용자 정의 함수": `
+<p>함수는 반환형, 이름, 매개변수로 이루어진다. 인수를 넘기는 방식이 결과를 가른다.</p>
+<ul>
+<li>값 호출은 값을 복사하므로 함수 안에서 바꿔도 원본은 그대로다</li>
+<li>주소 호출은 주소를 넘기므로 함수 안의 변경이 원본에 반영된다. <b>배열은 항상 주소로 전달</b>된다</li>
+<li>재귀 함수는 종료 조건이 반드시 있어야 한다. 조건까지 내려간 뒤 되짚어 올라오며 계산된다</li>
+<li>함수 포인터는 <code>int (*pf)(int)</code> 형태다. 괄호가 없는 <code>int *pf(int)</code>는 포인터를 반환하는 함수 선언이라 뜻이 전혀 다르다</li>
+</ul>
+<p>정렬 코드가 나오면 대개 버블 정렬이다. 이웃한 두 값을 비교해 큰 값을 뒤로 넘기고, 한 회전마다 뒤쪽 한 칸이 확정된다.</p>`,
+
+"323 Java의 클래스": `
+<p>클래스는 설계도, 객체는 그것으로 만든 실체다. 변수의 종류를 구분하는 것이 출제 핵심이다.</p>
+<ul>
+<li>인스턴스 변수는 객체마다 따로 생기고, <code>static</code> 변수는 클래스에 <b>하나만</b> 존재해 모든 객체가 공유한다</li>
+<li>static 변수는 <code>클래스명.변수</code>로 접근하는 것이 원칙이지만 <code>객체명.변수</code>로 써도 같은 저장 공간이다</li>
+<li>객체를 메소드에 넘기면 참조가 전달되어 메소드 안의 변경이 원본에 남는다. 기본형은 값만 복사된다</li>
+<li>후위 증가 <code>b++</code>는 <b>쓰고 나서 올리고</b>, 전위 증가 <code>++b</code>는 올리고 나서 쓴다</li>
+</ul>
+<p>메소드 안의 지역 변수는 이름이 같아도 클래스의 변수와 별개다. 둘을 섞어 놓고 값을 묻는 문제가 자주 나온다.</p>`,
+
+"324 상속과 오버라이딩": `
+<p>상속은 <code>extends</code>로 하고, 부모에 접근할 때는 <code>super</code>를 쓴다.</p>
+<ul>
+<li><code>super(값)</code>은 부모 생성자 호출이고 자식 생성자의 첫 줄에 와야 한다. <code>super.메소드()</code>는 부모의 메소드 호출이다</li>
+<li>오버라이딩은 부모의 메소드를 <b>같은 형태로 다시 정의</b>하는 것, 오버로딩은 <b>같은 이름에 매개변수만 다르게</b> 여러 개 두는 것이다</li>
+<li>부모 타입 변수에 자식 객체를 담으면(업캐스팅), 인스턴스 메소드는 <b>실제 객체</b>의 것이 실행된다</li>
+<li>반면 <code>static</code> 메소드와 필드는 오버라이딩되지 않아 <b>참조 변수의 타입</b>으로 결정된다</li>
+</ul>
+<p>객체 생성 시 부모 생성자가 먼저 실행되고 자식 생성자가 뒤따른다. 생성자 안의 출력문도 답에 포함된다.</p>`,
+
+"326 추상 클래스": `
+<p>추상 클래스는 미완성 설계도다. 자식이 나머지를 채워야 쓸 수 있다.</p>
+<ul>
+<li><code>abstract</code> 메소드는 본체 없이 선언만 있고, 이를 가진 클래스는 <code>abstract class</code>가 된다</li>
+<li>추상 클래스는 <b>객체를 직접 만들 수 없다</b>. 자식 객체를 부모 타입 변수에 담아 쓴다</li>
+<li>자식은 추상 메소드를 반드시 구현해야 한다. 일반 메소드는 그대로 물려받는다</li>
+<li>부모 타입 변수로는 <b>부모에 선언된 메소드만</b> 부를 수 있다. 자식에만 있는 메소드는 호출 대상이 아니다</li>
+</ul>
+<p>같은 이름의 메소드가 여러 개면 넘긴 인수의 개수와 자료형으로 어느 것이 불리는지 먼저 가려야 한다. 필드는 오버라이딩되지 않고 부모와 자식이 따로 갖는다는 점도 자주 나온다.</p>`,
+
+"327 Python의 활용": `
+<p>리스트는 순서가 있고 값을 바꿀 수 있는 자료형이다. 인덱스 처리가 출제 핵심이다.</p>
+<ul>
+<li>인덱스는 0부터 시작하고, 음수는 뒤에서부터 센다. <code>a[-1]</code>이 마지막 원소다</li>
+<li><code>append(값)</code> 끝에 추가 · <code>insert(위치, 값)</code> 중간 삽입 · <code>remove(값)</code> 값으로 삭제 · <code>pop(위치)</code> 꺼내며 삭제</li>
+<li><code>remove</code>로 원소가 빠지면 <b>뒤쪽 인덱스가 한 칸씩 당겨진다</b></li>
+<li><code>input().split('-')</code>은 입력을 구분자로 잘라 여러 변수에 나눠 담는다</li>
+<li><code>print(a, b, sep=',')</code>은 항목 사이 구분자를, <code>end=' '</code>는 줄 끝 문자를 바꾼다</li>
+</ul>
+<p>print에 값을 쉼표로 나열하면 기본적으로 사이에 공백이 하나 들어간다. 답을 적을 때 이 공백까지 세야 한다.</p>`,
+
+"328 Python의 활용2": `
+<p>세트는 중복이 없고 순서도 없는 자료형이다. 문자열 서식도 이 단원에서 함께 나온다.</p>
+<ul>
+<li><code>add(값)</code>은 하나를, <code>update({...})</code>는 여러 개를 한 번에 넣는다. 이미 있는 값은 그냥 무시된다</li>
+<li><code>remove</code>는 없는 값을 지우면 오류, <code>discard</code>는 조용히 넘어간다</li>
+<li>집합 연산은 <code>&amp;</code> 교집합 · <code>|</code> 합집합 · <code>-</code> 차집합 · <code>^</code> 대칭차집합</li>
+<li>세트는 순서를 보장하지 않아 출력 순서가 실행할 때마다 달라질 수 있다. 답은 원소 구성으로 본다</li>
+<li>문자열은 <code>"%s" % 값</code> 형태로 서식을 채운다</li>
+</ul>
+<p>슬라이싱과 섞여 나오면 인덱스를 번호와 함께 적어 두고 세는 편이 정확하다. 공백도 한 글자로 센다.</p>`,
+
+"329 람다 식": `
+<p>람다는 이름 없는 한 줄짜리 함수다. 다른 함수의 인수로 넘길 때 주로 쓴다.</p>
+<ul>
+<li>형태는 <code>lambda 매개변수 : 반환할 식</code>이며 return을 쓰지 않는다</li>
+<li><code>map(함수, 반복자료)</code>는 모든 원소에 함수를 적용하고, <code>filter(함수, 반복자료)</code>는 조건에 맞는 것만 남긴다</li>
+<li>map과 filter의 결과는 그대로 출력하면 내용이 보이지 않는다. <code>list()</code>로 감싸야 리스트가 된다</li>
+<li>정렬 기준으로도 쓴다. <code>sorted(a, key=lambda x : x[1])</code></li>
+</ul>
+<p>리스트를 <code>print</code>에 그대로 넘기면 대괄호와 쉼표까지 함께 출력된다. 답안에 <code>[101, 102]</code> 형태를 그대로 적어야 한다.</p>`,
+
+"330 Python의 클래스": `
+<p>파이썬 클래스는 메소드의 첫 매개변수 자리에 객체 자신이 들어간다.</p>
+<ul>
+<li>관례상 <code>self</code>라고 쓰지만 이름은 자유다. 이름이 <code>sel</code>이어도 역할은 같다</li>
+<li>메소드를 <code>객체.메소드(값)</code>으로 부르면 첫 매개변수는 자동으로 채워지므로 값은 두 번째 자리부터 들어간다</li>
+<li><code>self.변수</code>는 객체에 속한 값, 클래스 본문에 바로 쓴 변수는 클래스 변수다</li>
+<li><code>__init__</code>은 객체가 만들어질 때 자동으로 실행되는 생성자다</li>
+</ul>
+<p>두 값을 맞바꾸는 코드는 임시 변수가 있어야 한다. 임시 변수 없이 순서대로 대입하면 먼저 덮어쓴 값이 사라진다.</p>`,
+
+"331 클래스 없는 메소드": `
+<p>함수는 <code>def</code>로 정의한다. 매개변수 처리 방식이 출제 지점이다.</p>
+<ul>
+<li>기본값 매개변수(<code>def f(a, b = 2)</code>)는 값을 넘기지 않으면 기본값이 쓰인다. 기본값이 있는 것은 뒤쪽에 와야 한다</li>
+<li><code>return a, b</code>처럼 여러 값을 돌려주면 튜플로 묶여 나온다</li>
+<li>숫자와 문자열은 함수 안에서 바꿔도 밖의 변수에 영향이 없다. 리스트는 영향이 있다</li>
+<li><code>/</code>는 나누어떨어져도 <b>실수</b>를 돌려준다. 몫만 필요하면 <code>//</code>를 쓴다</li>
+</ul>
+<p>따라서 <code>12 / 3</code>의 결과는 4가 아니라 <code>4.0</code>이다. C나 Java와 정반대라 언어를 섞어 풀 때 가장 많이 틀리는 지점이다.</p>`,
+
+"332 Python Range": `
+<p>range는 연속된 정수를 만들어 주는 함수다. 끝값을 포함하지 않는 것이 규칙이다.</p>
+<ul>
+<li><code>range(끝)</code>은 0부터, <code>range(시작, 끝)</code>은 시작부터, <code>range(시작, 끝, 증가)</code>는 간격을 지정한다</li>
+<li>어느 형태든 <b>끝값 직전까지</b>다. <code>range(1, 3)</code>은 1과 2뿐이다</li>
+<li>증가값이 음수면 거꾸로 센다. <code>range(5, 0, -1)</code>은 5부터 1까지</li>
+<li>반복문 안에서 <code>=</code>로 대입하면 이전 값이 남지 않는다. 누적하려면 <code>+=</code>를 써야 한다</li>
+</ul>
+<p>시프트 연산과 섞여 나오는 경우가 많다. <code>&gt;&gt; 1</code>은 2로 나눈 몫, <code>&gt;&gt; 2</code>는 4로 나눈 몫으로 계산하면 빠르다.</p>`,
+
+"333 Python 슬라이스": `
+<p>슬라이싱은 문자열이나 리스트의 일부를 잘라내는 문법이다.</p>
+<ul>
+<li>형태는 <code>[시작 : 끝 : 증가]</code>이며 <b>끝 인덱스는 포함되지 않는다</b></li>
+<li>시작을 생략하면 처음부터, 끝을 생략하면 마지막까지다. <code>[:3]</code>은 앞 세 개, <code>[3:]</code>은 네 번째부터 끝까지</li>
+<li>음수는 뒤에서 센다. <code>[-3:]</code>은 마지막 세 개, <code>[:-3]</code>은 마지막 세 개를 뺀 나머지</li>
+<li><code>[::-1]</code>은 순서를 뒤집는다</li>
+</ul>
+<p>인덱스 번호를 글자 위에 직접 적어 놓고 세는 것이 가장 확실하다. 공백도 한 글자로 센다.</p>`,
+
+"335 세트·딕셔너리 메소드": `
+<p>딕셔너리는 키와 값의 쌍으로 저장하는 자료형이다. 세트와 함께 묶여 출제된다.</p>
+<ul>
+<li><code>keys()</code> 키 목록 · <code>values()</code> 값 목록 · <code>items()</code> 쌍 목록 · <code>get(키)</code> 값 조회</li>
+<li>없는 키에 값을 대입하면 새로 추가되고, 있는 키면 값이 바뀐다</li>
+<li>컴프리헨션 <code>{i : i * 2 for i in lst}</code>는 반복문을 한 줄로 줄여 딕셔너리를 만든다</li>
+<li><code>set(dst.values())</code>는 <b>그 시점의 값을 복사</b>한 별개의 집합이다. 이후 원본을 고쳐도 따라 바뀌지 않는다</li>
+</ul>
+<p>복사 시점과 변경 시점의 순서를 코드 줄 순서대로 표에 적으며 따라가면 실수가 줄어든다.</p>`
+};
+
+/* ─────────────────────────────────────────────
+   2) 채점 엔진 — 정답 비교 규칙만 담당
+   ───────────────────────────────────────────── */
+function normalize(text){
+  const lines = String(text).replace(/\r/g, "").split("\n")
+    .map(l => l.trim().replace(/\s+/g, " "));
+  while (lines.length && lines[0] === "") lines.shift();
+  while (lines.length && lines[lines.length - 1] === "") lines.pop();
+  return lines.join("\n");
+}
+function grade(input, answers){
+  const mine = normalize(input);
+  if (mine === "") return null;                 // 빈 답안은 채점하지 않는다
+  return answers.some(a => normalize(a) === mine);
+}
+
+/* ─────────────────────────────────────────────
+   3) 화면 렌더 — 데이터를 받아 DOM만 그린다
+   ───────────────────────────────────────────── */
+const state = new Map();   // id -> true(정답) | false(오답)
+const notes = new Map();   // id -> 내 메모 문자열
+
+function escapeHtml(s){
+  return s.replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[c]));
+}
+function renderCode(src){
+  return src.split("\n")
+    .map((line, i) => `<span class="ln">${i + 1}</span>${escapeHtml(line)}`)
+    .join("\n");
+}
+
+const list = document.getElementById("list");
+
+PROBLEMS.forEach((p, idx) => {
+  const sec = document.createElement("section");
+  sec.className = "q";
+  sec.dataset.unit = p.unit;
+  sec.dataset.lang = p.lang;
+  sec.dataset.source = p.source;
+  sec.innerHTML = `
+    <div class="qhead">
+      <span class="qno">${String(idx + 1).padStart(2, "0")}</span>
+      <span class="qtag"><span>${p.lang}</span> · ${p.unit}</span>
+      <span class="badge ${p.source === "기출" ? "past" : ""}">${p.source}</span>
+    </div>
+    <p class="qtext">${p.prompt}</p>
+    <pre class="code">${renderCode(p.code)}</pre>
+    ${p.stdin ? `<p class="stdin">입력값 <code>${escapeHtml(p.stdin)}</code></p>` : ""}
+    <div class="answer">
+      <label for="ta-${p.id}">답안 (줄바꿈이 있으면 그대로 여러 줄로 적는다)</label>
+      <textarea id="ta-${p.id}" spellcheck="false" autocomplete="off"></textarea>
+      <p class="hintline" data-role="hint"></p>
+    </div>
+    <div class="btns">
+      <button data-act="check">채점</button>
+      <button class="ghost" data-act="hint">힌트</button>
+      <button class="ghost" data-act="memo">메모</button>
+      <button class="ghost" data-act="retry" disabled>다시 풀기</button>
+      <button class="ghost" data-act="concept">개념</button>
+    </div>
+    <div class="concept" data-role="concept" hidden>
+      <h4>${escapeHtml(p.unit)} 짚고 가기</h4>
+      ${p.concept || CONCEPTS[p.unit] || "<p>정리된 개념이 아직 없다.</p>"}
+    </div>
+    <div class="memo" data-role="memo" hidden>
+      <label for="me-${p.id}">내 메모 — 깨달은 점, 헷갈린 이유, 다음에 볼 것</label>
+      <textarea id="me-${p.id}" data-role="memo-input" spellcheck="false"></textarea>
+    </div>
+    <div class="verdict" data-role="verdict"></div>
+  `;
+  list.appendChild(sec);
+  sec.dataset.id = p.id;
+
+  const ta      = sec.querySelector("textarea");
+  const verdict = sec.querySelector('[data-role="verdict"]');
+  const hintEl  = sec.querySelector('[data-role="hint"]');
+  const btnCheck= sec.querySelector('[data-act="check"]');
+  const btnHint = sec.querySelector('[data-act="hint"]');
+  const btnMemo = sec.querySelector('[data-act="memo"]');
+  const btnRetry= sec.querySelector('[data-act="retry"]');
+  const memoBox = sec.querySelector('[data-role="memo"]');
+  const memoTa  = sec.querySelector('[data-role="memo-input"]');
+
+  notes.set(p.id, NOTES[p.id] || "");
+  memoTa.value = notes.get(p.id);
+  function markMemo(){
+    const has = notes.get(p.id).trim() !== "";
+    btnMemo.textContent = has ? "메모 ●" : "메모";
+    btnMemo.classList.toggle("has", has);
+  }
+  markMemo();
+  if (notes.get(p.id)) memoBox.hidden = false;
+
+  memoTa.addEventListener("input", () => {
+    notes.set(p.id, memoTa.value);
+    markMemo();
+  });
+  btnMemo.addEventListener("click", () => {
+    memoBox.hidden = !memoBox.hidden;
+    if (!memoBox.hidden) memoTa.focus();
+  });
+
+  const conceptBox = sec.querySelector('[data-role="concept"]');
+  sec.querySelector('[data-act="concept"]').addEventListener("click", () => {
+    conceptBox.hidden = !conceptBox.hidden;
+  });
+
+  function check(){
+    const result = grade(ta.value, p.answers);
+    if (result === null){
+      verdict.className = "verdict show bad";
+      verdict.innerHTML = `<span class="mark">미입력</span>답안을 적은 뒤 채점한다.`;
+      return;
+    }
+    state.set(p.id, result);
+    ta.disabled = true;
+    btnCheck.disabled = true;
+    btnHint.disabled = true;
+    btnRetry.disabled = false;
+    verdict.className = "verdict show " + (result ? "ok" : "bad");
+    verdict.innerHTML =
+      `<span class="mark">${result ? "정답" : "오답"}</span>` +
+      (result ? "" : "정답은 아래와 같다.") +
+      `<div class="correct">${escapeHtml(p.answers[0])}</div>` +
+      `<div class="explain">${p.explain}</div>`;
+    updateScore();
+  }
+  function retry(){
+    state.delete(p.id);
+    ta.value = ""; ta.disabled = false;
+    btnCheck.disabled = false; btnHint.disabled = false; btnRetry.disabled = true;
+    verdict.className = "verdict"; verdict.innerHTML = "";
+    hintEl.textContent = "";
+    updateScore();
+    ta.focus();
+  }
+
+  btnCheck.addEventListener("click", check);
+  btnRetry.addEventListener("click", retry);
+  btnHint.addEventListener("click", () => { hintEl.textContent = p.hint; });
+  ta.addEventListener("keydown", e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") check();
+  });
+});
+
+function updateScore(){
+  const done = state.size;
+  const hit  = [...state.values()].filter(Boolean).length;
+  document.getElementById("done").textContent = done;
+  document.getElementById("hit").textContent  = hit;
+  document.getElementById("bar").style.width  = (done / PROBLEMS.length * 100) + "%";
+
+  const line = document.getElementById("scoreline");
+  if (done === 0){
+    line.textContent = "아직 채점한 문항이 없다";
+  } else {
+    const rate = Math.round(hit / done * 100);
+    line.innerHTML = `${PROBLEMS.length}문항 중 <b>${done}</b>문항 채점 · `
+      + `정답 <b>${hit}</b> · 오답 <b>${done - hit}</b> · 정답률 <b>${rate}</b>%`;
+  }
+}
+document.getElementById("total").textContent = PROBLEMS.length;
+updateScore();
+
+/* ─────────────────────────────────────────────
+   5) 오답 관리와 메모 내보내기
+   ───────────────────────────────────────────── */
+const wrongSet = new Set();   // "오답만 보기"를 켠 시점의 오답 목록
+
+const btnWrong = document.getElementById("wrongonly");
+btnWrong.addEventListener("click", () => {
+  const on = btnWrong.getAttribute("aria-pressed") !== "true";
+  wrongSet.clear();
+  if (on) state.forEach((ok, id) => { if (!ok) wrongSet.add(id); });
+  btnWrong.setAttribute("aria-pressed", String(on));
+  pick.wrong = on;
+  applyFilter();
+  if (on && wrongSet.size === 0) alert("아직 오답으로 기록된 문항이 없다.");
+});
+
+document.getElementById("retrywrong").addEventListener("click", () => {
+  const ids = [...state.entries()].filter(([, ok]) => !ok).map(([id]) => id);
+  if (ids.length === 0){ alert("다시 풀 오답이 없다."); return; }
+  ids.forEach(id => wrongSet.add(id));
+  ids.forEach(id => {
+    const sec = document.querySelector(`.q[data-id="${id}"]`);
+    const btn = sec && sec.querySelector('[data-act="retry"]');
+    if (btn && !btn.disabled) btn.click();
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+document.getElementById("export").addEventListener("click", () => {
+  const box  = document.getElementById("exportbox");
+  const code = document.getElementById("exportcode");
+  const lines = [];
+  PROBLEMS.forEach(p => {
+    const v = (notes.get(p.id) || "").trim();
+    if (v) lines.push(`  ${JSON.stringify(p.id)}: ${JSON.stringify(v)},`);
+  });
+  code.textContent = lines.length
+    ? "const NOTES = {\n" + lines.join("\n") + "\n};"
+    : "적어 둔 메모가 없다. 문항의 [메모] 버튼을 눌러 먼저 작성한다.";
+  box.hidden = false;
+  box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+});
+
+document.getElementById("copy").addEventListener("click", async () => {
+  const text = document.getElementById("exportcode").textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    alert("복사했다. 파일의 NOTES 자리에 붙여넣으면 된다.");
+  } catch {
+    alert("자동 복사가 막혀 있다. 블록을 직접 선택해 복사한다.");
+  }
+});
+
+/* ─────────────────────────────────────────────
+   4) 필터 — 언어와 단원을 함께 건다
+   ───────────────────────────────────────────── */
+const pick = { source: "전체", lang: "전체", unit: "전체", wrong: false };
+
+function makeChips(box, values, key){
+  box.innerHTML = "";
+  values.forEach(v => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.type = "button";
+    chip.textContent = v;
+    chip.dataset.value = v;
+    chip.setAttribute("aria-pressed", String(pick[key] === v));
+    chip.addEventListener("click", () => { pick[key] = v; applyFilter(); });
+    box.appendChild(chip);
+  });
+}
+
+const srcBox  = document.getElementById("filters-source");
+const langBox = document.getElementById("filters-lang");
+const unitBox = document.getElementById("filters-unit");
+const ALL_SRCS  = ["전체", ...new Set(PROBLEMS.map(p => p.source))];
+const ALL_LANGS = ["전체", ...new Set(PROBLEMS.map(p => p.lang))];
+const ALL_UNITS = ["전체", ...new Set(PROBLEMS.map(p => p.unit))];
+
+function applyFilter(){
+  // 선택한 언어에 문항이 없는 단원은 칩에서 감춘다
+  const inScope = PROBLEMS.filter(p =>
+    (pick.source === "전체" || p.source === pick.source) &&
+    (pick.lang === "전체" || p.lang === pick.lang));
+  const units = ["전체", ...new Set(inScope.map(p => p.unit))];
+  if (!units.includes(pick.unit)) pick.unit = "전체";
+
+  makeChips(srcBox,  ALL_SRCS,  "source");
+  makeChips(langBox, ALL_LANGS, "lang");
+  makeChips(unitBox, units, "unit");
+
+  document.querySelectorAll(".q").forEach(sec => {
+    const ok = (pick.source === "전체" || sec.dataset.source === pick.source)
+            && (pick.lang === "전체" || sec.dataset.lang === pick.lang)
+            && (pick.unit === "전체" || sec.dataset.unit === pick.unit)
+            && (!pick.wrong || wrongSet.has(sec.dataset.id));
+    sec.style.display = ok ? "" : "none";
+  });
+}
+applyFilter();
+
+document.getElementById("reset").addEventListener("click", () => {
+  state.clear();
+  wrongSet.clear();
+  pick.wrong = false;
+  btnWrong.setAttribute("aria-pressed", "false");
+  applyFilter();
+  document.querySelectorAll('[data-act="retry"]').forEach(b => {
+    if (!b.disabled) b.click();
+  });
+  updateScore();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+</body>
+</html>
