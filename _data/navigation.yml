@@ -47,6 +47,8 @@ sidebar_category:
         url: /정처기-실기/
       - title: Trouble Shooting
         url: /troubleshooting/
+      - title: ESSAY
+        url: /essay/
   - title: 필기노트
     children:
       - title: 전체보기
