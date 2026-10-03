@@ -1,6 +1,6 @@
 ---
 title: "[정처기 실기 공부 #4] 소프트웨어 생명주기와 개발 방법론"
-excerpt: "C,JAVA,PYTHON 기준"
+excerpt: "소프트웨어 생명주기"
 categories:
   - 정처기-실기
 tags:
