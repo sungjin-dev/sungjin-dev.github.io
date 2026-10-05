@@ -1,6 +1,6 @@
 ---
-title: "[정처기 실기 공부 #6] 요구사항 정의와 분석"
-excerpt: "요구사항"
+title: "[정처기 실기 공부 #6] UML 기초와 구조 다이어그램"
+excerpt: "UML이란"
 categories:
   - 정처기-실기
 tags:
