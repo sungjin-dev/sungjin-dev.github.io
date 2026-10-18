@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 320" width="100%" role="img" aria-label="리스트 메서드 append extend pop remove reverse의 실행 전후 비교">
+<style>
+  text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;fill:#2b2b28}
+  .t{font-size:13.5px;font-weight:600}
+  .bg{fill:#ffffff}
+  .g{fill:#6b6b66}
+  .box{fill:#f3f3f0;stroke:#9a9a93;stroke-width:1}
+  .ok{fill:#e4f2e8;stroke:#3d8c55;stroke-width:1.2}
+  .hot{fill:#fbe8e2;stroke:#c4533a;stroke-width:1.2}
+  .sep{stroke:#d0d0c8;stroke-width:1}
+  .ln{stroke:#6b6b66;stroke-width:1.2;fill:none}
+  .mk{fill:#6b6b66}
+  .tok{fill:#2c7545}
+  .thot{fill:#b0432d}
+  @media (prefers-color-scheme: dark){
+    text{fill:#e8e8e3}
+    .bg{fill:#1c1c1a}
+    .g{fill:#a3a39c}
+    .box{fill:#2b2b29;stroke:#7d7d76}
+    .ok{fill:#1e3a29;stroke:#6dbd86}
+    .hot{fill:#4a2b23;stroke:#ea8c76}
+    .sep{stroke:#4a4a46}
+    .ln{stroke:#a3a39c}
+    .mk{fill:#a3a39c}
+    .tok{fill:#7fd09a}
+    .thot{fill:#f0a08c}
+  }
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" class="mk"/></marker>
+</defs>
+<rect class="bg" width="680" height="320"/>
+<text class="t" x="16" y="24">리스트 메서드 : 실행 전과 후</text>
+<text class="g" x="16" y="50">메서드</text>
+<text class="g" x="190" y="50">실행 전</text>
+<text class="g" x="350" y="50">실행 후</text>
+<text class="g" x="530" y="50">비고</text>
+<line class="sep" x1="16" y1="58" x2="664" y2="58"/>
+
+<!-- r0 append -->
+<text x="16" y="85">append(13)</text>
+<rect class="box" x="190" y="68" width="30" height="26"/><text x="205" y="85" text-anchor="middle">10</text>
+<rect class="box" x="222" y="68" width="30" height="26"/><text x="237" y="85" text-anchor="middle">11</text>
+<rect class="box" x="254" y="68" width="30" height="26"/><text x="269" y="85" text-anchor="middle">12</text>
+<line class="ln" x1="296" y1="81" x2="338" y2="81" marker-end="url(#ah)"/>
+<rect class="box" x="350" y="68" width="30" height="26"/><text x="365" y="85" text-anchor="middle">10</text>
+<rect class="box" x="382" y="68" width="30" height="26"/><text x="397" y="85" text-anchor="middle">11</text>
+<rect class="box" x="414" y="68" width="30" height="26"/><text x="429" y="85" text-anchor="middle">12</text>
+<rect class="ok" x="446" y="68" width="30" height="26"/><text x="461" y="85" text-anchor="middle">13</text>
+<text class="g" x="530" y="85">끝에 하나 추가</text>
+
+<!-- r1 extend -->
+<text x="16" y="125">extend([13, 14])</text>
+<rect class="box" x="190" y="108" width="30" height="26"/><text x="205" y="125" text-anchor="middle">10</text>
+<rect class="box" x="222" y="108" width="30" height="26"/><text x="237" y="125" text-anchor="middle">11</text>
+<rect class="box" x="254" y="108" width="30" height="26"/><text x="269" y="125" text-anchor="middle">12</text>
+<line class="ln" x1="296" y1="121" x2="338" y2="121" marker-end="url(#ah)"/>
+<rect class="box" x="350" y="108" width="30" height="26"/><text x="365" y="125" text-anchor="middle">10</text>
+<rect class="box" x="382" y="108" width="30" height="26"/><text x="397" y="125" text-anchor="middle">11</text>
+<rect class="box" x="414" y="108" width="30" height="26"/><text x="429" y="125" text-anchor="middle">12</text>
+<rect class="ok" x="446" y="108" width="30" height="26"/><text x="461" y="125" text-anchor="middle">13</text>
+<rect class="ok" x="478" y="108" width="30" height="26"/><text x="493" y="125" text-anchor="middle">14</text>
+<text class="g" x="530" y="125">풀어서 이어 붙임</text>
+
+<!-- r2 pop() -->
+<text x="16" y="165">pop()</text>
+<rect class="box" x="190" y="148" width="30" height="26"/><text x="205" y="165" text-anchor="middle">10</text>
+<rect class="box" x="222" y="148" width="30" height="26"/><text x="237" y="165" text-anchor="middle">11</text>
+<rect class="hot" x="254" y="148" width="30" height="26"/><text x="269" y="165" text-anchor="middle">12</text>
+<line class="ln" x1="296" y1="161" x2="338" y2="161" marker-end="url(#ah)"/>
+<rect class="box" x="350" y="148" width="30" height="26"/><text x="365" y="165" text-anchor="middle">10</text>
+<rect class="box" x="382" y="148" width="30" height="26"/><text x="397" y="165" text-anchor="middle">11</text>
+<text class="thot" x="530" y="165">반환값 12 (맨 끝)</text>
+
+<!-- r3 pop(0) -->
+<text x="16" y="205">pop(0)</text>
+<rect class="hot" x="190" y="188" width="30" height="26"/><text x="205" y="205" text-anchor="middle">10</text>
+<rect class="box" x="222" y="188" width="30" height="26"/><text x="237" y="205" text-anchor="middle">11</text>
+<rect class="box" x="254" y="188" width="30" height="26"/><text x="269" y="205" text-anchor="middle">12</text>
+<line class="ln" x1="296" y1="201" x2="338" y2="201" marker-end="url(#ah)"/>
+<rect class="box" x="350" y="188" width="30" height="26"/><text x="365" y="205" text-anchor="middle">11</text>
+<rect class="box" x="382" y="188" width="30" height="26"/><text x="397" y="205" text-anchor="middle">12</text>
+<text class="thot" x="530" y="205">반환값 10 (0번 칸)</text>
+
+<!-- r4 remove -->
+<text x="16" y="245">remove(10)</text>
+<rect class="hot" x="190" y="228" width="30" height="26"/><text x="205" y="245" text-anchor="middle">10</text>
+<rect class="box" x="222" y="228" width="30" height="26"/><text x="237" y="245" text-anchor="middle">11</text>
+<rect class="box" x="254" y="228" width="30" height="26"/><text x="269" y="245" text-anchor="middle">10</text>
+<line class="ln" x1="296" y1="241" x2="338" y2="241" marker-end="url(#ah)"/>
+<rect class="box" x="350" y="228" width="30" height="26"/><text x="365" y="245" text-anchor="middle">11</text>
+<rect class="box" x="382" y="228" width="30" height="26"/><text x="397" y="245" text-anchor="middle">10</text>
+<text class="thot" x="530" y="245">앞에서 첫 10만 삭제</text>
+
+<!-- r5 reverse -->
+<text x="16" y="285">reverse()</text>
+<rect class="box" x="190" y="268" width="30" height="26"/><text x="205" y="285" text-anchor="middle">10</text>
+<rect class="box" x="222" y="268" width="30" height="26"/><text x="237" y="285" text-anchor="middle">11</text>
+<rect class="box" x="254" y="268" width="30" height="26"/><text x="269" y="285" text-anchor="middle">12</text>
+<line class="ln" x1="296" y1="281" x2="338" y2="281" marker-end="url(#ah)"/>
+<rect class="ok" x="350" y="268" width="30" height="26"/><text x="365" y="285" text-anchor="middle">12</text>
+<rect class="ok" x="382" y="268" width="30" height="26"/><text x="397" y="285" text-anchor="middle">11</text>
+<rect class="ok" x="414" y="268" width="30" height="26"/><text x="429" y="285" text-anchor="middle">10</text>
+<text class="g" x="530" y="285">제자리 뒤집기, 반환 None</text>
+
+<text class="g" x="16" y="312">초록 = 추가·결과, 코랄 = 제거 대상 / 처음 상태는 [10, 11, 12] (remove만 [10, 11, 10])</text>
+</svg>

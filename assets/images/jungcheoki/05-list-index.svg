@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 222" width="100%" role="img" aria-label="리스트의 양수 음수 인덱스와 2차원 리스트 인덱싱">
+<style>
+  text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;fill:#2b2b28}
+  .t{font-size:13.5px;font-weight:600}
+  .bg{fill:#ffffff}
+  .g{fill:#6b6b66}
+  .box{fill:#f3f3f0;stroke:#9a9a93;stroke-width:1}
+  .ok{fill:#e4f2e8;stroke:#3d8c55;stroke-width:1.2}
+  .hot{fill:#fbe8e2;stroke:#c4533a;stroke-width:1.2}
+  .panel{fill:none;stroke:#b8b8b0;stroke-width:1}
+  .tok{fill:#2c7545}
+  .thot{fill:#b0432d}
+  @media (prefers-color-scheme: dark){
+    text{fill:#e8e8e3}
+    .bg{fill:#1c1c1a}
+    .g{fill:#a3a39c}
+    .box{fill:#2b2b29;stroke:#7d7d76}
+    .ok{fill:#1e3a29;stroke:#6dbd86}
+    .hot{fill:#4a2b23;stroke:#ea8c76}
+    .panel{stroke:#5a5a55}
+    .tok{fill:#7fd09a}
+    .thot{fill:#f0a08c}
+  }
+</style>
+<rect class="bg" width="680" height="222"/>
+<text class="t" x="16" y="24">리스트 인덱스와 2차원 리스트</text>
+
+<rect class="panel" x="16" y="38" width="316" height="170" rx="6"/>
+<text class="t" x="32" y="62">인덱스: 앞은 0, 뒤는 -1부터</text>
+<text class="g" x="32" y="119">gamja</text>
+<text class="thot" x="126" y="94" text-anchor="middle">-3</text>
+<text class="thot" x="182" y="94" text-anchor="middle">-2</text>
+<text class="thot" x="238" y="94" text-anchor="middle">-1</text>
+<text class="thot" x="282" y="94">음수</text>
+<rect class="box" x="100" y="100" width="52" height="28"/>
+<rect class="box" x="156" y="100" width="52" height="28"/>
+<rect class="box" x="212" y="100" width="52" height="28"/>
+<text x="126" y="119" text-anchor="middle">10</text>
+<text x="182" y="119" text-anchor="middle">11</text>
+<text x="238" y="119" text-anchor="middle">12</text>
+<text class="g" x="126" y="146" text-anchor="middle">[0]</text>
+<text class="g" x="182" y="146" text-anchor="middle">[1]</text>
+<text class="g" x="238" y="146" text-anchor="middle">[2]</text>
+<text class="g" x="282" y="146">양수</text>
+<text x="32" y="176">gamja[0] → 10</text>
+<text x="132" y="176">gamja[-1] → 12</text>
+<text x="238" y="176">gamja[-2] → 11</text>
+<text class="tok" x="32" y="196">gamja[0] = 20 → [20, 11, 12] (변경 가능)</text>
+
+<rect class="panel" x="348" y="38" width="316" height="170" rx="6"/>
+<text class="t" x="364" y="62">2차원 리스트: 리스트 안의 리스트</text>
+<text class="g" x="446" y="88" text-anchor="middle">[0]</text>
+<text class="g" x="490" y="88" text-anchor="middle">[1]</text>
+<text class="g" x="534" y="88" text-anchor="middle">[2]</text>
+<rect class="box" x="425" y="96" width="42" height="26"/><text x="446" y="113" text-anchor="middle">10</text>
+<rect class="box" x="469" y="96" width="42" height="26"/><text x="490" y="113" text-anchor="middle">11</text>
+<rect class="box" x="513" y="96" width="42" height="26"/><text x="534" y="113" text-anchor="middle">12</text>
+<rect class="ok" x="425" y="126" width="42" height="26"/><text x="446" y="143" text-anchor="middle">20</text>
+<rect class="ok" x="469" y="126" width="42" height="26"/><text x="490" y="143" text-anchor="middle">21</text>
+<rect class="ok" x="513" y="126" width="42" height="26"/><text x="534" y="143" text-anchor="middle">22</text>
+<rect class="box" x="425" y="156" width="42" height="26"/><text x="446" y="173" text-anchor="middle">30</text>
+<rect class="hot" x="469" y="156" width="42" height="26"/><text x="490" y="173" text-anchor="middle">31</text>
+<rect class="box" x="513" y="156" width="42" height="26"/><text x="534" y="173" text-anchor="middle">32</text>
+<text class="g" x="412" y="113" text-anchor="end">[0]</text>
+<text class="g" x="412" y="143" text-anchor="end">[1]</text>
+<text class="g" x="412" y="173" text-anchor="end">[2]</text>
+<text class="tok" x="566" y="140">gamja_2d[1]</text>
+<text class="tok" x="566" y="156">→ 행 전체</text>
+<text class="thot" x="566" y="170">gamja_2d[2][1]</text>
+<text class="thot" x="566" y="186">→ 31</text>
+</svg>

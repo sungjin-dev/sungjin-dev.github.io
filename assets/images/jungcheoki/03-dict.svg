@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 234" width="100%" role="img" aria-label="딕셔너리의 키와 값 구조와 키로 값을 꺼내는 과정">
+<style>
+  text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;fill:#2b2b28}
+  .t{font-size:13.5px;font-weight:600}
+  .bg{fill:#ffffff}
+  .g{fill:#6b6b66}
+  .box{fill:#f3f3f0;stroke:#9a9a93;stroke-width:1}
+  .ok{fill:#e4f2e8;stroke:#3d8c55;stroke-width:1.2}
+  .hot{fill:#fbe8e2;stroke:#c4533a;stroke-width:1.2}
+  .panel{fill:none;stroke:#b8b8b0;stroke-width:1}
+  .lnok{stroke:#3d8c55;stroke-width:1.4;fill:none}
+  .lnhot{stroke:#c4533a;stroke-width:1.4;fill:none}
+  .tok{fill:#2c7545}
+  .thot{fill:#b0432d}
+  .mkok{fill:#3d8c55}
+  .mkhot{fill:#c4533a}
+  @media (prefers-color-scheme: dark){
+    text{fill:#e8e8e3}
+    .bg{fill:#1c1c1a}
+    .g{fill:#a3a39c}
+    .box{fill:#2b2b29;stroke:#7d7d76}
+    .ok{fill:#1e3a29;stroke:#6dbd86}
+    .hot{fill:#4a2b23;stroke:#ea8c76}
+    .panel{stroke:#5a5a55}
+    .lnok{stroke:#6dbd86}
+    .lnhot{stroke:#ea8c76}
+    .tok{fill:#7fd09a}
+    .thot{fill:#f0a08c}
+    .mkok{fill:#6dbd86}
+    .mkhot{fill:#ea8c76}
+  }
+</style>
+<defs>
+  <marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" class="mkok"/></marker>
+  <marker id="ahh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" class="mkhot"/></marker>
+</defs>
+<rect class="bg" width="680" height="234"/>
+<text class="t" x="16" y="22">딕셔너리 : key로 value를 찾는다</text>
+<text class="g" x="190" y="42">gamja_dic = { }</text>
+<rect class="panel" x="190" y="48" width="300" height="134" rx="6"/>
+<text class="thot" x="256" y="68" text-anchor="middle">키(key)</text>
+<text class="tok" x="400" y="68" text-anchor="middle">값(value)</text>
+
+<rect class="hot" x="206" y="78" width="100" height="28" rx="3"/>
+<text x="256" y="96" text-anchor="middle">"뿌리"</text>
+<text class="g" x="318" y="96" text-anchor="middle">:</text>
+<rect class="ok" x="330" y="78" width="140" height="28" rx="3"/>
+<text x="400" y="96" text-anchor="middle">"감자뿌리"</text>
+
+<rect class="hot" x="206" y="112" width="100" height="28" rx="3"/>
+<text x="256" y="130" text-anchor="middle">"줄기"</text>
+<text class="g" x="318" y="130" text-anchor="middle">:</text>
+<rect class="ok" x="330" y="112" width="140" height="28" rx="3"/>
+<text x="400" y="130" text-anchor="middle">"감자"</text>
+
+<rect class="hot" x="206" y="146" width="100" height="28" rx="3"/>
+<text x="256" y="164" text-anchor="middle">"꽃"</text>
+<text class="g" x="318" y="164" text-anchor="middle">:</text>
+<rect class="ok" x="330" y="146" width="140" height="28" rx="3"/>
+<text x="400" y="164" text-anchor="middle">"감자꽃"</text>
+
+<rect class="box" x="16" y="112" width="140" height="28" rx="3"/>
+<text x="86" y="130" text-anchor="middle">gamja_dic["줄기"]</text>
+<line class="lnhot" x1="156" y1="126" x2="204" y2="126" marker-end="url(#ahh)"/>
+<line class="lnok" x1="470" y1="126" x2="522" y2="126" marker-end="url(#aho)"/>
+<rect class="box" x="524" y="112" width="140" height="28" rx="3"/>
+<text x="594" y="130" text-anchor="middle">감자</text>
+
+<text class="thot" x="16" y="206">key는 변경 불가(immutable) 자료형만 된다: 문자열·정수·튜플 O, 리스트·집합·딕셔너리 X</text>
+<text class="tok" x="16" y="224">value는 아무거나 넣을 수 있다.</text>
+</svg>

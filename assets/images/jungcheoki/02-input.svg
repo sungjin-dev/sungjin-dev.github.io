@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 322" width="100%" role="img" aria-label="input 함수가 입력을 문자열로 받아 변수에 저장하고 출력하는 흐름">
+<style>
+  text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;fill:#2b2b28}
+  .t{font-size:13.5px;font-weight:600}
+  .bg{fill:#ffffff}
+  .g{fill:#6b6b66}
+  .box{fill:#f3f3f0;stroke:#9a9a93;stroke-width:1}
+  .ok{fill:#e4f2e8;stroke:#3d8c55;stroke-width:1.2}
+  .ln{stroke:#6b6b66;stroke-width:1.2;fill:none}
+  .mk{fill:#6b6b66}
+  @media (prefers-color-scheme: dark){
+    text{fill:#e8e8e3}
+    .bg{fill:#1c1c1a}
+    .g{fill:#a3a39c}
+    .box{fill:#2b2b29;stroke:#7d7d76}
+    .ok{fill:#1e3a29;stroke:#6dbd86}
+    .ln{stroke:#a3a39c}
+    .mk{fill:#a3a39c}
+  }
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" class="mk"/></marker>
+</defs>
+<rect class="bg" width="680" height="322"/>
+<text class="t" x="16" y="24">input() : 입력은 전부 문자열로 받는다</text>
+
+<text x="16" y="56">gamja = input()</text>
+<text x="16" y="74">print(gamja)</text>
+<rect class="ok" x="136" y="106" width="96" height="28" rx="3"/>
+<text x="184" y="124" text-anchor="middle">입력: 감자왕</text>
+<line class="ln" x1="232" y1="120" x2="270" y2="120" marker-end="url(#ah)"/>
+<text class="g" x="330" y="98" text-anchor="middle">gamja</text>
+<rect class="box" x="276" y="106" width="36" height="28"/>
+<rect class="box" x="312" y="106" width="36" height="28"/>
+<rect class="box" x="348" y="106" width="36" height="28"/>
+<text x="294" y="124" text-anchor="middle">감</text>
+<text x="330" y="124" text-anchor="middle">자</text>
+<text x="366" y="124" text-anchor="middle">왕</text>
+<text class="g" x="294" y="150" text-anchor="middle">[0]</text>
+<text class="g" x="330" y="150" text-anchor="middle">[1]</text>
+<text class="g" x="366" y="150" text-anchor="middle">[2]</text>
+<line class="ln" x1="392" y1="120" x2="426" y2="120" marker-end="url(#ah)"/>
+<rect class="ok" x="432" y="106" width="232" height="28" rx="3"/>
+<text x="548" y="124" text-anchor="middle">감자왕</text>
+
+<text x="16" y="198">gamja = input("뭐든 입력해:")</text>
+<text x="16" y="216">print(f"{gamja} is my life")</text>
+<rect class="box" x="16" y="238" width="104" height="28" rx="3"/>
+<text x="68" y="256" text-anchor="middle">뭐든 입력해:</text>
+<rect class="ok" x="136" y="238" width="96" height="28" rx="3"/>
+<text x="184" y="256" text-anchor="middle">입력: 감자왕</text>
+<line class="ln" x1="232" y1="252" x2="270" y2="252" marker-end="url(#ah)"/>
+<text class="g" x="330" y="230" text-anchor="middle">gamja</text>
+<rect class="box" x="276" y="238" width="36" height="28"/>
+<rect class="box" x="312" y="238" width="36" height="28"/>
+<rect class="box" x="348" y="238" width="36" height="28"/>
+<text x="294" y="256" text-anchor="middle">감</text>
+<text x="330" y="256" text-anchor="middle">자</text>
+<text x="366" y="256" text-anchor="middle">왕</text>
+<text class="g" x="294" y="282" text-anchor="middle">[0]</text>
+<text class="g" x="330" y="282" text-anchor="middle">[1]</text>
+<text class="g" x="366" y="282" text-anchor="middle">[2]</text>
+<line class="ln" x1="392" y1="252" x2="426" y2="252" marker-end="url(#ah)"/>
+<rect class="ok" x="432" y="238" width="232" height="28" rx="3"/>
+<text x="548" y="256" text-anchor="middle">감자왕 is my life</text>
+
+<text class="g" x="16" y="308">초록 = 키보드·화면(데이터 입출력), 회색 = 변수 / 숫자가 필요하면 int(input())으로 바꾼다</text>
+</svg>

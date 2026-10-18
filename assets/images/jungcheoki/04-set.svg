@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 314" width="100%" role="img" aria-label="집합의 add, update, remove, discard 동작을 실행 전후로 비교">
+<style>
+  text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;fill:#2b2b28}
+  .t{font-size:13.5px;font-weight:600}
+  .bg{fill:#ffffff}
+  .g{fill:#6b6b66}
+  .box{fill:#f3f3f0;stroke:#9a9a93;stroke-width:1}
+  .ok{fill:#e4f2e8;stroke:#3d8c55;stroke-width:1.2}
+  .hot{fill:#fbe8e2;stroke:#c4533a;stroke-width:1.2}
+  .panel{fill:none;stroke:#b8b8b0;stroke-width:1}
+  .tok{fill:#2c7545}
+  .thot{fill:#b0432d}
+  @media (prefers-color-scheme: dark){
+    text{fill:#e8e8e3}
+    .bg{fill:#1c1c1a}
+    .g{fill:#a3a39c}
+    .box{fill:#2b2b29;stroke:#7d7d76}
+    .ok{fill:#1e3a29;stroke:#6dbd86}
+    .hot{fill:#4a2b23;stroke:#ea8c76}
+    .panel{stroke:#5a5a55}
+    .tok{fill:#7fd09a}
+    .thot{fill:#f0a08c}
+  }
+</style>
+<rect class="bg" width="680" height="314"/>
+<text class="t" x="16" y="24">집합 메서드 (gamja_set = {"감자뿌리", "감자꽃", "감자"})</text>
+
+<!-- P1 add -->
+<rect class="panel" x="16" y="38" width="316" height="126" rx="6"/>
+<text class="t" x="30" y="60">add(1)</text>
+<text class="g" x="30" y="90">전</text>
+<rect class="box" x="56" y="74" width="64" height="24" rx="3"/><text x="88" y="90" text-anchor="middle">감자뿌리</text>
+<rect class="box" x="126" y="74" width="52" height="24" rx="3"/><text x="152" y="90" text-anchor="middle">감자꽃</text>
+<rect class="box" x="184" y="74" width="40" height="24" rx="3"/><text x="204" y="90" text-anchor="middle">감자</text>
+<text class="g" x="30" y="128">후</text>
+<rect class="box" x="56" y="112" width="64" height="24" rx="3"/><text x="88" y="128" text-anchor="middle">감자뿌리</text>
+<rect class="box" x="126" y="112" width="52" height="24" rx="3"/><text x="152" y="128" text-anchor="middle">감자꽃</text>
+<rect class="box" x="184" y="112" width="40" height="24" rx="3"/><text x="204" y="128" text-anchor="middle">감자</text>
+<rect class="ok" x="230" y="112" width="24" height="24" rx="3"/><text x="242" y="128" text-anchor="middle">1</text>
+<text class="g" x="30" y="154">요소 하나를 추가한다</text>
+
+<!-- P2 update -->
+<rect class="panel" x="348" y="38" width="316" height="126" rx="6"/>
+<text class="t" x="362" y="60">update([1, 2])</text>
+<text class="g" x="362" y="90">전</text>
+<rect class="box" x="388" y="74" width="64" height="24" rx="3"/><text x="420" y="90" text-anchor="middle">감자뿌리</text>
+<rect class="box" x="458" y="74" width="52" height="24" rx="3"/><text x="484" y="90" text-anchor="middle">감자꽃</text>
+<rect class="box" x="516" y="74" width="40" height="24" rx="3"/><text x="536" y="90" text-anchor="middle">감자</text>
+<text class="g" x="362" y="128">후</text>
+<rect class="box" x="388" y="112" width="64" height="24" rx="3"/><text x="420" y="128" text-anchor="middle">감자뿌리</text>
+<rect class="box" x="458" y="112" width="52" height="24" rx="3"/><text x="484" y="128" text-anchor="middle">감자꽃</text>
+<rect class="box" x="516" y="112" width="40" height="24" rx="3"/><text x="536" y="128" text-anchor="middle">감자</text>
+<rect class="ok" x="562" y="112" width="24" height="24" rx="3"/><text x="574" y="128" text-anchor="middle">2</text>
+<rect class="ok" x="592" y="112" width="24" height="24" rx="3"/><text x="604" y="128" text-anchor="middle">1</text>
+<text class="g" x="362" y="154">여러 요소를 풀어서 한 번에 추가한다</text>
+
+<!-- P3 remove -->
+<rect class="panel" x="16" y="176" width="316" height="126" rx="6"/>
+<text class="t" x="30" y="198">remove("감자꽃")</text>
+<text class="g" x="30" y="228">전</text>
+<rect class="box" x="56" y="212" width="64" height="24" rx="3"/><text x="88" y="228" text-anchor="middle">감자뿌리</text>
+<rect class="hot" x="126" y="212" width="52" height="24" rx="3"/><text x="152" y="228" text-anchor="middle">감자꽃</text>
+<rect class="box" x="184" y="212" width="40" height="24" rx="3"/><text x="204" y="228" text-anchor="middle">감자</text>
+<text class="g" x="30" y="266">후</text>
+<rect class="box" x="56" y="250" width="64" height="24" rx="3"/><text x="88" y="266" text-anchor="middle">감자뿌리</text>
+<rect class="box" x="126" y="250" width="40" height="24" rx="3"/><text x="146" y="266" text-anchor="middle">감자</text>
+<text class="thot" x="30" y="292">remove("왕감자") → 없으면 KeyError</text>
+
+<!-- P4 discard -->
+<rect class="panel" x="348" y="176" width="316" height="126" rx="6"/>
+<text class="t" x="362" y="198">discard("감자꽃")</text>
+<text class="g" x="362" y="228">전</text>
+<rect class="box" x="388" y="212" width="64" height="24" rx="3"/><text x="420" y="228" text-anchor="middle">감자뿌리</text>
+<rect class="hot" x="458" y="212" width="52" height="24" rx="3"/><text x="484" y="228" text-anchor="middle">감자꽃</text>
+<rect class="box" x="516" y="212" width="40" height="24" rx="3"/><text x="536" y="228" text-anchor="middle">감자</text>
+<text class="g" x="362" y="266">후</text>
+<rect class="box" x="388" y="250" width="64" height="24" rx="3"/><text x="420" y="266" text-anchor="middle">감자뿌리</text>
+<rect class="box" x="458" y="250" width="40" height="24" rx="3"/><text x="478" y="266" text-anchor="middle">감자</text>
+<text class="tok" x="362" y="292">discard("왕감자") → 없어도 오류 없음</text>
+</svg>
