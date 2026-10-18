@@ -39,7 +39,7 @@ order: 12
 
 코드를 읽을 때는 항상 그림으로 바꿔서 생각하는 것이 좋다. 선언은 상자를 준비하는 일이고, 초기화는 그 상자에 처음 값을 넣는 일이다. 이걸 조금 유식한 말로 `declaration`과 `initialization`이라고 한다.
 
-![변수 선언과 초기화]({{ site.baseurl }}/assets/image/jungcheoki/01-variable.svg)
+![변수 선언과 초기화]({{ site.baseurl }}/assets/images/jungcheoki/01-variable.svg)
 
 ```c
 int blog;        // 선언: 값이 정해지지 않은 상태
@@ -130,7 +130,7 @@ print(f"{blog} is my life")  # f-string
 
 파이썬의 `input()` 하나면 입력이 끝난다. C의 `scanf`보다 훨씬 자유롭다. 다만 함정이 하나 있다. 입력은 전부 문자열로 들어온다는 점이다.
 
-![input 함수의 흐름]({{ site.baseurl }}/assets/image/jungcheoki/02-input.svg)
+![input 함수의 흐름]({{ site.baseurl }}/assets/images/jungcheoki/02-input.svg)
 
 ```python
 blog = input()
@@ -166,7 +166,7 @@ int n = sc.nextInt();
 
 리스트는 자유로운 배열이다. 자바 배열과 달리 자료형도, 크기도 정하지 않는다.
 
-![리스트 인덱스와 2차원 리스트]({{ site.baseurl }}/assets/image/jungcheoki/05-list-index.svg)
+![리스트 인덱스와 2차원 리스트]({{ site.baseurl }}/assets/images/jungcheoki/05-list-index.svg)
 
 ```python
 blog = [10, 11, 12]
@@ -193,7 +193,7 @@ print(blog)        # [20, 11, 12]  변경 가능
 
 실행 전후를 그림으로 비교하면 다음과 같다.
 
-![리스트 메서드 실행 전후]({{ site.baseurl }}/assets/image/jungcheoki/06-list-methods.svg)
+![리스트 메서드 실행 전후]({{ site.baseurl }}/assets/images/jungcheoki/06-list-methods.svg)
 
 ```python
 # 아래 각 줄은 blog = [10, 11, 12]에서 새로 시작한다고 가정한다
@@ -266,7 +266,7 @@ print(blog_2d[2][1])    # 31
 
 딕셔너리는 키(key)와 값(value)의 쌍이다. 영어사전의 단어와 뜻처럼, 단어를 찾으면 뜻이 나온다.
 
-![딕셔너리 구조]({{ site.baseurl }}/assets/image/jungcheoki/03-dict.svg)
+![딕셔너리 구조]({{ site.baseurl }}/assets/images/jungcheoki/03-dict.svg)
 
 ```python
 blog_dic = {"뿌리": "연근", "줄기": "연꽃 줄기", "꽃": "연꽃"}
@@ -318,7 +318,7 @@ print(set(a))                 # {1, 2, 3, 4}  중복 제거
 | `discard(x)` | 요소 제거. 요소가 없어도 오류 없음 |
 | `pop()` | 임의의 요소 하나를 꺼내고 제거 |
 
-![집합 메서드]({{ site.baseurl }}/assets/image/jungcheoki/04-set.svg)
+![집합 메서드]({{ site.baseurl }}/assets/images/jungcheoki/04-set.svg)
 
 ※ `remove`와 `discard`의 차이는 "없을 때"뿐이다. 있으면 둘 다 똑같이 삭제한다.
 ※ `pop()`은 어떤 요소가 나올지 규격상 보장되지 않는다. CPython에서 작은 정수 집합은 대체로 작은 값부터 나오지만, 그것에 기대면 안 된다.
@@ -361,7 +361,7 @@ int main(void) {
 
 실행 결과는 `50 10`이다. 그림으로 보면 이유가 분명해진다.
 
-![값 전달과 주소 전달]({{ site.baseurl }}/assets/image/jungcheoki/07-call-by-value.svg)
+![값 전달과 주소 전달]({{ site.baseurl }}/assets/images/jungcheoki/07-call-by-value.svg)
 
 
 실행 단계를 따라가 본다.
@@ -410,7 +410,7 @@ int main(void) {
 
 실행 결과는 `30 40 30`이다.
 
-![배열 매개변수와 포인터 이동]({{ site.baseurl }}/assets/image/jungcheoki/08-array-pointer.svg)
+![배열 매개변수와 포인터 이동]({{ site.baseurl }}/assets/images/jungcheoki/08-array-pointer.svg)
 
 1. `change(a)`: 배열 원본의 첫 칸이 `a[0] = 30`으로 바뀐다.
 2. `move(p)`: `p`의 값(100)이 복사본에 들어가고, `p++`로 복사본이 `a[1]`을 가리킨다. `*p = 40`으로 `a[1]`이 40이 된다.
