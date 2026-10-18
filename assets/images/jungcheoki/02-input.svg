@@ -24,12 +24,12 @@
 <rect class="bg" width="680" height="322"/>
 <text class="t" x="16" y="24">input() : 입력은 전부 문자열로 받는다</text>
 
-<text x="16" y="56">gamja = input()</text>
-<text x="16" y="74">print(gamja)</text>
+<text x="16" y="56">blog = input()</text>
+<text x="16" y="74">print(blog)</text>
 <rect class="ok" x="136" y="106" width="96" height="28" rx="3"/>
 <text x="184" y="124" text-anchor="middle">입력: 블로그</text>
 <line class="ln" x1="232" y1="120" x2="270" y2="120" marker-end="url(#ah)"/>
-<text class="g" x="330" y="98" text-anchor="middle">gamja</text>
+<text class="g" x="330" y="98" text-anchor="middle">blog</text>
 <rect class="box" x="276" y="106" width="36" height="28"/>
 <rect class="box" x="312" y="106" width="36" height="28"/>
 <rect class="box" x="348" y="106" width="36" height="28"/>
@@ -43,14 +43,14 @@
 <rect class="ok" x="432" y="106" width="232" height="28" rx="3"/>
 <text x="548" y="124" text-anchor="middle">블로그</text>
 
-<text x="16" y="198">gamja = input("입력하시오:")</text>
-<text x="16" y="216">print(f"{gamja} is my life")</text>
+<text x="16" y="198">blog = input("입력하시오:")</text>
+<text x="16" y="216">print(f"{blog} is my life")</text>
 <rect class="box" x="16" y="238" width="104" height="28" rx="3"/>
 <text x="68" y="256" text-anchor="middle">입력하시오:</text>
 <rect class="ok" x="136" y="238" width="96" height="28" rx="3"/>
 <text x="184" y="256" text-anchor="middle">입력: 블로그</text>
 <line class="ln" x1="232" y1="252" x2="270" y2="252" marker-end="url(#ah)"/>
-<text class="g" x="330" y="230" text-anchor="middle">gamja</text>
+<text class="g" x="330" y="230" text-anchor="middle">blog</text>
 <rect class="box" x="276" y="238" width="36" height="28"/>
 <rect class="box" x="312" y="238" width="36" height="28"/>
 <rect class="box" x="348" y="238" width="36" height="28"/>
