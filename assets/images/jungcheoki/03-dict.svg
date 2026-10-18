@@ -36,7 +36,7 @@
 </defs>
 <rect class="bg" width="680" height="234"/>
 <text class="t" x="16" y="22">딕셔너리 : key로 value를 찾는다</text>
-<text class="g" x="190" y="42">gamja_dic = { }</text>
+<text class="g" x="190" y="42">lotus_dic = { }</text>
 <rect class="panel" x="190" y="48" width="300" height="134" rx="6"/>
 <text class="thot" x="256" y="68" text-anchor="middle">키(key)</text>
 <text class="tok" x="400" y="68" text-anchor="middle">값(value)</text>
@@ -60,7 +60,7 @@
 <text x="400" y="164" text-anchor="middle">"연꽃"</text>
 
 <rect class="box" x="16" y="112" width="140" height="28" rx="3"/>
-<text x="86" y="130" text-anchor="middle">gamja_dic["줄기"]</text>
+<text x="86" y="130" text-anchor="middle">lotus_dic["줄기"]</text>
 <line class="lnhot" x1="156" y1="126" x2="204" y2="126" marker-end="url(#ahh)"/>
 <line class="lnok" x1="470" y1="126" x2="522" y2="126" marker-end="url(#aho)"/>
 <rect class="box" x="524" y="112" width="140" height="28" rx="3"/>
