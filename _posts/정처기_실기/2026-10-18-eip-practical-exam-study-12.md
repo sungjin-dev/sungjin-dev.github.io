@@ -39,7 +39,7 @@ order: 12
 
 코드를 읽을 때는 항상 그림으로 바꿔서 생각하는 것이 좋다. 선언은 상자를 준비하는 일이고, 초기화는 그 상자에 처음 값을 넣는 일이다. 이걸 조금 유식한 말로 `declaration`과 `initialization`이라고 한다.
 
-![변수 선언과 초기화](01-variable.svg)
+![변수 선언과 초기화]({{ site.baseurl }}/assets/image/jungcheoki/01-variable.svg)
 
 ```c
 int blog;        // 선언: 값이 정해지지 않은 상태
@@ -130,7 +130,7 @@ print(f"{blog} is my life")  # f-string
 
 파이썬의 `input()` 하나면 입력이 끝난다. C의 `scanf`보다 훨씬 자유롭다. 다만 함정이 하나 있다. 입력은 전부 문자열로 들어온다는 점이다.
 
-![input 함수의 흐름](02-input.svg)
+![input 함수의 흐름]({{ site.baseurl }}/assets/image/jungcheoki/02-input.svg)
 
 ```python
 blog = input()
@@ -166,7 +166,7 @@ int n = sc.nextInt();
 
 리스트는 자유로운 배열이다. 자바 배열과 달리 자료형도, 크기도 정하지 않는다.
 
-![리스트 인덱스와 2차원 리스트](05-list-index.svg)
+![리스트 인덱스와 2차원 리스트]({{ site.baseurl }}/assets/image/jungcheoki/05-list-index.svg)
 
 ```python
 blog = [10, 11, 12]
@@ -193,7 +193,7 @@ print(blog)        # [20, 11, 12]  변경 가능
 
 실행 전후를 그림으로 비교하면 다음과 같다.
 
-![리스트 메서드 실행 전후](06-list-methods.svg)
+![리스트 메서드 실행 전후]({{ site.baseurl }}/assets/image/jungcheoki/06-list-methods.svg)
 
 ```python
 # 아래 각 줄은 blog = [10, 11, 12]에서 새로 시작한다고 가정한다
@@ -266,7 +266,7 @@ print(blog_2d[2][1])    # 31
 
 딕셔너리는 키(key)와 값(value)의 쌍이다. 영어사전의 단어와 뜻처럼, 단어를 찾으면 뜻이 나온다.
 
-![딕셔너리 구조](03-dict.svg)
+![딕셔너리 구조]({{ site.baseurl }}/assets/image/jungcheoki/03-dict.svg)
 
 ```python
 blog_dic = {"뿌리": "연근", "줄기": "연꽃 줄기", "꽃": "연꽃"}
@@ -318,7 +318,7 @@ print(set(a))                 # {1, 2, 3, 4}  중복 제거
 | `discard(x)` | 요소 제거. 요소가 없어도 오류 없음 |
 | `pop()` | 임의의 요소 하나를 꺼내고 제거 |
 
-![집합 메서드](04-set.svg)
+![집합 메서드]({{ site.baseurl }}/assets/image/jungcheoki/04-set.svg)
 
 ※ `remove`와 `discard`의 차이는 "없을 때"뿐이다. 있으면 둘 다 똑같이 삭제한다.
 ※ `pop()`은 어떤 요소가 나올지 규격상 보장되지 않는다. CPython에서 작은 정수 집합은 대체로 작은 값부터 나오지만, 그것에 기대면 안 된다.
@@ -361,81 +361,7 @@ int main(void) {
 
 실행 결과는 `50 10`이다. 그림으로 보면 이유가 분명해진다.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 304" width="100%" role="img" aria-label="배열 매개변수와 포인터 이동에서 원본 배열과 main의 p가 어떻게 되는지 보여주는 그림">
-<style>
-  text{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:12px;fill:#2b2b28}
-  .t{font-size:13.5px;font-weight:600}
-  .bg{fill:#ffffff}
-  .g{fill:#6b6b66}
-  .box{fill:#f3f3f0;stroke:#9a9a93;stroke-width:1}
-  .ok{fill:#e4f2e8;stroke:#3d8c55;stroke-width:1.2}
-  .hot{fill:#fbe8e2;stroke:#c4533a;stroke-width:1.2}
-  .panel{fill:none;stroke:#b8b8b0;stroke-width:1}
-  .ln{stroke:#6b6b66;stroke-width:1.2;fill:none}
-  .lnok{stroke:#3d8c55;stroke-width:1.4;fill:none}
-  .mk{fill:#6b6b66}
-  .mkok{fill:#3d8c55}
-  .tok{fill:#2c7545}
-  .thot{fill:#b0432d}
-  @media (prefers-color-scheme: dark){
-    text{fill:#e8e8e3}
-    .bg{fill:#1c1c1a}
-    .g{fill:#a3a39c}
-    .box{fill:#2b2b29;stroke:#7d7d76}
-    .ok{fill:#1e3a29;stroke:#6dbd86}
-    .hot{fill:#4a2b23;stroke:#ea8c76}
-    .panel{stroke:#5a5a55}
-    .ln{stroke:#a3a39c}
-    .lnok{stroke:#6dbd86}
-    .mk{fill:#a3a39c}
-    .mkok{fill:#6dbd86}
-    .tok{fill:#7fd09a}
-    .thot{fill:#f0a08c}
-  }
-</style>
-<defs>
-  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" class="mk"/></marker>
-  <marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,1 L10,5 L0,9 z" class="mkok"/></marker>
-</defs>
-<rect class="bg" width="680" height="304"/>
-<text class="t" x="16" y="24">배열 이름과 포인터 : 원본 배열은 바뀌고, 복사본 p는 따로 움직인다</text>
-
-<rect class="panel" x="16" y="38" width="648" height="104" rx="6"/>
-<text class="t" x="32" y="58">main의 메모리</text>
-<text class="g" x="82" y="80" text-anchor="middle">p (int *)</text>
-<rect class="box" x="40" y="86" width="84" height="28" rx="3"/>
-<text x="82" y="105" text-anchor="middle">100</text>
-<text class="g" x="82" y="132" text-anchor="middle">주소 1000</text>
-<line class="ln" x1="124" y1="100" x2="238" y2="100" marker-end="url(#ah)"/>
-<text class="g" x="181" y="94" text-anchor="middle">p = a</text>
-<text class="g" x="282" y="80" text-anchor="middle">a[0]</text>
-<text class="g" x="370" y="80" text-anchor="middle">a[1]</text>
-<rect class="ok" x="240" y="86" width="84" height="28" rx="3"/>
-<text x="282" y="105" text-anchor="middle">10 → 30</text>
-<rect class="ok" x="328" y="86" width="84" height="28" rx="3"/>
-<text x="370" y="105" text-anchor="middle">20 → 40</text>
-<text class="g" x="282" y="132" text-anchor="middle">주소 100</text>
-<text class="g" x="370" y="132" text-anchor="middle">주소 101</text>
-<text class="g" x="428" y="105">a (int a[2])</text>
-
-<line class="lnok" x1="250" y1="184" x2="250" y2="118" marker-end="url(#aho)"/>
-<text class="tok" x="242" y="162" text-anchor="end">a[0] = 30</text>
-<text class="g" x="196" y="203" text-anchor="end">change(a)의 a</text>
-<rect class="box" x="208" y="184" width="84" height="28" rx="3"/>
-<text x="250" y="203" text-anchor="middle">100</text>
-<text class="g" x="250" y="228" text-anchor="middle">주소 2000</text>
-
-<line class="lnok" x1="404" y1="184" x2="404" y2="118" marker-end="url(#aho)"/>
-<text class="tok" x="412" y="162">*p = 40</text>
-<rect class="hot" x="362" y="184" width="84" height="28" rx="3"/>
-<text x="404" y="203" text-anchor="middle">100 → 101</text>
-<text class="g" x="456" y="203">move(p)의 p (p++ 후)</text>
-<text class="g" x="404" y="228" text-anchor="middle">주소 3000</text>
-
-<text class="thot" x="340" y="250" text-anchor="middle">main으로 돌아오면 p는 그대로 100 : *p는 a[0]이므로 30</text>
-<rect class="box" x="16" y="262" width="648" height="30" rx="4"/>
-<text x="340" y="282" text-anchor="middle">출력 결과: 30 40 30</text>
-</svg>
+![값 전달과 주소 전달]({{ site.baseurl }}/assets/image/jungcheoki/07-call-by-value.svg)
 
 
 실행 단계를 따라가 본다.
@@ -484,7 +410,7 @@ int main(void) {
 
 실행 결과는 `30 40 30`이다.
 
-![배열 매개변수와 포인터 이동](08-array-pointer.svg)
+![배열 매개변수와 포인터 이동]({{ site.baseurl }}/assets/image/jungcheoki/08-array-pointer.svg)
 
 1. `change(a)`: 배열 원본의 첫 칸이 `a[0] = 30`으로 바뀐다.
 2. `move(p)`: `p`의 값(100)이 복사본에 들어가고, `p++`로 복사본이 `a[1]`을 가리킨다. `*p = 40`으로 `a[1]`이 40이 된다.
