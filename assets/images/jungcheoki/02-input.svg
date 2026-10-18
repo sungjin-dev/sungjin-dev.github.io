@@ -27,42 +27,42 @@
 <text x="16" y="56">gamja = input()</text>
 <text x="16" y="74">print(gamja)</text>
 <rect class="ok" x="136" y="106" width="96" height="28" rx="3"/>
-<text x="184" y="124" text-anchor="middle">입력: 감자왕</text>
+<text x="184" y="124" text-anchor="middle">입력: 블로그</text>
 <line class="ln" x1="232" y1="120" x2="270" y2="120" marker-end="url(#ah)"/>
 <text class="g" x="330" y="98" text-anchor="middle">gamja</text>
 <rect class="box" x="276" y="106" width="36" height="28"/>
 <rect class="box" x="312" y="106" width="36" height="28"/>
 <rect class="box" x="348" y="106" width="36" height="28"/>
-<text x="294" y="124" text-anchor="middle">감</text>
-<text x="330" y="124" text-anchor="middle">자</text>
-<text x="366" y="124" text-anchor="middle">왕</text>
+<text x="294" y="124" text-anchor="middle">블</text>
+<text x="330" y="124" text-anchor="middle">로</text>
+<text x="366" y="124" text-anchor="middle">그</text>
 <text class="g" x="294" y="150" text-anchor="middle">[0]</text>
 <text class="g" x="330" y="150" text-anchor="middle">[1]</text>
 <text class="g" x="366" y="150" text-anchor="middle">[2]</text>
 <line class="ln" x1="392" y1="120" x2="426" y2="120" marker-end="url(#ah)"/>
 <rect class="ok" x="432" y="106" width="232" height="28" rx="3"/>
-<text x="548" y="124" text-anchor="middle">감자왕</text>
+<text x="548" y="124" text-anchor="middle">블로그</text>
 
-<text x="16" y="198">gamja = input("뭐든 입력해:")</text>
+<text x="16" y="198">gamja = input("입력하시오:")</text>
 <text x="16" y="216">print(f"{gamja} is my life")</text>
 <rect class="box" x="16" y="238" width="104" height="28" rx="3"/>
-<text x="68" y="256" text-anchor="middle">뭐든 입력해:</text>
+<text x="68" y="256" text-anchor="middle">입력하시오:</text>
 <rect class="ok" x="136" y="238" width="96" height="28" rx="3"/>
-<text x="184" y="256" text-anchor="middle">입력: 감자왕</text>
+<text x="184" y="256" text-anchor="middle">입력: 블로그</text>
 <line class="ln" x1="232" y1="252" x2="270" y2="252" marker-end="url(#ah)"/>
 <text class="g" x="330" y="230" text-anchor="middle">gamja</text>
 <rect class="box" x="276" y="238" width="36" height="28"/>
 <rect class="box" x="312" y="238" width="36" height="28"/>
 <rect class="box" x="348" y="238" width="36" height="28"/>
-<text x="294" y="256" text-anchor="middle">감</text>
-<text x="330" y="256" text-anchor="middle">자</text>
-<text x="366" y="256" text-anchor="middle">왕</text>
+<text x="294" y="256" text-anchor="middle">블</text>
+<text x="330" y="256" text-anchor="middle">로</text>
+<text x="366" y="256" text-anchor="middle">그</text>
 <text class="g" x="294" y="282" text-anchor="middle">[0]</text>
 <text class="g" x="330" y="282" text-anchor="middle">[1]</text>
 <text class="g" x="366" y="282" text-anchor="middle">[2]</text>
 <line class="ln" x1="392" y1="252" x2="426" y2="252" marker-end="url(#ah)"/>
 <rect class="ok" x="432" y="238" width="232" height="28" rx="3"/>
-<text x="548" y="256" text-anchor="middle">감자왕 is my life</text>
+<text x="548" y="256" text-anchor="middle">블로그 is my life</text>
 
 <text class="g" x="16" y="308">초록 = 키보드·화면(데이터 입출력), 회색 = 변수 / 숫자가 필요하면 int(input())으로 바꾼다</text>
 </svg>
