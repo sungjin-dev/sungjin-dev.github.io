@@ -16,6 +16,7 @@ tags:
 toc: true
 toc_sticky: true
 series: "정처기-실기"
+published: false
 order: 11
 ---
 
